@@ -6,6 +6,9 @@ public class PlayerAnimation : AgentAnimation
 {
     // Hash
 
+    // 상태
+    private readonly int _battleHash = Animator.StringToHash("Battle"); 
+
     // 이동 
     private readonly int _velocityXHash = Animator.StringToHash("VelocityX");
     private readonly int _velocityYHash = Animator.StringToHash("VelocityY");
@@ -16,9 +19,17 @@ public class PlayerAnimation : AgentAnimation
     private readonly int _backKickHash = Animator.StringToHash("BackKick");
     private readonly int _tackleHash = Animator.StringToHash("Tackle");
 
+    // Hash 끝
     protected override void Awake()
     {
-        
+        base.Awake(); 
+    }
+
+    // 상태 설정 
+    public void SetBattle(bool active)
+    {
+        _agentAnimator.SetBool(_battleHash, active); 
+            
     }
 
     // 킥 애니메이션 

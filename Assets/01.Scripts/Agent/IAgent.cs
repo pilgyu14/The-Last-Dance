@@ -4,8 +4,6 @@ using UnityEngine;
 
 public interface IAgent
 {
-    public bool IsDie { get; set; }
-    public float HP { get;  set; }
-
+    public bool IsDie(); 
     public void OnDie(); 
 }
