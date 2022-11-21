@@ -11,7 +11,7 @@ public class PlayerAnimation : AgentAnimation
 
     // 이동 
     private readonly int _velocityXHash = Animator.StringToHash("VelocityX");
-    private readonly int _velocityYHash = Animator.StringToHash("VelocityY");
+    private readonly int _velocityYHash = Animator.StringToHash("VelocityZ");
 
     // 공격 
     private readonly int _frontKickHash = Animator.StringToHash("FrontKick");

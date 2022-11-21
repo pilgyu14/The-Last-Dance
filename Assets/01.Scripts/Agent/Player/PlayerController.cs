@@ -30,10 +30,14 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     // 캐싱 변수 
     private InputModule _inputModule;
     private CharacterController _chController;
-    private PlayerAnimation _playerAnimation; 
+    private PlayerAnimation _playerAnimation;
 
     // 내부 변수 
+    private Vector3 _battleTargetPos;
+    private Quaternion _battleTargetRot; 
+
     private bool _isDie = false;
+    [SerializeField]
     private bool _isBattle = false; // 전투중인가 
 
     private void Awake()
@@ -46,7 +50,17 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 
     private void Update()
     {
-        Move(); 
+        if(Input.GetMouseButtonDown(0))
+        {
+            FrontKick(); 
+        }
+
+        if(_isBattle == false)
+        {
+            Move();
+            return; 
+        }
+        InBattleMove(); 
     }
 
     private void Move()
@@ -56,6 +70,8 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_inputModule.MoveDir, Vector3.up),
             Time.deltaTime * _playerSO.speed);
+
+            _battleTargetPos = _inputModule.MoveDir;
         }
 
         _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
@@ -64,14 +80,19 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private void InBattleMove()
     {
         _chController.Move(_inputModule.MoveDir * _playerSO.speed * Time.deltaTime);
-        if (_chController.velocity.magnitude > 0.2f)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_inputModule.MoveDir, Vector3.up),
+        //if (_chController.velocity.magnitude > 0.2f)
+        //{
+            transform.rotation = Quaternion.Slerp(transform.rotation, _battleTargetRot,
             Time.deltaTime * _playerSO.speed);
-        }
+        //}
 
-        _playerAnimation.SetVelocity(_inputModule.MoveDir.x, _inputModule.MoveDir.y); 
+        _playerAnimation.SetVelocity(_inputModule.MoveDir.x, _inputModule.MoveDir.z);
+
+        CheckBattle(); 
     }
+
+
+
 
     private float _time = 0f;  // 전투 지속X 시간 
     private void CheckBattle()
@@ -92,6 +113,23 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         _time = 0;
         _isBattle = true;
         _playerAnimation.SetBattle(_isBattle); 
+    }
+
+    private void FrontKick()
+    {
+        StartBattle();
+        Ray ray = Define.MainCam.ScreenPointToRay(Input.mousePosition); 
+        Physics.Raycast(ray, out RaycastHit hitInfo);
+        Debug.DrawRay(ray.origin, ray.direction * 10,Color.red,3f); 
+
+        _battleTargetPos = hitInfo.point - transform.position;
+        _battleTargetPos.y = 0; 
+
+        _battleTargetRot = Quaternion.LookRotation(_battleTargetPos, Vector3.up);
+        _battleTargetRot.x = 0;
+        _battleTargetRot.z = 0; 
+
+        _playerAnimation.SetFrontKick(); 
     }
 
     public void Damaged()
