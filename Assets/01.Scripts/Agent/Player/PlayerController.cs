@@ -2,24 +2,74 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine.AI;
-
-public class TestE
-{
-    private NavMeshAgent _agent; 
-   
-    void A()
-    {
-    }
-    
-}
-
 // 상하 좌우 이동 
 // 회전 
 // 액션 
 // 애니메이션 
 
+public enum PlayerStateType
+{
+    DefaultType,
+    InBattleType, 
+}
 
+public abstract class State<T>
+{
+    protected T owner;
+
+   
+    public virtual void Init(T owner)
+    {
+        this.owner = owner;  
+    }
+    public abstract void Enter();
+    public abstract void Stay(); 
+    public abstract void Exit();
+
+}
+
+public class DefaultState : State<PlayerController>
+{
+
+    public override void Enter()
+    {
+        owner.InputModule.OnMovementKeyPress = owner.MoveModule.Move;
+        owner.InputModule.OnMovementKeyPress += owner.MoveDefaultAnimation; 
+        // move 넣기 
+    }
+    public override void Stay()
+    {
+
+    }
+
+    public override void Exit()
+    {
+    }
+
+}
+
+public class InBattleState : State<PlayerController>
+{
+
+    public override void Enter()
+    {
+        owner.StartBattle();
+        owner.InputModule.OnMovementKeyPress = owner.MoveModule.InBattleMove;
+        owner.InputModule.OnMovementKeyPress += owner.InBattleMoveAnimation; 
+        // InBattlemove 넣기 
+        // StartBattle
+    }
+    public override void Stay()
+    {
+        owner.CheckBattle(); 
+        //CheckBattle
+    }
+
+    public override void Exit()
+    {
+    }
+
+}
 
 public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 {
@@ -29,73 +79,89 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 
     // 캐싱 변수 
     private InputModule _inputModule;
+    private MoveModule _moveModule; 
     private CharacterController _chController;
     private PlayerAnimation _playerAnimation;
 
     // 내부 변수 
-    private Vector3 _battleTargetPos;
-    private Quaternion _battleTargetRot; 
+    private Dictionary<PlayerStateType, State<PlayerController>> _stateDic = new Dictionary<PlayerStateType, State<PlayerController>>(); 
+
+    private DefaultState _defaultState;
+    private InBattleState _inBattleState;
+
+    private State<PlayerController> _curState; 
+
+    private Vector3 _targetPos;
+    private Quaternion _targetRot; 
 
     private bool _isDie = false;
     [SerializeField]
-    private bool _isBattle = false; // 전투중인가 
+    private bool _isBattle = false; // 전투상태인가 
+    private bool _isAttack = false; // 공격 중인가 
+
+    // 프로퍼티 
+    public InputModule InputModule => _inputModule; 
+    public MoveModule MoveModule => _moveModule;
+    public PlayerAnimation PlayerAnimation => _playerAnimation; 
 
     private void Awake()
     {
         _inputModule = GetComponent<InputModule>();
+        _moveModule = GetComponent<MoveModule>(); 
         _chController = GetComponent<CharacterController>();
         _playerAnimation = transform.GetComponentInChildren<PlayerAnimation>();  
-    
     }
 
+    private void Start()
+    {
+        // 상태 등록 
+        _defaultState = new DefaultState();
+        _inBattleState = new InBattleState();
+
+        _defaultState.Init(this);
+        _inBattleState.Init(this); 
+
+        _stateDic.Add(PlayerStateType.DefaultType, _defaultState);
+        _stateDic.Add(PlayerStateType.InBattleType, _inBattleState);
+
+        _curState = _defaultState; 
+
+        // 입력 등록 
+        _inputModule.OnDefaultAttackPress = FrontKick;
+
+        //_inputModule.OnPointerRotate = RotateByMouse;
+        //_inputModule.OnMovementKeyPress = Move;
+        // _inputModule.OnMovementKeyPress = InBattleMove; 
+
+        _moveModule.Init(_inputModule,_chController ,_playerSO.moveInfo); 
+    }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            FrontKick(); 
-        }
+        if (_isAttack == true) return;
 
-        if(_isBattle == false)
-        {
-            Move();
-            return; 
-        }
-        InBattleMove(); 
-    }
+        _curState.Stay(); 
 
-    private void Move()
-    {
-        _chController.Move(_inputModule.MoveDir * _playerSO.speed * Time.deltaTime);
-        if(_chController.velocity .magnitude> 0.2f)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_inputModule.MoveDir, Vector3.up),
-            Time.deltaTime * _playerSO.speed);
-
-            _battleTargetPos = _inputModule.MoveDir;
-        }
-
-        _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
-    }
-
-    private void InBattleMove()
-    {
-        _chController.Move(_inputModule.MoveDir * _playerSO.speed * Time.deltaTime);
-        //if (_chController.velocity.magnitude > 0.2f)
+        //if (_isBattle == false)
         //{
-            transform.rotation = Quaternion.Slerp(transform.rotation, _battleTargetRot,
-            Time.deltaTime * _playerSO.speed);
+        //    Move();
+        //    return; 
         //}
-
-        _playerAnimation.SetVelocity(_inputModule.MoveDir.x, _inputModule.MoveDir.z);
-
-        CheckBattle(); 
+        //InBattleMove(); 
     }
 
 
 
+    public void MoveDefaultAnimation(Vector3 v)
+    {
+            _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
+    }
+    public void InBattleMoveAnimation(Vector3 targetDir)
+    {
+        _playerAnimation.SetVelocity(targetDir.x, targetDir.z);
+    }
 
     private float _time = 0f;  // 전투 지속X 시간 
-    private void CheckBattle()
+    public void CheckBattle()
     {
         if (_isBattle == false) return; 
 
@@ -104,30 +170,37 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         {
             _isBattle = false;
             _time = 0;
-            _playerAnimation.SetBattle(_isBattle); 
+            _playerAnimation.SetBattle(_isBattle);
+
+            ChangeState(PlayerStateType.DefaultType);
         }
+
     }
 
-    private void StartBattle()
+    public void StartBattle()
     {
         _time = 0;
         _isBattle = true;
-        _playerAnimation.SetBattle(_isBattle); 
+        _playerAnimation.SetBattle(_isBattle);
+
+        ChangeState(PlayerStateType.InBattleType);
+    }
+
+
+    public void ChangeState(PlayerStateType type)
+    {
+        if(_stateDic.ContainsKey(type) == false)
+        {
+            Debug.LogError("존재하지 않는 상태");
+            return;
+        }
+        _curState = _stateDic[type];
     }
 
     private void FrontKick()
     {
         StartBattle();
-        Ray ray = Define.MainCam.ScreenPointToRay(Input.mousePosition); 
-        Physics.Raycast(ray, out RaycastHit hitInfo);
-        Debug.DrawRay(ray.origin, ray.direction * 10,Color.red,3f); 
 
-        _battleTargetPos = hitInfo.point - transform.position;
-        _battleTargetPos.y = 0; 
-
-        _battleTargetRot = Quaternion.LookRotation(_battleTargetPos, Vector3.up);
-        _battleTargetRot.x = 0;
-        _battleTargetRot.z = 0; 
 
         _playerAnimation.SetFrontKick(); 
     }
@@ -138,10 +211,61 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 
     public void OnDie()
     {
+        
     }
 
     public bool IsDie()
     {
         return _isDie;
     }
+
+
+    private void RotateByMouse(Vector3 pos)
+    {
+        Ray ray = Define.MainCam.ScreenPointToRay(pos);
+        Physics.Raycast(ray, out RaycastHit hitInfo);
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 3f);
+
+        _targetPos = hitInfo.point - transform.position;
+        _targetPos.y = 0;
+
+        _targetRot = Quaternion.LookRotation(_targetPos, Vector3.up);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir, Vector3.up),
+           Time.deltaTime * _playerSO.speed);
+
+        //_targetRot.x = 0;
+        //_targetRot.z = 0;
+    }
+
+    private void Move(Vector3 moveDir)
+    {
+        _chController.Move(moveDir * _playerSO.speed * Time.deltaTime);
+        if (_chController.velocity.magnitude > 0.2f)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir, Vector3.up),
+            Time.deltaTime * _playerSO.speed);
+
+            _targetPos = moveDir;
+        }
+
+        _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
+    }
+
+    private void InBattleMove(Vector3 moveDir)
+    {
+        Vector3 targetDir = Vector3.Normalize(moveDir.x * transform.right + _inputModule.MoveDir.z * transform.forward); // 회전 값에 따른 이동 방향
+
+        _chController.Move(moveDir * _playerSO.speed * Time.deltaTime);
+        //if (_chController.velocity.magnitude > 0.2f)
+        //{
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot,
+        Time.deltaTime * _playerSO.speed);
+        //}
+
+        _playerAnimation.SetVelocity(targetDir.x, targetDir.z);
+
+        CheckBattle();
+    }
+
 }

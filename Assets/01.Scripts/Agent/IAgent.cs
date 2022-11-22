@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IAgent
 {
+
     public bool IsDie(); 
     public void OnDie(); 
 }
