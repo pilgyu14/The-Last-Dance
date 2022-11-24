@@ -1,8 +1,8 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimation1 : MonoBehaviour
+public class AttackInfo : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

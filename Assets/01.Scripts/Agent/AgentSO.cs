@@ -9,7 +9,9 @@ public class MovementInfo
     public float maxSpeed;
 
     public float acceleration;
-    public float deacceleration; 
+    public float deacceleration;
+
+    public float rotSpeed; 
 }
 
 

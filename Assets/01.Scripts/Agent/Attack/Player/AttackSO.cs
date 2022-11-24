@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackSO : MonoBehaviour
+[CreateAssetMenu(menuName ="SO/AttackSO"]
+public class AttackSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool isMultipleAttack;
+    public bool isBombAttack; 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float attackDamage;
+    public float attackRange;
+    public float attackDelay;
+
+    public GameObjec hitEffect;
+
+    public AudioClip shakeClip;
+    public AudioClip hitClip;
+
+    public Sprite icon; 
 }
+

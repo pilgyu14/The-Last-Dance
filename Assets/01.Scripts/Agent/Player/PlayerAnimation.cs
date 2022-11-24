@@ -52,10 +52,10 @@ public class PlayerAnimation : AgentAnimation
     }
 
     // 이동 설정 
-    public void SetVelocity(float x, float y)
+    public void SetVelocity(Vector3 v)
     {
-        _agentAnimator.SetFloat(_velocityXHash, x);
-        _agentAnimator.SetFloat(_velocityYHash, y);
+        _agentAnimator.SetFloat(_velocityXHash, v.x);
+        _agentAnimator.SetFloat(_velocityYHash, v.z);
     }
 
 }
