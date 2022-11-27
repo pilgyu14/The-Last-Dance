@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackInfo : MonoBehaviour
+public abstract class AttackInfo 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public AttackType attackType;
+    public AttackSO attackSO;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void Attack(); 
 }
+
