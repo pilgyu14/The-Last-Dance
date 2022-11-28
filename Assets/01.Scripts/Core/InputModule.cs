@@ -59,6 +59,17 @@ public class InputModule : MonoBehaviour, IAgentInput
     
     }
 
+    public void Attacking(bool isAttacking)
+    {
+        if(isAttacking)
+        {
+            _isPlayerInput = false; 
+        }
+        else
+        {
+            _isPlayerInput = true; 
+        }
+    }
     /// <summary>
     /// Player 입력 받기 
     /// </summary>
@@ -109,7 +120,7 @@ public class InputModule : MonoBehaviour, IAgentInput
                 OnKeyboardRotate?.Invoke(MoveDir);
                 return;
             }
-            Debug.Log("마우스 회전"); 
+            //Debug.Log("마우스 회전"); 
             //아니면 마우스 회전 
             OnPointerRotate?.Invoke(Input.mousePosition);
         }
@@ -118,4 +129,6 @@ public class InputModule : MonoBehaviour, IAgentInput
             OnPointerRotate?.Invoke(Input.mousePosition);
         }
     }
+    
+
 }
