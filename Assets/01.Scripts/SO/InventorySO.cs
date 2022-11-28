@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SO/ItemSO")]
+[CreateAssetMenu(menuName = "SO/InventorySO")]
 public class InventorySO : ScriptableObject
 {
-    public Dictionary<GameObject, int> itemDictionary;
+    public int maxItemType;
+    public int maxItemValue;
+    public Item[] itemList;
 }
