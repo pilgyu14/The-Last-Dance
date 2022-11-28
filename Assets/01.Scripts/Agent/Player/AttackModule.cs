@@ -24,7 +24,8 @@ public class AttackModule : MonoBehaviour
     private LayerMask _hitLayerMask;
 
     // 프로퍼티
-    public AttackSO curAttackSO => _curAttackInfo.attackSO; 
+    public AttackSO curAttackSO => _curAttackInfo.attackSO;
+    public AttackType curAttackType => _curAttackInfo.attackType; 
     private void Start()
     {
         _hitLayerMask =  (isEnemy) ? 1 << LayerMask.NameToLayer("Player") : 1 << LayerMask.NameToLayer("Enemy");
@@ -35,6 +36,7 @@ public class AttackModule : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.X))
         {
+            // 입력 키에 따라 어떤 공격할지 설정 
             DefaultAttack(); 
         }
     }
@@ -71,8 +73,28 @@ public class AttackModule : MonoBehaviour
             {
                 IKnockback knockback = target.GetComponent<IKnockback>();
             }
+        }
+    }
+
+    private float _nextAtkTImeLimit = 0.2f; 
+    public void CheckAttackType()
+    {
+        if(_curAttackInfo.attackType == AttackType.Default_1)
+        {
             
         }
+    }
+
+    public void SetCurAttackType(AttackType attackType)
+    {
+        attackInfoList.ForEach((x) =>
+        {
+            if (x.attackType == attackType)
+            {
+                _curAttackInfo = x;
+                return;
+            }
+        });
     }
 
 

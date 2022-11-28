@@ -12,8 +12,7 @@ public class AttackBehaviour : StateMachineBehaviour
     {
         _owner ??= animator.GetComponentInParent<PlayerController>();
 
-        _owner.Attacking(); 
-
+        _owner.Attacking();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

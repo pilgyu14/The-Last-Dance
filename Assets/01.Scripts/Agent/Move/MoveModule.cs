@@ -8,14 +8,14 @@ public class MoveModule : MonoBehaviour
     //  캐싱 변수 
     private InputModule _inputModule;
     private CharacterController _chController;
-    
-    private MovementInfo _movementInfo;
     private PlayerAnimation _playerAnimation;
 
-    [SerializeField]
-    private float _curSpeed; 
-    private Vector3 _rotTargetPos; //
-    private Quaternion _targetRot;
+    private MovementInfo _movementInfo;
+
+    [SerializeField] // 임시 직렬화 
+    private float _curSpeed; // 현재 속도 
+    private Vector3 _rotTargetPos; // 목표 회전 vector
+    private Quaternion _targetRot;// 목표 회전 quaternion
     private Vector3 _targetDir;
 
     [SerializeField]
@@ -25,6 +25,7 @@ public class MoveModule : MonoBehaviour
     private LayerMask _layerMask; 
     // 이동 회전 
 
+    // 체크 변수 
 
     public void Init(InputModule inputModule, CharacterController chCtrl , MovementInfo moveInfo, PlayerAnimation playerAnimation)
     {
@@ -44,18 +45,17 @@ public class MoveModule : MonoBehaviour
     private void Update()
     {
         ApplyGravity();
-        _chController.Move(_targetDir + Vector3.up * _velocityY);
+        _chController.Move((_targetDir + Vector3.up * _velocityY) * Time.deltaTime);
 
     }
 
-    private void RotateByMouse(Vector3 pos)
+    private void RotateByMouse(Vector3 targetPos)
     {
         // Debug.Log("마우스 회전"); 
-        Ray ray = Define.MainCam.ScreenPointToRay(pos);
-        Physics.Raycast(ray, out RaycastHit hitInfo);
-        Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 3f);
-
-        _rotTargetPos = hitInfo.point - transform.position;
+        
+        targetPos.y = 0; 
+        Vector3 v = new Vector3(transform.position.x, 0, transform.position.z);
+        _rotTargetPos = targetPos - v;
         _rotTargetPos.y = 0;
 
         _targetRot = Quaternion.LookRotation(_rotTargetPos, Vector3.up);
@@ -91,7 +91,7 @@ public class MoveModule : MonoBehaviour
     {
         //Debug.Log("무브");
         CheckInput(moveDir);
-        _targetDir = moveDir * _curSpeed * Time.deltaTime; 
+        _targetDir = moveDir * _curSpeed; 
 
         // _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
     }
@@ -124,7 +124,7 @@ public class MoveModule : MonoBehaviour
 
 
         //_chController.Move(moveDir * _curSpeed * Time.deltaTime);
-        _targetDir = moveDir * _curSpeed * Time.deltaTime; 
+        _targetDir = moveDir * _curSpeed; 
         _playerAnimation.SetVelocity(targetDir); 
  
         //if (_chController.velocity.magnitude > 0.2f)
@@ -155,7 +155,7 @@ public class MoveModule : MonoBehaviour
         }
         else
         {
-            _velocityY += -9.8f * Time.deltaTime;
+            _velocityY += -9.8f;
         }
     }
 
@@ -164,8 +164,21 @@ public class MoveModule : MonoBehaviour
     /// </summary>
     public void Dash()
     {
-
+        if(Vector3.Dot(transform.forward, _inputModule.MoveDir) >0)
+        {
+            Debug.Log("대쉬!");
+            StartCoroutine(DashCorutine(transform.forward.normalized,10f,0.1f));
+        }
     }
+
+    IEnumerator DashCorutine(Vector3 direction, float power, float duration)
+    {
+        direction.y = 0; 
+        _targetDir = direction * power ; 
+        yield return new WaitForSeconds(duration);
+        StopMove(); 
+    }
+    
     /// <summary>
     ///  움직임 멈춤
     /// </summary>

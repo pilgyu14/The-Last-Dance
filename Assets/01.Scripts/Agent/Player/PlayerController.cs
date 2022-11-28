@@ -87,7 +87,8 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 
     // Ä³½Ì º¯¼ö 
     private InputModule _inputModule;
-    private MoveModule _moveModule; 
+    private MoveModule _moveModule;
+    private AttackModule _attackModule;
     private CharacterController _chController;
     private NavMeshAgent _agent;
     private PlayerAnimation _playerAnimation;
@@ -125,7 +126,8 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private void Awake()
     {
         _inputModule = GetComponent<InputModule>();
-        _moveModule = GetComponent<MoveModule>(); 
+        _moveModule = GetComponent<MoveModule>();
+        _attackModule = GetComponent<AttackModule>(); 
         _chController = GetComponent<CharacterController>();
         //_agent = GetComponent<NavMeshAgent>(); 
         _playerAnimation = transform.GetComponentInChildren<PlayerAnimation>();  
@@ -231,9 +233,23 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private void FrontKick()
     {
         ChangeState(typeof(InBattleState));
+        _playerAnimation.SetFrontKick();
 
+        _attackModule.DefaultAttack();
 
-        _playerAnimation.SetFrontKick(); 
+        switch (_attackModule.curAttackType)
+        {
+            case AttackType.Default_1:
+                _playerAnimation.SetFrontKick();
+                break;
+            case AttackType.Default_2:
+                _playerAnimation.SetSideKick();
+                break;
+            case AttackType.Default_3:
+                _playerAnimation.SetBackKick();
+                break;
+        }
+
     }
 
     public void Damaged()
@@ -261,7 +277,9 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     public void Attacking()
     {
         _inputModule.Attacking(true);
-        _moveModule.StopMove(); 
+        _moveModule.StopMove();
+        _moveModule.Dash();
+
     }
 
     /// <summary>

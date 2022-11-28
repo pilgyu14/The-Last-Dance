@@ -16,7 +16,10 @@ public class InputModule : MonoBehaviour, IAgentInput
 
     // 체크 변수 
     private bool _isMoveInput = true;
+    private bool _isMove = true; 
+
     private bool _isAttackInput = true;
+
 
     private bool _isPlayerInput = true;
     private bool _isUIInput = true;
@@ -53,7 +56,7 @@ public class InputModule : MonoBehaviour, IAgentInput
         }
 
         if(_isUIInput == true)
-        {
+        {   
             UIInput(); 
         }
     
@@ -63,11 +66,13 @@ public class InputModule : MonoBehaviour, IAgentInput
     {
         if(isAttacking)
         {
-            _isPlayerInput = false; 
+            _isMove = false;
+            _isAttackInput = false; 
         }
         else
         {
-            _isPlayerInput = true; 
+            _isMove = true;
+            _isAttackInput = true;
         }
     }
     /// <summary>
@@ -83,11 +88,14 @@ public class InputModule : MonoBehaviour, IAgentInput
             _y = Input.GetAxisRaw("Vertical");
             _moveDir = new Vector3(_x, 0, _y).normalized;
 
-            // 이동 
-            OnMovementKeyPress?.Invoke(MoveDir);
+            if(_isMove == true)
+            {
+                // 이동 
+                OnMovementKeyPress?.Invoke(MoveDir);
 
-            // 회전
-            CheckRotate(); 
+                // 회전
+                CheckRotate();
+            }
         }
 
         if(_isAttackInput == true)
@@ -122,11 +130,11 @@ public class InputModule : MonoBehaviour, IAgentInput
             }
             //Debug.Log("마우스 회전"); 
             //아니면 마우스 회전 
-            OnPointerRotate?.Invoke(Input.mousePosition);
+            OnPointerRotate?.Invoke(Define.WorldMousePos);
         }
         else // 전투 상태면 
         {
-            OnPointerRotate?.Invoke(Input.mousePosition);
+            OnPointerRotate?.Invoke(Define.WorldMousePos);
         }
     }
     
