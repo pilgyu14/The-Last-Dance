@@ -14,6 +14,11 @@ public class ItemUI : MonoBehaviour
 
     private int pageIdx = 0;
 
+    private void Start()
+    {
+        UpdateItemImage();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -27,7 +32,7 @@ public class ItemUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(pageIdx < inventorySO.maxItemType)
+            if(pageIdx < inventorySO.maxItemType - 1)
             {
                 pageIdx++;
                 UpdateItemImage();
@@ -37,6 +42,14 @@ public class ItemUI : MonoBehaviour
 
     public void UpdateItemImage()
     {
-        itemImage = inventorySO.itemList[pageIdx].itemImage;
+        itemImage.sprite = inventorySO.itemList[pageIdx].itemImage;
+    }
+
+    public void InventoryClear()
+    {
+        foreach(Item item in inventorySO.itemList)
+        {
+            inventorySO.itemList.Remove(item);
+        }
     }
 }

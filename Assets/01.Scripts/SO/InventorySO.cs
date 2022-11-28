@@ -7,5 +7,5 @@ public class InventorySO : ScriptableObject
 {
     public int maxItemType;
     public int maxItemValue;
-    public Item[] itemList;
+    public List<Item> itemList;
 }

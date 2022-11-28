@@ -8,6 +8,6 @@ using UnityEngine.UI;
 public class Item
 {
     public GameObject itemPrefab;
-    public Image itemImage;
+    public Sprite itemImage;
     public int value = 0;
 }
