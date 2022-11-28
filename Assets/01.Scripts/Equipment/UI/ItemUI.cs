@@ -32,7 +32,7 @@ public class ItemUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(pageIdx < inventorySO.maxItemType - 1)
+            if(pageIdx < inventorySO.maxItemType - 1 && pageIdx < inventorySO.itemList.Count - 1)
             {
                 pageIdx++;
                 UpdateItemImage();
