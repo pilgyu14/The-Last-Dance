@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item_Base : MonoBehaviour
 {
     public float speed = 5f;
+    public int damage = 0;
 
     void Update()
     {
@@ -21,6 +22,7 @@ public class Item_Base : MonoBehaviour
 
     public virtual void Attack(GameObject monster)
     {
-        
+        //monster.GetComponent<Hp?>().Damage(damage);
+        Destroy(gameObject);
     }
 }
