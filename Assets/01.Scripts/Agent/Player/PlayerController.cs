@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI; 
 
 // 상하 좌우 이동 
 // 회전 
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private InputModule _inputModule;
     private MoveModule _moveModule; 
     private CharacterController _chController;
+    private NavMeshAgent _agent;
     private PlayerAnimation _playerAnimation;
 
     // 내부 변수 
@@ -125,6 +127,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         _inputModule = GetComponent<InputModule>();
         _moveModule = GetComponent<MoveModule>(); 
         _chController = GetComponent<CharacterController>();
+        //_agent = GetComponent<NavMeshAgent>(); 
         _playerAnimation = transform.GetComponentInChildren<PlayerAnimation>();  
     }
 
@@ -153,7 +156,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     }
     private void Update()
     {
-        Debug.Log(_curState.GetType().Name); 
+        //Debug.Log(_curState.GetType().Name); 
         if (_isAttack == true) return;
 
         _curState.Stay(); 
@@ -171,6 +174,8 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     public void MoveDefaultAnimation(Vector3 v)
     {
             _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
+        //_playerAnimation.AnimatePlayer(_agent.velocity.magnitude);
+
     }
     public void InBattleMoveAnimation(Vector3 targetDir)
     {
@@ -181,7 +186,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private float _time = 0f;  // 전투 지속X 시간 
     public void CheckBattle()
     {
-        Debug.Log("d"); 
+        //Debug.Log("d"); 
         if (_isBattle == false) return; 
 
         _time += Time.deltaTime;
@@ -248,6 +253,23 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     public void GetDamaged(int damage, GameObject damageDealer)
     {
         throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// 공격중 ( 플레이어 입력 차단 )
+    /// </summary>
+    public void Attacking()
+    {
+        _inputModule.Attacking(true);
+        _moveModule.StopMove(); 
+    }
+
+    /// <summary>
+    /// 공격 끝
+    /// </summary>
+    public void EndAttacking()
+    {
+        _inputModule.Attacking(false);
     }
 
 

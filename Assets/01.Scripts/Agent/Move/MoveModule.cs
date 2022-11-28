@@ -1,21 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class MoveModule : MonoBehaviour
 {
     //  캐싱 변수 
     private InputModule _inputModule;
     private CharacterController _chController;
+    
     private MovementInfo _movementInfo;
     private PlayerAnimation _playerAnimation;
 
     [SerializeField]
     private float _curSpeed; 
-    private Vector3 _targetPos;
-    private Quaternion _targetRot; 
+    private Vector3 _rotTargetPos; //
+    private Quaternion _targetRot;
+    private Vector3 _targetDir;
+
+    [SerializeField]
+    private float _velocityY = 0f;
+
+    [SerializeField]
+    private LayerMask _layerMask; 
     // 이동 회전 
+
 
     public void Init(InputModule inputModule, CharacterController chCtrl , MovementInfo moveInfo, PlayerAnimation playerAnimation)
     {
@@ -32,6 +41,13 @@ public class MoveModule : MonoBehaviour
         // _inputModule.OnMovementKeyPress = InBattleMove;
     }
 
+    private void Update()
+    {
+        ApplyGravity();
+        _chController.Move(_targetDir + Vector3.up * _velocityY);
+
+    }
+
     private void RotateByMouse(Vector3 pos)
     {
         // Debug.Log("마우스 회전"); 
@@ -39,13 +55,13 @@ public class MoveModule : MonoBehaviour
         Physics.Raycast(ray, out RaycastHit hitInfo);
         Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 3f);
 
-        _targetPos = hitInfo.point - transform.position;
-        _targetPos.y = 0;
+        _rotTargetPos = hitInfo.point - transform.position;
+        _rotTargetPos.y = 0;
 
-        _targetRot = Quaternion.LookRotation(_targetPos, Vector3.up);
+        _targetRot = Quaternion.LookRotation(_rotTargetPos, Vector3.up);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot, Time.deltaTime * _movementInfo.rotSpeed);
-
+        
         //_targetRot.x = 0;
         //_targetRot.z = 0;
     }
@@ -74,8 +90,8 @@ public class MoveModule : MonoBehaviour
     public void Move(Vector3 moveDir)
     {
         //Debug.Log("무브");
-        CheckInput(moveDir); 
-        _chController.Move(moveDir * _curSpeed * Time.deltaTime);
+        CheckInput(moveDir);
+        _targetDir = moveDir * _curSpeed * Time.deltaTime; 
 
         // _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
     }
@@ -91,7 +107,7 @@ public class MoveModule : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir, Vector3.up),
             Time.deltaTime * _curSpeed);
 
-            _targetPos = moveDir;
+            _rotTargetPos = moveDir;
         }
 
     }
@@ -102,13 +118,15 @@ public class MoveModule : MonoBehaviour
     /// <param name="moveDir"></param>
     public void InBattleMove(Vector3 moveDir)
     {
-        Debug.Log("전투 움직임");
         CheckInput(moveDir); 
 
-        Vector3 targetDir = Vector3.Normalize(- (moveDir.x * transform.right + moveDir.z * transform.forward)); // 회전 값에 따른 이동 방향
+        Vector3 targetDir = Vector3.Normalize((moveDir.x * transform.right + moveDir.z * transform.forward)); // 회전 값에 따른 이동 방향
 
-        _chController.Move(moveDir * _curSpeed * Time.deltaTime);
+
+        //_chController.Move(moveDir * _curSpeed * Time.deltaTime);
+        _targetDir = moveDir * _curSpeed * Time.deltaTime; 
         _playerAnimation.SetVelocity(targetDir); 
+ 
         //if (_chController.velocity.magnitude > 0.2f)
         //{
         // transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot,
@@ -117,6 +135,42 @@ public class MoveModule : MonoBehaviour
 
         // _playerAnimation.SetVelocity(targetDir.x, targetDir.z);
 
-        // CheckBattle();
+        // Check
+    /// <summary>Battle();
+    }
+
+    /// <summary>
+    /// 중력 적용 
+    /// </summary>
+    private void ApplyGravity()
+    {
+        Ray ray = new Ray(transform.position - Vector3.up * 0.2f, -Vector3.down );
+        float distance = _chController.height / 2; 
+        Debug.DrawRay(ray.origin, ray.direction, Color.blue, 3f);
+    
+        // 바닥이 땅이면 중력 적용X 
+        if(_chController.isGrounded == true || Physics.Raycast(ray, out RaycastHit hitInfo, distance,_layerMask) == true)
+        {
+            _velocityY = 0;
+        }
+        else
+        {
+            _velocityY += -9.8f * Time.deltaTime;
+        }
+    }
+
+    /// <summary>
+    /// 공격시 대쉬 
+    /// </summary>
+    public void Dash()
+    {
+
+    }
+    /// <summary>
+    ///  움직임 멈춤
+    /// </summary>
+    public void StopMove()
+    {
+        _targetDir = Vector3.zero;
     }
 }
