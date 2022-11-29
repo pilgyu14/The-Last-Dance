@@ -37,7 +37,7 @@ public class MoveModule : MonoBehaviour
         // 입력 등록 
         _inputModule.OnPointerRotate = RotateByMouse;
         _inputModule.OnKeyboardRotate = RotateDefault;
-
+        _inputModule.OnShift += Tackle;  
         // _inputModule.OnMovementKeyPress = Move;
         // _inputModule.OnMovementKeyPress = InBattleMove;
     }
@@ -171,6 +171,13 @@ public class MoveModule : MonoBehaviour
         }
     }
 
+    public void Tackle()
+    {
+        _playerAnimation.SetTackle();
+        // 땅 쓸리는 파티클
+        StartCoroutine(DashCorutine(transform.forward.normalized, 20f, 0.3f)); 
+    }
+
     IEnumerator DashCorutine(Vector3 direction, float power, float duration)
     {
         direction.y = 0; 
@@ -179,6 +186,11 @@ public class MoveModule : MonoBehaviour
         StopMove(); 
     }
     
+    public void StopDash()
+    {
+
+    }
+
     /// <summary>
     ///  움직임 멈춤
     /// </summary>

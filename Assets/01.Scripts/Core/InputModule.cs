@@ -37,6 +37,7 @@ public class InputModule : MonoBehaviour, IAgentInput
     public Action OnDefaultAttackPress { get; set ; } // 기본 공격 
 
     public Action<Vector3> OnKeyboardRotate = null;
+    public Action OnShift = null; 
 
     // 프로퍼티 
     public Vector3 MoveDir => _moveDir; 
@@ -54,7 +55,7 @@ public class InputModule : MonoBehaviour, IAgentInput
         {
             PlayerInput(); 
         }
-
+            
         if(_isUIInput == true)
         {   
             UIInput(); 
@@ -62,6 +63,11 @@ public class InputModule : MonoBehaviour, IAgentInput
     
     }
 
+
+    /// <summary>
+    /// 공격중이면 입력 차단 
+    /// </summary>
+    /// <param name="isAttacking"></param>
     public void Attacking(bool isAttacking)
     {
         if(isAttacking)
@@ -72,7 +78,7 @@ public class InputModule : MonoBehaviour, IAgentInput
         else
         {
             _isMove = true;
-            _isAttackInput = true;
+           _isAttackInput = true;
         }
     }
     /// <summary>
@@ -92,7 +98,6 @@ public class InputModule : MonoBehaviour, IAgentInput
             {
                 // 이동 
                 OnMovementKeyPress?.Invoke(MoveDir);
-
                 // 회전
                 CheckRotate();
             }
@@ -103,6 +108,12 @@ public class InputModule : MonoBehaviour, IAgentInput
             if(Input.GetMouseButtonDown(0))
             {
                 OnDefaultAttackPress?.Invoke();
+            }
+
+            // 태클
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+            {
+                OnShift?.Invoke();
             }
         }
     }   
@@ -133,8 +144,20 @@ public class InputModule : MonoBehaviour, IAgentInput
             OnPointerRotate?.Invoke(Define.WorldMousePos);
         }
         else // 전투 상태면 
-        {
-            OnPointerRotate?.Invoke(Define.WorldMousePos);
+        {            
+            if(Physics.Raycast(Define.MainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
+            {
+                OnPointerRotate?.Invoke(Define.WorldMousePos);
+            }
+            else // 하늘을 찍었으면 
+            {
+                Vector3 originCameraPosition = Define.MainCam.transform.position;
+                Vector3 dir = Define.MainCam.ScreenPointToRay(Input.mousePosition).direction;
+                Ray ray = Define.MainCam.ScreenPointToRay(Input.mousePosition);
+
+                Vector3 clickingPosition = ray.origin + ray.direction / ray.direction.y * (0 - originCameraPosition.y);
+                OnPointerRotate?.Invoke(Define.WorldMousePos);
+            }
         }
     }
     

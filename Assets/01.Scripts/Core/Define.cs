@@ -20,11 +20,9 @@ public class Define
         {
             Ray ray = Define.MainCam.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out RaycastHit hitInfo);
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 3f);
+            //Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 3f);
 
             return hitInfo.point; 
-
-
         }
     }
 }

@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; 
+using UnityEngine.AI;
 
 // 상하 좌우 이동 
 // 회전 
 // 액션 
 // 애니메이션 
 
+#region FSM
 public enum PlayerStateType
 {
     DefaultType,
@@ -78,7 +79,7 @@ public class InBattleState : State<PlayerController>
 
 
 }
-
+#endregion
 public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 {
     // 인스펙터 
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private InputModule _inputModule;
     private MoveModule _moveModule;
     private AttackModule _attackModule;
+    private FieldOfView _fov; 
     private CharacterController _chController;
     private NavMeshAgent _agent;
     private PlayerAnimation _playerAnimation;
@@ -127,7 +129,8 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     {
         _inputModule = GetComponent<InputModule>();
         _moveModule = GetComponent<MoveModule>();
-        _attackModule = GetComponent<AttackModule>(); 
+        _attackModule = GetComponent<AttackModule>();
+        _fov = GetComponent<FieldOfView>(); 
         _chController = GetComponent<CharacterController>();
         //_agent = GetComponent<NavMeshAgent>(); 
         _playerAnimation = transform.GetComponentInChildren<PlayerAnimation>();  
@@ -148,13 +151,14 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         ChangeState(typeof(DefaultState));
 
         // 입력 등록 
-        _inputModule.OnDefaultAttackPress = FrontKick;
+        _inputModule.OnDefaultAttackPress = DefaultKickAttack;
 
         //_inputModule.OnPointerRotate = RotateByMouse;
         //_inputModule.OnMovementKeyPress = Move;
         // _inputModule.OnMovementKeyPress = InBattleMove; 
 
-        _moveModule.Init(_inputModule,_chController ,_playerSO.moveInfo,_playerAnimation); 
+        _moveModule.Init(_inputModule,_chController ,_playerSO.moveInfo,_playerAnimation);
+        _attackModule.Init(_fov,_moveModule, _playerAnimation);
     }
     private void Update()
     {
@@ -230,25 +234,25 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         _curState.Enter(); 
     }
 
-    private void FrontKick()
+    private void DefaultKickAttack()
     {
         ChangeState(typeof(InBattleState));
-        _playerAnimation.SetFrontKick();
 
         _attackModule.DefaultAttack();
 
-        switch (_attackModule.curAttackType)
-        {
-            case AttackType.Default_1:
-                _playerAnimation.SetFrontKick();
-                break;
-            case AttackType.Default_2:
-                _playerAnimation.SetSideKick();
-                break;
-            case AttackType.Default_3:
-                _playerAnimation.SetBackKick();
-                break;
-        }
+
+        //switch (_attackModule.curAttackType)
+        //{
+        //    case AttackType.Default_1:
+        //        _playerAnimation.SetFrontKick();
+        //        break;
+        //    case AttackType.Default_2:
+        //        _playerAnimation.SetSideKick();
+        //        break;
+        //    case AttackType.Default_3:
+        //        _playerAnimation.SetBackKick();
+        //        break;
+        //}
 
     }
 
@@ -277,6 +281,14 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     public void Attacking()
     {
         _inputModule.Attacking(true);
+    }
+
+    /// <summary>
+    /// 기본 공격이면 입력 차단 + 대쉬 
+    /// </summary>
+    public void DefaultAttacking()
+    {
+        Attacking();
         _moveModule.StopMove();
         _moveModule.Dash();
 

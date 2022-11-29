@@ -15,6 +15,7 @@ public class AgentAnimation : MonoBehaviour
     protected readonly int _walkHash = Animator.StringToHash("Walk");
     protected readonly int _deathHash = Animator.StringToHash("Death");
 
+    public Animator AgentAnimator => _agentAnimator;
     protected virtual void Awake()
     {
         _agentAnimator = GetComponent<Animator>();
@@ -35,4 +36,14 @@ public class AgentAnimation : MonoBehaviour
         _agentAnimator.SetTrigger(_deathHash);
     }
 
+    public void Update_Zero()
+    {
+        _agentAnimator.Update(0);
+    }
+
+    public bool GetCurrentAnimationState(int hashCode)
+    {
+        return _agentAnimator.GetCurrentAnimatorStateInfo(0).GetHashCode() == hashCode;
+    
+    }
 }
