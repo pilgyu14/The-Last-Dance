@@ -73,12 +73,12 @@ public class InputModule : MonoBehaviour, IAgentInput
         if(isAttacking)
         {
             _isMove = false;
-            _isAttackInput = false; 
-        }
+           // _isAttackInput = false; 
+        } 
         else
         {
             _isMove = true;
-           _isAttackInput = true;
+          // _isAttackInput = true;
         }
     }
     /// <summary>

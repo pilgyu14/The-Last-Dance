@@ -44,7 +44,7 @@ public class AttackBase
         if(attackInfo.attackSO.animationFuncName != null)
         {
             Type type = typeof(PlayerAnimation);
-            MethodInfo method = type.GetMethod(attackInfo.attackSO.animationFuncName, BindingFlags.Static | BindingFlags.Public);
+            MethodInfo method = type.GetMethod(attackInfo.attackSO.animationFuncName);
             method?.Invoke(_agentAnimation, new object[] { });
         }
 

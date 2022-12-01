@@ -218,13 +218,20 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         
     public void ChangeState(Type type)
     {
-        if(_stateDic.ContainsKey(type) == false)
+        if(_stateDic.ContainsKey(type) == false )
         {
             Debug.LogError("존재하지 않는 상태");
             return;
         }
+
+        if(_curState != null && _curState == _stateDic[_curState.GetType()])
+        {
+            return; 
+        }
+                
         
-        if(_curState != null)
+
+        if (_curState != null)
         {
             _prevState = _stateDic[_curState.GetType()];
             _prevState.Exit();

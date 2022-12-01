@@ -32,7 +32,7 @@ public class PlayerAnimation : AgentAnimation
             
     }
 
-    // 킥 애니메이션 
+    // 킥 애니메이션 (AttackSO에서 string으로 받고 리플렉션으로 실행 ) 
     public void SetFrontKick()
     {
         _agentAnimator.SetTrigger(_frontKickHash);

@@ -22,7 +22,7 @@ MonoBehaviour:
   attackRadius: 5
   attackAngle: 30
   attackDelay: 0
-  animationFuncName: SetFrontKick
+  animationFuncName: SetSideKick
   hitEffect: {fileID: 0}
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}

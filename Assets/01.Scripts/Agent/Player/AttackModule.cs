@@ -68,7 +68,7 @@ public class AttackModule : MonoBehaviour
 
     private bool CheckAttack()
     {
-        if (_agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk") || _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("AttackMove"))
+        if (_agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk") || _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("AttackMove") || _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             SetCurAttackType(AttackType.Default_1);
         }
