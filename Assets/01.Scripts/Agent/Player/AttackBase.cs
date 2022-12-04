@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class AttackInfo
 {
     public AttackType attackType;
+    public AttackType nextAttackType;
     public AttackSO attackSO;
+    public UnityEvent feedbackCallback = null;
 }
 
 
@@ -26,7 +29,7 @@ public class AttackBase
     private FieldOfView _fov;
 
     // 인스펙터 참조 변수 
-    public AttackInfo attackInfo; 
+    public AttackInfo attackInfo;
 
     public void Init(GameObject owner, PlayerAnimation playerAnimation, MoveModule moveModule,FieldOfView fov)
     {
@@ -66,7 +69,9 @@ public class AttackBase
         }
 
         // 음? 
-        _agentAnimation.Update_Zero(); 
+        _agentAnimation.Update_Zero();
+
+        attackInfo.feedbackCallback?.Invoke(); 
     }
 
     

@@ -4,9 +4,11 @@ using System.Collections.Generic;
 
 public enum AttackType
 {
-    Default_1,
+    Null,
+    Default_1 = 100,
     Default_2,
     Default_3,
+    
 }
 
 
@@ -24,14 +26,15 @@ public class AttackModule : MonoBehaviour
     [SerializeField]
     private List<AttackBase> attackInfoList = new List<AttackBase>();
 
+    [SerializeField]
     private AttackBase _curAttackInfo;
     [SerializeField]
     private LayerMask _hitLayerMask;
 
     // 프로퍼티
-    public AttackSO curAttackSO => _curAttackInfo.attackInfo.attackSO;
-    public AttackType curAttackType => _curAttackInfo.attackInfo.attackType; 
-
+    public AttackSO CurAttackSO => _curAttackInfo.attackInfo.attackSO;
+    public AttackType CurAttackType => _curAttackInfo.attackInfo.attackType;
+    public AttackType NextAttackType => _curAttackInfo.attackInfo.nextAttackType;
 
 
     private void Start()
@@ -40,14 +43,6 @@ public class AttackModule : MonoBehaviour
         _curAttackInfo = attackInfoList[0]; 
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            // 입력 키에 따라 어떤 공격할지 설정 
-            DefaultAttack(); 
-        }
-    }
     public void Init(FieldOfView fov,MoveModule moveModule ,PlayerAnimation agentAnimation)
     {
         _fov = fov;
@@ -59,7 +54,7 @@ public class AttackModule : MonoBehaviour
 
     public void DefaultAttack()
     {
-        if(CheckAttack() == true)
+        //if(CheckAttack() == true)
         {
             Debug.Log(_curAttackInfo.attackInfo.attackSO.animationFuncName);
             _curAttackInfo.Attack();
@@ -123,7 +118,7 @@ public class AttackModule : MonoBehaviour
     {
         if (_curAttackInfo == null) _curAttackInfo = attackInfoList[0]; 
         Gizmos.color = Color.black;
-        Gizmos.DrawSphere(transform.position, curAttackSO.attackRadius);
+        Gizmos.DrawSphere(transform.position, CurAttackSO.attackRadius);
 
     }
 }

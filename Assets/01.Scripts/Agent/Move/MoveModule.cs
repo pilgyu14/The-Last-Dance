@@ -91,7 +91,7 @@ public class MoveModule : MonoBehaviour
     {
         //Debug.Log("무브");
         CheckInput(moveDir);
-        _targetDir = moveDir * _curSpeed; 
+        _targetDir = moveDir * _curSpeed;
 
         // _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
     }
@@ -121,7 +121,6 @@ public class MoveModule : MonoBehaviour
         CheckInput(moveDir); 
 
         Vector3 targetDir = Vector3.Normalize((moveDir.x * transform.right + moveDir.z * transform.forward)); // 회전 값에 따른 이동 방향
-
 
         //_chController.Move(moveDir * _curSpeed * Time.deltaTime);
         _targetDir = moveDir * _curSpeed; 

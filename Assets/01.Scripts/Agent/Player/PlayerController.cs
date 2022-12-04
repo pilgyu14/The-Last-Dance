@@ -55,12 +55,12 @@ public class DefaultState : State<PlayerController>
 
 public class InBattleState : State<PlayerController>
 {
-
+    private TimerModule timer;
     public override void Enter()
     {
         owner.StartBattle();
         owner.InputModule.OnMovementKeyPress += owner.MoveModule.InBattleMove;
-        owner.InputModule.OnMovementKeyPress += owner.InBattleMoveAnimation; 
+        timer = new TimerModule(1f, () => owner.SetBattle());
         // InBattlemove 넣기 
         // StartBattle
     }
@@ -73,15 +73,40 @@ public class InBattleState : State<PlayerController>
     public override void Exit()
     {
         owner.InputModule.OnMovementKeyPress -= owner.MoveModule.InBattleMove;
-        owner.InputModule.OnMovementKeyPress -= owner.InBattleMoveAnimation;
+        timer = null; 
+    }
+}
+
+public class AttackState : State<PlayerController>
+{
+    TimerModule timer; 
+    private AttackType _nextAttackType;
+
+    public AttackType NextAttackType => _nextAttackType; 
+    public override void Enter()
+    {
+        owner.StartAttack(); 
+        _nextAttackType = owner.AttackModule.NextAttackType;
+        timer = new TimerModule(1f,() => owner.SetAttack()); 
+        // 시간 카운트 
+        // 공격 
     }
 
+    public override void Stay()
+    {
+        timer.UpdateSomething(); 
+    }
 
-
+    public override void Exit()
+    {
+        timer = null; 
+    }
 }
+
 #endregion
 public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 {
+    #region 변수 
     // 인스펙터 
     [SerializeField]
     private AgentSO _playerSO;
@@ -101,6 +126,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 
     private DefaultState _defaultState;
     private InBattleState _inBattleState;
+    private AttackState _attackState; 
 
     private State<PlayerController> _curState;
     private State<PlayerController> _prevState;
@@ -117,14 +143,21 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private bool _isAttack = false; // 공격 중인가 
 
     // 프로퍼티 
-    public InputModule InputModule => _inputModule; 
+    public InputModule InputModule => _inputModule;
     public MoveModule MoveModule => _moveModule;
+    public AttackModule AttackModule => _attackModule;
     public PlayerAnimation PlayerAnimation => _playerAnimation;
-
     public bool IsEnemy => false; 
-
     public Vector3 HitPoint => throw new NotImplementedException();
 
+    public bool IsAttack
+    {
+        get => _isAttack;
+        set => _isAttack = value; 
+    }
+    #endregion
+
+    #region 초기화 
     private void Awake()
     {
         _inputModule = GetComponent<InputModule>();
@@ -141,12 +174,15 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         // 상태 등록 
         _defaultState = new DefaultState();
         _inBattleState = new InBattleState();
+        _attackState = new AttackState();  
 
         _defaultState.Init(this);
-        _inBattleState.Init(this); 
+        _inBattleState.Init(this);
+        _attackState.Init(this); 
 
         _stateDic.Add(_defaultState.GetType(), _defaultState);
         _stateDic.Add(_inBattleState.GetType(), _inBattleState);
+        _stateDic.Add(_attackState.GetType(), _attackState); 
 
         ChangeState(typeof(DefaultState));
 
@@ -160,10 +196,11 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         _moveModule.Init(_inputModule,_chController ,_playerSO.moveInfo,_playerAnimation);
         _attackModule.Init(_fov,_moveModule, _playerAnimation);
     }
+    #endregion
     private void Update()
     {
         //Debug.Log(_curState.GetType().Name); 
-        if (_isAttack == true) return;
+       // if (_isAttack == true) return;
 
         _curState.Stay(); 
 
@@ -175,17 +212,35 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         //InBattleMove(); 
     }
 
+    public void ChangeState(Type type)
+    {
+        if (_stateDic.ContainsKey(type) == false)
+        {
+            Debug.LogError("존재하지 않는 상태");
+            return;
+        }
 
+        if (_curState != null && _curState != _stateDic[_curState.GetType()] && _curState.GetType() != typeof(AttackState))
+        {
+            return;
+        }
+
+        Debug.Log("OK1");
+        if (_curState != null)
+        {
+            _prevState = _stateDic[_curState.GetType()];
+            _prevState.Exit();
+        }
+
+        _curState = _stateDic[type];
+        _curState.Enter();
+    }
 
     public void MoveDefaultAnimation(Vector3 v)
     {
             _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
         //_playerAnimation.AnimatePlayer(_agent.velocity.magnitude);
 
-    }
-    public void InBattleMoveAnimation(Vector3 targetDir)
-    {
-       // _playerAnimation.SetVelocity(targetDir.x, targetDir.z);
     }
 
     [SerializeField]
@@ -198,13 +253,41 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         _time += Time.deltaTime;
         if (_isBattle == true && _time >= 5f) // 전투상태가 일정시간 지속되지 않았을때 
         {
-            _isBattle = false;
             _time = 0;
             _playerAnimation.SetBattle(_isBattle);
 
-            ChangeState(typeof(DefaultState));
-        }
+            SetState(typeof(DefaultState), ref _isBattle);
 
+        }
+    }
+    
+    public void CheckAttack()
+    {
+        if (_isBattle == false) return;
+
+        _time += Time.deltaTime;
+        if (_isBattle == true && _time >= 1f) // 전투상태가 일정시간 지속되지 않았을때 
+        {
+            _time = 0;
+            SetState(typeof(InBattleState), ref _isBattle);
+
+        }
+    }
+
+    public void SetBattle()
+    {
+        SetState(typeof(DefaultState), ref _isBattle);
+    }
+
+    public void SetAttack()
+    {
+        SetState(typeof(InBattleState), ref _isAttack);
+    }
+
+    private void SetState(Type state, ref bool isActive)
+    {
+        isActive = false;
+        ChangeState(state);
     }
 
     public void StartBattle()
@@ -212,57 +295,42 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         _time = 0;
         _isBattle = true;
         _playerAnimation.SetBattle(_isBattle);
-
     }
 
-        
-    public void ChangeState(Type type)
+    public void StartAttack()
     {
-        if(_stateDic.ContainsKey(type) == false )
-        {
-            Debug.LogError("존재하지 않는 상태");
-            return;
-        }
-
-        if(_curState != null && _curState == _stateDic[_curState.GetType()])
-        {
-            return; 
-        }
-                
-        
-
-        if (_curState != null)
-        {
-            _prevState = _stateDic[_curState.GetType()];
-            _prevState.Exit();
-        }
-
-        _curState = _stateDic[type];
-        _curState.Enter(); 
+        _time = 0;
+        _isBattle = true;
+        _playerAnimation.SetBattle(_isBattle);
+        _isAttack = true;
     }
+
+
 
     private void DefaultKickAttack()
     {
-        ChangeState(typeof(InBattleState));
 
-        _attackModule.DefaultAttack();
+        AttackState attackState = _curState as AttackState;
+        ChangeState(typeof(AttackState));
+        if (_isAttack == true && attackState.NextAttackType != AttackType.Null)
+        {
+            //다음 공격 실행
+            Debug.Log("@" + attackState.NextAttackType);
+            _attackModule.SetCurAttackType(attackState.NextAttackType);
 
+        }
+        else
+        {
+            // default_1 실행 
+            Debug.Log("#" + attackState.NextAttackType);
+            _attackModule.SetCurAttackType(AttackType.Default_1);
+        }
 
-        //switch (_attackModule.curAttackType)
-        //{
-        //    case AttackType.Default_1:
-        //        _playerAnimation.SetFrontKick();
-        //        break;
-        //    case AttackType.Default_2:
-        //        _playerAnimation.SetSideKick();
-        //        break;
-        //    case AttackType.Default_3:
-        //        _playerAnimation.SetBackKick();
-        //        break;
-        //}
+        _attackModule.DefaultAttack();  
 
     }
 
+    // 피격 관련 
     public void Damaged()
     {
     }

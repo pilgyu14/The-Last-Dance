@@ -141,23 +141,32 @@ public class InputModule : MonoBehaviour, IAgentInput
             }
             //Debug.Log("마우스 회전"); 
             //아니면 마우스 회전 
-            OnPointerRotate?.Invoke(Define.WorldMousePos);
+            RotateRay();
+            //OnPointerRotate?.Invoke(Define.WorldMousePos);
         }
         else // 전투 상태면 
-        {            
-            if(Physics.Raycast(Define.MainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
-            {
-                OnPointerRotate?.Invoke(Define.WorldMousePos);
-            }
-            else // 하늘을 찍었으면 
-            {
-                Vector3 originCameraPosition = Define.MainCam.transform.position;
-                Vector3 dir = Define.MainCam.ScreenPointToRay(Input.mousePosition).direction;
-                Ray ray = Define.MainCam.ScreenPointToRay(Input.mousePosition);
+        {
+            RotateRay(); 
+        }
+    }
 
-                Vector3 clickingPosition = ray.origin + ray.direction / ray.direction.y * (0 - originCameraPosition.y);
-                OnPointerRotate?.Invoke(Define.WorldMousePos);
-            }
+    /// <summary>
+    /// 레이쏴서 그쪽으로 회전( 레이와 충돌했을때 안했을때 따로 계산) 
+    /// </summary>
+    private void RotateRay()
+    {
+        if (Physics.Raycast(Define.MainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
+        {
+            OnPointerRotate?.Invoke(hitInfo.point);
+        }
+        else // 하늘을 찍었으면 
+        {
+            Vector3 originCameraPosition = Define.MainCam.transform.position;
+            Vector3 dir = Define.MainCam.ScreenPointToRay(Input.mousePosition).direction;
+            Ray ray = Define.MainCam.ScreenPointToRay(Input.mousePosition);
+
+            Vector3 clickingPosition = ray.origin + ray.direction / ray.direction.y * (0 - originCameraPosition.y);
+            OnPointerRotate?.Invoke(clickingPosition);
         }
     }
     

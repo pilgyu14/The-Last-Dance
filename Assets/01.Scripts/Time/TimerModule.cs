@@ -7,11 +7,12 @@ public class TimerModule
 
     private float _curTime;
     private float _maxTime;
-    public Action TimerEvent; // 최대 시간에 도달했을때 발생하는 이벤트 
+    private Action _timerEvent; // 최대 시간에 도달했을때 발생하는 이벤트 
 
-    TimerModule(float maxTime)
+    public TimerModule(float maxTime,Action callback)
     {
-        this._maxTime = maxTime; 
+        this._maxTime = maxTime;
+        this._timerEvent = callback; 
     }
     public void UpdateSomething()
     {
@@ -20,7 +21,7 @@ public class TimerModule
         _curTime += Time.deltaTime; 
         if(_curTime >= _maxTime)
         {
-            TimerEvent?.Invoke(); 
+            _timerEvent?.Invoke(); 
             _curTime = 0;
         }
     }
