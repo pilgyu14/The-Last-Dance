@@ -23,6 +23,9 @@ public class AttackSO : ScriptableObject
     public float attackDelay;
 
     [Header("애니메이션 변수"), Space(10)]
+    
+    [Tooltip("기본공격이면 설정")]
+    public string animationName; 
     public string animationFuncName;
 
     [Header("이펙트 변수"), Space(10)]

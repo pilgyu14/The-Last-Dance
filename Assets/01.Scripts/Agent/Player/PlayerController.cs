@@ -13,20 +13,20 @@ using UnityEngine.AI;
 public enum PlayerStateType
 {
     DefaultType,
-    InBattleType, 
+    InBattleType,
 }
 
 public abstract class State<T>
 {
     protected T owner;
 
-   
+
     public virtual void Init(T owner)
     {
-        this.owner = owner;  
+        this.owner = owner;
     }
     public abstract void Enter();
-    public abstract void Stay(); 
+    public abstract void Stay();
     public abstract void Exit();
 
 }
@@ -37,7 +37,7 @@ public class DefaultState : State<PlayerController>
     public override void Enter()
     {
         owner.InputModule.OnMovementKeyPress += owner.MoveModule.Move;
-        owner.InputModule.OnMovementKeyPress += owner.MoveDefaultAnimation; 
+        owner.InputModule.OnMovementKeyPress += owner.MoveDefaultAnimation;
         // move 넣기 
     }
     public override void Stay()
@@ -66,45 +66,45 @@ public class InBattleState : State<PlayerController>
     }
     public override void Stay()
     {
-        owner.CheckBattle(); 
+        owner.CheckBattle();
         //CheckBattle
     }
 
     public override void Exit()
     {
         owner.InputModule.OnMovementKeyPress -= owner.MoveModule.InBattleMove;
-        timer = null; 
+        timer = null;
     }
 }
 
 public class AttackState : State<PlayerController>
 {
-    TimerModule timer; 
+    TimerModule timer;
     private AttackType _nextAttackType;
 
-    public AttackType NextAttackType => _nextAttackType; 
+    public AttackType NextAttackType => _nextAttackType;
     public override void Enter()
     {
-        owner.StartAttack(); 
+        owner.StartAttack();
         _nextAttackType = owner.AttackModule.NextAttackType;
-        timer = new TimerModule(1f,() => owner.SetAttack()); 
+        timer = new TimerModule(1f, () => owner.SetAttack());
         // 시간 카운트 
         // 공격 
     }
 
     public override void Stay()
     {
-        timer.UpdateSomething(); 
+        timer.UpdateSomething();
     }
 
     public override void Exit()
     {
-        timer = null; 
+        timer = null;
     }
 }
 
 #endregion
-public class PlayerController : MonoBehaviour, IAgent ,IDamagable
+public class PlayerController : MonoBehaviour, IAgent, IDamagable
 {
     #region 변수 
     // 인스펙터 
@@ -115,27 +115,27 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private InputModule _inputModule;
     private MoveModule _moveModule;
     private AttackModule _attackModule;
-    private FieldOfView _fov; 
+    private FieldOfView _fov;
     private CharacterController _chController;
     private NavMeshAgent _agent;
     private PlayerAnimation _playerAnimation;
 
     // 내부 변수 
     #region State
-    private Dictionary<Type, State<PlayerController>> _stateDic = new Dictionary<Type, State<PlayerController>>(); 
+    private Dictionary<Type, State<PlayerController>> _stateDic = new Dictionary<Type, State<PlayerController>>();
 
     private DefaultState _defaultState;
     private InBattleState _inBattleState;
-    private AttackState _attackState; 
+    private AttackState _attackState;
 
     private State<PlayerController> _curState;
     private State<PlayerController> _prevState;
 
-    public State<PlayerController> CurState => _curState; 
-    #endregion 
+    public State<PlayerController> CurState => _curState;
+    #endregion
 
     private Vector3 _targetPos;
-    private Quaternion _targetRot; 
+    private Quaternion _targetRot;
 
     private bool _isDie = false;
     [SerializeField]
@@ -147,13 +147,13 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     public MoveModule MoveModule => _moveModule;
     public AttackModule AttackModule => _attackModule;
     public PlayerAnimation PlayerAnimation => _playerAnimation;
-    public bool IsEnemy => false; 
+    public bool IsEnemy => false;
     public Vector3 HitPoint => throw new NotImplementedException();
 
     public bool IsAttack
     {
         get => _isAttack;
-        set => _isAttack = value; 
+        set => _isAttack = value;
     }
     #endregion
 
@@ -163,10 +163,10 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         _inputModule = GetComponent<InputModule>();
         _moveModule = GetComponent<MoveModule>();
         _attackModule = GetComponent<AttackModule>();
-        _fov = GetComponent<FieldOfView>(); 
+        _fov = GetComponent<FieldOfView>();
         _chController = GetComponent<CharacterController>();
         //_agent = GetComponent<NavMeshAgent>(); 
-        _playerAnimation = transform.GetComponentInChildren<PlayerAnimation>();  
+        _playerAnimation = transform.GetComponentInChildren<PlayerAnimation>();
     }
 
     private void Start()
@@ -174,15 +174,15 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         // 상태 등록 
         _defaultState = new DefaultState();
         _inBattleState = new InBattleState();
-        _attackState = new AttackState();  
+        _attackState = new AttackState();
 
         _defaultState.Init(this);
         _inBattleState.Init(this);
-        _attackState.Init(this); 
+        _attackState.Init(this);
 
         _stateDic.Add(_defaultState.GetType(), _defaultState);
         _stateDic.Add(_inBattleState.GetType(), _inBattleState);
-        _stateDic.Add(_attackState.GetType(), _attackState); 
+        _stateDic.Add(_attackState.GetType(), _attackState);
 
         ChangeState(typeof(DefaultState));
 
@@ -193,16 +193,16 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
         //_inputModule.OnMovementKeyPress = Move;
         // _inputModule.OnMovementKeyPress = InBattleMove; 
 
-        _moveModule.Init(_inputModule,_chController ,_playerSO.moveInfo,_playerAnimation);
-        _attackModule.Init(_fov,_moveModule, _playerAnimation);
+        _moveModule.Init(_inputModule, _chController, _playerSO.moveInfo, _playerAnimation);
+        _attackModule.Init(_fov, _moveModule, _playerAnimation);
     }
     #endregion
     private void Update()
     {
         //Debug.Log(_curState.GetType().Name); 
-       // if (_isAttack == true) return;
+        // if (_isAttack == true) return;
 
-        _curState.Stay(); 
+        _curState.Stay();
 
         //if (_isBattle == false)
         //{
@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 
     public void MoveDefaultAnimation(Vector3 v)
     {
-            _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
+        _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
         //_playerAnimation.AnimatePlayer(_agent.velocity.magnitude);
 
     }
@@ -248,7 +248,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     public void CheckBattle()
     {
         //Debug.Log("d"); 
-        if (_isBattle == false) return; 
+        if (_isBattle == false) return;
 
         _time += Time.deltaTime;
         if (_isBattle == true && _time >= 5f) // 전투상태가 일정시간 지속되지 않았을때 
@@ -260,7 +260,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 
         }
     }
-    
+
     public void CheckAttack()
     {
         if (_isBattle == false) return;
@@ -310,8 +310,21 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
     private void DefaultKickAttack()
     {
 
-        AttackState attackState = _curState as AttackState;
+        // 기본 공격인지 체크후 
+        // 현재 애니메이션이 얼마나 실행중인지 확인 
+
+        // 공격애니메이션 실행중이면서 일정 시간이상 실행된 상태가 아니라면 
+        if (_playerAnimation.CheckDefaultAnim() == true &&
+                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            Debug.Log("  공격 안돼요 ");
+            return;
+        }
+        Debug.Log(_playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime); 
+
+
         ChangeState(typeof(AttackState));
+        AttackState attackState = _curState as AttackState;
         if (_isAttack == true && attackState.NextAttackType != AttackType.Null)
         {
             //다음 공격 실행
@@ -326,7 +339,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
             _attackModule.SetCurAttackType(AttackType.Default_1);
         }
 
-        _attackModule.DefaultAttack();  
+        _attackModule.DefaultAttack();
 
     }
 
@@ -337,7 +350,7 @@ public class PlayerController : MonoBehaviour, IAgent ,IDamagable
 
     public void OnDie()
     {
-        
+
     }
 
     public bool IsDie()

@@ -7,22 +7,60 @@ public class PlayerAnimation : AgentAnimation
     // Hash
 
     // 상태
-    private readonly int _battleHash = Animator.StringToHash("Battle"); 
+    public readonly int _battleHash = Animator.StringToHash("Battle");
 
     // 이동 
-    private readonly int _velocityXHash = Animator.StringToHash("VelocityX");
-    private readonly int _velocityYHash = Animator.StringToHash("VelocityZ");
+    public readonly int _velocityXHash = Animator.StringToHash("VelocityX");
+    public readonly int _velocityYHash = Animator.StringToHash("VelocityZ");
 
     // 공격 
+  
+    // 기본 공격 
     private readonly int _frontKickHash = Animator.StringToHash("FrontKick");
     private readonly int _sideKickHash = Animator.StringToHash("SideKick");
     private readonly int _backKickHash = Animator.StringToHash("BackKick");
+
     private readonly int _tackleHash = Animator.StringToHash("Tackle");
 
+    int a = Animator.StringToHash("Idle");
     // Hash 끝
+
+    private List<string> _defaultAttackStrList = new List<string>(); // 기본 공격 애니메이션 해쉬 리스트  
     protected override void Awake()
     {
         base.Awake(); 
+    }
+
+    private void Start()
+    {
+        SetHashList(); 
+    }
+
+    /// <summary>
+    /// 애니메아션 해쉬리스트에 넣기 
+    /// </summary>
+    private void SetHashList()
+    {
+        _defaultAttackStrList.Add("FrontKick");
+        _defaultAttackStrList.Add("SideKick");
+        _defaultAttackStrList.Add("BackKick");
+    }
+
+    /// <summary>
+    /// 기본 공격 애니메이션인지 체크
+    /// </summary>
+    public bool CheckDefaultAnim()
+    {
+        foreach(var h in _defaultAttackStrList)
+        {
+            bool b = _agentAnimator.GetCurrentAnimatorStateInfo(0).IsName(h);
+            if (b == true)
+            {
+                Debug.Log("A####################3");
+                return true;
+            }
+            }
+            return false; 
     }
 
     // 상태 설정 
