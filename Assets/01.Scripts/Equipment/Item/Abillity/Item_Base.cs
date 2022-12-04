@@ -7,12 +7,20 @@ public class Item_Base : MonoBehaviour
     public float speed = 5f;
     public int damage = 0;
 
-    void Update()
+    public Rigidbody rigid;
+
+    private void Awake()
     {
-        transform.position += transform.forward * Time.deltaTime;
+        rigid = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnEnable()
+    {
+        rigid.velocity = transform.forward * speed;
+    }
+
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Monster"))
         {
