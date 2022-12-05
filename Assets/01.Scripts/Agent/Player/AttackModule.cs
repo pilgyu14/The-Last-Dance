@@ -114,11 +114,11 @@ public class AttackModule : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        if (_curAttackInfo == null) _curAttackInfo = attackInfoList[0]; 
-        Gizmos.color = Color.black;
-        Gizmos.DrawSphere(transform.position, CurAttackSO.attackRadius);
+    //private void OnDrawGizmos()
+    //{
+    //    if (_curAttackInfo == null) _curAttackInfo = attackInfoList[0]; 
+    //    Gizmos.color = Color.black;
+    //    Gizmos.DrawSphere(transform.position, CurAttackSO.attackRadius);
 
-    }
+    //}
 }

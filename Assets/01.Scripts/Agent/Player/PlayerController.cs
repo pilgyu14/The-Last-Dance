@@ -305,17 +305,32 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         _isAttack = true;
     }
 
+    private bool _isDelay = false; // 기본 공격할 수 있는가 
+    [SerializeField]
+    private float _curTime = 0f;
+    private float _maxCoolTime = 0.7f;  // 기본 공격 3타 후 딜레이 
 
+    IEnumerator Delay(float delayTime)
+    {
+        _isDelay = true; 
+        while (_curTime <= delayTime)
+        {
+            _curTime += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log("딜레이 끝");
+        _isDelay = false; 
+    }
 
     private void DefaultKickAttack()
     {
-
+        if (_isDelay == true) return;  // 딜레이 체크 
         // 기본 공격인지 체크후 
         // 현재 애니메이션이 얼마나 실행중인지 확인 
 
         // 공격애니메이션 실행중이면서 일정 시간이상 실행된 상태가 아니라면 
         if (_playerAnimation.CheckDefaultAnim() == true &&
-                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.1f)
         {
             Debug.Log("  공격 안돼요 ");
             return;
@@ -323,9 +338,10 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         Debug.Log(_playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime); 
 
 
+        // 공격 상태 변경 
         ChangeState(typeof(AttackState));
         AttackState attackState = _curState as AttackState;
-        if (_isAttack == true && attackState.NextAttackType != AttackType.Null)
+        if (_isAttack == true && attackState.NextAttackType != AttackType.Null) // 
         {
             //다음 공격 실행
             Debug.Log("@" + attackState.NextAttackType);
@@ -338,10 +354,16 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
             Debug.Log("#" + attackState.NextAttackType);
             _attackModule.SetCurAttackType(AttackType.Default_1);
         }
+        _attackModule.DefaultAttack(); // 실제적인 공격 수행( 범위 체크 후 타격, 애니메이션 실행 ) 
+        
 
-        _attackModule.DefaultAttack();
-
+        if(_attackModule.CurAttackType == AttackType.Default_3)
+        {
+            _curTime = 0; 
+            StartCoroutine(Delay(_maxCoolTime));
+        }
     }
+
 
     // 피격 관련 
     public void Damaged()
@@ -389,54 +411,5 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     {
         _inputModule.Attacking(false);
     }
-
-
-    //private void RotateByMouse(Vector3 pos)
-    //{
-    //    Ray ray = Define.MainCam.ScreenPointToRay(pos);
-    //    Physics.Raycast(ray, out RaycastHit hitInfo);
-    //    Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 3f);
-
-    //    _targetPos = hitInfo.point - transform.position;
-    //    _targetPos.y = 0;
-
-    //    _targetRot = Quaternion.LookRotation(_targetPos, Vector3.up);
-
-    //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir, Vector3.up),
-    //       Time.deltaTime * _playerSO.speed);
-
-    //    //_targetRot.x = 0;
-    //    //_targetRot.z = 0;
-    //}
-
-    //private void Move(Vector3 moveDir)
-    //{
-    //    _chController.Move(moveDir * _playerSO.speed * Time.deltaTime);
-    //    if (_chController.velocity.magnitude > 0.2f)
-    //    {
-    //        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir, Vector3.up),
-    //        Time.deltaTime * _playerSO.speed);
-
-    //        _targetPos = moveDir;
-    //    }
-
-    //    _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
-    //}
-
-    //private void InBattleMove(Vector3 moveDir)
-    //{
-    //    Vector3 targetDir = Vector3.Normalize(moveDir.x * transform.right + _inputModule.MoveDir.z * transform.forward); // 회전 값에 따른 이동 방향
-
-    //    _chController.Move(moveDir * _playerSO.speed * Time.deltaTime);
-    //    //if (_chController.velocity.magnitude > 0.2f)
-    //    //{
-    //    transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot,
-    //    Time.deltaTime * _playerSO.speed);
-    //    //}
-
-    //    _playerAnimation.SetVelocity(targetDir.x, targetDir.z);
-
-    //    CheckBattle();
-    //}
 
 }
