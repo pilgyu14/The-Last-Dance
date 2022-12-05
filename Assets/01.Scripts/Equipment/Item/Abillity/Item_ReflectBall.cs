@@ -6,13 +6,7 @@ public class Item_ReflectBall : Item_Base
 {
     public int reflectCnt = 3;
 
-    public override void OnTriggerEnter(Collider other)
-    {
-        
-    }
-
-
-    private void OnCollisionEnter(Collision col)
+    public override void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag("Monster") || col.gameObject.CompareTag("Wall"))
         {

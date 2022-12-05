@@ -20,11 +20,15 @@ public class Item_Base : MonoBehaviour
         rigid.velocity = transform.forward * speed;
     }
 
-    public virtual void OnTriggerEnter(Collider other)
+    public virtual void OnCollisionEnter(Collision col)
     {
-        if (other.CompareTag("Monster"))
+        if (col.gameObject.CompareTag("Monster"))
         {
-            Attack(other.gameObject);
+            Attack(col.gameObject);
+        }
+        else if (col.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
         }
     }
 
