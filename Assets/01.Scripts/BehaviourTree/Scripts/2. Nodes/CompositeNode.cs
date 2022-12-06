@@ -6,16 +6,16 @@ using UnityEngine;
 namespace Rito.BehaviorTree
 {
     /// <summary> 
-    /// <para/> ìì‹ë“¤ì„ ìˆœíšŒí•˜ëŠ” ë…¸ë“œ
+    /// <para/> ÀÚ½ÄµéÀ» ¼øÈ¸ÇÏ´Â ³ëµå
     /// </summary>
     public abstract class CompositeNode : ICompositeNode
     {
         public List<INode> ChildList { get; protected set; }
 
-        // ìƒì„±ì
+        // »ı¼ºÀÚ
         public CompositeNode(params INode[] nodes) => ChildList = new List<INode>(nodes);
 
-        // ìì‹ ë…¸ë“œ ì¶”ê°€
+        // ÀÚ½Ä ³ëµå Ãß°¡
         public CompositeNode Add(INode node)
         {
             ChildList.Add(node);

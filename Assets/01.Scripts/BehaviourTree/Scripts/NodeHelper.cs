@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    // Core에서
+    // Core?�서
     // using static Rito.BehaviorTree.NodeHelper;
     public static class NodeHelper
     {
