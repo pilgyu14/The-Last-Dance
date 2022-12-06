@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager Instance;
+
+    [SerializeField]
+    private PoolingListSO _initList = null;
+
+    private void Awake()
     {
-        
+        if (Instance != null)
+            Debug.LogError("Multiple GameManager is running");
+        Instance = this;
+
+        PoolManager.Instance = new PoolManager(transform);
+
+        CreatePool();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CreatePool()
     {
-        
+        foreach (PoolingPair pair in _initList.list)
+            PoolManager.Instance.CreatePool(pair.prefab, pair.poolCnt);
     }
 }

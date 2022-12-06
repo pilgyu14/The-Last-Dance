@@ -40,4 +40,11 @@ public class Item_PenetrateBall : Item_Base
         }
         //monster.GetComponent<Hp?>().Damage(damage);
     }
+
+    public override void Reset()
+    {
+        base.Reset();
+        penetrateCnt = 3;
+        isPenetrate = false;
+    }
 }

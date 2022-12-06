@@ -36,4 +36,10 @@ public class Item_ReflectBall : Item_Base
         }
         //monster.GetComponent<Hp?>().Damage(damage);
     }
+
+    public override void Reset()
+    {
+        base.Reset();
+        reflectCnt = 3;
+    }
 }

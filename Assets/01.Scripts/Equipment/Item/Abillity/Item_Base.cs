@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_Base : MonoBehaviour
+public class Item_Base : PoolableMono
 {
     public float speed = 5f;
     public int damage = 0;
@@ -12,12 +12,6 @@ public class Item_Base : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-    }
-
-
-    private void OnEnable()
-    {
-        rigid.velocity = transform.forward * speed;
     }
 
     public virtual void OnCollisionEnter(Collision col)
@@ -36,5 +30,10 @@ public class Item_Base : MonoBehaviour
     {
         //monster.GetComponent<Hp?>().Damage(damage);
         Destroy(gameObject);
+    }
+
+    public override void Reset()
+    {
+        rigid.velocity = transform.forward * speed;
     }
 }
