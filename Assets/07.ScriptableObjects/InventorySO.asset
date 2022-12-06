@@ -15,6 +15,6 @@ MonoBehaviour:
   maxItemType: 3
   maxItemValue: 4
   itemList:
-  - itemPrefab: {fileID: 0}
+  - itemPrefab: {fileID: 3542662421307382569, guid: 6fe9357229e84b04ba6def14bf5d84c7, type: 3}
     itemImage: {fileID: 0}
-    value: 0
+    value: 26
