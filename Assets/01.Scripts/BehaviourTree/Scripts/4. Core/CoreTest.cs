@@ -20,7 +20,7 @@ public class CoreTest : MonoBehaviour, ICore
         _rootNode.Run();
     }
 
-    /// <summary> BT 노드 조립 </summary>
+    /// <summary> BT ?�드 조립 </summary>
     private void MakeNode()
     {
         _rootNode =
