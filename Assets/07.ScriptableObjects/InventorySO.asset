@@ -17,4 +17,4 @@ MonoBehaviour:
   itemList:
   - itemPrefab: {fileID: 3542662421307382569, guid: 6fe9357229e84b04ba6def14bf5d84c7, type: 3}
     itemImage: {fileID: 0}
-    value: 100
+    value: 970
