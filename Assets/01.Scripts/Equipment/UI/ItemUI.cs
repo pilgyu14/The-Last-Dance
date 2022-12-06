@@ -8,7 +8,6 @@ public class ItemUI : MonoBehaviour
 {
     [SerializeField]
     public InventorySO inventorySO;
-
     [SerializeField]
     public Image itemImage;
 
@@ -36,6 +35,23 @@ public class ItemUI : MonoBehaviour
             {
                 pageIdx++;
                 UpdateItemImage();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(inventorySO.itemList[pageIdx].value > 0)
+            {
+                inventorySO.itemList[pageIdx].value--;
+
+                Item_Base item = PoolManager.Instance.Pop(inventorySO.itemList[pageIdx].itemPrefab.name) as Item_Base;
+                Vector3 startPos = GameManager.Instance.PlayerTrm.position;
+                Vector3 mousePos = Input.mousePosition;
+                mousePos.y = GameManager.Instance.PlayerTrm.position.y;
+
+                Quaternion rot = Quaternion.LookRotation(mousePos - startPos);
+                
+                item.SetPosAndRot(startPos, rot);
             }
         }
     }

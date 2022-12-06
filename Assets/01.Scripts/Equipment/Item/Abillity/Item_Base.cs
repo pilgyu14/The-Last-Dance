@@ -22,18 +22,24 @@ public class Item_Base : PoolableMono
         }
         else if (col.gameObject.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            PoolManager.Instance.Push(this);
         }
     }
 
     public virtual void Attack(GameObject monster)
     {
         //monster.GetComponent<Hp?>().Damage(damage);
-        Destroy(gameObject);
+        PoolManager.Instance.Push(this);
     }
 
     public override void Reset()
     {
         rigid.velocity = transform.forward * speed;
+    }
+
+    public void SetPosAndRot(Vector3 pos, Quaternion rot)
+    {
+        transform.SetPositionAndRotation(pos, rot);
+        Reset();
     }
 }

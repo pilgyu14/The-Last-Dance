@@ -9,6 +9,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PoolingListSO _initList = null;
 
+    private Transform _playerTrm;
+    public Transform PlayerTrm
+    {
+        get
+        {
+            if(_playerTrm == null)
+            {
+                _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+            return _playerTrm;
+        }
+    }
+
     private void Awake()
     {
         if (Instance != null)
