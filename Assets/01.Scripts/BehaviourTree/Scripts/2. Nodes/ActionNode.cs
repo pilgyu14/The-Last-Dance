@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    /// <summary> í–‰ë™ ìˆ˜í–‰ ë…¸ë“œ </summary>
+    /// <summary> Çàµ¿ ¼öÇà ³ëµå</summary>
     public class ActionNode : ILeafNode
     {
         public Action Action { get; protected set; }
@@ -20,7 +20,7 @@ namespace Rito.BehaviorTree
             return true;
         }
 
-        // Action <=> ActionNode íƒ€ì… ìºìŠ¤íŒ…
+        // Action <=> ActionNode Å¸ÀÔ Ä³½ºÆÃ
         public static implicit operator ActionNode(Action action) => new ActionNode(action);
         public static implicit operator Action(ActionNode action) => new Action(action.Action);
     }

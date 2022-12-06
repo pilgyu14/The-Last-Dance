@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    /// <summary> í–‰ë™ íŠ¸ë¦¬ í•µì‹¬ ì¸í„°í˜ì´ìŠ¤ </summary>
+    /// <summary> Çàµ¿ Æ®¸® ÇÙ½É ÀÎÅÍÆäÀÌ½º </summary>
     public interface ICore
     {
 

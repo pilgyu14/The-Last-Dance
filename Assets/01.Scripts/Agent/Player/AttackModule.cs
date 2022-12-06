@@ -61,27 +61,7 @@ public class AttackModule : MonoBehaviour
         }
     }
 
-    private bool CheckAttack()
-    {
-        if (_agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Walk") || _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("AttackMove") || _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            SetCurAttackType(AttackType.Default_1);
-        }
-        else if (_agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("front_kick") && _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f)
-        {
-            SetCurAttackType(AttackType.Default_2);
-        }
-        else if (_agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("SideKick") && _agentAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f)
-        {
-            SetCurAttackType(AttackType.Default_3);
-        }
-        else
-        {
-            Debug.Log("공격 데이터 없어요");
-            return false; 
-        }
-        return true; 
-    }
+
 
     private float _nextAtkTImeLimit = 0.2f; 
     public void CheckAttackType()

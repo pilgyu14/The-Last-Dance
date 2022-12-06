@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    /// <summary> ìì‹ ìˆœíšŒ ë…¸ë“œ </summary>
+    /// <summary> ÀÚ½Ä ¼øÈ¸ ³ëµå </summary>
     public interface ICompositeNode : INode
     {
 

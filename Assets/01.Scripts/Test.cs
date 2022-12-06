@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
+    public Material mat; 
 
     public Action A; 
     // Update is called once per frame
@@ -12,8 +13,21 @@ public class Test : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            A?.Invoke(); 
+            ChangeMat(); 
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ChangeMat2();
+        }
+    }
+
+    public void ChangeMat()
+    {
+        mat.SetFloat("_FullScreenIntensity", 0);
+    }
+    public void ChangeMat2()
+    {
+        mat.SetFloat("_FullScreenIntensity", 0.028f);
     }
 
     [ContextMenu("Add")]
