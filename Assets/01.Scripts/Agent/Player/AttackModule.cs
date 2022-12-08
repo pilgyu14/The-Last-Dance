@@ -12,12 +12,12 @@ public enum AttackType
 }
 
 
-public class AttackModule : MonoBehaviour
+public class AttackModule : MonoBehaviour, IComponent
 {
     // 캐싱 변수 
     private FieldOfView _fov;
     private PlayerAnimation _agentAnimation;
-    private MoveModule _moveModule;
+    private PlayerMoveModule _moveModule;
     private TimerModule _timerModule; 
         
 
@@ -43,7 +43,7 @@ public class AttackModule : MonoBehaviour
         _curAttackInfo = attackInfoList[0]; 
     }
 
-    public void Init(FieldOfView fov,MoveModule moveModule ,PlayerAnimation agentAnimation)
+    public void Init(FieldOfView fov,PlayerMoveModule moveModule ,PlayerAnimation agentAnimation)
     {
         _fov = fov;
         _moveModule = moveModule;

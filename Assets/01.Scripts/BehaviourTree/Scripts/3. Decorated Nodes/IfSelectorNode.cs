@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ë‚ ì§œ : 2021-01-16 PM 11:23:12
-// ì‘ì„±ì : Rito
+// ³¯Â¥ : 2021-01-16 PM 11:23:12
+// ÀÛ¼ºÀÚ : Rito
 
 namespace Rito.BehaviorTree
 {

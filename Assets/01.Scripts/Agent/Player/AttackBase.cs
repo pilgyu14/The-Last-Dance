@@ -25,13 +25,13 @@ public class AttackBase
     // 적의 경우 생각
     // attackSO.IsEnemy 있다 
 
-    private MoveModule _moveModule;
+    private PlayerMoveModule _moveModule;
     private FieldOfView _fov;
 
     // 인스펙터 참조 변수 
     public AttackInfo attackInfo;
 
-    public void Init(GameObject owner, PlayerAnimation playerAnimation, MoveModule moveModule,FieldOfView fov)
+    public void Init(GameObject owner, PlayerAnimation playerAnimation, PlayerMoveModule moveModule,FieldOfView fov)
     {
         _owner = owner; 
         _agentAnimation = playerAnimation;
@@ -54,7 +54,7 @@ public class AttackBase
         // 공격 판정 
         _fov.FindTargets(attackInfo.attackSO.attackAngle, attackInfo.attackSO.attackRadius);  // 범위 안 몬스터 찾기 
 
-        foreach (var target in _fov.TargetList)
+        foreach (var target in _fov.TargetList) // 타겟 공격 판정( 데미지 , 넉백 )  
         {
             IDamagable damagable = target.GetComponent<IDamagable>();
             damagable.GetDamaged(attackInfo.attackSO.attackDamage, _owner);
@@ -64,7 +64,9 @@ public class AttackBase
 
             if (attackInfo.attackSO.isKnockbackAttack == true)
             {
+                Vector3 dir = (target.position - _owner.transform.position).normalized;
                 IKnockback knockback = target.GetComponent<IKnockback>();
+                knockback.Knockback(dir, attackInfo.attackSO.knockbackPower, 0.2f); 
             }
         }
 

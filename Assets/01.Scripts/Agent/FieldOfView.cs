@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldOfView : MonoBehaviour
+public class FieldOfView : MonoBehaviour, IComponent
 {
     //에디터 확인용 변수 
-
     public float EyeRadius;
     public float EyeAngle; 
 

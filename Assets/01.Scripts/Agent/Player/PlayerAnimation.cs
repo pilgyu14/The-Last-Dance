@@ -22,7 +22,6 @@ public class PlayerAnimation : AgentAnimation
 
     private readonly int _tackleHash = Animator.StringToHash("Tackle");
 
-    int a = Animator.StringToHash("Idle");
     // Hash 끝
 
     private List<string> _defaultAttackStrList = new List<string>(); // 기본 공격 애니메이션 해쉬 리스트  

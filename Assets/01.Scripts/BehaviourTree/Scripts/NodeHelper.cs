@@ -17,6 +17,12 @@ namespace Rito.BehaviorTree
         public static ConditionNode If(Func<bool> condition) => new ConditionNode(condition);
         public static ActionNode Action(Action action) => new ActionNode(action);
 
+        /// <summary>
+        /// 조건부 실행함수
+        /// </summary>
+        /// <param name="condition">조건 함수</param>
+        /// <param name="action">조건 만족시 실행 함수</param>
+        /// <returns></returns>
         public static IfActionNode IfAction(Func<bool> condition, Action action)
             => new IfActionNode(condition, action);
         public static IfElseActionNode IfElseAction(Func<bool> condition, Action ifAction, Action ifElseAction)

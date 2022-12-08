@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    /// <summary> ë§ë‹¨ ë…¸ë“œ </summary>
+    /// <summary> ¸»´Ü ³ëµå </summary>
     public interface ILeafNode : INode
     {
-        
+
     }
 }

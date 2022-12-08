@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
     // 캐싱 변수 
     private InputModule _inputModule;
-    private MoveModule _moveModule;
+    private PlayerMoveModule _moveModule;
     private AttackModule _attackModule;
     private FieldOfView _fov;
     private CharacterController _chController;
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
     // 프로퍼티 
     public InputModule InputModule => _inputModule;
-    public MoveModule MoveModule => _moveModule;
+    public PlayerMoveModule MoveModule => _moveModule;
     public AttackModule AttackModule => _attackModule;
     public PlayerAnimation PlayerAnimation => _playerAnimation;
     public bool IsEnemy => false;
@@ -161,12 +161,12 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     private void Awake()
     {
         _inputModule = GetComponent<InputModule>();
-        _moveModule = GetComponent<MoveModule>();
+        _moveModule = GetComponent<PlayerMoveModule>();
         _attackModule = GetComponent<AttackModule>();
         _fov = GetComponent<FieldOfView>();
-        _chController = GetComponent<CharacterController>();
-        //_agent = GetComponent<NavMeshAgent>(); 
-        _playerAnimation = transform.GetComponentInChildren<PlayerAnimation>();
+        //_chController = GetComponent<CharacterController>();
+        _agent = GetComponent<NavMeshAgent>(); 
+        _playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     private void Start()
@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         //_inputModule.OnMovementKeyPress = Move;
         // _inputModule.OnMovementKeyPress = InBattleMove; 
 
-        _moveModule.Init(_inputModule, _chController, _playerSO.moveInfo, _playerAnimation);
+        _moveModule.Init( this,_agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
         _attackModule.Init(_fov, _moveModule, _playerAnimation);
     }
     #endregion
@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
     public void MoveDefaultAnimation(Vector3 v)
     {
-        _playerAnimation.AnimatePlayer(_chController.velocity.magnitude);
+        _playerAnimation.AnimatePlayer(v.sqrMagnitude);
         //_playerAnimation.AnimatePlayer(_agent.velocity.magnitude);
 
     }

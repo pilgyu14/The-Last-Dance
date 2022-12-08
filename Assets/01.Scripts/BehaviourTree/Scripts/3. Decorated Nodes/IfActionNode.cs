@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    // ì¡°ê±´ ì°¸ì¼ ê²½ìš° Action ìˆ˜í–‰ ë° true ë¦¬í„´
-    // ì¡°ê±´ ê±°ì§“ì¼ ê²½ìš° false ë¦¬í„´
-    /// <summary> ì¡°ê±´ì— ë”°ë¥¸ ìˆ˜í–‰ ë…¸ë“œ </summary>
+    // Á¶°Ç ÂüÀÏ °æ¿ì Action ¼öÇà ¹× true ¸®ÅÏ
+    // Á¶°Ç °ÅÁşÀÏ °æ¿ì false ¸®ÅÏ
+    /// <summary> Á¶°Ç¿¡ µû¸¥ ¼öÇà ³ëµå </summary>
     public class IfActionNode : ActionNode
     {
         public Func<bool> Condition { get; private set; }
@@ -26,7 +26,7 @@ namespace Rito.BehaviorTree
         public override bool Run()
         {
             bool result = Condition();
-            if(result) Action();
+            if (result) Action();
             return result;
         }
     }

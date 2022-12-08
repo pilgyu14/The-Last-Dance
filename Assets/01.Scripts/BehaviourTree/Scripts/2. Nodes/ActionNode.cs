@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    /// <summary> 행동 수행 노드</summary>
+    /// <summary> 행동 수행 노드 </summary>
     public class ActionNode : ILeafNode
     {
         public Action Action { get; protected set; }
@@ -18,6 +18,7 @@ namespace Rito.BehaviorTree
         {
             Action();
             return true;
+
         }
 
         // Action <=> ActionNode 타입 캐스팅
