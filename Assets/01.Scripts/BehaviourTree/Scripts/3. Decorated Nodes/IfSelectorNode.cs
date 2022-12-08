@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
+    /// <summary>
+    /// 조건에 따른 CompositeNode 수행 노드 
+    /// </summary>
     public class IfSelectorNode : DecoratedCompositeNode
     {
         public IfSelectorNode(Func<bool> condition, params INode[] nodes)

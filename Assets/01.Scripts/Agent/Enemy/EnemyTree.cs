@@ -37,7 +37,6 @@ public class EnemyTree<T> : MonoBehaviour, ICore where T : Enemy
     protected void SetComponents()
     {
         _fov = _owner.EnemyComponents[typeof(FieldOfView)] as FieldOfView;
-
     }
     // 적마다 달라질 부분 
     protected virtual void SetNode()
@@ -46,14 +45,30 @@ public class EnemyTree<T> : MonoBehaviour, ICore where T : Enemy
 
             Selector
             (
+                Condition(_owner.IsDie),
+                Condition(_owner.IsHit)
+
+                //IfAction(), 
+
              //   IfAction(CheckDistance,),
+
+                /*
+                 * 공격 패턴 
+                 * - 랜덤 실행 노드로 하나 골라서 실행 
+                 * - 공격마다 범위 다름 -> 범위 어려운 것부터 체크 후 
+                 *   true 반환하는 거 있으면 그거 실행 
+                 * 
+                 */
             );
     }
-    
-    public bool CheckDistance()
+
+    /// <summary>
+    /// 현재 상태에 따른 노드 설정 
+    /// 난이도 or 체력이 별로 없을 떄 다르게 처리
+    /// </summary>
+    protected virtual void SetNodeByState()
     {
-       // _fov.FindTargets
-        //    if(_target.position - transform.position < )
-        return false;
+
     }
+    
 }

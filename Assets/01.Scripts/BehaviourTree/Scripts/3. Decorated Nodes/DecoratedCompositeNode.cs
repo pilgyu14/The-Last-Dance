@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ë‚ ì§œ : 2021-01-16 PM 10:20:49
-// ì‘ì„±ì : Rito
+// ³¯Â¥ : 2021-01-16 PM 10:20:49
+// ÀÛ¼ºÀÚ : Rito
 
 namespace Rito.BehaviorTree
 {
-    /// <summary> ì¡°ê±´ì— ë”°ë¥¸ Composite ìˆ˜í–‰ ë…¸ë“œ </summary>
+    /// <summary> Á¶°Ç¿¡ µû¸¥ Composite ¼öÇà ³ëµå </summary>
     public abstract class DecoratedCompositeNode : CompositeNode
     {
         public Func<bool> Condition { get; protected set; }

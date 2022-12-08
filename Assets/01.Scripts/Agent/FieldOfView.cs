@@ -25,7 +25,13 @@ public class FieldOfView : MonoBehaviour, IComponent
     public List<Transform> TargetList => targetLists;
     public float DistanceTarget => distanceTarget;
 
-    public void FindTargets(float eyeAngle, float eyeRadius)
+    /// <summary>
+    /// 시야 범위 내에 적이 있으면 TargetList에 저장, true 반환 없으면 false반환  
+    /// </summary>
+    /// <param name="eyeAngle"></param>
+    /// <param name="eyeRadius"></param>
+    /// <returns></returns>
+    public bool FindTargets(float eyeAngle, float eyeRadius)
     {
         EyeRadius = eyeRadius;
         EyeAngle = eyeAngle; 
@@ -61,6 +67,8 @@ public class FieldOfView : MonoBehaviour, IComponent
             }
             // 거리 판별 
         }
+
+        return (firstTarget != null) ? true : false; // 찾았으면 treu 못찾았으면 false 
     }
 
 

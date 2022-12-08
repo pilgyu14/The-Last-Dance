@@ -6,12 +6,25 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
+public class FeedbackInfo
+{
+    // 카메라 흔들림 피드백
+    public float amplitude;
+    public float intensity;
+    public float shakeTime; 
+
+    // 
+}
+
+
+[System.Serializable]
 public class AttackInfo
 {
     public AttackType attackType;
     public AttackType nextAttackType;
     public AttackSO attackSO;
-    public UnityEvent feedbackCallback = null;
+    public UnityEvent feedbackCallback = null; // 기본적인 피드백 ( 스윙할 때 사운드 ) 
+    public UnityEvent feedbackCallbackHit = null; // 때렸을 때 나올 피드백 ( 카메라 흔들림 ) 
 }
 
 
@@ -38,6 +51,10 @@ public class AttackBase
         _moveModule = moveModule;
         _fov = fov; 
     }
+
+    /// <summary>
+    /// 실제적인 공격 판정 
+    /// </summary>
     public virtual void Attack() 
     {
         // 움직임 멈추고
@@ -58,8 +75,17 @@ public class AttackBase
         {
             IDamagable damagable = target.GetComponent<IDamagable>();
             damagable.GetDamaged(attackInfo.attackSO.attackDamage, _owner);
-            // 데미지 텍스트 
+
             // 이펙트 
+            Vector3 hitPos = target.position;
+            // 맞은 위치 
+            // 히트 오디오 재생 
+
+            // 플레이어 공격이라면 
+            // 데미지 텍스트 
+            DamageText damageText = new DamageText(); // 풀링으로 
+            damageText.SetText(attackInfo.attackSO.attackDamage, _owner.transform.position + new Vector3(0, 0.5f, 0), Color.white, false);
+            
             // 흔들림 
 
             if (attackInfo.attackSO.isKnockbackAttack == true)
@@ -69,7 +95,11 @@ public class AttackBase
                 knockback.Knockback(dir, attackInfo.attackSO.knockbackPower, 0.2f); 
             }
         }
-
+        
+        if(_fov.TargetList.Count >= 1)
+        {
+            attackInfo.feedbackCallbackHit?.Invoke(); 
+        }
         // 음? 
         _agentAnimation.Update_Zero();
 
