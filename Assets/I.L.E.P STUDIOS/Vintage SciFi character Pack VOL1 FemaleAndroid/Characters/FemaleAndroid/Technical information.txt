@@ -1,0 +1,22 @@
+faces 22019, tris 43994, verts 20121
+
+Rigged with Humanoid Skeleton
+
+All Textures Were Created In Substance Painter 
+
+Rigged: (Yes)
+
+Rigged to Humanoid skeleton: (Yes)
+
+If rigged to the Epic skeleton, IK bones are included: (Yes)
+
+Number of characters: 1
+
+Vertex counts of characters: 20121
+
+Number of Materials: 2
+
+Number of Textures: 10
+
+Texture Resolutions: (4096x4096)
+
