@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
 {
     [SerializeField]
     private EnemySO _enemySO;
-    private Transform _target; 
+    private Transform _target;
+    private EnemyTree<Enemy> _enemyTree; 
 
     private Dictionary<Type, IComponent> _enemyComponents = new Dictionary<Type, IComponent>();  // 모든 컴포넌트 저장 딕셔너리 
 
@@ -46,14 +47,26 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
         _fov = GetComponent<FieldOfView>();
         _agent = GetComponent<NavMeshAgent>();
         _enemyAnimation = GetComponent<EnemyAnimation>();
-        _hpModule = GetComponent<HPModule>(); 
+        _hpModule = GetComponent<HPModule>();
+
+        SetComponents();
     }
 
     private void Start()
     {
-        SetComponents(); 
+        _enemyTree = new EnemyTree<Enemy>(this);
+        _hpModule.Init(_enemySO.hp, _enemySO.hp);
     }
 
+    private void Update()
+    {
+        // 디버그용 (임시)
+        IsFind = CheckChase();
+        Debug.DrawLine(transform.position, transform.position + _fov.GetVecByAngle(_enemySO.eyeAngle / 2, false) * _enemySO.chaseDistance,Color.red);
+        Debug.DrawLine(transform.position, transform.position + _fov.GetVecByAngle(-_enemySO.eyeAngle / 2, false) * _enemySO.chaseDistance, Color.red);
+        
+        _enemyTree.UpdateRun();
+    }
 
     private void SetComponents()
     {
@@ -64,12 +77,7 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
     }
 
     public bool IsFind = false;
-    private void Update()
-    {
-        IsFind = CheckChase();
-        Debug.DrawLine(transform.position, transform.position + _fov.GetVecByAngle(_enemySO.eyeAngle / 2, false) * _enemySO.chaseDistance);
-        Debug.DrawLine(transform.position, transform.position + _fov.GetVecByAngle(-_enemySO.eyeAngle / 2, false) * _enemySO.chaseDistance);
-    }
+
 
 
     // 피격 관련 
@@ -79,26 +87,30 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
         _hpModule.ChangeHP(-damage); 
     }
 
-    // Condition    
-    
+    #region Condition
+
     // 죽었는가
     public bool IsDie()
     {
+        Debug.Log("죽음체크");
         return _hpModule.HP <= 0; 
     }
     // 피격 받은 상태인가 
     public bool IsHit()
     {
-        return _isHit; 
+        Debug.Log("피격체크");
+        return _isHit;
     }
     // 전투 중인가 
     public bool IsbattleMode()
     {
+        Debug.Log("전투중 체크");
         return _isBattleMode; 
     }
     // 공격 범위 안에 들어왔는가
     public bool CheckAttack()
     {
+        Debug.Log("공격 범위 체크");
         return CheckDistance(_enemySO.eyeAngle, _enemySO.attackDistance);
     }
 
@@ -128,15 +140,34 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
             Debug.LogError("타겟 없음");
             return false;
         }
-        Vector3 targetDir = _target.transform.position - transform.position; // 타겟 방향  
+        Vector3 targetDir = (_target.transform.position - transform.position).normalized; // 타겟 방향  
 
-        if (Vector3.Angle(transform.forward, targetDir) > _enemySO.eyeAngle // 시야 범위 안에 있고 
-            && Vector3.Distance(_target.position, transform.position) < _enemySO.chaseDistance) // 거리 안에 있으면 
+        if (Vector3.Angle(transform.forward, targetDir) > eyeAngle * 0.5f // 시야 범위 안에 있고 
+            && Vector3.Distance(_target.position, transform.position) < distance) // 거리 안에 있으면 
         {
             return true;
         }
         return false;
     }
+    #endregion
 
+    #region Action
+
+    /// <summary>
+    /// 기본 공격 
+    /// </summary>
+    public void DefaultAttack()
+    {
+        Debug.Log("공격"); 
+    }
+
+    /// <summary>
+    /// 추적 
+    /// </summary>
+    public void Chase()
+    {
+        Debug.Log("추적..");
+    }
+    #endregion
 
 }

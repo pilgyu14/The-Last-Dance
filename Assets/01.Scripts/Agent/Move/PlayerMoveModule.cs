@@ -51,7 +51,7 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     {
         base.Move(moveDir);
         _playerAnimation.AnimatePlayer(moveDir.sqrMagnitude);
-        Debug.Log(moveDir.sqrMagnitude);
+       // Debug.Log(moveDir.sqrMagnitude);
     }
 
     /// <summary>
