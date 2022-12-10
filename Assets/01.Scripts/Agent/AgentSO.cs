@@ -6,6 +6,7 @@ using UnityEngine;
 // 이동 관련 정보( 최대속도, 가속도 감속도 ) 
 public class MovementInfo
 {
+    [Header("움직임 관련 ")]
     public float maxSpeed;
 
     public float acceleration;

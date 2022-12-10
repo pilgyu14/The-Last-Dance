@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ë‚ ì§œ : 2021-01-13 PM 4:20:16
+// ³¯Â¥ : 2021-01-13 PM 4:20:16
 
 namespace Rito.BehaviorTree
 {
-    // ì¡°ê±´ ê±°ì§“ì¼ ê²½ìš° Action ìˆ˜í–‰ ë° true ë¦¬í„´
-    // ì¡°ê±´ ì°¸ì¼ ê²½ìš° false ë¦¬í„´
-    /// <summary> ì¡°ê±´ì— ë”°ë¥¸ ìˆ˜í–‰ ë…¸ë“œ </summary>
+    // Á¶°Ç °ÅÁşÀÏ °æ¿ì Action ¼öÇà ¹× true ¸®ÅÏ
+    // Á¶°Ç ÂüÀÏ °æ¿ì false ¸®ÅÏ
+    /// <summary> Á¶°Ç¿¡ µû¸¥ ¼öÇà ³ëµå </summary>
     public class IfNotActionNode : ILeafNode
     {
         public Func<bool> Condition { get; private set; }

@@ -8,7 +8,7 @@ using UnityEngine;
  * 
  */
 [RequireComponent(typeof(Animator))]
-public class AgentAnimation : MonoBehaviour
+public class AgentAnimation : MonoBehaviour, IComponent
 {
     protected Animator _agentAnimator;
     //Hash

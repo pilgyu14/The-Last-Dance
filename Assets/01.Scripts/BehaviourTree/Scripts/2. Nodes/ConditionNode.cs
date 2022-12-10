@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    /// <summary> ì¡°ê±´ ê²€ì‚¬ ë…¸ë“œ </summary>
+    /// <summary> Á¶°Ç °Ë»ç ³ëµå </summary>
     public class ConditionNode : IDecoratorNode
     {
-        public Func<bool> Condition { get; protected set; }
+        public Func<bool> Condition { get; protected set; } // Á¶°Ç ÇÔ¼ö 
         public ConditionNode(Func<bool> condition)
         {
             Condition = condition;
@@ -16,7 +16,7 @@ namespace Rito.BehaviorTree
 
         public bool Run() => Condition();
 
-        // Func <=> ConditionNode íƒ€ì… ìºìŠ¤íŒ…
+        // Func <=> ConditionNode Å¸ÀÔ Ä³½ºÆÃ
         public static implicit operator ConditionNode(Func<bool> condition) => new ConditionNode(condition);
         public static implicit operator Func<bool>(ConditionNode condition) => new Func<bool>(condition.Condition);
 

@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monster
-  - Wall
   layers:
   - Default
   - TransparentFX
@@ -15,8 +14,8 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - Item
-  - 
+  - Penetrate
+  - Ground
   - 
   - 
   - 

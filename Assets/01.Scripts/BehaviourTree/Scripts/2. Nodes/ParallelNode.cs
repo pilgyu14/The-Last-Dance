@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Rito.BehaviorTree
 {
-    /// <summary> ìì‹ë“¤ ë¦¬í„´ì— ê´€ê³„ ì—†ì´ ëª¨ë‘ ìˆœíšŒí•˜ëŠ” ë…¸ë“œ </summary>
+    /// <summary> ÀÚ½Äµé ¸®ÅÏ¿¡ °ü°è ¾øÀÌ ¸ğµÎ ¼øÈ¸ÇÏ´Â ³ëµå </summary>
     public class ParallelNode : CompositeNode
     {
         public ParallelNode(params INode[] nodes) : base(nodes) { }
