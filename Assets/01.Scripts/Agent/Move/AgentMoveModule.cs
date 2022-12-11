@@ -54,7 +54,8 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     /// <param name="moveDir"></param>
     public void RotateDefault(Vector3 moveDir)
     {
-        if (_agent.velocity.magnitude > 0.2f)
+        // if (_agent.velocity.magnitude > 0.2f)
+        if (moveDir.sqrMagnitude > 0.1f) 
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDir, Vector3.up),
             Time.deltaTime * _curSpeed);
@@ -89,8 +90,6 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
         CheckInput(moveDir);
         _targetDir = moveDir * _curSpeed;
     }
-
-    
 
     /// <summary>
     /// 중력 적용 
