@@ -22,6 +22,7 @@ public class Item_ReflectBall : Item_Base
 
             Vector3 reflectVector = Vector3.Reflect(incomingVector, normalVector);
             reflectVector = reflectVector.normalized;
+            reflectVector.y = 0;
 
             rigid.velocity = reflectVector * speed;
         }

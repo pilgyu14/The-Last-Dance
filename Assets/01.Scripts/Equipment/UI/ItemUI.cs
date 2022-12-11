@@ -46,10 +46,8 @@ public class ItemUI : MonoBehaviour
 
                 Item_Base item = PoolManager.Instance.Pop(inventorySO.itemList[pageIdx].itemPrefab.name) as Item_Base;
                 Vector3 startPos = GameManager.Instance.PlayerTrm.position;
-                Vector3 mousePos = Input.mousePosition;
-                mousePos.y = GameManager.Instance.PlayerTrm.position.y;
-
-                Quaternion rot = Quaternion.LookRotation(mousePos - startPos);
+                startPos.y += 1f;
+                Quaternion rot = GameManager.Instance.PlayerTrm.rotation;
                 
                 item.SetPosAndRot(startPos, rot);
             }
