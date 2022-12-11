@@ -7,16 +7,16 @@ using Rito.BehaviorTree;
 using static Rito.BehaviorTree.NodeHelper;
 using System;
 
-public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
+public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
 {
     [SerializeField]
     private EnemySO _enemySO;
     private Transform _target;
-    private EnemyTree<Enemy> _enemyTree; 
+    private EnemyTree<Enemy> _enemyTree;
 
     private Dictionary<Type, IComponent> _enemyComponents = new Dictionary<Type, IComponent>();  // 모든 컴포넌트 저장 딕셔너리 
 
-    private HPModule _hpModule; 
+    private HPModule _hpModule;
     // 캐싱 변수 
     private AgentMoveModule<Enemy> _moveModule;
     private AttackModule _attackModule;
@@ -27,9 +27,16 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
     // 상태 변수 
     private bool _isHit = false; // 피격중인가
     private bool _isBattleMode = false; // 전투중인가 
+    private bool _isStunned = false; // 기절했냐 
 
     private Vector3 _hitPoint;
     // 프로퍼티 
+    public bool IsBattleMode
+    {
+        get => _isBattleMode;
+        set => _isBattleMode = value; 
+    }
+
     public bool IsEnemy => true;
     public Vector3 HitPoint => _hitPoint;
 
@@ -107,6 +114,13 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
         Debug.Log("전투중 체크");
         return _isBattleMode; 
     }
+
+    // 기절 상태냐 
+    public bool IsStunned()
+    {
+        Debug.Log("기절상태 체크");
+        return _isStunned;
+    }
     // 공격 범위 안에 들어왔는가
     public bool CheckAttack()
     {
@@ -173,6 +187,12 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
     public void Chase()
     {
         Debug.Log("추적..");
+    }
+
+    public void Idle()
+    {
+        // 180도 기준으로 돈다 
+        Debug.Log("기본 상태..");
     }
     #endregion
 

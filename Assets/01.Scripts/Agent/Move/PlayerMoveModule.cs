@@ -8,8 +8,8 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     //  캐싱 변수 
     private InputModule _inputModule;
 
-    private PlayerAnimation _playerAnimation; 
-
+    private PlayerAnimation _playerAnimation;
+    private PlayerNMAComponent _nmaComponent;
     public override Vector3 MoveDir { get => _inputModule.MoveDir;  }
 
 
@@ -89,9 +89,15 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
         StartCoroutine(DashCorutine(transform.forward.normalized, 20f, 0.3f)); 
     }
 
-    public void SetNavMeshAgent()
+    #region NavMeshAgent 설정
+    public void SetNav10()
     {
-
+        _nmaComponent.SetNavMeshAgent(-0.71f, 1.3f);
     }
 
+    public void SetNav39()
+    {
+        _nmaComponent.SetNavMeshAgent(0, 2f);
+    }
+    #endregion
 }
