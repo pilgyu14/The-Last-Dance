@@ -114,6 +114,12 @@ public class Enemy : MonoBehaviour,IDamagable,IAgent, IAgentInput
         return CheckDistance(_enemySO.eyeAngle, _enemySO.attackDistance);
     }
 
+    // 기본 공격 쿨타임 
+    public bool CheckCoolTime()
+    {
+        Debug.Log("기본 공격 쿨타임 체크");
+        return true;
+    }
     /// <summary>
     ///  추격 거리 체크 
     /// </summary>

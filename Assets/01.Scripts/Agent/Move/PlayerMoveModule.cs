@@ -81,11 +81,17 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     }
 
 
+    // 태클 관련 
     public void Tackle()
     {
         _playerAnimation.SetTackle();
         // 땅 쓸리는 파티클
         StartCoroutine(DashCorutine(transform.forward.normalized, 20f, 0.3f)); 
+    }
+
+    public void SetNavMeshAgent()
+    {
+
     }
 
 }

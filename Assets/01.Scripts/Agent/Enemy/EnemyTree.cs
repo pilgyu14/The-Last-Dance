@@ -71,9 +71,14 @@ public class EnemyTree<T> : ICore where T : Enemy
                 
                 Sequence // 추적 시퀀스 
                 (
+                    
                     // 타겟이 추적 범위 내에 있는지 체크
                     Condition(_owner.CheckChase) 
+                ),
 
+                Sequence
+                (
+                    
                 )
             ); 
         

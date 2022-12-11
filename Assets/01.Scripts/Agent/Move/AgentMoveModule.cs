@@ -96,9 +96,11 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     /// </summary>
     protected void ApplyGravity()
     {
-        Ray ray = new Ray(transform.position - Vector3.up * 0.2f, -Vector3.down);
-        float distance = _agent.height / 2;
-        Debug.DrawRay(ray.origin, ray.direction, Color.blue, 3f);
+        Debug.Log(_agent.transform.position);
+        //Ray ray = new Ray(transform.position - Vector3.up * 0.2f, - Vector3.down);
+        Ray ray = new Ray(_agent.transform.position + Vector3.up * (- _agent.baseOffset) , Vector3.down);
+        float distance = _agent.baseOffset + 0.1f;
+        Debug.DrawRay(ray.origin, ray.direction, Color.blue, distance);
 
         // 바닥이 땅이면 중력 적용X 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, distance, _layerMask) == true)
