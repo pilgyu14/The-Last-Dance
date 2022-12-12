@@ -94,6 +94,7 @@ public class EnemyTree<T> : ICore where T : Enemy
 
                 Sequence // 기본 상태 시퀀스 
                 (
+                    IfAction(_owner.IsOriginPos,_owner.MoveOrigin), 
                     Action(_owner.Idle)
                     // 빙빙 돈다. 
                 )

@@ -26,8 +26,11 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
         {
             _inputModule.OnPointerRotate = RotateByMouse;
             _inputModule.OnKeyboardRotate = RotateDefault;
-            _inputModule.OnShift += Tackle;
+            //_inputModule.OnShift += Tackle;
         }
+
+        _nmaComponent = new PlayerNMAComponent();
+        _nmaComponent.Init(_agent); 
     }
 
     private void RotateByMouse(Vector3 targetPos)
@@ -41,6 +44,7 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
 
         _targetRot = Quaternion.LookRotation(_rotTargetPos, Vector3.up);
 
+        Debug.Log(_targetRot); 
         transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot, Time.deltaTime * _movementInfo.rotSpeed);
         
         //_targetRot.x = 0;
@@ -84,10 +88,23 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     // 태클 관련 
     public void Tackle()
     {
+        // 쿨타임 체크 
+        // 애니메이션 진행 상태 체크 
+        if(_playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Tackle") && 
+            _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            return; 
+        }
+
         _playerAnimation.SetTackle();
+        _playerAnimation.SetVelocity(Vector2.zero);
+
+        // _inputModule.BlockPlayerInput(true); // 입력 차단 
+
         // 땅 쓸리는 파티클
         StartCoroutine(DashCorutine(transform.forward.normalized, 20f, 0.3f)); 
     }
+
 
     #region NavMeshAgent 설정
     public void SetNav10()

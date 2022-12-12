@@ -63,6 +63,14 @@ public class InputModule : MonoBehaviour, IAgentInput
     
     }
 
+    /// <summary>
+    /// 플레이어 입력 차단( UI 입력 외 ) 
+    /// </summary>
+    /// <param name="isBlock"></param>
+    public void BlockPlayerInput(bool isBlock)
+    {
+        _isPlayerInput = !isBlock; 
+    }
 
     /// <summary>
     /// 공격중이면 입력 차단 
@@ -155,8 +163,10 @@ public class InputModule : MonoBehaviour, IAgentInput
     /// </summary>
     private void RotateRay()
     {
+        Debug.Log("ROTATE");
         if (Physics.Raycast(Define.MainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
         {
+            Debug.Log(hitInfo.point); 
             OnPointerRotate?.Invoke(hitInfo.point);
         }
         else // 하늘을 찍었으면 

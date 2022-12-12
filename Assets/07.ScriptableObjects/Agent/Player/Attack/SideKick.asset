@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: SideKick
   m_EditorClassIdentifier: 
   isEnemy: 0
+  isRayAttack: 1
   isDefaultAttack: 0
   isMultipleAttack: 0
   isBombAttack: 0
   isKnockbackAttack: 0
-  attackDamage: 10
+  attackDamage: 7
   knockbackPower: 0
   attackRadius: 5
   attackAngle: 30
   attackDelay: 0
+  animationName: 
   animationFuncName: SetSideKick
   hitEffect: {fileID: 0}
   swingEffect: {fileID: 0}

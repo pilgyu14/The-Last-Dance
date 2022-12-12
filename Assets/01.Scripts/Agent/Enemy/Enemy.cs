@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
 
     private HPModule _hpModule;
     // 캐싱 변수 
-    private AgentMoveModule<Enemy> _moveModule;
+    private EnemyMoveModule _moveModule;
     private AttackModule _attackModule;
     private FieldOfView _fov;
     private NavMeshAgent _agent;
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     {
         _target ??= FindObjectOfType<PlayerController>().transform; 
 
-        _moveModule = GetComponent<AgentMoveModule<Enemy>>();
+        _moveModule = GetComponent<EnemyMoveModule>();
         _attackModule = GetComponent<AttackModule>();
         _fov = GetComponent<FieldOfView>();
         _agent = GetComponent<NavMeshAgent>();
@@ -127,6 +127,11 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
         Debug.Log("공격 범위 체크");
         return CheckDistance(_enemySO.eyeAngle, _enemySO.attackDistance);
     }
+    // 기본 위치에 있는가 
+    public bool IsOriginPos()
+    {
+        return _moveModule.IsOriginPos(); 
+    }
 
     // 기본 공격 쿨타임 
     public bool CheckCoolTime()
@@ -192,7 +197,14 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     public void Idle()
     {
         // 180도 기준으로 돈다 
+        _moveModule.RotateIdle(); 
         Debug.Log("기본 상태..");
+    }
+
+    public void MoveOrigin()
+    {
+        _moveModule.MoveOriginPos();
+        Debug.Log("기본 위치로 이동");
     }
     #endregion
 

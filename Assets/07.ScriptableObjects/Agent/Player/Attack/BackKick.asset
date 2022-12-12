@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: BackKick
   m_EditorClassIdentifier: 
   isEnemy: 0
+  isRayAttack: 1
   isDefaultAttack: 0
   isMultipleAttack: 0
   isBombAttack: 0
-  isKnockbackAttack: 0
+  isKnockbackAttack: 1
   attackDamage: 10
-  knockbackPower: 0
+  knockbackPower: 15
   attackRadius: 5
   attackAngle: 30
   attackDelay: 0
+  animationName: 
   animationFuncName: SetBackKick
   hitEffect: {fileID: 0}
   swingEffect: {fileID: 0}

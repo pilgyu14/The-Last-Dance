@@ -44,7 +44,6 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     {
         ApplyGravity();
         _agent.Move((_targetDir + Vector3.up * _velocityY) * Time.deltaTime);
-
     }
 
 
@@ -63,6 +62,7 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
             _rotTargetPos = moveDir;
         }
     }
+
     /// <summary>
     /// 가속 감속 체크 
     /// </summary>
@@ -96,7 +96,7 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     /// </summary>
     protected void ApplyGravity()
     {
-        Debug.Log(_agent.transform.position);
+       // Debug.Log(_agent.transform.position);
         //Ray ray = new Ray(transform.position - Vector3.up * 0.2f, - Vector3.down);
         Ray ray = new Ray(_agent.transform.position + Vector3.up * (- _agent.baseOffset) , Vector3.down);
         float distance = _agent.baseOffset + 0.1f;
@@ -141,7 +141,7 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     /// <summary>
     ///  움직임 멈춤
     /// </summary>
-    public void StopMove()
+    public virtual void StopMove()
     {
         _targetDir = Vector3.zero;
         _agent.isStopped = true;
