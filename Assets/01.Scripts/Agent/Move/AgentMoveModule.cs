@@ -109,7 +109,8 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
         }
         else
         {
-            _velocityY += -9.8f;
+            _velocityY += -9.8f * Time.deltaTime;
+            transform.Translate(Vector3.up * _velocityY * Time.deltaTime);
         }
     }
 

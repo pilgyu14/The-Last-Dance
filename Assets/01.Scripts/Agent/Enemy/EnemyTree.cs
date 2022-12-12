@@ -55,8 +55,8 @@ public class EnemyTree<T> : ICore where T : Enemy
                 (
 
                     // 쿨타임 중이면 리턴 
-                    Condition(_owner.IsbattleMode), // 이미 전투상태냐 
-                    NotCondition(_owner.CheckCoolTime),
+                    NotCondition(_owner.IsbattleMode), // 이미 전투상태냐 
+                    NotCondition(_owner.CheckCoolTime), // 공격이 쿨타임이냐 
                     Condition(_owner.CheckAttack), // 공격범위 안에 있냐 
 
                     Action(_owner.DefaultAttack) // 여기까지 왔으면 공격해라 
@@ -94,7 +94,7 @@ public class EnemyTree<T> : ICore where T : Enemy
 
                 Sequence // 기본 상태 시퀀스 
                 (
-                    IfAction(_owner.IsOriginPos,_owner.MoveOrigin), 
+                    //IfAction(_owner.IsOriginPos,_owner.MoveOrigin), 
                     Action(_owner.Idle)
                     // 빙빙 돈다. 
                 )

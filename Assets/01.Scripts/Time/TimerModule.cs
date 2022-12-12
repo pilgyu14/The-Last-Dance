@@ -14,6 +14,12 @@ public class TimerModule
         this._maxTime = maxTime;
         this._timerEvent = callback; 
     }
+
+    public void ChangeMaxTime(float maxTime)
+    {
+        this._maxTime = maxTime; 
+    }
+
     public void UpdateSomething()
     {
         if (_isCheckTime == false) return; 
@@ -30,4 +36,6 @@ public class TimerModule
     {
         _curTime = 0; 
     }
+    
+    
 }

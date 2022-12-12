@@ -7,7 +7,7 @@ using Rito.BehaviorTree;
 using static Rito.BehaviorTree.NodeHelper;
 using System;
 
-public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
+public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
 {
     [SerializeField]
     private EnemySO _enemySO;
@@ -37,6 +37,15 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
         set => _isBattleMode = value; 
     }
 
+    public Transform Target
+    {
+        get
+        {
+            if (_target == null) _target = FindObjectOfType<PlayerController>().transform;
+            return _target; 
+        }
+        }
+
     public bool IsEnemy => true;
     public Vector3 HitPoint => _hitPoint;
 
@@ -63,6 +72,8 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     {
         _enemyTree = new EnemyTree<Enemy>(this);
         _hpModule.Init(_enemySO.hp, _enemySO.hp);
+
+        _moveModule.Init(this, _agent, _enemySO.moveInfo);
     }
 
     private void Update()
@@ -90,8 +101,13 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     // 피격 관련 
     public void GetDamaged(int damage, GameObject damageDealer)
     {
-        Debug.Log($"{transform.name} 피격");
+        Debug.LogError($"{transform.name} 피격, 데미지 {damage}");
         _hpModule.ChangeHP(-damage); 
+    }
+
+    public void Knockback(Vector3 direction, float power, float duration)
+    {
+        throw new NotImplementedException();
     }
 
     #region Condition
@@ -111,7 +127,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     // 전투 중인가 
     public bool IsbattleMode()
     {
-        Debug.Log("전투중 체크");
+        Debug.Log("전투중 체크" + _isBattleMode);
         return _isBattleMode; 
     }
 
@@ -137,7 +153,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     public bool CheckCoolTime()
     {
         Debug.Log("기본 공격 쿨타임 체크");
-        return true;
+        return false;
     }
     /// <summary>
     ///  추격 거리 체크 
@@ -145,6 +161,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     /// <returns></returns>
     public bool CheckChase()
     {
+        Debug.Log("추적 거리 체크");
         return CheckDistance(_enemySO.eyeAngle, _enemySO.chaseDistance);
     }
 
@@ -160,15 +177,15 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     /// <returns></returns>
     private bool CheckDistance(float eyeAngle, float distance)
     {
-        if (_target == null)
+        if (Target == null)
         {
             Debug.LogError("타겟 없음");
             return false;
         }
-        Vector3 targetDir = (_target.transform.position - transform.position).normalized; // 타겟 방향  
+        Vector3 targetDir = (Target.transform.position - transform.position).normalized; // 타겟 방향  
 
-        if (Vector3.Angle(transform.forward, targetDir) > eyeAngle * 0.5f // 시야 범위 안에 있고 
-            && Vector3.Distance(_target.position, transform.position) < distance) // 거리 안에 있으면 
+        if (Vector3.Angle(transform.forward, targetDir) < eyeAngle * 0.5f // 시야 범위 안에 있고 
+            && Vector3.Distance(Target.position, transform.position) < distance) // 거리 안에 있으면 
         {
             return true;
         }
@@ -183,6 +200,8 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     /// </summary>
     public void DefaultAttack()
     {
+        // _enemyAnimation.
+        // 
         Debug.Log("공격"); 
     }
 
@@ -191,6 +210,10 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
     /// </summary>
     public void Chase()
     {
+        // 애니메이션 실행 
+        _enemyAnimation.AnimatePlayer(_agent.velocity.sqrMagnitude);
+        // 추적 시작 
+        _moveModule.Chase(); 
         Debug.Log("추적..");
     }
 
@@ -206,6 +229,8 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput
         _moveModule.MoveOriginPos();
         Debug.Log("기본 위치로 이동");
     }
+
+ 
     #endregion
 
 }

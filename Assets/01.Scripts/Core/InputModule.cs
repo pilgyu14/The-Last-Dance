@@ -44,9 +44,9 @@ public class InputModule : MonoBehaviour, IAgentInput
     public bool IsPlayerInput => _isPlayerInput;
     public bool IsUIInputInput => _isUIInput;
 
-    private void Awake()
+    public void Init(PlayerController playerController)
     {
-        _playerController = GetComponent<PlayerController>(); 
+        this._playerController = playerController; 
     }
 
     private void Update()
@@ -100,9 +100,11 @@ public class InputModule : MonoBehaviour, IAgentInput
             // x y 입력 
             _x = Input.GetAxisRaw("Horizontal");
             _y = Input.GetAxisRaw("Vertical");
-            _moveDir = new Vector3(_x, 0, _y).normalized;
 
-            if(_isMove == true)
+            _moveDir = new Vector3(_x, 0, _y).normalized;
+            _moveDir = Define.MainCam.transform.TransformDirection(_moveDir);
+
+            if (_isMove == true)
             {
                 // 이동 
                 OnMovementKeyPress?.Invoke(MoveDir);
@@ -163,10 +165,8 @@ public class InputModule : MonoBehaviour, IAgentInput
     /// </summary>
     private void RotateRay()
     {
-        Debug.Log("ROTATE");
         if (Physics.Raycast(Define.MainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
         {
-            Debug.Log(hitInfo.point); 
             OnPointerRotate?.Invoke(hitInfo.point);
         }
         else // 하늘을 찍었으면 

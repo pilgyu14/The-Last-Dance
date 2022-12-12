@@ -44,7 +44,6 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
 
         _targetRot = Quaternion.LookRotation(_rotTargetPos, Vector3.up);
 
-        Debug.Log(_targetRot); 
         transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot, Time.deltaTime * _movementInfo.rotSpeed);
         
         //_targetRot.x = 0;

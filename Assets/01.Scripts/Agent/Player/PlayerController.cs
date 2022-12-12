@@ -160,13 +160,13 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     #region 초기화 
     private void Awake()
     {
-        _inputModule = GetComponent<InputModule>();
+        _inputModule = GetComponentInChildren<InputModule>();
         _moveModule = GetComponent<PlayerMoveModule>();
-        _attackModule = GetComponent<AttackModule>();
+        _attackModule = GetComponentInChildren<AttackModule>();
         _fov = GetComponent<FieldOfView>();
         //_chController = GetComponent<CharacterController>();
         _agent = GetComponent<NavMeshAgent>(); 
-        _playerAnimation = GetComponent<PlayerAnimation>();
+        _playerAnimation = GetComponentInChildren<PlayerAnimation>();
     }
 
     private void Start()
@@ -187,6 +187,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         ChangeState(typeof(DefaultState));
 
         // 입력 등록 
+        _inputModule.Init(this);
         _inputModule.OnDefaultAttackPress = DefaultKickAttack;
         _inputModule.OnShift = TackeAttack; 
 
@@ -417,6 +418,5 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     {
         _inputModule.Attacking(false);
     }
-
 
 }

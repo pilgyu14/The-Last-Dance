@@ -20,7 +20,7 @@ public class HPModule :  MonoBehaviour ,IComponent
         get => _curHp; 
         set
         {
-            _curHp = Mathf.Clamp(_curHp - value, 0, _maxHp); 
+            _curHp = Mathf.Clamp(_curHp + value, 0, _maxHp); 
         }
     }
 
@@ -52,7 +52,7 @@ public class HPModule :  MonoBehaviour ,IComponent
         while(Mathf.Abs(HP - prevHp) > 0.01f)
         {
             prevHp = (int)Mathf.Lerp(prevHp, HP, Time.deltaTime * 5);
-            _hpSlider.value = prevHp / _maxHp; 
+            _hpSlider.value = (float) prevHp / _maxHp; 
 
             yield return null; 
         }

@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbfaf11ed77206468ba5f12ec9d04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reverseFase: 0
+  reverseFase: 1
 --- !u!1 &1762219097430826077
 GameObject:
   m_ObjectHideFlags: 0
