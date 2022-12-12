@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private PoolingListSO _initList = null;
+    public GameObject pickupUI;
 
     private Transform _playerTrm;
     public Transform PlayerTrm
