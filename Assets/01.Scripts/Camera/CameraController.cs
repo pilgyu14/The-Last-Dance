@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private CinemachineFreeLook cam;
+
+    private void Awake()
     {
-        
+        cam = GetComponent<CinemachineFreeLook>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetMouseButtonDown(1))
+        {
+            cam.m_XAxis.m_InputAxisName = "Mouse X";
+            cam.m_YAxis.m_InputAxisName = "Mouse Y";
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            cam.m_XAxis.m_InputAxisName = "";
+            cam.m_YAxis.m_InputAxisName = "";
+        }
     }
 }
