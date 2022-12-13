@@ -25,7 +25,7 @@ MonoBehaviour:
   attackDelay: 0
   animationName: 
   animationFuncName: SetFrontKick
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 6787811906628579171, guid: ed9aa6b77b874b54cad16dbfb123a2dd, type: 3}
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}

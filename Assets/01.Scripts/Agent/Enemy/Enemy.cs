@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     public void GetDamaged(int damage, GameObject damageDealer)
     {
         Debug.LogError($"{transform.name} 피격, 데미지 {damage}");
-        _hpModule.ChangeHP(-damage); 
+        _hpModule.ChangeHP(-damage);
     }
 
     public void Knockback(Vector3 direction, float power, float duration)

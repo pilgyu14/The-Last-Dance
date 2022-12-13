@@ -20,8 +20,8 @@ public class FieldOfViewEditor : Editor
         float leftAngleX = Mathf.Sin(-fov.EyeAngle / 2) * Mathf.Deg2Rad * fov.EyeRadius;
         Vector3 vecLeft = new Vector3(leftAngleX, 0, angleZ);
 
-        // Handles.DrawLine(fov.transform.position, fov.transform.position + vecRigiht,3f);
-        // Handles.DrawLine(fov.transform.position, fov.transform.position + vecLeft, 3f);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + vecRigiht, 3f);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + vecLeft, 3f);
 
         Vector3 viewRight = fov.GetVecByAngle(fov.EyeAngle / 2, false);
         Vector3 viewLeft = fov.GetVecByAngle(-fov.EyeAngle / 2, false);

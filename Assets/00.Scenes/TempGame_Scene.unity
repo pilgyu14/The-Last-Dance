@@ -3308,7 +3308,7 @@ GameObject:
   - component: {fileID: 1092850594}
   - component: {fileID: 1092850602}
   - component: {fileID: 1092850603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GhoulMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}

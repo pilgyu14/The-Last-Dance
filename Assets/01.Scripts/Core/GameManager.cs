@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-    public static GameManager Instance;
-
     [SerializeField]
     private PoolingListSO _initList = null;
 
@@ -24,11 +22,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
-            Debug.LogError("Multiple GameManager is running");
-        Instance = this;
-
-        PoolManager.Instance = new PoolManager(transform);
+        //if (Instance != null)
+        //    Debug.LogError("Multiple GameManager is running");
+        //Instance = this;
 
         CreatePool();
     }

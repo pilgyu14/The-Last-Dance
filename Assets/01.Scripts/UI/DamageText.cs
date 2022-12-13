@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class DamageText : MonoBehaviour
+public class DamageText :PoolableMono
 {
     [SerializeField]
     private TextMeshProUGUI _damageText;
@@ -27,9 +27,8 @@ public class DamageText : MonoBehaviour
         //Sequence
 
     }
-    public void Reset()
+
+    public override void Reset()
     {
-
     }
-
 }

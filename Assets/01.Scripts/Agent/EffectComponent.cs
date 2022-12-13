@@ -8,17 +8,31 @@ public class EffectInfo
     public float delay; 
 }
 
-public class EffectComponent : MonoBehaviour
+public class EffectComponent : PoolableMono
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private ParticleSystem _particle;
+
+    private void Awake()
     {
-        
+        _particle = GetComponent<ParticleSystem>(); 
+    }
+    public void StartEffect()
+    {
+        _particle.Play(); 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EndEffect()
     {
-        
+        _particle.Stop();
+    }
+
+    public void SetPosAndRot(Vector3 pos, Vector3 rot)
+    {
+        transform.position = pos;
+        transform.eulerAngles = rot; 
+    }
+    public override void Reset()
+    {
     }
 }
