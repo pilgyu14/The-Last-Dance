@@ -69,6 +69,11 @@ public class ItemUI : MonoBehaviour
                 Quaternion rot = GameManager.Instance.PlayerTrm.rotation;
                 
                 item.SetPosAndRot(startPos, rot);
+                if(inventorySO.itemList[pageIdx].value <= 0)
+                {
+                    inventorySO.itemList.RemoveAt(pageIdx);
+                    pageIdx = 0;
+                }
             }
         }
     }
