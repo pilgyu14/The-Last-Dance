@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class ItemUI : MonoBehaviour
@@ -10,8 +11,26 @@ public class ItemUI : MonoBehaviour
     public InventorySO inventorySO;
     [SerializeField]
     public Image itemImage;
+    [SerializeField]
+    public GameObject pickup;
+    [SerializeField]
+    public TextMeshProUGUI pickupNameText;
 
     private int pageIdx = 0;
+
+    private static ItemUI instance;
+    public static ItemUI Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_PickUp : MonoBehaviour
+public class Item_PickUp : PoolableMono
 {
     private bool isTouch = false;
+    public ItemInformationSO itemSO;
 
     private void Update()
     {
@@ -12,8 +13,7 @@ public class Item_PickUp : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                GameManager.Instance.pickupUI.SetActive(false);
-                Destroy(gameObject);
+                ItemAdd();
             }
         }
     }
@@ -23,7 +23,8 @@ public class Item_PickUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isTouch = true;
-            GameManager.Instance.pickupUI.SetActive(true);
+            ItemUI.Instance.pickupNameText.text = itemSO.item.name;
+            ItemUI.Instance.pickup.SetActive(true);
         }
     }
 
@@ -32,7 +33,38 @@ public class Item_PickUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isTouch = false;
-            GameManager.Instance.pickupUI.SetActive(false);
+            ItemUI.Instance.pickup.SetActive(false);
         }
+    }
+
+    private void ItemAdd()
+    {
+        foreach (Item item in ItemUI.Instance.inventorySO.itemList)
+        {
+            if (item.name == itemSO.item.name)
+            {
+                if (item.value < ItemUI.Instance.inventorySO.maxItemValue)
+                {
+                    item.value++;
+                    ItemUI.Instance.pickup.SetActive(false);
+                    Destroy(gameObject);
+                    //PoolManager.Instance.Push(this);
+                    return;
+                }
+                return;
+            }
+        }
+        if (ItemUI.Instance.inventorySO.itemList.Count < ItemUI.Instance.inventorySO.maxItemType)
+        {
+            ItemUI.Instance.inventorySO.itemList.Add(itemSO.item);
+            ItemUI.Instance.pickup.SetActive(false);
+            Destroy(gameObject);
+            //PoolManager.Instance.Push(this);
+        }
+    }
+
+    public override void Reset()
+    {
+        
     }
 }

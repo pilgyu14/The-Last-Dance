@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3826031078410147028}
   - component: {fileID: 8126496694844662011}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,6 +709,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySO: {fileID: 11400000, guid: 52a46ad7f2f950d4db8ed1d074991467, type: 2}
   itemImage: {fileID: 7002816643658262246}
+  pickup: {fileID: 8556350511362493823}
+  pickupNameText: {fileID: 2641528846435261453}
 --- !u!1 &7400728763379624031
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +804,7 @@ GameObject:
   - component: {fileID: 8759464754145653237}
   - component: {fileID: 2641528846435261453}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ItemName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -856,10 +858,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Item
+  m_text: "\uC544"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
+  m_sharedMaterial: {fileID: -9101909364537742168, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

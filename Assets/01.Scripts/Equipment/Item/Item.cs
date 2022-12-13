@@ -9,5 +9,6 @@ public class Item
 {
     public GameObject itemPrefab;
     public Sprite itemImage;
+    public string name;
     public int value = 0;
 }
