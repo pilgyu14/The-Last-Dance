@@ -109,6 +109,11 @@ public class AttackBase
             _atkJudgeComponent.AttackJudge(target);
         }
     }
+
+    public void ActiveEffect()
+    {
+
+    }
     
 }
 

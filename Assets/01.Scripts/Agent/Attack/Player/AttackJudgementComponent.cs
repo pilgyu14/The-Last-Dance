@@ -22,15 +22,22 @@ public class AttackJudgementComponent
 
         // 이펙트 
         Vector3 hitPos = target.position;
-        // 맞은 위치 
+        EffectComponent effectObj = PoolManager.Instance.Pop(_attackInfo.attackSO.hitEffect.name) as EffectComponent;
+        effectObj.SetPosAndRot(hitPos, Vector3.zero); 
+
+        // 맞은 위치
         // 히트 오디오 재생 
 
         // 플레이어 공격이라면 
         // 데미지 텍스트 
-        DamageText damageText = new DamageText(); // 풀링으로 
-        damageText.SetText(_attackInfo.attackSO.attackDamage, _owner.transform.position + new Vector3(0, 0.5f, 0), Color.white, false);
+        if (_attackInfo.attackSO.isEnemy == false)
+        {
+            DamageText damageText = PoolManager.Instance.Pop("DamageText") as DamageText; // 풀링으로 
+            damageText.SetText(_attackInfo.attackSO.attackDamage, _owner.transform.position + new Vector3(0, 0.5f, 0), Color.white, false);
+        }
 
-        // 흔들림 
+
+        _attackInfo.feedbackCallbackHit?.Invoke(); 
 
         if (_attackInfo.attackSO.isKnockbackAttack == true)
         {

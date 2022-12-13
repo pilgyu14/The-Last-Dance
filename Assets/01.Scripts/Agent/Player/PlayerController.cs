@@ -321,7 +321,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
             _curTime += Time.deltaTime;
             yield return null;
         }
-        Debug.Log("딜레이 끝");
+        Debug.LogError("딜레이 끝");
         _isDelay = false; 
     }
 
@@ -333,7 +333,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
         // 공격애니메이션 실행중이면서 일정 시간이상 실행된 상태가 아니라면 
         if (_playerAnimation.CheckDefaultAnim() == true &&
-                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.65f)
         {
             Debug.Log("  공격 안돼요 ");
             return;
@@ -357,14 +357,17 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
             Debug.Log("#" + attackState.NextAttackType);
             _attackModule.SetCurAttackType(AttackType.Default_1);
         }
+
+        if (_attackModule.CurAttackType == AttackType.Default_3)
+        {
+            _curTime = 0;
+            StartCoroutine(Delay(_maxCoolTime));
+        }
+
         _attackModule.DefaultAttack(); // 실제적인 공격 수행( 범위 체크 후 타격, 애니메이션 실행 ) 
         
 
-        if(_attackModule.CurAttackType == AttackType.Default_3)
-        {
-            _curTime = 0; 
-            StartCoroutine(Delay(_maxCoolTime));
-        }
+
     }
 
     private void TackeAttack()

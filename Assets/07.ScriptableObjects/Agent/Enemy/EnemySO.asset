@@ -18,6 +18,6 @@ MonoBehaviour:
     acceleration: 0
     deacceleration: 0
     rotSpeed: 0
-  chaseDistance: 6.3
+  chaseDistance: 10
   eyeAngle: 120
   attackDistance: 5
