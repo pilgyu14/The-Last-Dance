@@ -7,6 +7,7 @@ public class AttackSO : ScriptableObject
 {
     [Header("체크 변수"),Space(10)]
     public bool isEnemy;
+    public bool isRayAttack; 
     public bool isDefaultAttack; 
 
     public bool isMultipleAttack;

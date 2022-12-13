@@ -8,8 +8,8 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     //  캐싱 변수 
     private InputModule _inputModule;
 
-    private PlayerAnimation _playerAnimation; 
-
+    private PlayerAnimation _playerAnimation;
+    private PlayerNMAComponent _nmaComponent;
     public override Vector3 MoveDir { get => _inputModule.MoveDir;  }
 
 
@@ -26,8 +26,11 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
         {
             _inputModule.OnPointerRotate = RotateByMouse;
             _inputModule.OnKeyboardRotate = RotateDefault;
-            _inputModule.OnShift += Tackle;
+            //_inputModule.OnShift += Tackle;
         }
+
+        _nmaComponent = new PlayerNMAComponent();
+        _nmaComponent.Init(_agent); 
     }
 
     private void RotateByMouse(Vector3 targetPos)
@@ -84,14 +87,33 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     // 태클 관련 
     public void Tackle()
     {
+        // 쿨타임 체크 
+        // 애니메이션 진행 상태 체크 
+        if(_playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Tackle") && 
+            _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            return; 
+        }
+
         _playerAnimation.SetTackle();
+        _playerAnimation.SetVelocity(Vector2.zero);
+
+        // _inputModule.BlockPlayerInput(true); // 입력 차단 
+
         // 땅 쓸리는 파티클
         StartCoroutine(DashCorutine(transform.forward.normalized, 20f, 0.3f)); 
     }
 
-    public void SetNavMeshAgent()
-    {
 
+    #region NavMeshAgent 설정
+    public void SetNav10()
+    {
+        _nmaComponent.SetNavMeshAgent(-0.71f, 1.3f);
     }
 
+    public void SetNav39()
+    {
+        _nmaComponent.SetNavMeshAgent(0, 2f);
+    }
+    #endregion
 }

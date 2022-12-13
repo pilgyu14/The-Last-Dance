@@ -48,37 +48,55 @@ public class EnemyTree<T> : ICore where T : Enemy
             (
                 Condition(_owner.IsDie), // 죽었냐
                 Condition(_owner.IsHit), // 맞고있냐 
+                Condition(_owner.IsStunned), // 기절중이냐 
 
                 // false 나올때까지 순회  
                 Sequence // 공격 시퀀스 
                 (
 
                     // 쿨타임 중이면 리턴 
+                    NotCondition(_owner.IsbattleMode), // 이미 전투상태냐 
+                    NotCondition(_owner.CheckCoolTime), // 공격이 쿨타임이냐 
                     Condition(_owner.CheckAttack), // 공격범위 안에 있냐 
+
                     Action(_owner.DefaultAttack) // 여기까지 왔으면 공격해라 
 
-            //IfAction(), 
+                //IfAction(), 
 
-            //   IfAction(CheckDistance,),
-            /*
-             * 공격 패턴 
-             * - 랜덤 실행 노드로 하나 골라서 실행 
-             * - 공격마다 범위 다름 -> 범위 어려운 것부터 체크 후 
-             *   true 반환하는 거 있으면 그거 실행 
-             * 
-             */
+                //   IfAction(CheckDistance,),
+                /*
+                 * 공격 패턴 
+                *    먼저 스킬부터 체크
+
+                 * - 랜덤 실행 노드로 하나 골라서 실행 
+                 * - 공격마다 범위 다름 -> 범위 어려운 것부터 체크 후 
+                 *   true 반환하는 거 있으면 그거 실행 
+                 *   
+                 *    쿨타임이냐 
+                 *    범위 안에 있냐 체크
+                 * ---------------------------
+
+                 *    기본 공격 체크   
+                 *    공격중이냐
+                 *    범위 안에 잇냐
+                 */
                 ),
                 
                 Sequence // 추적 시퀀스 
                 (
                     
                     // 타겟이 추적 범위 내에 있는지 체크
-                    Condition(_owner.CheckChase) 
+                    Condition(_owner.CheckChase),
+                    Action(_owner.Chase)
+                    
+                    // 추적 시작 
                 ),
 
-                Sequence
+                Sequence // 기본 상태 시퀀스 
                 (
-                    
+                    //IfAction(_owner.IsOriginPos,_owner.MoveOrigin), 
+                    Action(_owner.Idle)
+                    // 빙빙 돈다. 
                 )
             ); 
         

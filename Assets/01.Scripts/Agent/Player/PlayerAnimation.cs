@@ -58,15 +58,14 @@ public class PlayerAnimation : AgentAnimation
                 Debug.Log("A####################3");
                 return true;
             }
-            }
-            return false; 
+        }
+        return false; 
     }
 
     // 상태 설정 
     public void SetBattle(bool active)
     {
         _agentAnimator.SetBool(_battleHash, active); 
-            
     }
 
     // 킥 애니메이션 (AttackSO에서 string으로 받고 리플렉션으로 실행 ) 

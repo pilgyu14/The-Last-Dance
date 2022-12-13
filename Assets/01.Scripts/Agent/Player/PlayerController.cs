@@ -160,13 +160,13 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     #region 초기화 
     private void Awake()
     {
-        _inputModule = GetComponent<InputModule>();
+        _inputModule = GetComponentInChildren<InputModule>();
         _moveModule = GetComponent<PlayerMoveModule>();
-        _attackModule = GetComponent<AttackModule>();
+        _attackModule = GetComponentInChildren<AttackModule>();
         _fov = GetComponent<FieldOfView>();
         //_chController = GetComponent<CharacterController>();
         _agent = GetComponent<NavMeshAgent>(); 
-        _playerAnimation = GetComponent<PlayerAnimation>();
+        _playerAnimation = GetComponentInChildren<PlayerAnimation>();
     }
 
     private void Start()
@@ -187,7 +187,9 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         ChangeState(typeof(DefaultState));
 
         // 입력 등록 
+        _inputModule.Init(this);
         _inputModule.OnDefaultAttackPress = DefaultKickAttack;
+        _inputModule.OnShift = TackeAttack; 
 
         //_inputModule.OnPointerRotate = RotateByMouse;
         //_inputModule.OnMovementKeyPress = Move;
@@ -253,6 +255,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         _time += Time.deltaTime;
         if (_isBattle == true && _time >= 5f) // 전투상태가 일정시간 지속되지 않았을때 
         {
+            _isBattle = false; 
             _time = 0;
             _playerAnimation.SetBattle(_isBattle);
 
@@ -364,6 +367,11 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         }
     }
 
+    private void TackeAttack()
+    {
+        _attackModule.SetCurAttackType(AttackType.Tackle);
+        _attackModule.DefaultAttack(); 
+    }
 
     // 피격 관련 
     public void Damaged()
@@ -394,14 +402,13 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     }
 
     /// <summary>
-    /// 기본 공격이면 입력 차단 + 대쉬 
+    /// 기본 공격이면 입력 차단 + 대쉬 체크
     /// </summary>
     public void DefaultAttacking()
     {
         Attacking();
         _moveModule.StopMove();
         _moveModule.Dash();
-
     }
 
     /// <summary>

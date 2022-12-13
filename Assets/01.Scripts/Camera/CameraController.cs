@@ -24,6 +24,11 @@ public class CameraController : MonoBehaviour
         {
             cam.m_XAxis.m_InputAxisName = "";
             cam.m_YAxis.m_InputAxisName = "";
+
+            cam.m_YAxis.m_InputAxisValue = 0f;
+            cam.m_XAxis.m_InputAxisValue = 0f;
+
+
         }
     }
 }

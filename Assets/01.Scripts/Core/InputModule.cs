@@ -44,9 +44,9 @@ public class InputModule : MonoBehaviour, IAgentInput
     public bool IsPlayerInput => _isPlayerInput;
     public bool IsUIInputInput => _isUIInput;
 
-    private void Awake()
+    public void Init(PlayerController playerController)
     {
-        _playerController = GetComponent<PlayerController>(); 
+        this._playerController = playerController; 
     }
 
     private void Update()
@@ -63,6 +63,14 @@ public class InputModule : MonoBehaviour, IAgentInput
     
     }
 
+    /// <summary>
+    /// 플레이어 입력 차단( UI 입력 외 ) 
+    /// </summary>
+    /// <param name="isBlock"></param>
+    public void BlockPlayerInput(bool isBlock)
+    {
+        _isPlayerInput = !isBlock; 
+    }
 
     /// <summary>
     /// 공격중이면 입력 차단 
@@ -92,9 +100,11 @@ public class InputModule : MonoBehaviour, IAgentInput
             // x y 입력 
             _x = Input.GetAxisRaw("Horizontal");
             _y = Input.GetAxisRaw("Vertical");
-            _moveDir = new Vector3(_x, 0, _y).normalized;
 
-            if(_isMove == true)
+            _moveDir = new Vector3(_x, 0, _y).normalized;
+            _moveDir = Define.MainCam.transform.TransformDirection(_moveDir);
+
+            if (_isMove == true)
             {
                 // 이동 
                 OnMovementKeyPress?.Invoke(MoveDir);

@@ -8,7 +8,8 @@ public enum AttackType
     Default_1 = 100,
     Default_2,
     Default_3,
-    
+ 
+    Tackle = 1000, 
 }
 
 
@@ -91,6 +92,15 @@ public class AttackModule : MonoBehaviour, IComponent
         foreach(var info in attackInfoList)
         {
             info.Init(gameObject, _agentAnimation, _moveModule, _fov);
+        }
+    }
+
+    public void ActiveFalseCollider()
+    {
+        // 콜라이더로 공격 판정한다면 
+        if(_curAttackInfo.attackCollider != null) 
+        {
+            _curAttackInfo.attackCollider.ActiveCollider(false);// 꺼주기 
         }
     }
 
