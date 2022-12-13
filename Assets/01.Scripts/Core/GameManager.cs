@@ -26,6 +26,8 @@ public class GameManager : MonoSingleton<GameManager>
         //    Debug.LogError("Multiple GameManager is running");
         //Instance = this;
 
+        PoolManager.Instance = new PoolManager(transform); //풀매니저 생성
+
         CreatePool();
     }
 

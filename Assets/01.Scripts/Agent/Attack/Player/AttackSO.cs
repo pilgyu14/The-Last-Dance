@@ -37,7 +37,9 @@ public class AttackSO : ScriptableObject
     public AudioClip swingClip;
     public AudioClip hitClip;
 
-    public Sprite icon; 
+    [Header("æ∆¿Ãƒ‹")]
+    public Sprite icon;
+    public int requiredLevel; 
 }
 
 [CreateAssetMenu(menuName = "SO/AttackSO/SpawnAttackSO")]

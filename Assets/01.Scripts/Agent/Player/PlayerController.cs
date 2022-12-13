@@ -333,7 +333,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
         // 공격애니메이션 실행중이면서 일정 시간이상 실행된 상태가 아니라면 
         if (_playerAnimation.CheckDefaultAnim() == true &&
-                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.65f)
+                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
         {
             Debug.Log("  공격 안돼요 ");
             return;

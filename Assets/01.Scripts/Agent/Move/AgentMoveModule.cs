@@ -126,7 +126,7 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
         }
     }
 
-    protected IEnumerator DashCorutine(Vector3 direction, float power, float duration)
+    public IEnumerator DashCorutine(Vector3 direction, float power, float duration)
     {
         direction.y = 0;
         _targetDir = direction * power;

@@ -36,6 +36,7 @@ Shader "DLNK/Deferred/2FacedTransparent" {
         Tags {
             "Queue"="AlphaTest"
             "RenderType"="TransparentCutout"
+            "RenderPipeline" = "UniversalPipeline"
         }
         LOD 200
         Pass {
@@ -46,7 +47,7 @@ Shader "DLNK/Deferred/2FacedTransparent" {
             Cull Off
             
             
-            CGPROGRAM
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #define UNITY_PASS_DEFERRED
@@ -213,7 +214,7 @@ Shader "DLNK/Deferred/2FacedTransparent" {
                 outEmission.rgb = exp2(-outEmission.rgb);
             #endif
         }
-        ENDCG
+        ENDHLSL
     }
     Pass {
         Name "FORWARD"

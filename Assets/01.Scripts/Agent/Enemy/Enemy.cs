@@ -107,8 +107,8 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
 
     public void Knockback(Vector3 direction, float power, float duration)
     {
-        throw new NotImplementedException();
-    }
+        StartCoroutine(_moveModule.DashCorutine(direction, power, duration)); 
+     }
 
     #region Condition
 
