@@ -103,6 +103,8 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     {
         Debug.LogError($"{transform.name} 피격, 데미지 {damage}");
         _hpModule.ChangeHP(-damage);
+        _isHit = true; // 맞았다
+        // 타겟 바라보기 
     }
 
     public void Knockback(Vector3 direction, float power, float duration)
@@ -230,6 +232,11 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         Debug.Log("기본 위치로 이동");
     }
 
+    // 타겟 바라보기 
+    public void LookTarget()
+    {
+        _moveModule.Ro
+    }
  
     #endregion
 

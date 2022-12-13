@@ -33,7 +33,7 @@ public class AttackJudgementComponent
         if (_attackInfo.attackSO.isEnemy == false)
         {
             DamageText damageText = PoolManager.Instance.Pop("DamageText") as DamageText; // 풀링으로 
-            damageText.SetText(_attackInfo.attackSO.attackDamage, _owner.transform.position + new Vector3(0, 0.5f, 0), Color.white, false);
+            damageText.SetText(_attackInfo.attackSO.attackDamage, _owner.transform.position + new Vector3(0, 0.5f, 0), false, Color.white);
         }
 
 

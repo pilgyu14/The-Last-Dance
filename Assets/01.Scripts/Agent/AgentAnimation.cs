@@ -14,6 +14,7 @@ public class AgentAnimation : MonoBehaviour, IComponent
     //Hash
     protected readonly int _walkHash = Animator.StringToHash("Walk");
     protected readonly int _deathHash = Animator.StringToHash("Death");
+    protected readonly int _hitHash = Animator.StringToHash("Hit"); 
 
     public Animator AgentAnimator => _agentAnimator;
     protected virtual void Awake()
@@ -29,6 +30,11 @@ public class AgentAnimation : MonoBehaviour, IComponent
     public void AnimatePlayer(float velocity)
     {
         SetWalkAnimation(velocity > 0);
+    }
+
+    public void PlayHitAnimation()
+    {
+        _agentAnimator.SetTrigger(_hitHash); 
     }
 
     public void PlayDeathAnimation()
