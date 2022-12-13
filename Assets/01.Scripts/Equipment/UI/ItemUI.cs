@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class ItemUI : MonoBehaviour
+public class ItemUI : MonoSingleton<ItemUI>
 {
     [SerializeField]
     public InventorySO inventorySO;
@@ -17,20 +17,6 @@ public class ItemUI : MonoBehaviour
     public TextMeshProUGUI pickupNameText;
 
     private int pageIdx = 0;
-
-    private static ItemUI instance;
-    public static ItemUI Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
-
-    private void Awake()
-    {
-        instance = this;
-    }
 
     private void Start()
     {
