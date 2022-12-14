@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     #region 변수 
     // 인스펙터 
     [SerializeField]
-    private AgentSO _playerSO;
+    private PlayerSO _playerSO;
 
     // 캐싱 변수 
     private InputModule _inputModule;
@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     private CharacterController _chController;
     private NavMeshAgent _agent;
     private PlayerAnimation _playerAnimation;
+    private HPModule _hpModule; 
 
     // 내부 변수 
     #region State
@@ -167,6 +168,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         //_chController = GetComponent<CharacterController>();
         _agent = GetComponent<NavMeshAgent>(); 
         _playerAnimation = GetComponentInChildren<PlayerAnimation>();
+        _hpModule = GetComponent<HPModule>(); 
     }
 
     private void Start()
@@ -189,14 +191,18 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         // 입력 등록 
         _inputModule.Init(this);
         _inputModule.OnDefaultAttackPress = DefaultKickAttack;
-        _inputModule.OnShift = TackeAttack; 
+        _inputModule.OnShift = TackeAttack;
+
 
         //_inputModule.OnPointerRotate = RotateByMouse;
         //_inputModule.OnMovementKeyPress = Move;
         // _inputModule.OnMovementKeyPress = InBattleMove; 
 
+        _playerSO.UpdateStat();
+        // 모듈 초기화
         _moveModule.Init( this,_agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
         _attackModule.Init(_fov, _moveModule, _playerAnimation);
+        _hpModule.Init(_playerSO.hp, _playerSO.hp); 
     }
     #endregion
     private void Update()
