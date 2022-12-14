@@ -16,6 +16,7 @@ public enum AttackType
 public class AttackModule : MonoBehaviour, IComponent
 {
     // 캐싱 변수 
+    private IAgent owner; 
     private FieldOfView _fov;
     private PlayerAnimation _agentAnimation;
     private PlayerMoveModule _moveModule;
@@ -44,8 +45,9 @@ public class AttackModule : MonoBehaviour, IComponent
         _curAttackInfo = attackInfoList[0]; 
     }
 
-    public void Init(FieldOfView fov,PlayerMoveModule moveModule ,PlayerAnimation agentAnimation)
+    public void Init(IAgent owner, FieldOfView fov,PlayerMoveModule moveModule ,PlayerAnimation agentAnimation)
     {
+        this.owner = owner; 
         _fov = fov;
         _moveModule = moveModule;
         _agentAnimation = agentAnimation;
@@ -91,7 +93,7 @@ public class AttackModule : MonoBehaviour, IComponent
     {
         foreach(var info in attackInfoList)
         {
-            info.Init(gameObject, _agentAnimation, _moveModule, _fov);
+            info.Init(owner, _agentAnimation, _moveModule, _fov);
         }
     }
 

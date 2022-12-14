@@ -88,6 +88,7 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     public void Tackle()
     {
         // 쿨타임 체크 
+
         // 애니메이션 진행 상태 체크 
         if(_playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Tackle") && 
             _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)

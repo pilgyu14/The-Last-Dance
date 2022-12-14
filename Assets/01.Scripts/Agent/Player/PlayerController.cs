@@ -119,7 +119,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     private CharacterController _chController;
     private NavMeshAgent _agent;
     private PlayerAnimation _playerAnimation;
-    private HPModule _hpModule; 
+    private HPModule _hpModule;
+    private AgentAudioPlayer _autioPlayer; 
 
     // 내부 변수 
     #region State
@@ -156,6 +157,12 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         get => _isAttack;
         set => _isAttack = value;
     }
+
+    public AgentAudioPlayer AudioPlayer => _autioPlayer;
+
+    public NavMeshAgent NavMeshAgent => _agent;
+
+    public GameObject obj => gameObject;
     #endregion
 
     #region 초기화 
@@ -168,7 +175,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         //_chController = GetComponent<CharacterController>();
         _agent = GetComponent<NavMeshAgent>(); 
         _playerAnimation = GetComponentInChildren<PlayerAnimation>();
-        _hpModule = GetComponent<HPModule>(); 
+        _hpModule = GetComponent<HPModule>();
+        _autioPlayer = GetComponentInChildren<AgentAudioPlayer>(); 
     }
 
     private void Start()
@@ -201,7 +209,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         _playerSO.UpdateStat();
         // 모듈 초기화
         _moveModule.Init( this,_agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
-        _attackModule.Init(_fov, _moveModule, _playerAnimation);
+        _attackModule.Init(this,_fov, _moveModule, _playerAnimation);
         _hpModule.Init(_playerSO.hp, _playerSO.hp); 
     }
     #endregion

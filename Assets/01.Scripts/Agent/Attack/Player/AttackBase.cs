@@ -32,7 +32,7 @@ public class AttackInfo
 public class AttackBase 
 {
     // 캐싱 변수 
-    private GameObject _owner; 
+    private IAgent _owner; 
 
     private PlayerAnimation _agentAnimation;
     // 적의 경우 생각
@@ -49,7 +49,7 @@ public class AttackBase
     // 프로퍼티 
     public AttackJudgementComponent AtkJudgeComponent => _atkJudgeComponent; 
 
-    public void Init(GameObject owner, PlayerAnimation playerAnimation, PlayerMoveModule moveModule,FieldOfView fov)
+    public void Init(IAgent owner, PlayerAnimation playerAnimation, PlayerMoveModule moveModule,FieldOfView fov)
     {
         _owner = owner; 
         _agentAnimation = playerAnimation;

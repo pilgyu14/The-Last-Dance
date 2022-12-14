@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     private FieldOfView _fov;
     private NavMeshAgent _agent;
     private EnemyAnimation _enemyAnimation;
+    private AgentAudioPlayer _audioPlayer; 
 
     // 상태 변수 
     private bool _isHit = false; // 피격중인가
@@ -54,6 +55,13 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     public Action OnDefaultAttackPress { get; set; }
 
     public Dictionary<Type, IComponent> EnemyComponents => _enemyComponents;
+
+    public AgentAudioPlayer AudioPlayer => _audioPlayer;
+
+    public NavMeshAgent NavMeshAgent => _agent;
+
+    public GameObject obj => gameObject;
+
     private void Awake()
     {
         _target ??= FindObjectOfType<PlayerController>().transform; 
@@ -64,6 +72,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         _agent = GetComponent<NavMeshAgent>();
         _enemyAnimation = GetComponent<EnemyAnimation>();
         _hpModule = GetComponent<HPModule>();
+        _audioPlayer = GetComponentInChildren<AgentAudioPlayer>();
 
         SetComponents();
     }
