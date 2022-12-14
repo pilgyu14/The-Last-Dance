@@ -29,8 +29,12 @@ public class AttackInfo
 
 
 [System.Serializable]
-public class AttackBase 
+public class AttackBase : ICoolTime
 {
+    // 상태 변수 
+    private bool _isCoolTime = false; // 쿨타임중인가 
+    private float _remainTime;  // 쿨타임 남은 시간 
+
     // 캐싱 변수 
     private IAgent _owner; 
 
@@ -47,7 +51,11 @@ public class AttackBase
     public AttackCollider attackCollider;
 
     // 프로퍼티 
-    public AttackJudgementComponent AtkJudgeComponent => _atkJudgeComponent; 
+    public AttackJudgementComponent AtkJudgeComponent => _atkJudgeComponent;
+    public bool IsCoolTime => _isCoolTime;
+    public float RemainTime => _remainTime; 
+
+    public bool IsDelayed => throw new NotImplementedException();
 
     public void Init(IAgent owner, PlayerAnimation playerAnimation, PlayerMoveModule moveModule,FieldOfView fov)
     {
@@ -58,13 +66,16 @@ public class AttackBase
 
         _atkJudgeComponent = new AttackJudgementComponent();
         _atkJudgeComponent.Init(owner, attackInfo);
+
     }
 
     /// <summary>
     /// 실제적인 공격 판정 
     /// </summary>
-    public virtual void Attack() 
+    public virtual bool Attack() 
     {
+        if (_isCoolTime == true) return false; // 쿨타임중이면 리턴 
+
         // 움직임 멈추고
         _moveModule.StopMove();
         
@@ -77,7 +88,6 @@ public class AttackBase
         }
 
         // 공격 수행 
-        ////
         if(attackInfo.attackSO.isRayAttack == true)
         {
             FindTarget(); // 타겟 찾고 공격 피드백 수행 
@@ -86,17 +96,19 @@ public class AttackBase
         {
             attackCollider.ActiveCollider(true, true);
         }
-        ////
 
-
+        // 피드백 실행 
         if (_fov.TargetList.Count >= 1)
         {
             attackInfo.feedbackCallbackHit?.Invoke(); 
         }
         // 음? 
         _agentAnimation.Update_Zero();
+        attackInfo.feedbackCallback?.Invoke();
 
-        attackInfo.feedbackCallback?.Invoke(); 
+        // 쿨타임 주기 
+        CoolTime();
+        return true;  // 성공적으로 공격 끝 
     }
 
     private void FindTarget()
@@ -114,6 +126,30 @@ public class AttackBase
     {
 
     }
-    
-}
 
+    // 스킬 사용후 쿨타임 주기 
+    public void CoolTime()
+    {
+        _isCoolTime = true; 
+        _remainTime = attackInfo.attackSO.attackCoolTime;
+
+
+        GameManager.Instance.CoroutineComponent.SetCoroutine(CheckCoolTime());
+        GameManager.Instance.BegineCoroutine(); 
+    }
+
+    IEnumerator CheckCoolTime()
+    {
+        while(true)
+        {
+            _remainTime -= Time.deltaTime;
+            if (_remainTime <= 0)
+            {
+                _remainTime = 0;
+                _isCoolTime = false;
+                break; 
+            }
+            yield return null; 
+        }
+    }
+}

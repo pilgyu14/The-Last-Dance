@@ -58,10 +58,12 @@ public class AttackModule : MonoBehaviour, IComponent
     public void DefaultAttack()
     {
         //if(CheckAttack() == true)
-        {
             Debug.Log(_curAttackInfo.attackInfo.attackSO.animationFuncName);
-            _curAttackInfo.Attack();
-        }
+            if(_curAttackInfo.Attack() == false) // 쿨타임 중이라면 
+            {
+                // 커서에 쿨타임 표시 
+
+            }
     }
 
 

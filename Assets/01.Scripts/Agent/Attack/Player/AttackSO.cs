@@ -21,7 +21,7 @@ public class AttackSO : ScriptableObject
     [Header("공격 판정 변수"), Space(10)]
     public float attackRadius;
     public float attackAngle; 
-    public float attackDelay;
+    public float attackCoolTime;
 
     [Header("애니메이션 변수"), Space(10)]
     
