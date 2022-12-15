@@ -18,7 +18,7 @@ public class CursorCoolTimeUI : PoolableMono
     public void UpdateCoolTimeText(float coolTime)
     {
         transform.SetParent(_parentCanvas); 
-        _coolTimeText.text = string.Format("{0}S", coolTime);
+        _coolTimeText.text = string.Format("{0:N1}S", coolTime);
 
         _rectTrm.anchoredPosition = Input.mousePosition;
 

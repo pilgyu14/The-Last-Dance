@@ -63,7 +63,7 @@ public class AttackModule : MonoBehaviour, IComponent
             {
                 // 커서에 쿨타임 표시 
                 CursorCoolTimeUI coolTimeText = PoolManager.Instance.Pop("CursorCoolTimeUI") as CursorCoolTimeUI;
-                coolTimeText.UpdateCoolTimeText(_curAttackInfo.attackInfo.attackSO.attackCoolTime);    
+                coolTimeText.UpdateCoolTimeText(_curAttackInfo.RemainTime);    
             }
     }
 
