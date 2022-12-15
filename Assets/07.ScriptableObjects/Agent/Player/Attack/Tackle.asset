@@ -22,7 +22,7 @@ MonoBehaviour:
   knockbackPower: 10
   attackRadius: 0
   attackAngle: 0
-  attackDelay: 0
+  attackCoolTime: 1
   animationName: 
   animationFuncName: 
   hitEffect: {fileID: 0}
@@ -30,3 +30,4 @@ MonoBehaviour:
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}
   icon: {fileID: 0}
+  requiredLevel: 0

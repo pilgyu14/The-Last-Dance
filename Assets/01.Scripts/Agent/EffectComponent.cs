@@ -21,16 +21,25 @@ public class EffectComponent : PoolableMono
     [SerializeField]
     private float _lifeTime = 1f;
 
-    private Transform _originTrm; 
+    [SerializeField]
+    private Vector3 _originPos; 
+    [SerializeField]
+    private Quaternion _originRot; 
     private void Awake()
     {
         _particle = GetComponent<ParticleSystem>();
         particleList ??= _particle.GetComponentsInChildren<ParticleSystem>().ToList();
         parent = transform.parent;
-        _originTrm = transform; 
+
+        _originPos = transform.localPosition;
+        _originRot = transform.localRotation; 
     }
     public void StartEffect()
     {
+        if(transform.parent == null)
+        {
+
+        }
         transform.SetParent(null);
        // CheckLifeTime(); 
         _particle.Play();
@@ -38,11 +47,22 @@ public class EffectComponent : PoolableMono
         StartCoroutine(EndParticle()); 
     }
 
+    [ContextMenu("A")]
+    public void Test()
+    {
+        Debug.Log("@@" + transform.localPosition);
+        Debug.Log("@@" + transform.localRotation);
+
+        Debug.Log("@@" + _originPos);
+        Debug.Log("@@" + _originRot);
+
+    }
     public void EndEffect()
     {
+        Debug.Log("¿Ã∆Â∆Æ ≥°");
         transform.SetParent(parent);
-        transform.position = _originTrm.position;
-        transform.rotation = _originTrm.rotation;
+        transform.localPosition = _originPos;
+        transform.localRotation = _originRot;
         //_particle.Stop();
     }
 
@@ -66,7 +86,7 @@ public class EffectComponent : PoolableMono
 
     IEnumerator EndParticle()
     {
-        yield return new WaitForSeconds(_lifeTime);
+        yield return new WaitForSeconds(_lifeTime + 0.1f);
         EndEffect(); 
     }
     public override void Reset()

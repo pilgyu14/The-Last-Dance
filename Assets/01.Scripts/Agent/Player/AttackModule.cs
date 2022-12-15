@@ -59,10 +59,11 @@ public class AttackModule : MonoBehaviour, IComponent
     {
         //if(CheckAttack() == true)
             Debug.Log(_curAttackInfo.attackInfo.attackSO.animationFuncName);
-            if(_curAttackInfo.Attack() == false) // 쿨타임 중이라면 
+            if(_curAttackInfo.Attack() == false && isEnemy == false) // 쿨타임 중이면서 플레이어면 
             {
                 // 커서에 쿨타임 표시 
-                //PoolManager.Instance.Pop("")
+                CursorCoolTimeUI coolTimeText = PoolManager.Instance.Pop("CursorCoolTimeUI") as CursorCoolTimeUI;
+                coolTimeText.UpdateCoolTimeText(_curAttackInfo.attackInfo.attackSO.attackCoolTime);    
             }
     }
 

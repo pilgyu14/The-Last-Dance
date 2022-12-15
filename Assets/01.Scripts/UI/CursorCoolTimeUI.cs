@@ -4,17 +4,20 @@ using DG.Tweening;
 public class CursorCoolTimeUI : PoolableMono
 {
     [SerializeField]
-    private TextMeshPro _coolTimeText;
+    private TextMeshProUGUI _coolTimeText;
+    private Transform _parentCanvas; 
     private RectTransform _rectTrm; 
 
     private void Awake()
     {
-        _coolTimeText = GetComponent<TextMeshPro>();
+        _parentCanvas ??= GameObject.Find("TextCanvas").transform;
+        _coolTimeText = GetComponent<TextMeshProUGUI>();
         _rectTrm = GetComponent<RectTransform>();
     }
 
     public void UpdateCoolTimeText(float coolTime)
     {
+        transform.SetParent(_parentCanvas); 
         _coolTimeText.text = string.Format("{0}S", coolTime);
 
         _rectTrm.anchoredPosition = Input.mousePosition;

@@ -70,7 +70,7 @@ public class AttackBase : ICoolTime
     }
 
     /// <summary>
-    /// 실제적인 공격 판정 
+    /// 실제적인 공격  
     /// </summary>
     public virtual bool Attack() 
     {

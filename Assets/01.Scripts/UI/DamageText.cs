@@ -4,22 +4,28 @@ using TMPro;
 
 public class DamageText : PoolableMono
 {
-    private TextMeshPro _textMesh;
+    private Transform _parentCanvas;
+    private RectTransform _rectTrm;
+    private TextMeshProUGUI _textMesh;
 
     private void Awake()
     {
-        _textMesh = GetComponent<TextMeshPro>();
+        _parentCanvas ??= GameObject.Find("TextCanvas").transform;
+        _rectTrm = GetComponent<RectTransform>(); 
+        _textMesh = GetComponent<TextMeshProUGUI>();
     }
 
     public void SetText(int damageAmount, Vector3 pos, bool isCritical, Color color)
     {
-        transform.position = pos;
+        transform.SetParent(_parentCanvas);
+
+        _rectTrm.anchoredPosition = Define.MainCam.WorldToScreenPoint(pos); 
         _textMesh.SetText(damageAmount.ToString());
 
         if (isCritical)
         {
             _textMesh.color = Color.red;
-            _textMesh.fontSize = 12f;
+            _textMesh.fontSize = 50f;
         }
         else
         {
@@ -38,7 +44,7 @@ public class DamageText : PoolableMono
     public override void Reset()
     {
         _textMesh.color = Color.white;
-        _textMesh.fontSize = 7f;
+        _textMesh.fontSize = 40f;
     }
 
 }
