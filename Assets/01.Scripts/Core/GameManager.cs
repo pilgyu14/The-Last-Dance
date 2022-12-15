@@ -33,7 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
         //Instance = this;
 
         PoolManager.Instance = new PoolManager(transform); //풀매니저 생성
-        coroutineComponent = new CoroutineComponent(); 
+        _coroutineComponent = new CoroutineComponent(); 
 
         CreatePool();
     }
@@ -46,6 +46,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void BegineCoroutine()
     {
-        StartCoroutine(coroutineComponent.coroutine); 
+        StartCoroutine(_coroutineComponent.coroutine); 
     }
 }

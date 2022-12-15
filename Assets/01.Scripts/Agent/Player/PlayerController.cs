@@ -37,7 +37,7 @@ public class DefaultState : State<PlayerController>
     public override void Enter()
     {
         owner.InputModule.OnMovementKeyPress += owner.MoveModule.Move;
-        owner.InputModule.OnMovementKeyPress += owner.MoveDefaultAnimation;
+        owner.InputModule.OnMoveAnimation += owner.MoveDefaultAnimation;
         // move ³Ö±â 
     }
     public override void Stay()
@@ -48,7 +48,7 @@ public class DefaultState : State<PlayerController>
     public override void Exit()
     {
         owner.InputModule.OnMovementKeyPress -= owner.MoveModule.Move;
-        owner.InputModule.OnMovementKeyPress -= owner.MoveDefaultAnimation;
+        owner.InputModule.OnMoveAnimation -= owner.MoveDefaultAnimation;
     }
 
 }

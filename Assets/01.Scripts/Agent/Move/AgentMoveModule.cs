@@ -147,6 +147,6 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     {
         _targetDir = Vector3.zero;
         _agent.isStopped = true;
-        _agent.ResetPath(); 
+        _agent.ResetPath();
     }
 }

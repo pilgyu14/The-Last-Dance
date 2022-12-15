@@ -130,6 +130,7 @@ public class AttackBase : ICoolTime
     // 스킬 사용후 쿨타임 주기 
     public void CoolTime()
     {
+        if (attackInfo.attackSO.attackCoolTime <= 0) return; 
         _isCoolTime = true; 
         _remainTime = attackInfo.attackSO.attackCoolTime;
 

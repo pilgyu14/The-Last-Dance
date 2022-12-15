@@ -19,12 +19,15 @@ public class EffectComponent : PoolableMono
     private Transform parent;
 
     [SerializeField]
-    private float _lifeTime = 1f; 
+    private float _lifeTime = 1f;
+
+    private Transform _originTrm; 
     private void Awake()
     {
         _particle = GetComponent<ParticleSystem>();
         particleList ??= _particle.GetComponentsInChildren<ParticleSystem>().ToList();
-        parent = transform.parent; 
+        parent = transform.parent;
+        _originTrm = transform; 
     }
     public void StartEffect()
     {
@@ -37,7 +40,9 @@ public class EffectComponent : PoolableMono
 
     public void EndEffect()
     {
-        transform.SetParent(parent); 
+        transform.SetParent(parent);
+        transform.position = _originTrm.position;
+        transform.rotation = _originTrm.rotation;
         //_particle.Stop();
     }
 

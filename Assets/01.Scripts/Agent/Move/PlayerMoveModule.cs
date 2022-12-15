@@ -53,7 +53,7 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     public override void Move(Vector3 moveDir)
     {
         base.Move(moveDir);
-        _playerAnimation.AnimatePlayer(moveDir.sqrMagnitude);
+        //_playerAnimation.AnimatePlayer(moveDir.sqrMagnitude);
        // Debug.Log(moveDir.sqrMagnitude);
     }
 
