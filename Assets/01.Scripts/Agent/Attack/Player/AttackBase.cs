@@ -35,10 +35,12 @@ public class AttackBase : ICoolTime
     private bool _isCoolTime = false; // 쿨타임중인가 
     private float _remainTime;  // 쿨타임 남은 시간 
 
+    private Action AttackEvent = null; 
     // 캐싱 변수 
     private IAgent _owner; 
 
-    private PlayerAnimation _agentAnimation;
+    private PlayerAnimation _playerAnimation;
+    private EnemyAnimation _enemyAnimation; 
     // 적의 경우 생각
     // attackSO.IsEnemy 있다 
 
@@ -51,22 +53,40 @@ public class AttackBase : ICoolTime
     public AttackCollider attackCollider;
 
     // 프로퍼티 
+    private bool IsEnemyAtk => attackInfo.attackSO.isEnemy; 
     public AttackJudgementComponent AtkJudgeComponent => _atkJudgeComponent;
     public bool IsCoolTime => _isCoolTime;
     public float RemainTime => _remainTime; 
 
     public bool IsDelayed => throw new NotImplementedException();
 
-    public void Init(IAgent owner, PlayerAnimation playerAnimation, PlayerMoveModule moveModule,FieldOfView fov)
+    public void Init(IAgent owner, AgentAnimation playerAnimation, PlayerMoveModule moveModule,FieldOfView fov)
     {
         _owner = owner; 
-        _agentAnimation = playerAnimation;
+        if(IsEnemyAtk == true)
+        {
+            _enemyAnimation = playerAnimation as EnemyAnimation;
+        }
+        else
+        {
+            _playerAnimation = playerAnimation as PlayerAnimation;
+
+        }
         _moveModule = moveModule;
         _fov = fov;
 
         _atkJudgeComponent = new AttackJudgementComponent();
         _atkJudgeComponent.Init(owner, attackInfo);
 
+        attackCollider.Init(this); 
+        if (attackInfo.attackSO.isRayAttack == true)
+        {
+            AttackEvent = RayAttack;
+        }
+        else
+        {
+            AttackEvent = ColliderAttack;
+        }
     }
 
     /// <summary>
@@ -84,17 +104,14 @@ public class AttackBase : ICoolTime
         {
             Type type = typeof(PlayerAnimation);
             MethodInfo method = type.GetMethod(attackInfo.attackSO.animationFuncName);
-            method?.Invoke(_agentAnimation, new object[] { });
+            method?.Invoke(_playerAnimation, new object[] { });
         }
-
-        // 공격 수행 
-        if(attackInfo.attackSO.isRayAttack == true)
+        else if(attackInfo.attackSO.animationClip != null)
         {
-            FindTarget(); // 타겟 찾고 공격 피드백 수행 
-        }
-        else
-        {
-            attackCollider.ActiveCollider(true, true);
+            
+            // 공격 정보에 어택 클립 받고 
+            // 컨트롤러에 넣고 
+            // 실행 
         }
 
         // 피드백 실행 
@@ -103,7 +120,7 @@ public class AttackBase : ICoolTime
             attackInfo.feedbackCallbackHit?.Invoke(); 
         }
         // 음? 
-        _agentAnimation.Update_Zero();
+        _playerAnimation.Update_Zero();
         attackInfo.feedbackCallback?.Invoke();
 
         // 쿨타임 주기 
@@ -111,8 +128,18 @@ public class AttackBase : ICoolTime
         return true;  // 성공적으로 공격 끝 
     }
 
-    private void FindTarget()
+    /// <summary>
+    /// 실질적인 공격 수행 
+    /// </summary>
+    public void AttackJudge()
     {
+        AttackEvent?.Invoke(); 
+    }
+
+    // 레이캐스트 공격
+    private void RayAttack()
+    {
+        Debug.Log("레이 공격");
         _fov.FindTargets(attackInfo.attackSO.attackAngle, attackInfo.attackSO.attackRadius);  // 범위 안 몬스터 찾기 
 
         foreach (var target in _fov.TargetList) // 타겟 공격 판정( 데미지 , 넉백 )  
@@ -120,6 +147,13 @@ public class AttackBase : ICoolTime
             // 여기를 잘 처리해야해
             _atkJudgeComponent.AttackJudge(target);
         }
+    }
+
+    // 콜라이더 공격 
+    private void ColliderAttack()
+    {
+        Debug.Log("콜라이더 공격");
+        attackCollider.ActiveCollider(true, attackInfo.attackSO.isContinueColliderAttack); // 이거 늦게 
     }
 
     public void ActiveEffect()

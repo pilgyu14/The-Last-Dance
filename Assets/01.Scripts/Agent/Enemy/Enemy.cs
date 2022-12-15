@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
 {
     [SerializeField]
     private EnemySO _enemySO;
-    private Transform _target;
+    private Transform _target; // 기본적으로 터겟 관련 모든 처리를 위한 변수 
+    private Transform _battleTarget; // 현재 타겟을 찾았는가에 관한 변수 
     private EnemyTree<Enemy> _enemyTree;
 
     private Dictionary<Type, IComponent> _enemyComponents = new Dictionary<Type, IComponent>();  // 모든 컴포넌트 저장 딕셔너리 
@@ -27,15 +28,15 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
 
     // 상태 변수 
     private bool _isHit = false; // 피격중인가
-    private bool _isBattleMode = false; // 전투중인가 
+    private bool _isAttacking = false; // 전투중인가 
     private bool _isStunned = false; // 기절했냐 
 
     private Vector3 _hitPoint;
     // 프로퍼티 
     public bool IsBattleMode
     {
-        get => _isBattleMode;
-        set => _isBattleMode = value; 
+        get => _isAttacking;
+        set => _isAttacking = value; 
     }
 
     public Transform Target
@@ -67,10 +68,10 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         _target ??= FindObjectOfType<PlayerController>().transform; 
 
         _moveModule = GetComponent<EnemyMoveModule>();
-        _attackModule = GetComponent<AttackModule>();
+        _attackModule = GetComponentInChildren<AttackModule>();
         _fov = GetComponent<FieldOfView>();
         _agent = GetComponent<NavMeshAgent>();
-        _enemyAnimation = GetComponent<EnemyAnimation>();
+        _enemyAnimation = GetComponentInChildren<EnemyAnimation>();
         _hpModule = GetComponent<HPModule>();
         _audioPlayer = GetComponentInChildren<AgentAudioPlayer>();
 
@@ -113,6 +114,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         Debug.LogError($"{transform.name} 피격, 데미지 {damage}");
         _hpModule.ChangeHP(-damage);
         _isHit = true; // 맞았다
+
         // 타겟 바라보기 
     }
 
@@ -121,6 +123,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         StartCoroutine(_moveModule.DashCorutine(direction, power, duration)); 
      }
 
+  
     #region Condition
 
     // 죽었는가
@@ -136,10 +139,17 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         return _isHit;
     }
     // 전투 중인가 
-    public bool IsbattleMode()
+    public bool IsAttacking()
     {
-        Debug.Log("전투중 체크" + _isBattleMode);
-        return _isBattleMode; 
+        Debug.Log("전투중 체크" + _isAttacking);
+        return _isAttacking; 
+    }
+    // 타겟을 발견하지 않았고 피격 당했으면 
+    public bool IsFirstHit()
+    {
+        bool isFirstHit = _isHit && _battleTarget == null;
+        if (isFirstHit == false) _isHit = false; // 피격 체크 후 바로 false 
+        return isFirstHit ; 
     }
 
     // 기절 상태냐 
@@ -157,6 +167,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     // 기본 위치에 있는가 
     public bool IsOriginPos()
     {
+        Debug.Log("기본 위치에 있는가");
         return _moveModule.IsOriginPos(); 
     }
 
@@ -206,21 +217,42 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
 
     #region Action
 
+
+    // @@@ 공격 @@@ //
     /// <summary>
     /// 기본 공격 
     /// </summary>
-    public void DefaultAttack()
+    public void DefaultAttack_1()
     {
         // _enemyAnimation.
-        // 
-        Debug.Log("공격"); 
+        DefaultAttack(AttackType.Default_1);
+
     }
 
+    public void DefaultAttack_2()
+    {
+        DefaultAttack(AttackType.Default_2);
+
+    }
+    public void DefaultAttack_3()
+    {
+        DefaultAttack(AttackType.Default_3);
+    }
+
+    private void DefaultAttack(AttackType attackType)
+    {
+        _attackModule.SetCurAttackType(attackType);
+        _attackModule.DefaultAttack();
+        Debug.Log("공격" + attackType.GetType().Name);
+    }
+    // @@@ 이동 @@@ //
     /// <summary>
     /// 추적 
     /// </summary>
     public void Chase()
     {
+        // 타겟 찾았다 
+        _battleTarget = _target; 
         // 애니메이션 실행 
         _enemyAnimation.AnimatePlayer(_agent.velocity.sqrMagnitude);
         // 추적 시작 
@@ -228,6 +260,16 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         Debug.Log("추적..");
     }
 
+    public void MoveOrigin()
+    {
+        if(_battleTarget != null)
+            _battleTarget = null; 
+        
+        _moveModule.MoveOriginPos();
+        Debug.Log("기본 위치로 이동");
+    }
+
+    // @@@ 회전 @@@ //
     public void Idle()
     {
         // 180도 기준으로 돈다 
@@ -235,18 +277,14 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         Debug.Log("기본 상태..");
     }
 
-    public void MoveOrigin()
-    {
-        _moveModule.MoveOriginPos();
-        Debug.Log("기본 위치로 이동");
-    }
-
     // 타겟 바라보기 
     public void LookTarget()
     {
-        // _moveModule.Ro
+        _moveModule.RotateByPos(_target.position); 
     }
- 
+
+
+
     #endregion
 
 }

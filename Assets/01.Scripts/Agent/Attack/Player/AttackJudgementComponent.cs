@@ -17,6 +17,7 @@ public class AttackJudgementComponent
     /// </summary>
     public void AttackJudge(Transform target)
     {
+        Debug.LogError("공격 피드백"); 
         IDamagable damagable = target.GetComponent<IDamagable>();
         damagable.GetDamaged(_attackInfo.attackSO.attackDamage, _owner.obj);
 

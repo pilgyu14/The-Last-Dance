@@ -24,7 +24,7 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
         // 입력 등록 
         if(_inputModule != null)
         {
-            _inputModule.OnPointerRotate = RotateByMouse;
+            _inputModule.OnPointerRotate = RotateByPos;
             _inputModule.OnKeyboardRotate = RotateDefault;
             //_inputModule.OnShift += Tackle;
         }
@@ -33,22 +33,6 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
         _nmaComponent.Init(_agent); 
     }
 
-    private void RotateByMouse(Vector3 targetPos)
-    {
-        // Debug.Log("마우스 회전"); 
-        
-        targetPos.y = 0; 
-        Vector3 v = new Vector3(transform.position.x, 0, transform.position.z);
-        _rotTargetPos = targetPos - v;
-        _rotTargetPos.y = 0;
-
-        _targetRot = Quaternion.LookRotation(_rotTargetPos, Vector3.up);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot, Time.deltaTime * _movementInfo.rotSpeed);
-        
-        //_targetRot.x = 0;
-        //_targetRot.z = 0;
-    }
 
     public override void Move(Vector3 moveDir)
     {

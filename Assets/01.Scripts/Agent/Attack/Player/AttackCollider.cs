@@ -1,23 +1,24 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine; 
+using UnityEngine;
 
 /// <summary>
 /// 공격 판정 콜라이더 
 /// </summary>
 public class AttackCollider : MonoBehaviour
 {
-    private AttackBase _attackBase; 
-    private Collider _collider;  
+    private AttackBase _attackBase;
+    private Collider _collider;
     private List<GameObject> colObjs = new List<GameObject>(); // 충돌한 오브젝트 ( 한 번 충돌했으면 더 못하게 ) 
 
     private void Awake()
     {
-        _collider = GetComponent<Collider>(); 
+        _collider = GetComponent<Collider>();
     }
     private void OnEnable()
     {
-        colObjs.Clear(); 
+        colObjs.Clear();
     }
     public void Init(AttackBase attackBase)
     {
@@ -30,10 +31,11 @@ public class AttackCollider : MonoBehaviour
     /// <param name="isActive"></param>
     public void ActiveCollider(bool isActive, bool isContinue = false)
     {
+        Debug.Log(isActive + "콜라이더 활성화");
         gameObject.SetActive(isActive);
-     
-        if(isActive == true && isContinue == false)
-            gameObject.SetActive(false);
+
+        if (isActive == true && isContinue == false)
+            StartCoroutine(ColliderFalse());
     }
 
     /// <summary>
@@ -41,16 +43,23 @@ public class AttackCollider : MonoBehaviour
     /// </summary>
     private bool IsColObjs(GameObject obj)
     {
-       GameObject findObj = colObjs.Find((x) => x == obj);
+        Debug.Log("################33");
+        GameObject findObj = colObjs.Find((x) => x == obj);
 
-        return findObj == null; 
+        return findObj != null;
     }
 
+    IEnumerator ColliderFalse()
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameObject.SetActive(false);
+
+    }
     private void OnTriggerEnter(Collider col)
     {
-
-        if (IsColObjs(col.gameObject) == true) return; // 충돌했었으면 리턴  
-
+        Debug.Log("@@@@@@@@@@2");
+        //if (IsColObjs(col.gameObject) == true) return; // 충돌했었으면 리턴  
+        Debug.Log("충돌");
         colObjs.Add(col.gameObject);
         _attackBase.AtkJudgeComponent.AttackJudge(col.transform); // 공격 피드백 실행 
     }

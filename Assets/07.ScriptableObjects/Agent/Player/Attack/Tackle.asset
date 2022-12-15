@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 0
   isRayAttack: 0
+  isContinueColliderAttack: 1
   isDefaultAttack: 0
   isMultipleAttack: 0
   isBombAttack: 0
@@ -25,7 +26,7 @@ MonoBehaviour:
   attackCoolTime: 1
   animationName: 
   animationFuncName: 
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 1767841913861676, guid: 7e33fe33aff4f49449f51ed88f138e9c, type: 3}
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}

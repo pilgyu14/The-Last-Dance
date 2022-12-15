@@ -65,6 +65,28 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     }
 
     /// <summary>
+    /// targetPos 방향으로 회전 
+    /// </summary>
+    /// <param name="targetPos"></param>
+    public void RotateByPos(Vector3 targetPos)
+    {
+        // Debug.Log("마우스 회전"); 
+
+        targetPos.y = 0;
+        Vector3 v = new Vector3(transform.position.x, 0, transform.position.z);
+        _rotTargetPos = targetPos - v;
+        _rotTargetPos.y = 0;
+
+        _targetRot = Quaternion.LookRotation(_rotTargetPos, Vector3.up);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot, Time.deltaTime * _movementInfo.rotSpeed);
+
+        //_targetRot.x = 0;
+        //_targetRot.z = 0;
+    }
+
+
+    /// <summary>
     /// 가속 감속 체크 
     /// </summary>
     protected void CheckInput(Vector3 moveDir)

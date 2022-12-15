@@ -9,6 +9,7 @@ public class AnimationEventComponent : MonoBehaviour
     public UnityEvent SetNav10Event = null;
     public UnityEvent SetNav39Event = null;
 
+    [Header("공격")]
     public UnityEvent FronKickEffectEvent = null;
     public UnityEvent SideKickEffectEvent = null;
     public UnityEvent BackKickEffectEvent = null;

@@ -67,17 +67,13 @@ public class AttackModule : MonoBehaviour, IComponent
             }
     }
 
-
-
-    private float _nextAtkTImeLimit = 0.2f; 
-    public void CheckAttackType()
+    /// <summary>
+    /// 실질적인 공격 수행 ( 애니메이션 중간 부분에 추가 ) 
+    /// </summary>
+    public void AttackJudge()
     {
-        //if(_curAttackInfo.attackType == AttackType.Default_1)
-        //{
-        //    _moveModule.StopMove(); 
-        //    _agentAnimation.Update_Zero(); 
-        //}
-
+        Debug.Log("공격 판단");
+        _curAttackInfo.AttackJudge(); 
     }
 
     public void SetCurAttackType(AttackType attackType)

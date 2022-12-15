@@ -54,11 +54,11 @@ public class EnemyTree<T> : ICore where T : Enemy
                 Sequence // 공격 시퀀스 
                 (
 
-                    NotCondition(_owner.IsbattleMode), // 이미 때리는 중이냐 
+                    NotCondition(_owner.IsAttacking), // 이미 때리는 중이냐 
                     NotCondition(_owner.CheckCoolTime), // 공격이 쿨타임이냐 
                     Condition(_owner.CheckAttack), // 공격범위 안에 있냐 
 
-                    Action(_owner.DefaultAttack) // 여기까지 왔으면 공격해라 
+                    Action(_owner.DefaultAttack_1) // 여기까지 왔으면 공격해라 
 
                 //IfAction(), 
 
@@ -80,26 +80,28 @@ public class EnemyTree<T> : ICore where T : Enemy
                  *    범위 안에 잇냐
                  */
                 ),
-                
-                Sequence // 추적 시퀀스 
-                (
-                    // 타겟이 날 때렸냐 
-                    // 타겟 바라보기
 
+                // 맞았을 때 타겟 바라보기 
+          
+                 // 추적 시퀀스 
+                Sequence
+                (
+                    // 타겟이 날 때렸냐  
+                    // 타겟 바라보기
                     // 타겟이 추적 범위 내에 있는지 체크
                     Condition(_owner.CheckChase),
                     Action(_owner.Chase)
-                    
-                    // 추적 시작 
+
+                // 추적 시작 
                 ),
 
-                Sequence // 기본 상태 시퀀스 
+                Selector // 기본 상태 시퀀스 
                 (
-                    IfAction(_owner.IsOriginPos,_owner.MoveOrigin), 
+                    IfNotAction(_owner.IsOriginPos, _owner.MoveOrigin), // 기본 위치에 있으면 움직이잖아 
                     Action(_owner.Idle)
-                    // 빙빙 돈다. 
+                // 빙빙 돈다. 
                 )
-            ); 
+            ); ; 
         
     }
 

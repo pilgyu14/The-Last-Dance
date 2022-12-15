@@ -62,6 +62,7 @@ public class EnemyMoveModule : AgentMoveModule<Enemy>
     private EnemyRotateComponent _enemyRotateComponent;
     private EnemyChaseComponent _enemyChaseComponent; 
 
+    [SerializeField]
     private Vector3 _originVec;
 
 
@@ -90,7 +91,7 @@ public class EnemyMoveModule : AgentMoveModule<Enemy>
     protected override void Update()
     {
         // ApplyGravity();
-        _enemyRotateComponent.Timer.UpdateSomething(); 
+        _enemyRotateComponent.Timer.UpdateSomething(); // 회전 
     }
 
     #region Action
@@ -126,7 +127,7 @@ public class EnemyMoveModule : AgentMoveModule<Enemy>
     /// </summary>
     public bool IsOriginPos()
     {
-        return ((_agent.transform.position - _originVec).sqrMagnitude < 0.01f);
+        return ((_agent.transform.position - _originVec).sqrMagnitude < 0.1f);
     }
     #endregion
 

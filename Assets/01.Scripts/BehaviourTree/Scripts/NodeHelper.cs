@@ -16,7 +16,7 @@ namespace Rito.BehaviorTree
         public static ConditionNode Condition(Func<bool> condition) => new ConditionNode(condition);
         public static NotConditionNode NotCondition(Func<bool> condition) => new NotConditionNode(condition);
 
-  //      public static ActionNode RandomAction(Action[] actions) => new 
+        //      public static ActionNode RandomAction(Action[] actions) => new 
         public static ConditionNode If(Func<bool> condition) => new ConditionNode(condition);
         public static ActionNode Action(Action action) => new ActionNode(action);
 
@@ -28,6 +28,8 @@ namespace Rito.BehaviorTree
         /// <returns></returns>
         public static IfActionNode IfAction(Func<bool> condition, Action action)
             => new IfActionNode(condition, action);
+        public static IfNotActionNode IfNotAction(Func<bool> condition, Action action)
+        => new IfNotActionNode(condition, action);
         public static IfElseActionNode IfElseAction(Func<bool> condition, Action ifAction, Action ifElseAction)
             => new IfElseActionNode(condition, ifAction, ifElseAction);
     }

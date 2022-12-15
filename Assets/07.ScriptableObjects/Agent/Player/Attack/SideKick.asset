@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SideKick
   m_EditorClassIdentifier: 
   isEnemy: 0
-  isRayAttack: 1
+  isRayAttack: 0
+  isContinueColliderAttack: 0
   isDefaultAttack: 0
   isMultipleAttack: 0
   isBombAttack: 0
@@ -22,7 +23,7 @@ MonoBehaviour:
   knockbackPower: 0
   attackRadius: 5
   attackAngle: 120
-  attackDelay: 0
+  attackCoolTime: 0
   animationName: 
   animationFuncName: SetSideKick
   hitEffect: {fileID: 6787811906628579171, guid: ed9aa6b77b874b54cad16dbfb123a2dd, type: 3}
@@ -30,3 +31,4 @@ MonoBehaviour:
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}
   icon: {fileID: 0}
+  requiredLevel: 0

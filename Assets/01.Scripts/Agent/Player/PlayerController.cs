@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     private bool _isDie = false;
     [SerializeField]
     private bool _isBattle = false; // 전투상태인가 
-    private bool _isAttack = false; // 공격 중인가 
+    private bool _isAttack = false; // 공격 중인가 ( 1타 2타 3타 )  연속 공격 여부 
 
     // 프로퍼티 
     public InputModule InputModule => _inputModule;
@@ -352,18 +352,16 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
             Debug.Log("  공격 안돼요 ");
             return;
         }
-        Debug.Log(_playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime); 
 
 
         // 공격 상태 변경 
         ChangeState(typeof(AttackState));
         AttackState attackState = _curState as AttackState;
-        if (_isAttack == true && attackState.NextAttackType != AttackType.Null) // 
+        if (_isAttack == true && attackState.NextAttackType != AttackType.Null)
         {
             //다음 공격 실행
             Debug.Log("@" + attackState.NextAttackType);
             _attackModule.SetCurAttackType(attackState.NextAttackType);
-
         }
         else
         {
@@ -379,8 +377,6 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         }
 
         _attackModule.DefaultAttack(); // 실제적인 공격 수행( 범위 체크 후 타격, 애니메이션 실행 ) 
-        
-
 
     }
 
