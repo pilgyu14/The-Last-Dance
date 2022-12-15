@@ -10,8 +10,11 @@ public enum PoolType
 }
 
 
-public class PoolManager : MonoSingleton<PoolManager>
+public class PoolManager
 {
+
+    public static PoolManager Instance = null;
+
     private Dictionary<string, Pool<PoolableMono>> _pools = new Dictionary<string, Pool<PoolableMono>>();
 
     private Transform _trmParent;

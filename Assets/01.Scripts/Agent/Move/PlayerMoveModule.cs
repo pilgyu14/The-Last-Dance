@@ -53,7 +53,7 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     public override void Move(Vector3 moveDir)
     {
         base.Move(moveDir);
-        _playerAnimation.AnimatePlayer(moveDir.sqrMagnitude);
+        //_playerAnimation.AnimatePlayer(moveDir.sqrMagnitude);
        // Debug.Log(moveDir.sqrMagnitude);
     }
 
@@ -88,6 +88,7 @@ public class PlayerMoveModule : AgentMoveModule<PlayerController>
     public void Tackle()
     {
         // 쿨타임 체크 
+
         // 애니메이션 진행 상태 체크 
         if(_playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).IsName("Tackle") && 
             _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)

@@ -37,7 +37,7 @@ public class DefaultState : State<PlayerController>
     public override void Enter()
     {
         owner.InputModule.OnMovementKeyPress += owner.MoveModule.Move;
-        owner.InputModule.OnMovementKeyPress += owner.MoveDefaultAnimation;
+        owner.InputModule.OnMoveAnimation += owner.MoveDefaultAnimation;
         // move 넣기 
     }
     public override void Stay()
@@ -48,7 +48,7 @@ public class DefaultState : State<PlayerController>
     public override void Exit()
     {
         owner.InputModule.OnMovementKeyPress -= owner.MoveModule.Move;
-        owner.InputModule.OnMovementKeyPress -= owner.MoveDefaultAnimation;
+        owner.InputModule.OnMoveAnimation -= owner.MoveDefaultAnimation;
     }
 
 }
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     #region 변수 
     // 인스펙터 
     [SerializeField]
-    private AgentSO _playerSO;
+    private PlayerSO _playerSO;
 
     // 캐싱 변수 
     private InputModule _inputModule;
@@ -119,6 +119,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     private CharacterController _chController;
     private NavMeshAgent _agent;
     private PlayerAnimation _playerAnimation;
+    private HPModule _hpModule;
+    private AgentAudioPlayer _autioPlayer; 
 
     // 내부 변수 
     #region State
@@ -155,6 +157,12 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         get => _isAttack;
         set => _isAttack = value;
     }
+
+    public AgentAudioPlayer AudioPlayer => _autioPlayer;
+
+    public NavMeshAgent NavMeshAgent => _agent;
+
+    public GameObject obj => gameObject;
     #endregion
 
     #region 초기화 
@@ -167,6 +175,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         //_chController = GetComponent<CharacterController>();
         _agent = GetComponent<NavMeshAgent>(); 
         _playerAnimation = GetComponentInChildren<PlayerAnimation>();
+        _hpModule = GetComponent<HPModule>();
+        _autioPlayer = GetComponentInChildren<AgentAudioPlayer>(); 
     }
 
     private void Start()
@@ -189,14 +199,18 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         // 입력 등록 
         _inputModule.Init(this);
         _inputModule.OnDefaultAttackPress = DefaultKickAttack;
-        _inputModule.OnShift = TackeAttack; 
+        _inputModule.OnShift = TackeAttack;
+
 
         //_inputModule.OnPointerRotate = RotateByMouse;
         //_inputModule.OnMovementKeyPress = Move;
         // _inputModule.OnMovementKeyPress = InBattleMove; 
 
+        _playerSO.UpdateStat();
+        // 모듈 초기화
         _moveModule.Init( this,_agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
-        _attackModule.Init(_fov, _moveModule, _playerAnimation);
+        _attackModule.Init(this,_fov, _moveModule, _playerAnimation);
+        _hpModule.Init(_playerSO.hp, _playerSO.hp); 
     }
     #endregion
     private void Update()
@@ -333,7 +347,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
         // 공격애니메이션 실행중이면서 일정 시간이상 실행된 상태가 아니라면 
         if (_playerAnimation.CheckDefaultAnim() == true &&
-                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.65f)
+                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
         {
             Debug.Log("  공격 안돼요 ");
             return;

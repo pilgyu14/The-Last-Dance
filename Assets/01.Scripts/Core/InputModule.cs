@@ -33,6 +33,7 @@ public class InputModule : MonoBehaviour, IAgentInput
 
     // 트리거 
     public Action<Vector3> OnMovementKeyPress { get; set; } // 움직임 
+    public Action<Vector3> OnMoveAnimation { get; set; } // 움직임 애니메이션 
     public Action<Vector3> OnPointerRotate { get ; set; } // 마우스 회전 
     public Action OnDefaultAttackPress { get; set ; } // 기본 공격 
 
@@ -51,7 +52,7 @@ public class InputModule : MonoBehaviour, IAgentInput
 
     private void Update()
     {
-        if(_isPlayerInput == true)
+        if (_isPlayerInput == true)
         {
             PlayerInput(); 
         }
@@ -103,6 +104,8 @@ public class InputModule : MonoBehaviour, IAgentInput
 
             _moveDir = new Vector3(_x, 0, _y).normalized;
             _moveDir = Define.MainCam.transform.TransformDirection(_moveDir);
+
+            OnMoveAnimation?.Invoke(MoveDir);
 
             if (_isMove == true)
             {

@@ -46,12 +46,12 @@ public class AttackCollider : MonoBehaviour
         return findObj == null; 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider col)
     {
 
-        if (IsColObjs(other.gameObject) == true) return; // 충돌했었으면 리턴  
+        if (IsColObjs(col.gameObject) == true) return; // 충돌했었으면 리턴  
 
-        colObjs.Add(other.gameObject);
-        _attackBase.AtkJudgeComponent.AttackJudge(other.transform); // 공격 피드백 실행 
+        colObjs.Add(col.gameObject);
+        _attackBase.AtkJudgeComponent.AttackJudge(col.transform); // 공격 피드백 실행 
     }
 }

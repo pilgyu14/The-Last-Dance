@@ -17,6 +17,7 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     protected float _curSpeed; // 현재 속도 
     protected Vector3 _rotTargetPos; // 목표 회전 vector
     protected Quaternion _targetRot;// 목표 회전 quaternion
+    [SerializeField]
     protected Vector3 _targetDir;
 
     [SerializeField]
@@ -42,7 +43,7 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
 
     protected virtual void Update()
     {
-        ApplyGravity();
+        //ApplyGravity();
         _agent.Move((_targetDir + Vector3.up * _velocityY) * Time.deltaTime);
     }
 
@@ -126,7 +127,7 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
         }
     }
 
-    protected IEnumerator DashCorutine(Vector3 direction, float power, float duration)
+    public IEnumerator DashCorutine(Vector3 direction, float power, float duration)
     {
         direction.y = 0;
         _targetDir = direction * power;
@@ -146,6 +147,6 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     {
         _targetDir = Vector3.zero;
         _agent.isStopped = true;
-        _agent.ResetPath(); 
+        _agent.ResetPath();
     }
 }

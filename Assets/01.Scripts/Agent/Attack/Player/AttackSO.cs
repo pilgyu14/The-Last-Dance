@@ -21,7 +21,7 @@ public class AttackSO : ScriptableObject
     [Header("공격 판정 변수"), Space(10)]
     public float attackRadius;
     public float attackAngle; 
-    public float attackDelay;
+    public float attackCoolTime;
 
     [Header("애니메이션 변수"), Space(10)]
     
@@ -37,7 +37,9 @@ public class AttackSO : ScriptableObject
     public AudioClip swingClip;
     public AudioClip hitClip;
 
-    public Sprite icon; 
+    [Header("아이콘")]
+    public Sprite icon;
+    public int requiredLevel; 
 }
 
 [CreateAssetMenu(menuName = "SO/AttackSO/SpawnAttackSO")]

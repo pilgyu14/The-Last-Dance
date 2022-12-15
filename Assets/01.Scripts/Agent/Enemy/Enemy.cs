@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     private FieldOfView _fov;
     private NavMeshAgent _agent;
     private EnemyAnimation _enemyAnimation;
+    private AgentAudioPlayer _audioPlayer; 
 
     // 상태 변수 
     private bool _isHit = false; // 피격중인가
@@ -54,6 +55,13 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     public Action OnDefaultAttackPress { get; set; }
 
     public Dictionary<Type, IComponent> EnemyComponents => _enemyComponents;
+
+    public AgentAudioPlayer AudioPlayer => _audioPlayer;
+
+    public NavMeshAgent NavMeshAgent => _agent;
+
+    public GameObject obj => gameObject;
+
     private void Awake()
     {
         _target ??= FindObjectOfType<PlayerController>().transform; 
@@ -64,6 +72,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         _agent = GetComponent<NavMeshAgent>();
         _enemyAnimation = GetComponent<EnemyAnimation>();
         _hpModule = GetComponent<HPModule>();
+        _audioPlayer = GetComponentInChildren<AgentAudioPlayer>();
 
         SetComponents();
     }
@@ -103,12 +112,14 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     {
         Debug.LogError($"{transform.name} 피격, 데미지 {damage}");
         _hpModule.ChangeHP(-damage);
+        _isHit = true; // 맞았다
+        // 타겟 바라보기 
     }
 
     public void Knockback(Vector3 direction, float power, float duration)
     {
-        throw new NotImplementedException();
-    }
+        StartCoroutine(_moveModule.DashCorutine(direction, power, duration)); 
+     }
 
     #region Condition
 
@@ -230,6 +241,11 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         Debug.Log("기본 위치로 이동");
     }
 
+    // 타겟 바라보기 
+    public void LookTarget()
+    {
+        // _moveModule.Ro
+    }
  
     #endregion
 

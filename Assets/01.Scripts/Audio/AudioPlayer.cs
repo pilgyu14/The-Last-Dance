@@ -20,14 +20,14 @@ public class AudioPlayer : MonoBehaviour
         _basePitch = _audioSource.pitch;
     }
     //클립을 랜덤피치로 재생하는 함수
-    protected void PlayClipWithVariablePitch(AudioClip clip)
+    public void PlayClipWithVariablePitch(AudioClip clip)
     {
         float randomPitch = Random.Range(-_pitchRandomness, _pitchRandomness);
         _audioSource.pitch = _basePitch + randomPitch;
         PlayClip(clip);
     }
     //피치 조정없이 그냥 재생하는 함수
-    protected void PlayClip(AudioClip clip)
+    public void PlayClip(AudioClip clip)
     {
         _audioSource.Stop();
         _audioSource.clip = clip;

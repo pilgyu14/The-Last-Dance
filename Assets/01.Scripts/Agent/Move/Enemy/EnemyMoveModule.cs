@@ -104,7 +104,7 @@ public class EnemyMoveModule : AgentMoveModule<Enemy>
     }
 
     /// <summary>
-    /// Idle 상태 이동 
+    /// Idle 상태 이동 ( 제자리에서 회전  반복 ) 
     /// </summary>
     public void RotateIdle()
     {

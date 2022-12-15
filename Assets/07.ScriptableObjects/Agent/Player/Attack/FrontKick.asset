@@ -21,7 +21,7 @@ MonoBehaviour:
   attackDamage: 5
   knockbackPower: 0
   attackRadius: 5
-  attackAngle: 30
+  attackAngle: 120
   attackDelay: 0
   animationName: 
   animationFuncName: SetFrontKick
