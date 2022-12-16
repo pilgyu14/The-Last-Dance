@@ -44,6 +44,7 @@ public class AttackJudgementComponent
 
         if (_attackInfo.attackSO.isKnockbackAttack == true)
         {
+            Debug.Log("@@넉백@@@");
             Vector3 dir = (target.position - _owner.obj.transform.position).normalized;
             IKnockback knockback = target.GetComponent<IKnockback>();
             knockback.Knockback(dir, _attackInfo.attackSO.knockbackPower, 0.2f);

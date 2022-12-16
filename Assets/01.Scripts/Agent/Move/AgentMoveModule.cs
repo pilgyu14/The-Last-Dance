@@ -145,14 +145,15 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
         if (Vector3.Dot(transform.forward, MoveDir) > 0 || owner.IsEnemy == true)
         {
             Debug.Log("대쉬!");
-            StartCoroutine(DashCorutine(transform.forward.normalized, 10f, 0.1f));
+            StartCoroutine(DashCorutine(transform.forward.normalized, 6f, 0.05f));
         }
     }
 
     public IEnumerator DashCorutine(Vector3 direction, float power, float duration)
     {
-        direction.y = 0;
-        _targetDir = direction * power;
+        _agent.velocity = direction * power; 
+        //direction.y = 0;
+        //_targetDir = direction * power;
         yield return new WaitForSeconds(duration);
         StopMove();
     }

@@ -86,6 +86,11 @@ public class EnemyTree<T> : ICore where T : Enemy
                  // 추적 시퀀스 
                 Sequence
                 (
+                    Parallel
+                    (
+                        
+                    ),
+
                     // 타겟이 날 때렸냐  
                     // 타겟 바라보기
                     // 타겟이 추적 범위 내에 있는지 체크

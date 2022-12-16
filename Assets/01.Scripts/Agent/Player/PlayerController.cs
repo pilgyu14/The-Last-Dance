@@ -80,14 +80,17 @@ public class InBattleState : State<PlayerController>
 public class AttackState : State<PlayerController>
 {
     TimerModule timer;
+    private AttackType _curAttackType;
     private AttackType _nextAttackType;
 
     public AttackType NextAttackType => _nextAttackType;
+    public AttackType CurAttackType => _curAttackType;
     public override void Enter()
     {
         owner.StartAttack();
         _nextAttackType = owner.AttackModule.NextAttackType;
-        timer = new TimerModule(1f, () => owner.SetAttack());
+        _curAttackType = owner.AttackModule.CurAttackType;
+        timer = new TimerModule(1.5f, () => owner.SetAttack());
         // 시간 카운트 
         // 공격 
     }
@@ -120,7 +123,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     private NavMeshAgent _agent;
     private PlayerAnimation _playerAnimation;
     private HPModule _hpModule;
-    private AgentAudioPlayer _autioPlayer; 
+    private AgentAudioPlayer _autioPlayer;
 
     // 내부 변수 
     #region State
@@ -173,10 +176,10 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         _attackModule = GetComponentInChildren<AttackModule>();
         _fov = GetComponent<FieldOfView>();
         //_chController = GetComponent<CharacterController>();
-        _agent = GetComponent<NavMeshAgent>(); 
+        _agent = GetComponent<NavMeshAgent>();
         _playerAnimation = GetComponentInChildren<PlayerAnimation>();
         _hpModule = GetComponent<HPModule>();
-        _autioPlayer = GetComponentInChildren<AgentAudioPlayer>(); 
+        _autioPlayer = GetComponentInChildren<AgentAudioPlayer>();
     }
 
     private void Start()
@@ -208,9 +211,9 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
         _playerSO.UpdateStat();
         // 모듈 초기화
-        _moveModule.Init( this,_agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
-        _attackModule.Init(this,_fov, _moveModule, _playerAnimation);
-        _hpModule.Init(_playerSO.hp, _playerSO.hp); 
+        _moveModule.Init(this, _agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
+        _attackModule.Init(this, _fov, _moveModule, _playerAnimation);
+        _hpModule.Init(_playerSO.hp, _playerSO.hp);
     }
     #endregion
     private void Update()
@@ -269,7 +272,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         _time += Time.deltaTime;
         if (_isBattle == true && _time >= 5f) // 전투상태가 일정시간 지속되지 않았을때 
         {
-            _isBattle = false; 
+            _isBattle = false;
             _time = 0;
             _playerAnimation.SetBattle(_isBattle);
 
@@ -329,14 +332,14 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
     IEnumerator Delay(float delayTime)
     {
-        _isDelay = true; 
+        _isDelay = true;
         while (_curTime <= delayTime)
         {
             _curTime += Time.deltaTime;
             yield return null;
         }
         Debug.LogError("딜레이 끝");
-        _isDelay = false; 
+        _isDelay = false;
     }
 
     private void DefaultKickAttack()
@@ -347,43 +350,39 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
         // 공격애니메이션 실행중이면서 일정 시간이상 실행된 상태가 아니라면 
         if (_playerAnimation.CheckDefaultAnim() == true &&
-                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9f)
         {
             Debug.Log("  공격 안돼요 ");
             return;
         }
 
+        _attackModule.DefaultAttack(); // 실제적인 공격 수행( 범위 체크 후 타격, 애니메이션 실행 ) 
 
-        // 공격 상태 변경 
-        ChangeState(typeof(AttackState));
-        AttackState attackState = _curState as AttackState;
-        if (_isAttack == true && attackState.NextAttackType != AttackType.Null)
+        if (_isAttack == true) // 1초간 기본공격 한 상태면 다음 공격으로 이어서 실행 
         {
+            if (_attackModule.CurAttackType == AttackType.Default_3) // 3번째 공격이면 딜레이주기
+            {
+                _curTime = 0;
+                StartCoroutine(Delay(_maxCoolTime));
+            }
             //다음 공격 실행
-            Debug.Log("@" + attackState.NextAttackType);
-            _attackModule.SetCurAttackType(attackState.NextAttackType);
+            _attackModule.SetCurAttackType(_attackModule.NextAttackType);
         }
         else
         {
             // default_1 실행 
-            Debug.Log("#" + attackState.NextAttackType);
             _attackModule.SetCurAttackType(AttackType.Default_1);
         }
 
-        if (_attackModule.CurAttackType == AttackType.Default_3)
-        {
-            _curTime = 0;
-            StartCoroutine(Delay(_maxCoolTime));
-        }
-
-        _attackModule.DefaultAttack(); // 실제적인 공격 수행( 범위 체크 후 타격, 애니메이션 실행 ) 
-
+        // 공격 수행 후 공격상태로 변경 
+        ChangeState(typeof(AttackState));
+        AttackState attackState = _curState as AttackState;
     }
 
     private void TackeAttack()
     {
         _attackModule.SetCurAttackType(AttackType.Tackle);
-        _attackModule.DefaultAttack(); 
+        _attackModule.DefaultAttack();
     }
 
     // 피격 관련 

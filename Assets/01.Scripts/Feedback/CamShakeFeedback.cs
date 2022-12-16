@@ -6,7 +6,7 @@ using Cinemachine;
 public class CamShakeFeedback : Feedback
 {
     [SerializeField]
-    private CinemachineVirtualCamera _cmVCam;
+    private CinemachineFreeLook _cmVCam;
     [SerializeField, Range(0,5f)]
     private float _amplitude = 1, _intensity = 1;
     [SerializeField,Range(0,1)]
@@ -17,9 +17,9 @@ public class CamShakeFeedback : Feedback
     private void Awake()
     {
         if (_cmVCam == null)
-            _cmVCam = GameObject.FindObjectOfType<CinemachineVirtualCamera>(); 
+            _cmVCam = GameObject.FindObjectOfType<CinemachineFreeLook>(); 
 
-        _noise ??= _cmVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _noise ??= _cmVCam.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     IEnumerator ShakeCoroutine()
