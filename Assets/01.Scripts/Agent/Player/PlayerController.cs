@@ -90,7 +90,7 @@ public class AttackState : State<PlayerController>
         owner.StartAttack();
         _nextAttackType = owner.AttackModule.NextAttackType;
         _curAttackType = owner.AttackModule.CurAttackType;
-        timer = new TimerModule(1.5f, () => owner.SetAttack());
+        timer = new TimerModule(3.5f, () => owner.SetAttack());
         // 시간 카운트 
         // 공격 
     }
@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         _playerSO.UpdateStat();
         // 모듈 초기화
         _moveModule.Init(this, _agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
-        _attackModule.Init(this, _fov, _moveModule, _playerAnimation);
+        _attackModule.Init(this, _fov, _playerAnimation);
         _hpModule.Init(_playerSO.hp, _playerSO.hp);
     }
     #endregion
@@ -350,14 +350,28 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
 
         // 공격애니메이션 실행중이면서 일정 시간이상 실행된 상태가 아니라면 
         if (_playerAnimation.CheckDefaultAnim() == true &&
-                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9f)
+                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
         {
             Debug.Log("  공격 안돼요 ");
             return;
         }
-
+        ChangeAttackStateType(); 
+        if (_attackModule.NextAttackType == AttackType.Null) // 태클같은 스킬인 경우 
+        {
+            _attackModule.SetCurAttackType(AttackType.Default_1);
+        }
         _attackModule.DefaultAttack(); // 실제적인 공격 수행( 범위 체크 후 타격, 애니메이션 실행 ) 
 
+        // 공격 수행 후 공격상태로 변경 
+        ChangeState(typeof(AttackState));
+        AttackState attackState = _curState as AttackState;
+    }
+
+    /// <summary>
+    /// 공격 상태와 다음 공격 설정 ( 애니메이션 끝나는 시점에 지정 ) 
+    /// </summary>
+    public void ChangeAttackStateType()
+    {
         if (_isAttack == true) // 1초간 기본공격 한 상태면 다음 공격으로 이어서 실행 
         {
             if (_attackModule.CurAttackType == AttackType.Default_3) // 3번째 공격이면 딜레이주기
@@ -365,18 +379,14 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
                 _curTime = 0;
                 StartCoroutine(Delay(_maxCoolTime));
             }
-            //다음 공격 실행
-            _attackModule.SetCurAttackType(_attackModule.NextAttackType);
+                //다음 공격 실행
+                _attackModule.SetCurAttackType(_attackModule.NextAttackType);
         }
-        else
+        else 
         {
             // default_1 실행 
             _attackModule.SetCurAttackType(AttackType.Default_1);
         }
-
-        // 공격 수행 후 공격상태로 변경 
-        ChangeState(typeof(AttackState));
-        AttackState attackState = _curState as AttackState;
     }
 
     private void TackeAttack()
@@ -429,6 +439,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     public void EndAttacking()
     {
         _inputModule.Attacking(false);
+        //ChangeAttackStateType(); 
     }
 
 }

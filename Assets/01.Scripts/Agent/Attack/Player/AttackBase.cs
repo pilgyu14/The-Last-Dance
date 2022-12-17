@@ -35,16 +35,16 @@ public class AttackBase : ICoolTime
     private bool _isCoolTime = false; // 쿨타임중인가 
     private float _remainTime;  // 쿨타임 남은 시간 
 
-    private Action AttackEvent = null; 
+    private Action AttackEvent = null;
     // 캐싱 변수 
-    private IAgent _owner; 
+    private IAgent _owner;
 
-    private PlayerAnimation _playerAnimation;
-    private EnemyAnimation _enemyAnimation; 
+    private PlayerAnimation _playerAnimation = null;
+    private EnemyAnimation _enemyAnimation = null;
     // 적의 경우 생각
     // attackSO.IsEnemy 있다 
 
-    private AttackJudgementComponent _atkJudgeComponent; 
+    private AttackJudgementComponent _atkJudgeComponent;
     private PlayerMoveModule _moveModule;
     private FieldOfView _fov;
 
@@ -53,14 +53,26 @@ public class AttackBase : ICoolTime
     public AttackCollider attackCollider;
 
     // 프로퍼티 
-    private bool IsEnemyAtk => attackInfo.attackSO.isEnemy; 
+    private bool IsEnemyAtk => attackInfo.attackSO.isEnemy;
     public AttackJudgementComponent AtkJudgeComponent => _atkJudgeComponent;
     public bool IsCoolTime => _isCoolTime;
-    public float RemainTime => _remainTime; 
+    public float RemainTime => _remainTime;
 
-    public bool IsDelayed => throw new NotImplementedException();
+    public Type OwnerType
+    {
+        get
+        {
+            Type type;
+            if (IsEnemyAtk == true)
+                type = typeof(Enemy);
+            else
+                type = typeof(PlayerController);
+            return type; 
+        }
+    }
 
-    public void Init(IAgent owner, AgentAnimation playerAnimation, PlayerMoveModule moveModule,FieldOfView fov)
+
+public void Init(IAgent owner, AgentAnimation playerAnimation,PlayerMoveModule playerMoveModule ,FieldOfView fov)
     {
         _owner = owner; 
         if(IsEnemyAtk == true)
@@ -72,7 +84,7 @@ public class AttackBase : ICoolTime
             _playerAnimation = playerAnimation as PlayerAnimation;
 
         }
-        _moveModule = moveModule;
+        _moveModule = playerMoveModule; 
         _fov = fov;
 
         _atkJudgeComponent = new AttackJudgementComponent();
@@ -108,19 +120,28 @@ public class AttackBase : ICoolTime
         }
         else if(attackInfo.attackSO.animationClip != null)
         {
-            
+            _enemyAnimation.ChangeAttackAnimation(attackInfo.attackSO.animationClip); //공격 애니메이션 변경 
+            _enemyAnimation.PlayAttack(); 
             // 공격 정보에 어택 클립 받고 
             // 컨트롤러에 넣고 
             // 실행 
         }
 
         // 피드백 실행 
-        if (_fov.TargetList.Count >= 1)
-        {
-            attackInfo.feedbackCallbackHit?.Invoke(); 
-        }
+        //if (_fov.TargetList.Count >= 1)
+        //{
+        //    attackInfo.feedbackCallbackHit?.Invoke(); 
+        //}
         // 음? 
-        _playerAnimation.Update_Zero();
+        
+        if(_playerAnimation != null)
+        {
+            _playerAnimation.Update_Zero();
+        }
+        else
+        {
+            _enemyAnimation.Update_Zero();
+        }
         attackInfo.feedbackCallback?.Invoke();
 
         // 쿨타임 주기 
@@ -187,4 +208,6 @@ public class AttackBase : ICoolTime
             yield return null; 
         }
     }
+
+
 }

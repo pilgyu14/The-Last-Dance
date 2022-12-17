@@ -1,6 +1,6 @@
 ﻿
 public interface ICoolTime
 {
-    public bool IsDelayed { get; }
+    public bool IsCoolTime { get; }
     public void CoolTime(); 
 }

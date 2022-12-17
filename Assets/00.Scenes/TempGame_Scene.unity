@@ -5053,26 +5053,14 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     attackCollider: {fileID: 1264390043}
-  _curAttackInfo:
+  _curAttackBase:
     attackInfo:
-      attackType: 100
-      nextAttackType: 101
-      attackSO: {fileID: 11400000, guid: fda1a05abca9cda42b1a875011c3540b, type: 2}
+      attackType: 0
+      nextAttackType: 0
+      attackSO: {fileID: 0}
       feedbackCallback:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 0}
-            m_TargetAssemblyTypeName: FeedbackPlayer, Assembly-CSharp
-            m_MethodName: PlayAllFeedbacks
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       feedbackCallbackHit:
         m_PersistentCalls:
           m_Calls: []
@@ -8787,7 +8775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 0
   attackInfoList: []
-  _curAttackInfo:
+  _curAttackBase:
     attackInfo:
       attackType: 0
       nextAttackType: 0
@@ -9230,11 +9218,11 @@ PrefabInstance:
       objectReference: {fileID: 9509419}
     - target: {fileID: 1565314411247779702, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.010621
+      value: -0.0106209675
       objectReference: {fileID: 0}
     - target: {fileID: 1565314411247779702, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.003639554
+      value: 0.003639543
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
@@ -9463,10 +9451,10 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     attackCollider: {fileID: 0}
-  _curAttackInfo:
+  _curAttackBase:
     attackInfo:
-      attackType: 100
-      nextAttackType: 101
+      attackType: 0
+      nextAttackType: 0
       attackSO: {fileID: 0}
       feedbackCallback:
         m_PersistentCalls:
@@ -36242,8 +36230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb50f5836db6d344a81074ce19d4c98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
-  _changeTime: 0.05
+  _speed: 30
+  _changeTime: 0.1
   _delay: 0.1
   _restoreTime: 0
 --- !u!4 &6396371406014769453

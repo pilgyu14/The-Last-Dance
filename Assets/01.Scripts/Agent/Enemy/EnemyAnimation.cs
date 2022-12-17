@@ -3,8 +3,10 @@ public class EnemyAnimation : AgentAnimation
 {
     public AnimatorOverrideController overrideController;
 
+    protected readonly int _attackHash = Animator.StringToHash("Attack"); 
     protected readonly int _attack1Hash = Animator.StringToHash("Attack1");
     protected readonly int _attack2Hash = Animator.StringToHash("Attack2");
+
 
     private void Awake()
     {
@@ -16,6 +18,12 @@ public class EnemyAnimation : AgentAnimation
     {
         overrideController["Attack"] = animClip; 
     }
+    
+    public void PlayAttack()
+    {
+        _agentAnimator.SetTrigger(_attackHash);
+    }
+
     public void PlayAttack1()
     {
         _agentAnimator.SetTrigger(_attack1Hash);

@@ -29,27 +29,26 @@ public class AttackModule : MonoBehaviour, IComponent
     private List<AttackBase> attackInfoList = new List<AttackBase>();
 
     [SerializeField]
-    private AttackBase _curAttackInfo;
+    private AttackBase _curAttackBase;
     [SerializeField]
     private LayerMask _hitLayerMask;
 
     // 프로퍼티
-    public AttackSO CurAttackSO => _curAttackInfo.attackInfo.attackSO;
-    public AttackType CurAttackType => _curAttackInfo.attackInfo.attackType;
-    public AttackType NextAttackType => _curAttackInfo.attackInfo.nextAttackType;
+    public AttackSO CurAttackSO => _curAttackBase.attackInfo.attackSO;
+    public AttackType CurAttackType => _curAttackBase.attackInfo.attackType;
+    public AttackType NextAttackType => _curAttackBase.attackInfo.nextAttackType;
 
 
     private void Start()
     {
         _hitLayerMask =  (isEnemy) ? 1 << LayerMask.NameToLayer("Player") : 1 << LayerMask.NameToLayer("Enemy");
-        _curAttackInfo = attackInfoList[0]; 
+        _curAttackBase = attackInfoList[0]; 
     }
 
-    public void Init(IAgent owner, FieldOfView fov,PlayerMoveModule moveModule ,PlayerAnimation agentAnimation)
+    public void Init(IAgent owner, FieldOfView fov,PlayerAnimation agentAnimation)
     {
         this.owner = owner; 
         _fov = fov;
-        _moveModule = moveModule;
         _agentAnimation = agentAnimation;
 
         InitAttackinfo(); 
@@ -58,22 +57,22 @@ public class AttackModule : MonoBehaviour, IComponent
     public void DefaultAttack()
     {
         //if(CheckAttack() == true)
-            Debug.Log(_curAttackInfo.attackInfo.attackSO.animationFuncName);
-            if(_curAttackInfo.Attack() == false && isEnemy == false) // 쿨타임 중이면서 플레이어면 
+            Debug.Log(_curAttackBase.attackInfo.attackSO.animationFuncName);
+            if(_curAttackBase.Attack() == false && isEnemy == false) // 쿨타임 중이면서 플레이어면 
             {
                 // 커서에 쿨타임 표시 
                 CursorCoolTimeUI coolTimeText = PoolManager.Instance.Pop("CursorCoolTimeUI") as CursorCoolTimeUI;
-                coolTimeText.UpdateCoolTimeText(_curAttackInfo.RemainTime);    
+                coolTimeText.UpdateCoolTimeText(_curAttackBase.RemainTime);    
             }
     }
 
     /// <summary>
-    /// 실질적인 공격 수행 ( 애니메이션 중간 부분에 추가 ) 
+    /// 실질적인 공격 수행 ( 애니메이션 중간 부분에 Event로 추가 ) 
     /// </summary>
-    public void AttackJudge()
+    public void AttackJudge() 
     {
         Debug.Log("공격 판단");
-        _curAttackInfo.AttackJudge(); 
+        _curAttackBase.AttackJudge(); 
     }
 
     public void SetCurAttackType(AttackType attackType)
@@ -82,7 +81,7 @@ public class AttackModule : MonoBehaviour, IComponent
         {
             if (x.attackInfo.attackType == attackType)
             {
-                _curAttackInfo = x;
+                _curAttackBase = x;
                 return;
             }
         });
@@ -99,9 +98,9 @@ public class AttackModule : MonoBehaviour, IComponent
     public void ActiveFalseCollider()
     {
         // 콜라이더로 공격 판정한다면 
-        if(_curAttackInfo.attackCollider != null) 
+        if(_curAttackBase.attackCollider != null) 
         {
-            _curAttackInfo.attackCollider.ActiveCollider(false);// 꺼주기 
+            _curAttackBase.attackCollider.ActiveCollider(false);// 꺼주기 
         }
     }
 
