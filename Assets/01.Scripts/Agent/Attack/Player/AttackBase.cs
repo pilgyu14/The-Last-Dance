@@ -29,7 +29,7 @@ public class AttackInfo
 
 
 [System.Serializable]
-public class AttackBase : ICoolTime
+public class AttackBase<T> : ICoolTime where T : IDamagable
 {
     // 상태 변수 
     private bool _isCoolTime = false; // 쿨타임중인가 
@@ -45,12 +45,12 @@ public class AttackBase : ICoolTime
     // attackSO.IsEnemy 있다 
 
     private AttackJudgementComponent _atkJudgeComponent;
-    private PlayerMoveModule _moveModule;
+    private AgentMoveModule<T> _moveModule;
     private FieldOfView _fov;
 
     // 인스펙터 참조 변수 
     public AttackInfo attackInfo;
-    public AttackCollider attackCollider;
+    public AttackCollider<T> attackCollider;
 
     // 프로퍼티 
     private bool IsEnemyAtk => attackInfo.attackSO.isEnemy;
@@ -72,7 +72,7 @@ public class AttackBase : ICoolTime
     }
 
 
-public void Init(IAgent owner, AgentAnimation playerAnimation,PlayerMoveModule playerMoveModule ,FieldOfView fov)
+public void Init(IAgent owner, AgentAnimation playerAnimation,AgentMoveModule<T> playerMoveModule ,FieldOfView fov)
     {
         _owner = owner; 
         if(IsEnemyAtk == true)

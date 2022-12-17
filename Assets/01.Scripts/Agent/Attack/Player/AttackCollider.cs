@@ -6,9 +6,9 @@ using UnityEngine;
 /// <summary>
 /// 공격 판정 콜라이더 
 /// </summary>
-public class AttackCollider : MonoBehaviour
+public class AttackCollider<T> : MonoBehaviour where T : IDamagable
 {
-    private AttackBase _attackBase;
+    private AttackBase<T> _attackBase;
     private Collider _collider;
     private List<GameObject> colObjs = new List<GameObject>(); // 충돌한 오브젝트 ( 한 번 충돌했으면 더 못하게 ) 
 
@@ -20,7 +20,7 @@ public class AttackCollider : MonoBehaviour
     {
         colObjs.Clear();
     }
-    public void Init(AttackBase attackBase)
+    public void Init(AttackBase<T> attackBase)
     {
         this._attackBase = attackBase;
     }

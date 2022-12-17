@@ -13,23 +13,23 @@ public enum AttackType
 }
 
 
-public class AttackModule : MonoBehaviour, IComponent
+public class AttackModule<T> : MonoBehaviour, IComponent where T : IDamagable
 {
     // 캐싱 변수 
     private IAgent owner; 
     private FieldOfView _fov;
     private PlayerAnimation _agentAnimation;
-    private PlayerMoveModule _moveModule;
+    private AgentMoveModule<T> _moveModule;
     private TimerModule _timerModule; 
         
 
     [SerializeField]
     private bool isEnemy; 
     [SerializeField]
-    private List<AttackBase> attackInfoList = new List<AttackBase>();
+    private List<AttackBase<T>> attackInfoList = new List<AttackBase<T>>();
 
     [SerializeField]
-    private AttackBase _curAttackBase;
+    private AttackBase<T> _curAttackBase;
     [SerializeField]
     private LayerMask _hitLayerMask;
 
@@ -45,10 +45,11 @@ public class AttackModule : MonoBehaviour, IComponent
         _curAttackBase = attackInfoList[0]; 
     }
 
-    public void Init(IAgent owner, FieldOfView fov,PlayerAnimation agentAnimation)
+    public void Init(IAgent owner, FieldOfView fov, AgentMoveModule<T> moveModule,PlayerAnimation agentAnimation)
     {
         this.owner = owner; 
         _fov = fov;
+        _moveModule = moveModule;
         _agentAnimation = agentAnimation;
 
         InitAttackinfo(); 

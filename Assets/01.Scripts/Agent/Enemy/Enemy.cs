@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     private HPModule _hpModule;
     // Ä³½Ì º¯¼ö 
     private EnemyMoveModule _moveModule;
-    private AttackModule _attackModule;
+    private AttackModule<Enemy> _attackModule;
     private FieldOfView _fov;
     private NavMeshAgent _agent;
     private EnemyAnimation _enemyAnimation;
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         _target ??= FindObjectOfType<PlayerController>().transform; 
 
         _moveModule = GetComponent<EnemyMoveModule>();
-        _attackModule = GetComponentInChildren<AttackModule>();
+        _attackModule = GetComponentInChildren<AttackModule<Enemy>>();
         _fov = GetComponent<FieldOfView>();
         _agent = GetComponent<NavMeshAgent>();
         _enemyAnimation = GetComponentInChildren<EnemyAnimation>();
@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     private void SetComponents()
     {
         _enemyComponents.Add(typeof(AgentMoveModule<Enemy>), _moveModule);
-        _enemyComponents.Add(typeof(AttackModule), _attackModule);
+        _enemyComponents.Add(typeof(AttackModule<Enemy>), _attackModule);
         _enemyComponents.Add(typeof(FieldOfView), _fov);
         _enemyComponents.Add(typeof(EnemyAnimation), _enemyAnimation);
     }

@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     // 캐싱 변수 
     private InputModule _inputModule;
     private PlayerMoveModule _moveModule;
-    private AttackModule _attackModule;
+    private AttackModule<PlayerController> _attackModule;
     private FieldOfView _fov;
     private CharacterController _chController;
     private NavMeshAgent _agent;
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     // 프로퍼티 
     public InputModule InputModule => _inputModule;
     public PlayerMoveModule MoveModule => _moveModule;
-    public AttackModule AttackModule => _attackModule;
+    public AttackModule<PlayerController> AttackModule => _attackModule;
     public PlayerAnimation PlayerAnimation => _playerAnimation;
     public bool IsEnemy => false;
     public Vector3 HitPoint => throw new NotImplementedException();
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     {
         _inputModule = GetComponentInChildren<InputModule>();
         _moveModule = GetComponent<PlayerMoveModule>();
-        _attackModule = GetComponentInChildren<AttackModule>();
+        _attackModule = GetComponentInChildren<AttackModule<PlayerController>>();
         _fov = GetComponent<FieldOfView>();
         //_chController = GetComponent<CharacterController>();
         _agent = GetComponent<NavMeshAgent>();
@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         _playerSO.UpdateStat();
         // 모듈 초기화
         _moveModule.Init(this, _agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
-        _attackModule.Init(this, _fov, _playerAnimation);
+        _attackModule.Init(this, _fov, _moveModule, _playerAnimation);
         _hpModule.Init(_playerSO.hp, _playerSO.hp);
     }
     #endregion
