@@ -49,13 +49,13 @@ public class EnemyTree<T> : ICore where T : Enemy
                 Condition(_owner.IsDie), // 죽었냐
                 Condition(_owner.IsHit), // 맞고있냐 
                 Condition(_owner.IsStunned), // 기절중이냐 
+                Condition(_owner.IsAttacking), // 이미 때리는 중이냐 
 
                 // false 나올때까지 순회  
                 Sequence // 공격 시퀀스 
                 (
 
-                    NotCondition(_owner.IsAttacking), // 이미 때리는 중이냐 
-                    NotCondition(_owner.CheckCoolTime), // 공격이 쿨타임이냐 
+                    NotCondition(_owner.CheckCoolTime), // 공격이 쿨타임이냐 (그러면서 적이 범위 안에 있으면 기다려 
                     Condition(_owner.CheckAttack), // 공격범위 안에 있냐 
 
                     Action(_owner.DefaultAttack_1) // 여기까지 왔으면 공격해라 
@@ -106,7 +106,7 @@ public class EnemyTree<T> : ICore where T : Enemy
                     Action(_owner.Idle)
                 // 빙빙 돈다. 
                 )
-            ); ; 
+            ); 
         
     }
 

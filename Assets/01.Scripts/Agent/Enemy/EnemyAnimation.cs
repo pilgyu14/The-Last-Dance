@@ -8,15 +8,16 @@ public class EnemyAnimation : AgentAnimation
     protected readonly int _attack2Hash = Animator.StringToHash("Attack2");
 
 
-    private void Awake()
-    {
+    protected override void Awake()
+    { 
         base.Awake();
-        overrideController.runtimeAnimatorController = _agentAnimator.runtimeAnimatorController;
+        overrideController = new AnimatorOverrideController(_agentAnimator.runtimeAnimatorController); 
+        _agentAnimator.runtimeAnimatorController = overrideController;
     }
 
     public void ChangeAttackAnimation(AnimationClip animClip)
     {
-        overrideController["Attack"] = animClip; 
+        overrideController["GhoulAttack_1"] = animClip; 
     }
     
     public void PlayAttack()

@@ -24,7 +24,7 @@ MonoBehaviour:
   attackRadius: 5
   attackAngle: 30
   attackCoolTime: 0
-  animationClip: {fileID: 0}
+  animationClip: {fileID: 7400000, guid: 30456ece4ef20ce4296965d5bb2d34ed, type: 2}
   animationName: 
   animationFuncName: 
   hitEffect: {fileID: 1493225883543534, guid: 245bf6b0acdf9474ca212c5a4f28b2ce, type: 3}

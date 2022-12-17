@@ -9,105 +9,7 @@ using UnityEngine.AI;
 // 액션 
 // 애니메이션 
 
-#region FSM
-public enum PlayerStateType
-{
-    DefaultType,
-    InBattleType,
-}
-
-public abstract class State<T>
-{
-    protected T owner;
-
-
-    public virtual void Init(T owner)
-    {
-        this.owner = owner;
-    }
-    public abstract void Enter();
-    public abstract void Stay();
-    public abstract void Exit();
-
-}
-
-public class DefaultState : State<PlayerController>
-{
-
-    public override void Enter()
-    {
-        owner.InputModule.OnMovementKeyPress += owner.MoveModule.Move;
-        owner.InputModule.OnMoveAnimation += owner.MoveDefaultAnimation;
-        // move 넣기 
-    }
-    public override void Stay()
-    {
-
-    }
-
-    public override void Exit()
-    {
-        owner.InputModule.OnMovementKeyPress -= owner.MoveModule.Move;
-        owner.InputModule.OnMoveAnimation -= owner.MoveDefaultAnimation;
-    }
-
-}
-
-public class InBattleState : State<PlayerController>
-{
-    private TimerModule timer;
-    public override void Enter()
-    {
-        owner.StartBattle();
-        owner.InputModule.OnMovementKeyPress += owner.MoveModule.InBattleMove;
-        timer = new TimerModule(1f, () => owner.SetBattle());
-        // InBattlemove 넣기 
-        // StartBattle
-    }
-    public override void Stay()
-    {
-        owner.CheckBattle();
-        //CheckBattle
-    }
-
-    public override void Exit()
-    {
-        owner.InputModule.OnMovementKeyPress -= owner.MoveModule.InBattleMove;
-        timer = null;
-    }
-}
-
-public class AttackState : State<PlayerController>
-{
-    TimerModule timer;
-    private AttackType _curAttackType;
-    private AttackType _nextAttackType;
-
-    public AttackType NextAttackType => _nextAttackType;
-    public AttackType CurAttackType => _curAttackType;
-    public override void Enter()
-    {
-        owner.StartAttack();
-        _nextAttackType = owner.AttackModule.NextAttackType;
-        _curAttackType = owner.AttackModule.CurAttackType;
-        timer = new TimerModule(3.5f, () => owner.SetAttack());
-        // 시간 카운트 
-        // 공격 
-    }
-
-    public override void Stay()
-    {
-        timer.UpdateSomething();
-    }
-
-    public override void Exit()
-    {
-        timer = null;
-    }
-}
-
-#endregion
-public class PlayerController : MonoBehaviour, IAgent, IDamagable
+public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
 {
     #region 변수 
     // 인스펙터 
@@ -146,6 +48,11 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     [SerializeField]
     private bool _isBattle = false; // 전투상태인가 
     private bool _isAttack = false; // 공격 중인가 ( 1타 2타 3타 )  연속 공격 여부 
+
+    private bool _isDelay = false; // 기본 공격할 수 있는가 
+    [SerializeField]
+    private float _curTime = 0f;
+    private float _maxCoolTime = 0.7f;  // 기본 공격 3타 후 딜레이 
 
     // 프로퍼티 
     public InputModule InputModule => _inputModule;
@@ -204,15 +111,10 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         _inputModule.OnDefaultAttackPress = DefaultKickAttack;
         _inputModule.OnShift = TackeAttack;
 
-
-        //_inputModule.OnPointerRotate = RotateByMouse;
-        //_inputModule.OnMovementKeyPress = Move;
-        // _inputModule.OnMovementKeyPress = InBattleMove; 
-
         _playerSO.UpdateStat();
         // 모듈 초기화
         _moveModule.Init(this, _agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
-        _attackModule.Init(this, _fov, _playerAnimation);
+        _attackModule.Init(this, _fov, _moveModule,_playerAnimation);
         _hpModule.Init(_playerSO.hp, _playerSO.hp);
     }
     #endregion
@@ -231,105 +133,15 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         //InBattleMove(); 
     }
 
-    public void ChangeState(Type type)
-    {
-        if (_stateDic.ContainsKey(type) == false)
-        {
-            Debug.LogError("존재하지 않는 상태");
-            return;
-        }
-
-        if (_curState != null && _curState != _stateDic[_curState.GetType()] && _curState.GetType() != typeof(AttackState))
-        {
-            return;
-        }
-
-        Debug.Log("OK1");
-        if (_curState != null)
-        {
-            _prevState = _stateDic[_curState.GetType()];
-            _prevState.Exit();
-        }
-
-        _curState = _stateDic[type];
-        _curState.Enter();
-    }
-
+    // 기본 애니메이션 움직임 
     public void MoveDefaultAnimation(Vector3 v)
     {
         _playerAnimation.AnimatePlayer(v.sqrMagnitude);
         //_playerAnimation.AnimatePlayer(_agent.velocity.magnitude);
-
     }
 
-    [SerializeField]
-    private float _time = 0f;  // 전투 지속X 시간 
-    public void CheckBattle()
-    {
-        //Debug.Log("d"); 
-        if (_isBattle == false) return;
-
-        _time += Time.deltaTime;
-        if (_isBattle == true && _time >= 5f) // 전투상태가 일정시간 지속되지 않았을때 
-        {
-            _isBattle = false;
-            _time = 0;
-            _playerAnimation.SetBattle(_isBattle);
-
-            SetState(typeof(DefaultState), ref _isBattle);
-
-        }
-    }
-
-    public void CheckAttack()
-    {
-        if (_isBattle == false) return;
-
-        _time += Time.deltaTime;
-        if (_isBattle == true && _time >= 1f) // 전투상태가 일정시간 지속되지 않았을때 
-        {
-            _time = 0;
-            SetState(typeof(InBattleState), ref _isBattle);
-
-        }
-    }
-
-    public void SetBattle()
-    {
-        SetState(typeof(DefaultState), ref _isBattle);
-    }
-
-    public void SetAttack()
-    {
-        SetState(typeof(InBattleState), ref _isAttack);
-    }
-
-    private void SetState(Type state, ref bool isActive)
-    {
-        isActive = false;
-        ChangeState(state);
-    }
-
-    public void StartBattle()
-    {
-        _time = 0;
-        _isBattle = true;
-        _playerAnimation.SetBattle(_isBattle);
-    }
-
-    public void StartAttack()
-    {
-        _time = 0;
-        _isBattle = true;
-        _playerAnimation.SetBattle(_isBattle);
-        _isAttack = true;
-    }
-
-    private bool _isDelay = false; // 기본 공격할 수 있는가 
-    [SerializeField]
-    private float _curTime = 0f;
-    private float _maxCoolTime = 0.7f;  // 기본 공격 3타 후 딜레이 
-
+    #region 공격 관련 
+    // 기본 공격 3타 후 딜레이
     IEnumerator Delay(float delayTime)
     {
         _isDelay = true;
@@ -389,20 +201,19 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         }
     }
 
+    // 태클 공격 시 실행 (shift 입력시 ) 
     private void TackeAttack()
     {
         _attackModule.SetCurAttackType(AttackType.Tackle);
         _attackModule.DefaultAttack();
     }
 
+    #endregion
     // 피격 관련 
-    public void Damaged()
-    {
-    }
-
     public void OnDie()
     {
-
+        _isDie = true;
+        _playerAnimation.PlayDeathAnimation(); 
     }
 
     public bool IsDie()
@@ -410,13 +221,35 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
         return _isDie;
     }
 
+    // 피격시 호출 
     public void GetDamaged(int damage, GameObject damageDealer)
     {
-        throw new NotImplementedException();
+        if (IsDie() == true) return; 
+        if(_hpModule.ChangeHP(-damage) == false)
+        {
+            OnDie(); // 죽음 처리 
+        }
+        // 모든 입력 막아야해 
+        _inputModule.BlockPlayerInput(true); 
+        _playerAnimation.PlayHitAnimation(); 
     }
 
+    public void Knockback(Vector3 direction, float power, float duration)
+    {
+        _moveModule.DashCorutine(direction, power, duration); 
+    }
+
+    #region 애니메이션 Behaviour 함수 
+
     /// <summary>
-    /// 공격중 ( 플레이어 입력 차단 )
+    /// 피격 끝났으면 입력 가능하도록 
+    /// </summary>
+    public void EndHit()
+    {
+        _inputModule.BlockPlayerInput(false);
+    }
+    /// <summary>
+    /// 공격중 ( 플레이어 입력 차단 ) - 공격 시작 애니메이션 
     /// </summary>
     public void Attacking()
     {
@@ -424,7 +257,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     }
 
     /// <summary>
-    /// 기본 공격이면 입력 차단 + 대쉬 체크
+    /// 기본 공격이면 입력 차단 + 대쉬 체크 - 기본 공격 시작 애니메이션 
     /// </summary>
     public void DefaultAttacking()
     {
@@ -434,12 +267,76 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable
     }
 
     /// <summary>
-    /// 공격 끝
+    /// 공격 끝  - 기본 공격 끝 애니메이션 
     /// </summary>
-    public void EndAttacking()
+    public void EndAttacking() 
     {
         _inputModule.Attacking(false);
         //ChangeAttackStateType(); 
     }
 
+    #endregion 
+
+    #region FSM
+    // 상태 변경 
+    public void ChangeState(Type type)
+    {
+        if (_stateDic.ContainsKey(type) == false)
+        {
+            Debug.LogError("존재하지 않는 상태");
+            return;
+        }
+
+        if (_curState != null && _curState != _stateDic[_curState.GetType()] && _curState.GetType() != typeof(AttackState))
+        {
+            return;
+        }
+
+        Debug.Log("OK1");
+        if (_curState != null)
+        {
+            _prevState = _stateDic[_curState.GetType()];
+            _prevState.Exit();
+        }
+
+        _curState = _stateDic[type];
+        _curState.Enter();
+    }
+
+    // 전투중이 끝났을 때 ( 전투 움직임 ) 
+    // Default상태 변경 _isBattle = false 
+    public void EndBattleState()
+    {
+        SetState(typeof(DefaultState), ref _isBattle);
+    }
+
+    // 공격이 끝났을 때 ( 3타 연계 ) 
+    // Default상태 변경 _isBattle = false 
+    public void EndAttackState()
+    {
+        SetState(typeof(InBattleState), ref _isAttack);
+    }
+
+    private void SetState(Type state, ref bool isActive)
+    {
+        isActive = false;
+        ChangeState(state);
+    }
+
+
+    public void StartBattle()
+    {
+        _isBattle = true;
+        _playerAnimation.SetBattle(_isBattle);
+    }
+
+    public void StartAttack()
+    {
+        _isBattle = true;
+        _playerAnimation.SetBattle(_isBattle);
+        _isAttack = true;
+    }
+
+
+    #endregion
 }

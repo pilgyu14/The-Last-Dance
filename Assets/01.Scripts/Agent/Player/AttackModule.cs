@@ -18,8 +18,10 @@ public class AttackModule : MonoBehaviour, IComponent
     // 캐싱 변수 
     private IAgent owner; 
     private FieldOfView _fov;
-    private PlayerAnimation _agentAnimation;
-    private PlayerMoveModule _moveModule;
+    private AgentMoveModule _moveModule;
+    private AgentAnimation _agentAnimation; 
+    private PlayerAnimation _playerAnimation; 
+    private EnemyAnimation _enemyAnimation; 
     private TimerModule _timerModule; 
         
 
@@ -45,19 +47,20 @@ public class AttackModule : MonoBehaviour, IComponent
         _curAttackBase = attackInfoList[0]; 
     }
 
-    public void Init(IAgent owner, FieldOfView fov,PlayerAnimation agentAnimation)
+    public void Init(IAgent owner, FieldOfView fov, AgentMoveModule moveModule ,AgentAnimation agentAnimation)
     {
         this.owner = owner; 
         _fov = fov;
-        _agentAnimation = agentAnimation;
-
+        _moveModule = moveModule;
+        _agentAnimation = agentAnimation; 
+        
         InitAttackinfo(); 
     }
 
     public void DefaultAttack()
     {
         //if(CheckAttack() == true)
-            Debug.Log(_curAttackBase.attackInfo.attackSO.animationFuncName);
+            //Debug.Log(_curAttackBase.attackInfo.attackSO.animationFuncName);
             if(_curAttackBase.Attack() == false && isEnemy == false) // 쿨타임 중이면서 플레이어면 
             {
                 // 커서에 쿨타임 표시 
@@ -89,7 +92,7 @@ public class AttackModule : MonoBehaviour, IComponent
     
     private void InitAttackinfo()
     {
-        foreach(var info in attackInfoList)
+        foreach (var info in attackInfoList)
         {
             info.Init(owner, _agentAnimation, _moveModule, _fov);
         }

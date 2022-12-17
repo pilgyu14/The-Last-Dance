@@ -17,6 +17,8 @@ public class AttackJudgementComponent
     /// </summary>
     public void AttackJudge(Transform target)
     {
+        if (target.GetComponent<IAgent>().IsDie() == true) return;  // 죽은 상태면 반환
+
         Debug.LogError("공격 피드백"); 
         IDamagable damagable = target.GetComponent<IDamagable>();
         damagable.GetDamaged(_attackInfo.attackSO.attackDamage, _owner.obj);

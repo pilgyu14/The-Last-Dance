@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerMoveModule : AgentMoveModule<PlayerController>
+public class PlayerMoveModule : AgentMoveModule
 {
+    private PlayerController owner; 
     //  Ä³½Ì º¯¼ö 
     private InputModule _inputModule;
 

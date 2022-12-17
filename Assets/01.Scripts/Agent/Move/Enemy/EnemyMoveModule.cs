@@ -52,13 +52,13 @@ public class EnemyRotateComponent
         float ra = Random.Range(30f, 80f);
         _rotateSpeed = ra;
 
-        Debug.Log("@@@" + _rotateAxis);
-        Debug.Log("@@@" + _rotateSpeed);
     }
 }
 
-public class EnemyMoveModule : AgentMoveModule<Enemy>
+public class EnemyMoveModule : AgentMoveModule
 {
+    private Enemy _owner; 
+
     private EnemyRotateComponent _enemyRotateComponent;
     private EnemyChaseComponent _enemyChaseComponent; 
 
@@ -70,7 +70,7 @@ public class EnemyMoveModule : AgentMoveModule<Enemy>
     {
         // base.Init(objs);
 
-        this.owner = prms[0] as Enemy;
+        this._owner = prms[0] as Enemy;
         this._agent = prms[1] as NavMeshAgent;
         this._movementInfo = prms[2] as MovementInfo;
 
@@ -78,14 +78,14 @@ public class EnemyMoveModule : AgentMoveModule<Enemy>
         _enemyRotateComponent.Init();
 
         _enemyChaseComponent = new EnemyChaseComponent();
-        _enemyChaseComponent.Init(_agent, owner.Target);
+        _enemyChaseComponent.Init(_agent, _owner.Target);
 
      }
 
     private void Start()
     {
         _rotTargetPos = transform.eulerAngles; 
-        _originVec = transform.position; 
+        _originVec = _agent.transform.position; 
     }
 
     protected override void Update()
@@ -127,7 +127,7 @@ public class EnemyMoveModule : AgentMoveModule<Enemy>
     /// </summary>
     public bool IsOriginPos()
     {
-        return ((_agent.transform.position - _originVec).sqrMagnitude < 0.1f);
+        return ((_agent.transform.position - _originVec).sqrMagnitude < 1f);
     }
     #endregion
 

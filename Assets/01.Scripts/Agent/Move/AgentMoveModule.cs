@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : IDamagable
+public abstract class AgentMoveModule : MonoBehaviour,IComponent 
 {
-    protected T owner;
-
 
     //  캐싱 변수 
     protected AgentAnimation _agentAnimation;
@@ -142,12 +140,13 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     /// </summary>
     public void Dash()
     {
-        if (Vector3.Dot(transform.forward, MoveDir) > 0 || owner.IsEnemy == true)
+        if (Vector3.Dot(transform.forward, MoveDir) > 0 /*|| owner.IsEnemy == true*/)
         {
             Debug.Log("대쉬!");
             StartCoroutine(DashCorutine(transform.forward.normalized, 6f, 0.05f));
         }
     }
+
 
     public IEnumerator DashCorutine(Vector3 direction, float power, float duration)
     {
@@ -170,6 +169,9 @@ public abstract class AgentMoveModule<T> : MonoBehaviour,IComponent where T : ID
     {
         _targetDir = Vector3.zero;
         _agent.isStopped = true;
+        //_agent.updatePosition = false; 
+        //_agent.updateRotation = false;
+        _agent.velocity = Vector3.zero;
         _agent.ResetPath();
     }
 }

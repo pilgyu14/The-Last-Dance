@@ -45,7 +45,7 @@ public class AttackBase : ICoolTime
     // attackSO.IsEnemy 있다 
 
     private AttackJudgementComponent _atkJudgeComponent;
-    private PlayerMoveModule _moveModule;
+    private AgentMoveModule _moveModule;
     private FieldOfView _fov;
 
     // 인스펙터 참조 변수 
@@ -72,7 +72,7 @@ public class AttackBase : ICoolTime
     }
 
 
-public void Init(IAgent owner, AgentAnimation playerAnimation,PlayerMoveModule playerMoveModule ,FieldOfView fov)
+public void Init(IAgent owner, AgentAnimation playerAnimation,AgentMoveModule playerMoveModule ,FieldOfView fov)
     {
         _owner = owner; 
         if(IsEnemyAtk == true)
@@ -90,7 +90,10 @@ public void Init(IAgent owner, AgentAnimation playerAnimation,PlayerMoveModule p
         _atkJudgeComponent = new AttackJudgementComponent();
         _atkJudgeComponent.Init(owner, attackInfo);
 
-        attackCollider.Init(this); 
+        if(attackCollider != null)
+        {
+            attackCollider.Init(this);
+        }
         if (attackInfo.attackSO.isRayAttack == true)
         {
             AttackEvent = RayAttack;
@@ -108,18 +111,22 @@ public void Init(IAgent owner, AgentAnimation playerAnimation,PlayerMoveModule p
     {
         if (_isCoolTime == true) return false; // 쿨타임중이면 리턴 
 
+        Debug.Log("공격!");
         // 움직임 멈추고
         _moveModule.StopMove();
         
         // 애니메이션 실행 
-        if(attackInfo.attackSO.animationFuncName != null)
+        if(attackInfo.attackSO.animationFuncName != "")
         {
+            Debug.Log("공격 애니메이션 수행");
+
             Type type = typeof(PlayerAnimation);
             MethodInfo method = type.GetMethod(attackInfo.attackSO.animationFuncName);
             method?.Invoke(_playerAnimation, new object[] { });
         }
         else if(attackInfo.attackSO.animationClip != null)
         {
+            Debug.Log("공격 애니메이션 수행");
             _enemyAnimation.ChangeAttackAnimation(attackInfo.attackSO.animationClip); //공격 애니메이션 변경 
             _enemyAnimation.PlayAttack(); 
             // 공격 정보에 어택 클립 받고 

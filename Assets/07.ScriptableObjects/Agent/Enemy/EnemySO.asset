@@ -20,4 +20,4 @@ MonoBehaviour:
     rotSpeed: 0
   chaseDistance: 10
   eyeAngle: 120
-  attackDistance: 5
+  attackDistance: 2
