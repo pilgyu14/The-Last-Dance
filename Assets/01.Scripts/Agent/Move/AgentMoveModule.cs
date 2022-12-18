@@ -148,9 +148,11 @@ public abstract class AgentMoveModule : MonoBehaviour,IComponent
     }
 
 
+
     public IEnumerator DashCorutine(Vector3 direction, float power, float duration)
     {
-        _agent.velocity = direction * power; 
+        Vector3 v = direction * power; 
+        _agent.velocity = v;
         //direction.y = 0;
         //_targetDir = direction * power;
         yield return new WaitForSeconds(duration);

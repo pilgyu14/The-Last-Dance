@@ -108,6 +108,11 @@ public class EnemyMoveModule : AgentMoveModule
 
     #region Action
 
+    public void Rush(Vector3 dir, float power, float duration)
+    {
+        StartCoroutine(DashCorutine(dir, power, duration));
+    }
+
     /// <summary>
     ///  기존 위치로 이동 
     /// </summary>

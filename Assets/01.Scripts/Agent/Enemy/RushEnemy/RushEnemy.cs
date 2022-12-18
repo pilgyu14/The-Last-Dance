@@ -63,10 +63,10 @@ public class RushEnemy : Enemy
     /// </summary>
     public void RushAttack()
     {
+        _isAttacking = true; // ∏ÿ√Á¿÷æÓæﬂ «œ±‚ø° 
         _moveModule.StopMove();
         StartCoroutine(ChangeColor());
 
-        DefaultAttack(AttackType.RushAttack);
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ public class RushEnemy : Enemy
 
             yield return null;
         }
-
+        DefaultAttack(AttackType.RushAttack);
 
     }
 
@@ -105,7 +105,8 @@ public class RushEnemy : Enemy
     {
         Vector3 dir = (_target.position - transform.position).normalized;
         float knockbackPower = _attackModule.GetAttackInfo(AttackType.RushAttack).attackInfo.attackSO.knockbackPower;
-        _moveModule.DashCorutine(dir, knockbackPower, 0.2f);
+        _moveModule.Rush(dir, knockbackPower, 0.2f); 
+       // _moveModule.DashCorutine(dir, knockbackPower, 0.2f);
     }
 
     public override void Reset()

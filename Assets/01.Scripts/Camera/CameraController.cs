@@ -38,6 +38,7 @@ public class CameraController : MonoBehaviour
         {
             cam.m_XAxis.m_InputAxisName = "Mouse X";
             cam.m_YAxis.m_InputAxisName = "Mouse Y";
+
         }
 
         if (Input.GetMouseButtonUp(1))
