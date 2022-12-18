@@ -9,6 +9,7 @@ public enum AttackType
     Default_2,
     Default_3,
  
+    RushAttack = 300,
     Tackle = 1000, 
 }
 
@@ -77,6 +78,21 @@ public class AttackModule : MonoBehaviour, IComponent
     {
         Debug.Log("공격 판단");
         _curAttackBase.AttackJudge(); 
+    }
+
+    /// <summary>
+    /// AttackType을 받고 AttackBase 리턴하기 없으면 NULL
+    /// </summary>
+    /// <param name="attackType"></param>
+    /// <returns></returns>
+    public AttackBase GetAttackInfo(AttackType attackType)
+    {
+        foreach(var attackInfo in attackInfoList)
+        {
+            if (attackInfo.attackInfo.attackType == attackType)
+                return attackInfo; 
+        }
+        return null; 
     }
 
     public void SetCurAttackType(AttackType attackType)

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ddfc75da9047949b1cb8da98b76c9c, type: 3}
+  m_Name: EnemyRushAttack
+  m_EditorClassIdentifier: 
+  isEnemy: 1
+  isRayAttack: 0
+  isContinueColliderAttack: 1
+  isDefaultAttack: 0
+  isMultipleAttack: 0
+  isBombAttack: 0
+  isKnockbackAttack: 1
+  attackDamage: 10
+  knockbackPower: 10
+  attackRadius: 5
+  attackAngle: 0
+  attackCoolTime: 0
+  animationClip: {fileID: 7400000, guid: 199636302404e694c9824e1f8a011a10, type: 2}
+  animationName: 
+  animationFuncName: 
+  hitEffect: {fileID: 1224217824244948, guid: 41be69b610c3a274f943dec937ac8204, type: 3}
+  swingEffect: {fileID: 0}
+  swingClip: {fileID: 0}
+  hitClip: {fileID: 0}
+  icon: {fileID: 0}
+  requiredLevel: 0

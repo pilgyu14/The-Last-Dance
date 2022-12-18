@@ -168,7 +168,7 @@ public abstract class AgentMoveModule : MonoBehaviour,IComponent
     public virtual void StopMove()
     {
         _targetDir = Vector3.zero;
-        _agent.isStopped = true;
+      //  _agent.isStopped = true;
         //_agent.updatePosition = false; 
         //_agent.updateRotation = false;
         _agent.velocity = Vector3.zero;

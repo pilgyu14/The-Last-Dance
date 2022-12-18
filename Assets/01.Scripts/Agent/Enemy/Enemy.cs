@@ -9,38 +9,39 @@ using System;
 
 public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
 {
-    [SerializeField]
-    private EnemySO _enemySO;
-    [SerializeField]
-    private LayerMask _groundLayerMask; 
-    private Transform _target; // 기본적으로 터겟 관련 모든 처리를 위한 변수 
-    private Transform _battleTarget; // 현재 타겟을 찾았는가에 관한 변수 
-    private EnemyTree<Enemy> _enemyTree;
+    protected EnemyTree<Enemy> _enemyTree;
 
-    private Dictionary<Type, IComponent> _enemyComponents = new Dictionary<Type, IComponent>();  // 모든 컴포넌트 저장 딕셔너리 
+    [SerializeField]
+    protected EnemySO _enemySO;
+    [SerializeField]
+    protected LayerMask _groundLayerMask;
+    protected Transform _target; // 기본적으로 터겟 관련 모든 처리를 위한 변수 
+    protected Transform _battleTarget; // 현재 타겟을 찾았는가에 관한 변수 
 
-    private HPModule _hpModule;
+    protected Dictionary<Type, IComponent> _enemyComponents = new Dictionary<Type, IComponent>();  // 모든 컴포넌트 저장 딕셔너리 
+
+    protected HPModule _hpModule;
     // 캐싱 변수 
-    private EnemyMoveModule _moveModule;
-    private AttackModule _attackModule;
-    private FieldOfView _fov;
-    private NavMeshAgent _agent;
-    private EnemyAnimation _enemyAnimation;
-    private AgentAudioPlayer _audioPlayer;
-    private CapsuleCollider _collider;
-    private Rigidbody _rigid; 
+    protected EnemyMoveModule _moveModule;
+    protected AttackModule _attackModule;
+    protected FieldOfView _fov;
+    protected NavMeshAgent _agent;
+    protected EnemyAnimation _enemyAnimation;
+    protected AgentAudioPlayer _audioPlayer;
+    protected CapsuleCollider _collider;
+    protected Rigidbody _rigid;
 
     // 상태 변수 
-    private bool _isHit = false; // 피격중인가
-    private bool _isAttacking = false; // 전투중인가 
-    private bool _isStunned = false; // 기절했냐 
+    protected bool _isHit = false; // 피격중인가
+    protected bool _isAttacking = false; // 전투중인가 
+    protected bool _isStunned = false; // 기절했냐 
 
 
     // Collider 관련
-    private Vector3 _originColCenter;
-    private float _originColHeight;
+    protected Vector3 _originColCenter;
+    protected float _originColHeight;
 
-    private Vector3 _hitPoint;
+    protected Vector3 _hitPoint;
     // 프로퍼티 
     public bool IsBattleMode
     {
@@ -75,7 +76,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
 
     public GameObject obj => gameObject;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _target ??= FindObjectOfType<PlayerController>().transform; 
 
@@ -90,16 +91,18 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         _rigid = GetComponent<Rigidbody>();
 
         SetComponents();
-    }
 
-    private void Start()
-    {
-        _enemyTree = new EnemyTree<Enemy>(this);
-        
         // 모듈 초기화
         _hpModule.Init(_enemySO.maxHp, _enemySO.maxHp);
         _moveModule.Init(this, _agent, _enemySO.moveInfo);
-        _attackModule.Init(this, _fov, _moveModule,_enemyAnimation);
+        _attackModule.Init(this, _fov, _moveModule, _enemyAnimation);
+    }
+
+    protected virtual void Start()
+    {
+         CreateTree(); 
+
+
 
         _agent.speed = _enemySO.moveInfo.maxSpeed;
 
@@ -107,7 +110,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         _originColHeight = _collider.height;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         // 디버그용 (임시)
         Debug.DrawLine(transform.position, transform.position + _fov.GetVecByAngle(_enemySO.eyeAngle / 2, false) * _enemySO.chaseDistance,Color.cyan);
@@ -119,10 +122,27 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         // 애니메이션 실행 
         _enemyAnimation.AnimatePlayer(_agent.velocity.sqrMagnitude);
 
+        UpdateTree(); 
+    }
+
+
+    /// <summary>
+    /// 비헤이비어 트리 생성
+    /// </summary>
+    protected virtual void CreateTree()
+    {
+        _enemyTree = new EnemyTree<Enemy>(this);
+    }
+
+    /// <summary>
+    /// 비헤이비어 트리 업데이트 
+    /// </summary>
+    protected virtual void UpdateTree()
+    {
         _enemyTree.UpdateRun();
     }
 
-    private void SetComponents()
+    protected void SetComponents()
     {
         _enemyComponents.Add(typeof(EnemyMoveModule), _moveModule);
         _enemyComponents.Add(typeof(AttackModule), _attackModule);
@@ -131,7 +151,6 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
     }
 
     public bool IsFind = false;
-
 
 
     // 피격 관련 
@@ -169,7 +188,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
     /// 바닥으로 떨어졌으면 다시 물리적용 안되도록 ( 플레이어랑 충돌돼서 막 밑으로 떨어진다. ) 
     /// </summary>
     /// <returns></returns>
-    IEnumerator CheckGravity()
+    protected IEnumerator CheckGravity()
     {
         Vector3 origin = transform.position + _collider.center; 
         while(true)
@@ -220,7 +239,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         return _isStunned;
     }
     // 공격 범위 안에 들어왔는가
-    public bool CheckAttack()
+    public bool CheckMeleeAttack()
     {
         float atkDistance = _attackModule.CurAttackBase.attackCollider.GetAtkRange();
         Debug.Log("공격 범위 체크");
@@ -234,10 +253,11 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
     }
 
     // 기본 공격 쿨타임 
-    public bool CheckCoolTime()
+    public bool CheckDefaultAttackCoolTime()
     {
+       
         Debug.Log("기본 공격 쿨타임 체크");
-        return false;
+        return _attackModule.GetAttackInfo(AttackType.Default_1).IsCoolTime;
     }
     /// <summary>
     ///  추격 거리 체크 
@@ -267,7 +287,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
     /// <param name="eyeAngle"></param>
     /// <param name="distance"></param>
     /// <returns></returns>
-    private bool CheckDistance(float eyeAngle, float distance)
+    protected bool CheckDistance(float eyeAngle, float distance)
     {
         if (Target == null)
         {
@@ -310,7 +330,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         DefaultAttack(AttackType.Default_3);
     }
 
-    private void DefaultAttack(AttackType attackType)
+    protected void DefaultAttack(AttackType attackType)
     {
         _isAttacking = true; 
         _attackModule.SetCurAttackType(attackType);

@@ -139,7 +139,7 @@ public class EnemyMoveModule : AgentMoveModule
     /// </summary>
     public bool IsOriginPos()
     {
-        Debug.Log("@@처음위치에서부터 거리 " + (_agent.transform.position - _originVec).sqrMagnitude); 
+        //Debug.Log("@@처음위치에서부터 거리 " + (_agent.transform.position - _originVec).sqrMagnitude); 
         return ((_agent.transform.position - _originVec).sqrMagnitude < 3f);
     }
     #endregion

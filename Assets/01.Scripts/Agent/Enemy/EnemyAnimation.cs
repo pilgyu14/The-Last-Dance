@@ -11,8 +11,8 @@ public class EnemyAnimation : AgentAnimation
     protected override void Awake()
     { 
         base.Awake();
-        overrideController = new AnimatorOverrideController(_agentAnimator.runtimeAnimatorController); 
-        _agentAnimator.runtimeAnimatorController = overrideController;
+        //overrideController = new AnimatorOverrideController(_agentAnimator.runtimeAnimatorController); 
+        //_agentAnimator.runtimeAnimatorController = overrideController;
     }
 
     public void ChangeAttackAnimation(AnimationClip animClip)

@@ -14,6 +14,7 @@ public class AnimationEventComponent : MonoBehaviour
     public UnityEvent SideKickEffectEvent = null;
     public UnityEvent BackKickEffectEvent = null;
     public UnityEvent TackleEffectEvent = null;
+    public UnityEvent TackleEndEvent = null; // 콜라이더 꺼주기 
     public void SetNav10()
     {
         SetNav10Event?.Invoke();
@@ -43,5 +44,9 @@ public class AnimationEventComponent : MonoBehaviour
         TackleEffectEvent?.Invoke(); 
     }
 
+    public void EndTackle()
+    {
+        TackleEndEvent?.Invoke(); 
+    }
 
 }

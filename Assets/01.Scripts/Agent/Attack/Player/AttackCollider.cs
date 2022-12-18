@@ -42,7 +42,7 @@ public class AttackCollider : MonoBehaviour
         gameObject.SetActive(isActive);
 
         if (isActive == true && isContinue == false)
-            StartCoroutine(ColliderFalse());
+            StartCoroutine(DelayColliderFalse()); 
     }
 
     /// <summary>
@@ -56,9 +56,22 @@ public class AttackCollider : MonoBehaviour
         return findObj != null;
     }
 
-    IEnumerator ColliderFalse()
+    /// <summary>
+    /// 판단할 시간 기다려주기 꺼주기 ( not continue attack )
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator DelayColliderFalse()
     {
         yield return new WaitForSeconds(0.1f);
+        ColliderFalse(); 
+    }
+
+    /// <summary>
+    /// 콜라이더 꺼주기 ( continue Attack - tackle, rush ) 
+    /// </summary>
+    public void ColliderFalse()
+    {
+        //yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
 
     }

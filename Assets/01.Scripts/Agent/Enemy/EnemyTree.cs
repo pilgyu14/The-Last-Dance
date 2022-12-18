@@ -55,8 +55,8 @@ public class EnemyTree<T> : ICore where T : Enemy
                 Sequence // 공격 시퀀스 
                 (
 
-                    NotCondition(_owner.CheckCoolTime), // 공격이 쿨타임이냐 (그러면서 적이 범위 안에 있으면 기다려 
-                    Condition(_owner.CheckAttack), // 공격범위 안에 있냐 
+                    NotCondition(_owner.CheckDefaultAttackCoolTime), // 공격이 쿨타임이냐 (그러면서 적이 범위 안에 있으면 기다려 
+                    Condition(_owner.CheckMeleeAttack), // 공격범위 안에 있냐 
 
                     Action(_owner.DefaultAttack_1) // 여기까지 왔으면 공격해라 
 
