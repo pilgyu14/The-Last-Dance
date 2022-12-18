@@ -83,11 +83,11 @@ public class PlayerMoveModule : AgentMoveModule
 
         _playerAnimation.SetTackle();
         _playerAnimation.SetVelocity(Vector2.zero);
-
+        _playerAnimation.Update_Zero(); 
         // _inputModule.BlockPlayerInput(true); // 입력 차단 
 
         // 땅 쓸리는 파티클
-        StartCoroutine(DashCorutine(transform.forward.normalized, 4f, 0.3f)); 
+        StartCoroutine(DashCorutine(transform.forward.normalized, 20f, 0.3f)); 
     }
 
 

@@ -39850,7 +39850,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.29166666
-    functionName: 
+    functionName: PlayDeathEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

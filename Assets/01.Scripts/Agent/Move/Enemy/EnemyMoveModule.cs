@@ -25,21 +25,32 @@ public class EnemyChaseComponent
 public class EnemyRotateComponent
 {
     private Vector3 _rotateAxis = Vector3.up; // 회전 축  
-    private float _rotateSpeed = 30f; 
+    private float _rotateSpeed = 30f;
+    private float _chagneTime;
+    private float _delayTime; 
     private TimerModule _timeModule;
 
     public Vector3 RotateAxis => _rotateAxis;
+    public float RotateSpeed => _rotateSpeed; 
     public TimerModule Timer => _timeModule; 
     public void Init()
     {
-        ChangeRotateValue(); 
-        _timeModule = new TimerModule(1f, () => ChangeAxis()); 
+         ChangeRotateValue(); 
+        _timeModule = new TimerModule(_chagneTime, () => ChangeAxis()); 
     }
 
+    private void Wait()
+    {
+        _rotateSpeed = 0f;
+        _delayTime = Random.Range(0.5f, 1f);
+        _timeModule = new TimerModule(_delayTime,()=> ChangeAxis()); 
+    }
     private void ChangeAxis()
     {
-        _timeModule.ChangeMaxTime(Random.Range(2f, 6f));
+        // 가만히 있기 
+        _timeModule.ChangeMaxTime(Random.Range(1f, 2f));
         ChangeRotateValue();
+        _timeModule = new TimerModule(_chagneTime, () => Wait());
     }
 
     /// <summary>
@@ -47,9 +58,10 @@ public class EnemyRotateComponent
     /// </summary>
     private void ChangeRotateValue()
     {
+        _chagneTime = Random.Range(0.8f, 1.5f);
         int r = Random.Range(0, 2);
         _rotateAxis = r == 0 ? Vector3.up : Vector3.down; // 회전축 랜덤 설정 
-        float ra = Random.Range(30f, 80f);
+        float ra = Random.Range(120f, 240f);
         _rotateSpeed = ra;
 
     }
@@ -109,7 +121,7 @@ public class EnemyMoveModule : AgentMoveModule
     /// </summary>
     public void RotateIdle()
     {
-        transform.Rotate(_enemyRotateComponent.RotateAxis, 30f * Time.deltaTime);
+        transform.Rotate(_enemyRotateComponent.RotateAxis, _enemyRotateComponent.RotateSpeed * Time.deltaTime);
     }
 
     /// <summary>
@@ -127,7 +139,8 @@ public class EnemyMoveModule : AgentMoveModule
     /// </summary>
     public bool IsOriginPos()
     {
-        return ((_agent.transform.position - _originVec).sqrMagnitude < 1f);
+        Debug.Log("@@처음위치에서부터 거리 " + (_agent.transform.position - _originVec).sqrMagnitude); 
+        return ((_agent.transform.position - _originVec).sqrMagnitude < 1.5f);
     }
     #endregion
 

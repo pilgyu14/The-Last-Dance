@@ -24,6 +24,7 @@ MonoBehaviour:
   attackRadius: 5
   attackAngle: 120
   attackCoolTime: 0
+  animationClip: {fileID: 0}
   animationName: 
   animationFuncName: SetFrontKick
   hitEffect: {fileID: 6787811906628579171, guid: ed9aa6b77b874b54cad16dbfb123a2dd, type: 3}

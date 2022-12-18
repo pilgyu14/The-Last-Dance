@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     private bool _isDelay = false; // 기본 공격할 수 있는가 
     [SerializeField]
     private float _curTime = 0f;
-    private float _maxCoolTime = 0.7f;  // 기본 공격 3타 후 딜레이 
+    private float _maxCoolTime = 0.5f;  // 기본 공격 3타 후 딜레이 
 
     // 프로퍼티 
     public InputModule InputModule => _inputModule;
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         // 모듈 초기화
         _moveModule.Init(this, _agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
         _attackModule.Init(this, _fov, _moveModule,_playerAnimation);
-        _hpModule.Init(_playerSO.hp, _playerSO.hp);
+        _hpModule.Init(_playerSO.maxHp, _playerSO.maxHp);
     }
     #endregion
     private void Update()
@@ -144,6 +144,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     // 기본 공격 3타 후 딜레이
     IEnumerator Delay(float delayTime)
     {
+        Debug.LogError("딜레이 시작");
+
         _isDelay = true;
         while (_curTime <= delayTime)
         {
@@ -162,7 +164,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
 
         // 공격애니메이션 실행중이면서 일정 시간이상 실행된 상태가 아니라면 
         if (_playerAnimation.CheckDefaultAnim() == true &&
-                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+                        _playerAnimation.AgentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.8f)
         {
             Debug.Log("  공격 안돼요 ");
             return;
@@ -186,13 +188,14 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     {
         if (_isAttack == true) // 1초간 기본공격 한 상태면 다음 공격으로 이어서 실행 
         {
+              //다음 공격 실행
+             _attackModule.SetCurAttackType(_attackModule.NextAttackType);
+            
             if (_attackModule.CurAttackType == AttackType.Default_3) // 3번째 공격이면 딜레이주기
             {
                 _curTime = 0;
                 StartCoroutine(Delay(_maxCoolTime));
             }
-                //다음 공격 실행
-                _attackModule.SetCurAttackType(_attackModule.NextAttackType);
         }
         else 
         {
@@ -204,8 +207,11 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     // 태클 공격 시 실행 (shift 입력시 ) 
     private void TackeAttack()
     {
+        EndBattleState();
         _attackModule.SetCurAttackType(AttackType.Tackle);
         _attackModule.DefaultAttack();
+        _playerAnimation.SetBattle(_isBattle);
+
     }
 
     #endregion
@@ -230,13 +236,14 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
             OnDie(); // 죽음 처리 
         }
         // 모든 입력 막아야해 
+        _moveModule.StopMove(); 
         _inputModule.BlockPlayerInput(true); 
         _playerAnimation.PlayHitAnimation(); 
     }
 
     public void Knockback(Vector3 direction, float power, float duration)
     {
-        _moveModule.DashCorutine(direction, power, duration); 
+        StartCoroutine(_moveModule.DashCorutine(direction, power, duration)); 
     }
 
     #region 애니메이션 Behaviour 함수 

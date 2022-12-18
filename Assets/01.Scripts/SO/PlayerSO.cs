@@ -12,28 +12,34 @@ public class PlayerSO : AgentSO
     [Header("레벨 관련")]
     public int exp; // 경험치 
     public int maxExp; // 
-    public int level; // 레벨 
 
     /// <summary>
     /// 레벨에 맞게 스탯 업데이트 
     /// </summary>
     public void UpdateStat()
     {
-        hp = defaultHP * level;
+        maxHp = defaultHP * level;
         moveInfo.maxSpeed = defaultMaxSpeed * level; 
     }
 
+    public void CalculateExp(int monsterLevel)
+    {
+        int calLevel = monsterLevel - level; // 레벨차 
+        int exp = calLevel * 100;
+        UpdateExp(exp); 
+    }
     /// <summary>
     /// 경험치 체크해서 다찼으면 레벨업 
     /// </summary>
-    public void CheckeExp(int newExp )
+    public void UpdateExp(int newExp )
     {
         this.exp += newExp; 
         if(exp >= maxExp)
         {
             int overExp = exp - maxExp; // 넘는 경험치 받아두고 
             exp = overExp; 
-            level++; 
+            level++;
+         //   maxExp = Mathf.Log(level)
         }
     }
 }

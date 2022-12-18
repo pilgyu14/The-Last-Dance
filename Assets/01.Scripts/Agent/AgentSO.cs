@@ -19,7 +19,8 @@ public class MovementInfo
 [CreateAssetMenu(menuName = "SO/Agent/AgentAbilitySO")]
 public class AgentSO : ScriptableObject
 {
-    public int hp;
+    public int maxHp;
+    public int level; 
 
     public MovementInfo moveInfo; 
 }

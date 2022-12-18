@@ -9,22 +9,28 @@ using UnityEngine;
 public class AttackCollider : MonoBehaviour
 {
     private AttackBase _attackBase;
-    private Collider _collider;
+    private BoxCollider _collider;
     private List<GameObject> colObjs = new List<GameObject>(); // 충돌한 오브젝트 ( 한 번 충돌했으면 더 못하게 ) 
-
     private void Awake()
     {
-        _collider = GetComponent<Collider>();
+        _collider = GetComponent<BoxCollider>();
+    }
+    private void Start()
+    {
+        gameObject.SetActive(false); 
     }
     private void OnEnable()
     {
-        colObjs.Clear();
     }
     public void Init(AttackBase attackBase)
     {
         this._attackBase = attackBase;
     }
 
+    public float GetAtkRange()
+    {
+        return _collider.center.z + _collider.size.z; 
+    }
     /// <summary>
     /// 오브젝트 활성화 비활성화 
     /// </summary>
@@ -32,6 +38,7 @@ public class AttackCollider : MonoBehaviour
     public void ActiveCollider(bool isActive, bool isContinue = false)
     {
         Debug.Log(isActive + "콜라이더 활성화");
+        colObjs.Clear();
         gameObject.SetActive(isActive);
 
         if (isActive == true && isContinue == false)
@@ -58,7 +65,7 @@ public class AttackCollider : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
         Debug.Log("@@@@@@@@@@2");
-        //if (IsColObjs(col.gameObject) == true) return; // 충돌했었으면 리턴  
+        if (IsColObjs(col.gameObject) == true) return; // 충돌했었으면 리턴  
         Debug.Log("충돌");
         colObjs.Add(col.gameObject);
         _attackBase.AtkJudgeComponent.AttackJudge(col.transform); // 공격 피드백 실행 

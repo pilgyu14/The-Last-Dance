@@ -143,7 +143,7 @@ public abstract class AgentMoveModule : MonoBehaviour,IComponent
         if (Vector3.Dot(transform.forward, MoveDir) > 0 /*|| owner.IsEnemy == true*/)
         {
             Debug.Log("대쉬!");
-            StartCoroutine(DashCorutine(transform.forward.normalized, 6f, 0.05f));
+            StartCoroutine(DashCorutine(transform.forward.normalized, 12f, 0.05f));
         }
     }
 

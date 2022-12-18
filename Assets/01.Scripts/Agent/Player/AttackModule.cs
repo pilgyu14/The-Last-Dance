@@ -36,6 +36,7 @@ public class AttackModule : MonoBehaviour, IComponent
     private LayerMask _hitLayerMask;
 
     // 프로퍼티
+    public AttackBase CurAttackBase => _curAttackBase; 
     public AttackSO CurAttackSO => _curAttackBase.attackInfo.attackSO;
     public AttackType CurAttackType => _curAttackBase.attackInfo.attackType;
     public AttackType NextAttackType => _curAttackBase.attackInfo.nextAttackType;

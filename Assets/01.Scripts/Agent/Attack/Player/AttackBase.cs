@@ -157,7 +157,7 @@ public void Init(IAgent owner, AgentAnimation playerAnimation,AgentMoveModule pl
     }
 
     /// <summary>
-    /// 실질적인 공격 수행 
+    /// 실질적인 공격 수행 ( 애니메이션 중간에 추가 )     
     /// </summary>
     public void AttackJudge()
     {

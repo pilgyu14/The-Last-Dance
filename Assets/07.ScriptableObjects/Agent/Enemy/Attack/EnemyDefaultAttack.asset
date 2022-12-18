@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: EnemyDefaultAttack
   m_EditorClassIdentifier: 
   isEnemy: 1
-  isRayAttack: 1
+  isRayAttack: 0
   isContinueColliderAttack: 0
   isDefaultAttack: 0
   isMultipleAttack: 0
   isBombAttack: 0
-  isKnockbackAttack: 0
+  isKnockbackAttack: 1
   attackDamage: 5
-  knockbackPower: 0
+  knockbackPower: 5
   attackRadius: 5
   attackAngle: 30
   attackCoolTime: 0
-  animationClip: {fileID: 7400000, guid: 30456ece4ef20ce4296965d5bb2d34ed, type: 2}
+  animationClip: {fileID: 7400000, guid: b74897185d95ca648ab2d8a1e877cb4f, type: 2}
   animationName: 
   animationFuncName: 
   hitEffect: {fileID: 1493225883543534, guid: 245bf6b0acdf9474ca212c5a4f28b2ce, type: 3}

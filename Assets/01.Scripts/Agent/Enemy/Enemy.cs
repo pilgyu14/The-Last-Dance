@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         _enemyTree = new EnemyTree<Enemy>(this);
         
         // 모듈 초기화
-        _hpModule.Init(_enemySO.hp, _enemySO.hp);
+        _hpModule.Init(_enemySO.maxHp, _enemySO.maxHp);
         _moveModule.Init(this, _agent, _enemySO.moveInfo);
         _attackModule.Init(this, _fov, _moveModule,_enemyAnimation);
 
@@ -131,6 +131,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         Debug.LogError($"{transform.name} 피격, 데미지 {damage}");
         if (_hpModule.ChangeHP(-damage) == false)
         {
+            damageDealer.GetComponent<PlayerSO>().CalculateExp(_enemySO.level); 
             OnDie();
         }
         _enemyAnimation.PlayHitAnimation(); 
@@ -211,8 +212,9 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     // 공격 범위 안에 들어왔는가
     public bool CheckAttack()
     {
+        float atkDistance = _attackModule.CurAttackBase.attackCollider.GetAtkRange();
         Debug.Log("공격 범위 체크");
-        return CheckDistance(_enemySO.eyeAngle, _enemySO.attackDistance);
+        return CheckDistance(_enemySO.eyeAngle, atkDistance);
     }
     // 기본 위치에 있는가 
     public bool IsOriginPos()
@@ -240,6 +242,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     public void OnDie()
     {
         _enemyAnimation.PlayDeathAnimation(); 
+        // 플레이어 경험치 증4ㅏ 
     }
 
     /// <summary>
