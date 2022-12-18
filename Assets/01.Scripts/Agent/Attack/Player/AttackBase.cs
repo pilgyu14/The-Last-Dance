@@ -128,7 +128,7 @@ public void Init(IAgent owner, AgentAnimation playerAnimation,AgentMoveModule pl
         {
             Debug.Log("공격 애니메이션 수행");
             _enemyAnimation.ChangeAttackAnimation(attackInfo.attackSO.animationClip); //공격 애니메이션 변경 
-            _enemyAnimation.PlayAttack(); 
+           // _enemyAnimation.PlayAttack(); 
             // 공격 정보에 어택 클립 받고 
             // 컨트롤러에 넣고 
             // 실행 

@@ -5034,6 +5034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhoulMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 860292894399500415, guid: 8d8ed1f02a56d0a4a9bf414fb0fc0970, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1406520814549094568, guid: 8d8ed1f02a56d0a4a9bf414fb0fc0970, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10532,11 +10536,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1565314411247779702, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0106209675
+      value: -0.010621
       objectReference: {fileID: 0}
     - target: {fileID: 1565314411247779702, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.003639543
+      value: 0.003639554
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
@@ -29934,6 +29938,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 548140712250120006, guid: 1751e15670d5a2b4d8a5edd0956aec2f, type: 3}
       propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548140712250120006, guid: 1751e15670d5a2b4d8a5edd0956aec2f, type: 3}
+      propertyPath: m_StoppingDistance
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 548140712250120007, guid: 1751e15670d5a2b4d8a5edd0956aec2f, type: 3}

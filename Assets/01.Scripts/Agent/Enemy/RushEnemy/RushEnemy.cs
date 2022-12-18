@@ -9,13 +9,13 @@ public class RushComponent
 
 public class RushEnemy : Enemy
 {
-    private RushEnemyTree _rushEnemyTree; 
+    private RushEnemyTree _rushEnemyTree;
 
     private Material _mat;
     [SerializeField]
     private Color _rushChangeColor;
     [SerializeField]
-    private Color _originColor; 
+    private Color _originColor;
 
     protected override void Awake()
     {
@@ -31,12 +31,12 @@ public class RushEnemy : Enemy
 
     protected override void CreateTree()
     {
-        _rushEnemyTree = new RushEnemyTree(this); 
+        _rushEnemyTree = new RushEnemyTree(this);
     }
 
     protected override void UpdateTree()
     {
-        _rushEnemyTree.UpdateRun(); 
+        _rushEnemyTree.UpdateRun();
     }
 
     #region Condition
@@ -53,7 +53,7 @@ public class RushEnemy : Enemy
     public bool CheckRushAttack()
     {
         Debug.Log("돌진 범위 체크");
-        float atkDistance = _attackModule.GetAttackInfo(AttackType.RushAttack).attackInfo.attackSO.attackRadius; 
+        float atkDistance = _attackModule.GetAttackInfo(AttackType.RushAttack).attackInfo.attackSO.attackRadius;
         return CheckDistance(_enemySO.eyeAngle, atkDistance);
     }
 
@@ -63,11 +63,10 @@ public class RushEnemy : Enemy
     /// </summary>
     public void RushAttack()
     {
-        _isAttacking = true;
         _moveModule.StopMove();
-        StartCoroutine(ChangeColor()); 
+        StartCoroutine(ChangeColor());
 
-        DefaultAttack(AttackType.RushAttack); 
+        DefaultAttack(AttackType.RushAttack);
     }
 
     /// <summary>
@@ -77,15 +76,17 @@ public class RushEnemy : Enemy
     IEnumerator ChangeColor()
     {
         _mat.EnableKeyword("_EMISSION");
-        Color newColor = new Color(0,0,0); 
-        while(newColor.r < 0.99f)
+        Color newColor = new Color(0, 0, 0);
+        while (newColor.r < 0.7f)
         {
             LookTarget();
-            newColor = Color.Lerp(newColor, _rushChangeColor, Time.deltaTime); 
+            newColor = Color.Lerp(newColor, _rushChangeColor, Time.deltaTime);
             _mat.SetColor("_EmissionColor", newColor);
 
-            yield return null; 
+            yield return null;
         }
+
+
     }
 
     /// <summary>
@@ -96,7 +97,7 @@ public class RushEnemy : Enemy
         Debug.Log("색 초기화");
         _mat.SetColor("_EmissionColor", _originColor);
     }
-    
+
     /// <summary>
     /// 돌진 이동 ( Attack Feedback ) 
     /// </summary>
@@ -104,7 +105,7 @@ public class RushEnemy : Enemy
     {
         Vector3 dir = (_target.position - transform.position).normalized;
         float knockbackPower = _attackModule.GetAttackInfo(AttackType.RushAttack).attackInfo.attackSO.knockbackPower;
-        _moveModule.DashCorutine(dir, knockbackPower, 0.2f); 
+        _moveModule.DashCorutine(dir, knockbackPower, 0.2f);
     }
 
     public override void Reset()
