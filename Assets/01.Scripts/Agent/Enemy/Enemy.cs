@@ -7,7 +7,7 @@ using Rito.BehaviorTree;
 using static Rito.BehaviorTree.NodeHelper;
 using System;
 
-public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
+public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
 {
     [SerializeField]
     private EnemySO _enemySO;
@@ -34,6 +34,11 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     private bool _isHit = false; // 피격중인가
     private bool _isAttacking = false; // 전투중인가 
     private bool _isStunned = false; // 기절했냐 
+
+
+    // Collider 관련
+    private Vector3 _originColCenter;
+    private float _originColHeight;
 
     private Vector3 _hitPoint;
     // 프로퍼티 
@@ -96,6 +101,10 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
         _moveModule.Init(this, _agent, _enemySO.moveInfo);
         _attackModule.Init(this, _fov, _moveModule,_enemyAnimation);
 
+        _agent.speed = _enemySO.moveInfo.maxSpeed;
+
+        _originColCenter = _collider.center;
+        _originColHeight = _collider.height;
     }
 
     private void Update()
@@ -130,9 +139,9 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     {
         Debug.LogError($"{transform.name} 피격, 데미지 {damage}");
         if (_hpModule.ChangeHP(-damage) == false)
-        {
-            damageDealer.GetComponent<PlayerSO>().CalculateExp(_enemySO.level); 
+        { 
             OnDie();
+            damageDealer.GetComponent<PlayerController>().PlayerSO.CalculateExp(_enemySO.level); 
         }
         _enemyAnimation.PlayHitAnimation(); 
         _isHit = true; // 맞았다
@@ -147,6 +156,7 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
 
     public void Die()
     {
+
         _agent.enabled = false; 
         _collider.center = new Vector3(0, 1.78f, 0);
         _collider.height = 1.1f; 
@@ -241,8 +251,14 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
 
     public void OnDie()
     {
-        _enemyAnimation.PlayDeathAnimation(); 
-        // 플레이어 경험치 증4ㅏ 
+        _enemyAnimation.PlayDeathAnimation();
+        StartCoroutine(Destroy()); //  일정 시간 후 죽음  
+    }
+
+    private IEnumerator Destroy()
+    {
+        yield return new WaitForSeconds(5f);
+        PoolManager.Instance.Push(this); 
     }
 
     /// <summary>
@@ -353,5 +369,17 @@ public class Enemy : MonoBehaviour, IDamagable, IAgent, IAgentInput, IKnockback
     public void EndHit()
     {
         _isHit = false; 
+    }
+
+    public override void Reset()
+    {
+        _collider.center = _originColCenter;
+        _collider.height = _originColHeight;
+        _agent.enabled = true;
+        _rigid.isKinematic = true;
+
+        _hpModule.Init(_enemySO.maxHp, _enemySO.maxHp);
+
+        _enemyAnimation.AgentAnimator.Rebind(); 
     }
 }

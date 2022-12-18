@@ -29,7 +29,7 @@ public class AttackCollider : MonoBehaviour
 
     public float GetAtkRange()
     {
-        return _collider.center.z + _collider.size.z; 
+        return _collider.center.z + (_collider.size.z * 0.5f); 
     }
     /// <summary>
     /// 오브젝트 활성화 비활성화 

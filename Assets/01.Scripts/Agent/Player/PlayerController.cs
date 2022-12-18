@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     private float _maxCoolTime = 0.5f;  // 기본 공격 3타 후 딜레이 
 
     // 프로퍼티 
+    public PlayerSO PlayerSO => _playerSO; 
     public InputModule InputModule => _inputModule;
     public PlayerMoveModule MoveModule => _moveModule;
     public AttackModule AttackModule => _attackModule;

@@ -23,7 +23,7 @@ MonoBehaviour:
   knockbackPower: 5
   attackRadius: 5
   attackAngle: 30
-  attackCoolTime: 0
+  attackCoolTime: 1
   animationClip: {fileID: 7400000, guid: b74897185d95ca648ab2d8a1e877cb4f, type: 2}
   animationName: 
   animationFuncName: 

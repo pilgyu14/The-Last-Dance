@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707faf92549326440bcc845e663c769a, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
-  hp: 100
+  maxHp: 100
+  level: 2
   moveInfo:
-    maxSpeed: 5
+    maxSpeed: 4
     acceleration: 5
     deacceleration: 5
     rotSpeed: 10
   defaultHP: 100
-  defaultMaxSpeed: 5
+  defaultMaxSpeed: 4
   exp: 0
   maxExp: 0
-  level: 1
