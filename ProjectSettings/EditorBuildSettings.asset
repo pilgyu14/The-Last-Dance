@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/00.Scenes/StartScene.unity
+    guid: 5d20187ce20a5f948a17376357d60bfb
+  - enabled: 1
+    path: Assets/00.Scenes/BlueDungeon Game_Scene.unity
+    guid: 0ac1c8abe5e45a54cb83853b13e62ae0
+  - enabled: 1
+    path: Assets/00.Scenes/RedDungeon Game_Scene.unity
+    guid: fd92a544f6d236143861a74d6b35c970
   m_configObjects: {}
