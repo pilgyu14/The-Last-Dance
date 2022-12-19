@@ -20,6 +20,8 @@ MonoBehaviour:
     deacceleration: 5
     rotSpeed: 10
   defaultHP: 10
+  baseHp: 0
   defaultMaxSpeed: 4
-  exp: -100
-  maxExp: 0
+  baseMaxSpeed: 0
+  exp: 0
+  maxExp: 100

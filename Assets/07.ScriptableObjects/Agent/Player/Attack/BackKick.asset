@@ -21,6 +21,7 @@ MonoBehaviour:
   isKnockbackAttack: 1
   attackDamage: 10
   knockbackPower: 5
+  rushPower: 0
   attackRadius: 5
   attackAngle: 120
   attackCoolTime: 0
@@ -31,5 +32,9 @@ MonoBehaviour:
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}
-  icon: {fileID: 0}
-  requiredLevel: 0
+  skillInfo:
+    icon: {fileID: 0}
+    skillName: 
+    skillDescription: 
+    skillLevel: 0
+    requiredLevel: 0

@@ -7,12 +7,12 @@ using System;
 public class SkillInfo
 {
     [Header("아이콘")]
-    public Sprite icon;
-    public string skillName;
+    public Sprite icon; // 스킬 아이콘 
+    public string skillName; // 스킬 이름
     [TextArea(1, 4)]
-    public string skillDescription;
-    public int skillLevel;
-    public int requiredLevel;
+    public string skillDescription; // 스킬 설명 
+    public int skillLevel; // 스킬 레벨
+    public int requiredLevel; // 스킬 획득에 필요 레벨 ( 안 쓸 수도? )
 }
 
 

@@ -10,9 +10,7 @@ public class ExpUIComponent
     [SerializeField]
     private PlayerSO _playerSO; 
     [SerializeField]
-    private TextMeshProUGUI _maxExpText;
-    [SerializeField]
-    private TextMeshProUGUI _curExpText;
+    private TextMeshProUGUI _expText;
     [SerializeField]
     private Image _expBar; 
 
@@ -22,8 +20,8 @@ public class ExpUIComponent
     /// </summary>
     public void UpdateTextUI()
     {
-        _maxExpText.text = _playerSO.maxExp.ToString();
-        _curExpText.text = _playerSO.exp.ToString();
+        int expPercent = (_playerSO.exp / _playerSO.maxExp) * 100; 
+        _expText.text = string.Format("{0} / {1} ( {2:N1}% )", _playerSO.maxExp.ToString(), _playerSO.exp.ToString(), expPercent);
     }
 
     /// <summary>
@@ -39,6 +37,11 @@ public class ExpUIComponent
             _expBar.fillAmount = (float)prevHp / _playerSO.maxExp;
             yield return null;
         }
+        SetExpBar(); 
+    }
+
+    public void SetExpBar()
+    {
         _expBar.fillAmount = (float)_playerSO.exp / _playerSO.maxExp;
     }
 }
@@ -46,12 +49,11 @@ public class ExpUIComponent
 
 public class MainUIComponent : MonoBehaviour
 {
+    [Header("Ã¼·Â")]
     [SerializeField]
     private Slider _hpSlider;
     [SerializeField]
-    private TextMeshProUGUI _maxHpText;
-    [SerializeField]
-    private TextMeshProUGUI _curHpText;
+    private TextMeshProUGUI _hpText;
 
     [SerializeField]
     private HPModule _playerHpModule;
@@ -62,7 +64,20 @@ public class MainUIComponent : MonoBehaviour
     private void Start()
     {
         EventManager.Instance.StartListening(EventsType.UpdateHpUI, UpdateHpUI);
-        EventManager.Instance.StartListening(EventsType.UpdateHpUI, (x) => UpdateExpUI((float)x));
+        EventManager.Instance.StartListening(EventsType.UpdateHpUI, (x) => UpdateExpUI( (float)x ) );
+
+        StartCoroutine(Init()); 
+    }
+
+    IEnumerator Init()
+    {
+        while (_playerHpModule.MaxHp == 0)
+        {
+            yield return null; 
+        }
+        UpdateHpUI();
+        _expUIComponent.UpdateTextUI();
+        _expUIComponent.SetExpBar(); 
     }
 
     public void UpdateExpUI(float prevExp)
@@ -76,9 +91,7 @@ public class MainUIComponent : MonoBehaviour
     /// </summary>
     public void UpdateHpUI()
     {
-        _maxHpText.text = _playerHpModule.MaxHp.ToString();
-        _curHpText.text = _playerHpModule.HP.ToString();
-
+        _hpText.text = string.Format("{0} / {1}", _playerHpModule.MaxHp.ToString(), _playerHpModule.HP.ToString());
         StartCoroutine(UpdateHpUI(_playerHpModule.PrevHp)); 
     }
 
