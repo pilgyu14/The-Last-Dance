@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 // 상하 좌우 이동 
 // 회전 
@@ -15,6 +16,9 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     // 인스펙터 
     [SerializeField]
     private PlayerSO _playerSO;
+    [SerializeField]
+    private UnityEvent feedbackCallbackHit = null; // 스크린 이펙트 
+
 
     // 캐싱 변수 
     private InputModule _inputModule;
@@ -231,8 +235,9 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     // 피격시 호출 
     public void GetDamaged(int damage, GameObject damageDealer)
     {
-        if (IsDie() == true) return; 
-        if(_hpModule.ChangeHP(-damage) == false)
+        if (IsDie() == true) return;
+        feedbackCallbackHit?.Invoke(); 
+        if (_hpModule.ChangeHP(-damage) == false)
         {
             OnDie(); // 죽음 처리 
         }
@@ -241,6 +246,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _inputModule.BlockPlayerInput(true); 
         _playerAnimation.PlayHitAnimation(); 
     }
+
+    public 
 
     public void Knockback(Vector3 direction, float power, float duration)
     {

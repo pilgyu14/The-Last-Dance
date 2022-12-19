@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
   maxHp: 100
-  level: 2
+  level: 1
   moveInfo:
     maxSpeed: 4
     acceleration: 5
@@ -21,5 +21,5 @@ MonoBehaviour:
     rotSpeed: 10
   defaultHP: 100
   defaultMaxSpeed: 4
-  exp: 0
+  exp: -100
   maxExp: 0

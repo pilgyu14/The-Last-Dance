@@ -26,6 +26,7 @@ public class FullScreenEffect : Feedback
 
     IEnumerator StartEffect(float target)
     {
+        Debug.Log("½ÇÇà");
         float intensity = _mat.GetFloat("_FullScreenIntensity");
         
         while (Mathf.Abs(intensity - target) > 0.001f)

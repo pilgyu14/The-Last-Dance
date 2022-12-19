@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RushComponent
+public class RushComponent <T>
 {
+    private T _owner;
+    private Material _mat; 
+    private AgentMoveModule _moveModule;
 
+    public void Init(T owner, Material mat, AgentMoveModule moveModule)
+    {
+        
+    }
 }
 
 public class RushEnemy : Enemy
@@ -85,6 +92,8 @@ public class RushEnemy : Enemy
 
             yield return null;
         }
+        yield return new WaitForSeconds(0.1f);
+
         DefaultAttack(AttackType.RushAttack);
 
     }
@@ -105,8 +114,9 @@ public class RushEnemy : Enemy
     {
         Vector3 dir = (_target.position - transform.position).normalized;
         float rushPower = _attackModule.GetAttackInfo(AttackType.RushAttack).attackInfo.attackSO.rushPower;
-        _moveModule.Rush(dir, rushPower, 0.2f); 
-       // _moveModule.DashCorutine(dir, knockbackPower, 0.2f);
+        StartCoroutine(_moveModule.DashCorutine(dir, rushPower, 0.2f));
+
+        // _moveModule.DashCorutine(dir, knockbackPower, 0.2f);
     }
 
     public override void Reset()
