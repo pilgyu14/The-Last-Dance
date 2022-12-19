@@ -7,7 +7,7 @@ public class Item_Base : PoolableMono
     public float speed = 5f;
     public int damage = 0;
 
-    public Rigidbody rigid;
+    protected Rigidbody rigid;
 
     private void Awake()
     {
