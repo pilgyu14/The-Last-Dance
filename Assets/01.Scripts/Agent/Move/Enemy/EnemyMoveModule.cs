@@ -108,6 +108,12 @@ public class EnemyMoveModule : AgentMoveModule
 
     #region Action
 
+    /// <summary>
+    /// 돌진 
+    /// </summary>
+    /// <param name="dir"></param>
+    /// <param name="power"></param>
+    /// <param name="duration"></param>
     public void Rush(Vector3 dir, float power, float duration)
     {
         StartCoroutine(DashCorutine(dir, power, duration));

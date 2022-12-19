@@ -20,6 +20,7 @@ public class AttackSO : ScriptableObject
     [Header("힘 관련 변수"), Space(10)]
     public int attackDamage;
     public float knockbackPower;
+    public float rushPower; 
 
     [Header("공격 판정 변수"), Space(10)]
     public float attackRadius;

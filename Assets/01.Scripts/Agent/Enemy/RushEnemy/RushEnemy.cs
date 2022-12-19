@@ -104,8 +104,8 @@ public class RushEnemy : Enemy
     public void RushMove()
     {
         Vector3 dir = (_target.position - transform.position).normalized;
-        float knockbackPower = _attackModule.GetAttackInfo(AttackType.RushAttack).attackInfo.attackSO.knockbackPower;
-        _moveModule.Rush(dir, knockbackPower, 0.2f); 
+        float rushPower = _attackModule.GetAttackInfo(AttackType.RushAttack).attackInfo.attackSO.rushPower;
+        _moveModule.Rush(dir, rushPower, 0.2f); 
        // _moveModule.DashCorutine(dir, knockbackPower, 0.2f);
     }
 

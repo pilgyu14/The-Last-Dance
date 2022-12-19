@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66ddfc75da9047949b1cb8da98b76c9c, type: 3}
-  m_Name: EnemyRushAttack
+  m_Name: EnemySlimeDefaultAttack
   m_EditorClassIdentifier: 
   isEnemy: 1
   isRayAttack: 0
-  isContinueColliderAttack: 1
+  isContinueColliderAttack: 0
   isDefaultAttack: 0
   isMultipleAttack: 0
   isBombAttack: 0
   isKnockbackAttack: 1
-  attackDamage: 10
+  attackDamage: 5
   knockbackPower: 10
-  rushPower: 20
+  rushPower: 0
   attackRadius: 5
-  attackAngle: 0
-  attackCoolTime: 2
-  animationClip: {fileID: 7400000, guid: 199636302404e694c9824e1f8a011a10, type: 2}
+  attackAngle: 30
+  attackCoolTime: 1
+  animationClip: {fileID: 7400000, guid: a7874ea932e63f747a42283b3972341a, type: 2}
   animationName: 
   animationFuncName: 
-  hitEffect: {fileID: 1224217824244948, guid: 41be69b610c3a274f943dec937ac8204, type: 3}
+  hitEffect: {fileID: 1493225883543534, guid: 245bf6b0acdf9474ca212c5a4f28b2ce, type: 3}
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}

@@ -223,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &860292894399500403
 Transform:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860292894399500411}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 4.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65781c7c1c89a6643ba13379dbba4743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemySO: {fileID: 11400000, guid: 57bbf1ae21d80d24ca311623c8a2bebd, type: 2}
+  _enemySO: {fileID: 11400000, guid: d5d52bb8634fc1d4e8be923fbb918270, type: 2}
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -274,7 +274,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1021,7 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df23d70c044c384092f0db54b271312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overrideController: {fileID: 0}
+  overrideController: {fileID: 22100000, guid: 537816c86fe8c8d4f87308cc1b67e9c5, type: 2}
 --- !u!114 &5288480209464829676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,6 +1064,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  TackleEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  EndTackleEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5288480209464829675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,19 +3154,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1762219097430826074, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1762219097430826074, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1762219097845303273, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1762219097845303273, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}

@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1764315840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1764315841}
+  - component: {fileID: 1764315843}
+  - component: {fileID: 1764315842}
+  m_Layer: 12
+  m_Name: RushCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1764315841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764315840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 548140712531741827}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1764315843
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764315840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.84031403, z: 1.2654456}
+  m_Center: {x: 0, y: 0.670157, z: 0.23272258}
+--- !u!114 &1764315842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764315840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20f870308e86db4d9ab09a429e16673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &548140711512888329
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,8 +212,8 @@ GameObject:
   - component: {fileID: 548140711640601284}
   - component: {fileID: 548140711640601290}
   - component: {fileID: 548140711640601291}
-  m_Layer: 7
-  m_Name: 1
+  m_Layer: 12
+  m_Name: DefaultCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,8 +245,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.84031403, z: 1.2}
-  m_Center: {x: 0, y: 0.670157, z: 0.2}
+  m_Size: {x: 1, y: 0.84031403, z: 1.5742977}
+  m_Center: {x: 0, y: 0.670157, z: 0.47}
 --- !u!114 &548140711640601291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +276,7 @@ GameObject:
   - component: {fileID: 548140712250120008}
   - component: {fileID: 548140712250120015}
   m_Layer: 7
-  m_Name: UM 1
+  m_Name: SlimeMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,7 +318,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   IsFind: 0
-  _rushChangeColor: {r: 0, g: 0, b: 0, a: 0}
+  _rushChangeColor: {r: 1, g: 1, b: 1, a: 1}
+  _originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!195 &548140712250120006
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -275,7 +334,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -400,6 +459,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 548140711640601284}
+  - {fileID: 1764315841}
   m_Father: {fileID: 548140712250120010}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -419,7 +479,7 @@ MonoBehaviour:
   attackInfoList:
   - attackInfo:
       attackType: 100
-      nextAttackType: 101
+      nextAttackType: 0
       attackSO: {fileID: 11400000, guid: 8572bdeeb19edfe43904990df43f8376, type: 2}
       feedbackCallback:
         m_PersistentCalls:
@@ -428,6 +488,17 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
     attackCollider: {fileID: 548140711640601291}
+  - attackInfo:
+      attackType: 300
+      nextAttackType: 0
+      attackSO: {fileID: 11400000, guid: b537a156315b5e14fb42e4ffc98bbd8d, type: 2}
+      feedbackCallback:
+        m_PersistentCalls:
+          m_Calls: []
+      feedbackCallbackHit:
+        m_PersistentCalls:
+          m_Calls: []
+    attackCollider: {fileID: 1764315842}
   _curAttackBase:
     attackInfo:
       attackType: 0
@@ -442,7 +513,7 @@ MonoBehaviour:
     attackCollider: {fileID: 0}
   _hitLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &2301282218188283212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,7 +1144,7 @@ Transform:
   - {fileID: 7219037825750925706}
   m_Father: {fileID: 7218951235007804000}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -7.5603535e-15, y: 1.225211e-15, z: -19.809177}
+  m_LocalEulerAnglesHint: {x: -6.2096417e-15, y: 1.3807713e-15, z: -25.967804}
 --- !u!1 &7215523149681132430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1206,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7218924765002125816}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 3.5763338, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.576334, y: -90, z: 0}
 --- !u!1 &7215967308051368972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1271,7 @@ Transform:
   - {fileID: 7218952134189329278}
   m_Father: {fileID: 7218924765002125816}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -4.4531986e-15, y: 1.9418207e-14, z: -9.00321}
+  m_LocalEulerAnglesHint: {x: -3.169438e-15, y: 1.9801575e-14, z: -17.605015}
 --- !u!1 &7216065928987642470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,7 +1397,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7218952134189329278}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 51.81346, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 79.03938, y: 90, z: 0}
 --- !u!1 &7216328391988511762
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,7 +1428,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7218952134189329278}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 75.09119, y: -58.513123, z: 211.48688}
+  m_LocalEulerAnglesHint: {x: 79.03938, y: 90, z: 0}
 --- !u!1 &7216398633509403902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,7 +1459,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7218977071049451848}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 43.410847, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.181347, y: -90, z: 0}
 --- !u!1 &7216568664573659080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1490,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7218924765002125816}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 3.5763338, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.576334, y: -90, z: 0}
 --- !u!1 &7216870416395669564
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1524,7 @@ Transform:
   - {fileID: 7219045429691026954}
   m_Father: {fileID: 7218977071049451848}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -6.581602e-16, y: -180, z: 49.649326}
+  m_LocalEulerAnglesHint: {x: -2.2082522e-15, y: -180, z: 57.858025}
 --- !u!1 &7216919938195620808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,7 +1609,7 @@ MonoBehaviour:
   DeathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3071242828364575599}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
         m_MethodName: Die
         m_Mode: 1
@@ -1556,6 +1627,60 @@ MonoBehaviour:
       - m_Target: {fileID: 548140712531741826}
         m_TargetAssemblyTypeName: AttackModule, Assembly-CSharp
         m_MethodName: AttackJudge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  TackleEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3071242828364575599}
+        m_TargetAssemblyTypeName: RushEnemy, Assembly-CSharp
+        m_MethodName: RushMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 548140712531741826}
+        m_TargetAssemblyTypeName: AttackModule, Assembly-CSharp
+        m_MethodName: AttackJudge
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EndTackleEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1764315842}
+        m_TargetAssemblyTypeName: AttackCollider, Assembly-CSharp
+        m_MethodName: ColliderFalse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3071242828364575599}
+        m_TargetAssemblyTypeName: RushEnemy, Assembly-CSharp
+        m_MethodName: InitColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
