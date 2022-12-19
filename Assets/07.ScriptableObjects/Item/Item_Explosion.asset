@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47704ec9b8186be44bf5dc371299a284, type: 3}
-  m_Name: InventorySO
+  m_Script: {fileID: 11500000, guid: a70b00431e8a27f4487694918ca60b9e, type: 3}
+  m_Name: Item_Explosion
   m_EditorClassIdentifier: 
-  maxItemType: 3
-  maxItemValue: 4
-  itemList:
-  - itemPrefab: {fileID: 8833704935090494934, guid: 95fc99be96945dd4784a9942fcf7b1e5, type: 3}
+  item:
+    itemPrefab: {fileID: 3542662421307382569, guid: d828a2432783cb24f892ed5181bdad60, type: 3}
     itemImage: {fileID: 0}
-    name: "\uAE30\uBCF8 \uC544\uC774\uD15C"
-    value: 5
+    name: "\uD3ED\uBC1C \uC544\uC774\uD15C"
+    value: 1

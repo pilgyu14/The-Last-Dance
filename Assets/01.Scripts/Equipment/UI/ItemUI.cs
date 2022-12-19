@@ -12,6 +12,11 @@ public class ItemUI : MonoSingleton<ItemUI>
     [SerializeField]
     public Image itemImage;
     [SerializeField]
+    public TextMeshProUGUI itemNameText;
+    [SerializeField]
+    public TextMeshProUGUI itemCntText;
+
+    [SerializeField]
     public GameObject pickup;
     [SerializeField]
     public TextMeshProUGUI pickupNameText;
@@ -32,13 +37,23 @@ public class ItemUI : MonoSingleton<ItemUI>
                 pageIdx--;
                 UpdateItemImage();
             }
+            else
+            {
+                pageIdx = inventorySO.itemList.Count - 1;
+                UpdateItemImage();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(pageIdx < inventorySO.maxItemType - 1 && pageIdx < inventorySO.itemList.Count - 1)
+            if(pageIdx < inventorySO.itemList.Count - 1)
             {
                 pageIdx++;
+                UpdateItemImage();
+            }
+            else
+            {
+                pageIdx = 0;
                 UpdateItemImage();
             }
         }
@@ -57,7 +72,10 @@ public class ItemUI : MonoSingleton<ItemUI>
                 item.SetPosAndRot(startPos, rot);
                 if(inventorySO.itemList[pageIdx].value <= 0)
                 {
-                    inventorySO.itemList.RemoveAt(pageIdx);
+                    if(inventorySO.itemList.Count != 1)
+                    {
+                        inventorySO.itemList.RemoveAt(pageIdx);
+                    }
                     pageIdx = 0;
                 }
             }
@@ -67,6 +85,8 @@ public class ItemUI : MonoSingleton<ItemUI>
     public void UpdateItemImage()
     {
         itemImage.sprite = inventorySO.itemList[pageIdx].itemImage;
+        itemCntText.text = inventorySO.itemList[pageIdx].value.ToString();
+        itemNameText.text = inventorySO.itemList[pageIdx].name;
     }
 
     public void InventoryClear()
