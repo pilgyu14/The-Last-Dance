@@ -28,7 +28,7 @@ public class Item_Base : PoolableMono
 
     public virtual void Attack(GameObject monster)
     {
-        //monster.GetComponent<Hp?>().Damage(damage);
+        monster.GetComponent<IDamagable>().GetDamaged(damage,gameObject);
         PoolManager.Instance.Push(this);
     }
 

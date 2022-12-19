@@ -25,6 +25,7 @@ public class HPModule :  MonoBehaviour ,IComponent
             _curHp = Mathf.Clamp(_curHp + value, 0, _maxHp); 
         }
     }
+    public int MaxHp => _maxHp; 
 
     public void Init(int curHp,int maxHp)
     {

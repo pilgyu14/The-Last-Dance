@@ -7,7 +7,7 @@ public class FullScreenEffect : Feedback
     [SerializeField]
     private Material _mat;
     [SerializeField]
-    private float _maxIntensity = 0.028f;
+    private float _maxIntensity = 0.1f;
 
     public bool One = true;
 
