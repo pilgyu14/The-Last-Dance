@@ -1,21 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
+using TMPro; 
 
 public class HPModule :  MonoBehaviour ,IComponent
 {
     [SerializeField]
     private int _curHp;
+    private int _prevHp; 
     private int _maxHp;
+
+    [SerializeField]
+    private bool _isPlayer; 
 
     // UI길이 체력에 따라 길거나 작게 설정 
     [SerializeField]
-    private GameObject _canvas; 
+    private GameObject _canvas;
+
     [SerializeField]
-    private Slider _hpSlider;
+    private List<Slider> _hpSliderList;
     [SerializeField]
-    private Slider _prevHpSlider; 
+    private List<Slider> _prevHpSliderList; 
 
     public int HP
     {
@@ -25,6 +31,8 @@ public class HPModule :  MonoBehaviour ,IComponent
             _curHp = Mathf.Clamp(_curHp + value, 0, _maxHp); 
         }
     }
+    public int PrevHp => _prevHp; 
+    public int MaxHp => _maxHp; 
 
     public void Init(int curHp,int maxHp)
     {
@@ -39,11 +47,15 @@ public class HPModule :  MonoBehaviour ,IComponent
     /// <param name="dmg"></param>
     public bool ChangeHP(int dmg)
     {
-        float tempHp = HP; 
+         _prevHp= HP; 
         HP = dmg;
         //StopAllCoroutines(); 
-        StartCoroutine(UpdateHpUI(tempHp));
+        StartCoroutine(UpdateHpUI(_prevHp));
         // UI가 있다면 UI업데이트 
+        if(_isPlayer == true)
+        {
+            EventManager.Instance.TriggerEvent(EventsType.UpdateHpUI); // 메인 UI 업데이트 
+        }
 
         if (HP == 0)
         {
@@ -62,14 +74,22 @@ public class HPModule :  MonoBehaviour ,IComponent
     {
         while(Mathf.Abs(HP - prevHp) > 0.5f)
         {
-            prevHp = Mathf.Lerp(prevHp, HP, Time.unscaledDeltaTime * 5);
-            _hpSlider.value = (float)prevHp / _maxHp; 
-
+            for(int i =0;i < _hpSliderList.Count; i++)
+            {
+                prevHp = Mathf.Lerp(prevHp, HP, Time.unscaledDeltaTime * 5);
+                _hpSliderList[i].value = (float)prevHp / _maxHp;
+            }
             yield return null; 
         }
-        _hpSlider.value =(float) HP / _maxHp;
 
-        StartCoroutine(UpdatePrevHpUI(_hpSlider.value)); 
+        for (int i = 0; i < _hpSliderList.Count; i++)
+        {
+            _hpSliderList[i].value = (float)HP / _maxHp;
+            if (_prevHpSliderList[i] != null)
+            {
+                StartCoroutine(UpdatePrevHpUI(_hpSliderList[i].value,i));
+            }
+        }
     }
 
     /// <summary>
@@ -77,15 +97,15 @@ public class HPModule :  MonoBehaviour ,IComponent
     /// </summary>
     /// <param name="target"></param>
     /// <returns></returns>
-    IEnumerator UpdatePrevHpUI(float target)
+    IEnumerator UpdatePrevHpUI(float target,int idx)
     {
-        while (Mathf.Abs(_prevHpSlider.value - target) > 0.01f)
+        while (Mathf.Abs(_prevHpSliderList[idx].value - target) > 0.01f)
         {
-            _prevHpSlider.value = Mathf.Lerp(_prevHpSlider.value, target, Time.unscaledDeltaTime * 10); 
+            _prevHpSliderList[idx].value = Mathf.Lerp(_prevHpSliderList[idx].value, target, Time.unscaledDeltaTime * 10); 
 
             yield return null;
         }
-        _prevHpSlider.value = _hpSlider.value; 
+        _prevHpSliderList[idx].value = _hpSliderList[idx].value; 
     }
 
     /// <summary>
@@ -100,5 +120,7 @@ public class HPModule :  MonoBehaviour ,IComponent
     {
         _canvas.SetActive(true); 
     }
+
+ 
 }
 

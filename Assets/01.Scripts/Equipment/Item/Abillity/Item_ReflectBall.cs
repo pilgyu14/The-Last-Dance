@@ -35,7 +35,7 @@ public class Item_ReflectBall : Item_Base
             base.Attack(monster);
             return;
         }
-        //monster.GetComponent<Hp?>().Damage(damage);
+        monster.GetComponent<IDamagable>().GetDamaged(damage,gameObject);
     }
 
     public override void Reset()

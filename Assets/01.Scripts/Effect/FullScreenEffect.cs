@@ -7,7 +7,7 @@ public class FullScreenEffect : Feedback
     [SerializeField]
     private Material _mat;
     [SerializeField]
-    private float _maxIntensity = 0.028f;
+    private float _maxIntensity = 0.1f;
 
     public bool One = true;
 
@@ -26,6 +26,7 @@ public class FullScreenEffect : Feedback
 
     IEnumerator StartEffect(float target)
     {
+        Debug.Log("½ÇÇà");
         float intensity = _mat.GetFloat("_FullScreenIntensity");
         
         while (Mathf.Abs(intensity - target) > 0.001f)

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Item_Base : PoolableMono
 {
+    [SerializeField]
+    protected EffectComponent _hitEffect; 
+
     public float speed = 5f;
     public int damage = 0;
+
 
     protected Rigidbody rigid;
 
@@ -28,7 +32,7 @@ public class Item_Base : PoolableMono
 
     public virtual void Attack(GameObject monster)
     {
-        //monster.GetComponent<Hp?>().Damage(damage);
+        monster.GetComponent<IDamagable>().GetDamaged(damage,gameObject);
         PoolManager.Instance.Push(this);
     }
 

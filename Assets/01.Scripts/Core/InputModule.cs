@@ -20,7 +20,7 @@ public class InputModule : MonoBehaviour, IAgentInput
 
     private bool _isAttackInput = true;
 
-
+    private bool _isInput = true; 
     private bool _isPlayerInput = true;
     private bool _isUIInput = true;
 
@@ -52,6 +52,8 @@ public class InputModule : MonoBehaviour, IAgentInput
 
     private void Update()
     {
+        if (_isInput == false) return; 
+
         if (_isPlayerInput == true)
         {
             PlayerInput(); 
@@ -64,6 +66,16 @@ public class InputModule : MonoBehaviour, IAgentInput
     
     }
 
+
+    /// <summary>
+    /// 모든 입력 차단 ( 죽었을 때 )
+    /// </summary>
+    /// <param name="isBlock"></param>
+    public void BlockAllInput(bool isBlock)
+    {
+        _isInput = ! isBlock;
+    }
+
     /// <summary>
     /// 플레이어 입력 차단( UI 입력 외 ) 
     /// </summary>
@@ -72,6 +84,8 @@ public class InputModule : MonoBehaviour, IAgentInput
     {
         _isPlayerInput = !isBlock; 
     }
+
+
 
     /// <summary>
     /// 공격중이면 입력 차단 
