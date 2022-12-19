@@ -1,6 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System; 
+
+[Serializable]
+public class SkillInfo
+{
+    [Header("아이콘")]
+    public Sprite icon;
+    public string skillName;
+    [TextArea(1, 4)]
+    public string skillDescription;
+    public int skillLevel;
+    public int requiredLevel;
+}
+
 
 [CreateAssetMenu(menuName ="SO/AttackSO/BaseAttackSO")]
 public class AttackSO : ScriptableObject
@@ -14,8 +28,6 @@ public class AttackSO : ScriptableObject
     public bool isMultipleAttack;
     public bool isBombAttack;
     public bool isKnockbackAttack;
-   
-    
 
     [Header("힘 관련 변수"), Space(10)]
     public int attackDamage;
@@ -42,9 +54,8 @@ public class AttackSO : ScriptableObject
     public AudioClip swingClip;
     public AudioClip hitClip;
 
-    [Header("아이콘")]
-    public Sprite icon;
-    public int requiredLevel; 
+    public SkillInfo skillInfo; 
+
 }
 
 [CreateAssetMenu(menuName = "SO/AttackSO/SpawnAttackSO")]

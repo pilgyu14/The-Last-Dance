@@ -9,6 +9,10 @@ public enum EventsType
     LoadFloor1Scene = 101,
     LoadFloor2Scene = 102, 
 
+    // UI 
+    UpdateHpUI = 301,
+    UpdateExpUI = 302,
+
     ClearEvents = 10000
 }
 public class EventManager : MonoSingleton<EventManager>

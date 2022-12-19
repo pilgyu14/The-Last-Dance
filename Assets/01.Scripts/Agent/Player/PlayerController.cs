@@ -18,7 +18,11 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     private PlayerSO _playerSO;
     [SerializeField]
     private UnityEvent feedbackCallbackHit = null; // 스크린 이펙트 
+    [SerializeField]
+    private FeedbackPlayer _lowHpFeedback; // 체력 낮을 때 피드백 
 
+    [SerializeField]
+    private EffectFeedback lowHpFeedback; // 체력 낮을 때 피드백 
 
     // 캐싱 변수 
     private InputModule _inputModule;
@@ -57,6 +61,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     [SerializeField]
     private float _curTime = 0f;
     private float _maxCoolTime = 0.5f;  // 기본 공격 3타 후 딜레이 
+
+    private bool _isLowHpEffect = false; // hp 적을 때 이펙트 
 
     // 프로퍼티 
     public PlayerSO PlayerSO => _playerSO; 
@@ -223,8 +229,11 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     // 피격 관련 
     public void OnDie()
     {
+        _inputModule.BlockAllInput(true); 
         _isDie = true;
         _playerAnimation.PlayDeathAnimation(); 
+        
+        // UI 뜨도록 
     }
 
     public bool IsDie()
@@ -237,17 +246,44 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     {
         if (IsDie() == true) return;
         feedbackCallbackHit?.Invoke(); 
-        if (_hpModule.ChangeHP(-damage) == false)
+        if (CheckHPEffect(damage) == false)
         {
             OnDie(); // 죽음 처리 
         }
         // 모든 입력 막아야해 
         _moveModule.StopMove(); 
         _inputModule.BlockPlayerInput(true); 
-        _playerAnimation.PlayHitAnimation(); 
+        _playerAnimation.PlayHitAnimation();
+
+        EventManager.Instance.TriggerEvent(EventsType.UpdateHpUI); // UI 업데이트 
     }
 
-    public 
+    /// <summary>
+    /// 체력 적으면 이글이글 효과 
+    /// </summary>
+    public bool CheckHPEffect(int damage)
+    {
+        bool isDie = _hpModule.ChangeHP(-damage);
+        if( isDie == false && _isLowHpEffect == false &&_hpModule.HP/_hpModule.MaxHp < 0.2f) // 이펙트가 꺼져있으면서 체력 20퍼 미만 이면 
+        {
+            // 이펙트 시작 
+            _lowHpFeedback.PlayAllFeedbacks();
+            _isLowHpEffect = true; 
+        }
+        else if(_isLowHpEffect == true)
+        {
+            // 이펙트 꺼주기 
+            _lowHpFeedback.FinishAllFeedbacks();
+            _isLowHpEffect = false; 
+        }
+        return isDie; 
+    }
+
+    private void Check()
+    {
+
+    }
+
 
     public void Knockback(Vector3 direction, float power, float duration)
     {

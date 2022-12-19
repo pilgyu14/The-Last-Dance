@@ -94,7 +94,7 @@ public class RushEnemy : Enemy
         }
         yield return new WaitForSeconds(0.1f);
 
-        DefaultAttack(AttackType.RushAttack);
+        DefaultAttack(AttackType.RushAttack); // 색 변한 후 공격!
 
     }
 
