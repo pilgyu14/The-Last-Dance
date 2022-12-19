@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_Explosion
   m_EditorClassIdentifier: 
   item:
-    itemPrefab: {fileID: 3542662421307382569, guid: d828a2432783cb24f892ed5181bdad60, type: 3}
+    itemPrefab: {fileID: 955390234167425301, guid: 0e5682cb429eb0547bf8517f97520b8a, type: 3}
     itemImage: {fileID: 0}
     name: "\uD3ED\uBC1C \uC544\uC774\uD15C"
     value: 1
