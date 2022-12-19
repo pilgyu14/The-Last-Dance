@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47704ec9b8186be44bf5dc371299a284, type: 3}
   m_Name: InventorySO
   m_EditorClassIdentifier: 
-  maxItemType: 3
-  maxItemValue: 4
+  maxItemType: 4
+  maxItemValue: 10
   itemList:
   - itemPrefab: {fileID: 8833704935090494934, guid: 95fc99be96945dd4784a9942fcf7b1e5, type: 3}
     itemImage: {fileID: 0}

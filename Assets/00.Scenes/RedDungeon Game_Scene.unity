@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 3465301}
   m_Layer: 0
   m_Name: wall_01 (20)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 17056061}
   m_Layer: 0
   m_Name: wall_01 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 17110408}
   m_Layer: 0
   m_Name: barrel (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 28328428}
   m_Layer: 0
   m_Name: railing (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 35113147}
   m_Layer: 0
   m_Name: stairs (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -773,7 +773,7 @@ GameObject:
   - component: {fileID: 35350957}
   m_Layer: 0
   m_Name: colon (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 53287749}
   m_Layer: 0
   m_Name: fencing__large (14)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -934,7 +934,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 169
+  m_RootOrder: 167
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!23 &53287747
 MeshRenderer:
@@ -1030,7 +1030,7 @@ GameObject:
   - component: {fileID: 79448048}
   m_Layer: 0
   m_Name: wall_03 (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1226,7 +1226,7 @@ GameObject:
   - component: {fileID: 89457220}
   m_Layer: 0
   m_Name: railing (10)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1436,7 +1436,7 @@ GameObject:
   - component: {fileID: 95569350}
   m_Layer: 0
   m_Name: colon (8)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1534,7 +1534,7 @@ GameObject:
   - component: {fileID: 107838264}
   m_Layer: 0
   m_Name: railing (20)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1552,7 +1552,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 226
+  m_RootOrder: 222
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!208 &107838264
 NavMeshObstacle:
@@ -1648,7 +1648,7 @@ GameObject:
   - component: {fileID: 117048729}
   m_Layer: 0
   m_Name: fencing__large (17)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1762,7 +1762,7 @@ GameObject:
   - component: {fileID: 120280357}
   m_Layer: 0
   m_Name: railing (15)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1876,7 +1876,7 @@ GameObject:
   - component: {fileID: 125743807}
   m_Layer: 0
   m_Name: wall_01 (30)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1990,7 +1990,7 @@ GameObject:
   - component: {fileID: 125907788}
   m_Layer: 0
   m_Name: wall_03 (17)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -2104,7 +2104,7 @@ GameObject:
   - component: {fileID: 126526246}
   m_Layer: 0
   m_Name: barrel (9)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -2122,7 +2122,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 213
+  m_RootOrder: 212
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &126526244
 MeshRenderer:
@@ -2218,7 +2218,7 @@ GameObject:
   - component: {fileID: 129309799}
   m_Layer: 0
   m_Name: railing (21)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -2236,7 +2236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 230
+  m_RootOrder: 226
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!208 &129309799
 NavMeshObstacle:
@@ -2332,7 +2332,7 @@ GameObject:
   - component: {fileID: 129991345}
   m_Layer: 0
   m_Name: wall_01 (33)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -2640,7 +2640,7 @@ GameObject:
   - component: {fileID: 144768803}
   m_Layer: 0
   m_Name: wall_03 (14)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3017,7 +3017,7 @@ GameObject:
   - component: {fileID: 163895203}
   m_Layer: 0
   m_Name: railing_corner (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3100,7 +3100,7 @@ GameObject:
   - component: {fileID: 168237537}
   m_Layer: 0
   m_Name: obj_04 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3185,7 +3185,7 @@ GameObject:
   - component: {fileID: 194141045}
   m_Layer: 0
   m_Name: railing (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3292,6 +3292,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1525184553}
     m_Modifications:
     - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -3390,7 +3394,7 @@ GameObject:
   - component: {fileID: 219069478}
   m_Layer: 0
   m_Name: wall_01 (27)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3504,7 +3508,7 @@ GameObject:
   - component: {fileID: 235993740}
   m_Layer: 0
   m_Name: fencing__large (19)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3618,7 +3622,7 @@ GameObject:
   - component: {fileID: 247441890}
   m_Layer: 0
   m_Name: fencing__large (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3732,7 +3736,7 @@ GameObject:
   - component: {fileID: 250142533}
   m_Layer: 0
   m_Name: wall_01 (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4024,7 +4028,7 @@ GameObject:
   - component: {fileID: 262176753}
   m_Layer: 0
   m_Name: guillotine
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4109,7 +4113,7 @@ GameObject:
   - component: {fileID: 264602343}
   m_Layer: 0
   m_Name: obj_01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4417,7 +4421,7 @@ GameObject:
   - component: {fileID: 287823741}
   m_Layer: 0
   m_Name: wall_01 (12)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4614,7 +4618,7 @@ GameObject:
   - component: {fileID: 307891243}
   m_Layer: 0
   m_Name: bowl
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4820,6 +4824,10 @@ PrefabInstance:
     - target: {fileID: 1120020899853670, guid: ec6c7c65d6b5df2499b72030a039b14a, type: 3}
       propertyPath: m_Name
       value: obj_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120020899853670, guid: ec6c7c65d6b5df2499b72030a039b14a, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 1120020899853670, guid: ec6c7c65d6b5df2499b72030a039b14a, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5183,7 +5191,7 @@ GameObject:
   - component: {fileID: 358745159}
   m_Layer: 0
   m_Name: railing (17)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -5384,7 +5392,7 @@ GameObject:
   - component: {fileID: 371721651}
   m_Layer: 0
   m_Name: wall_03_001 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -5468,7 +5476,7 @@ GameObject:
   - component: {fileID: 374852061}
   m_Layer: 0
   m_Name: railing_corner (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -5553,7 +5561,7 @@ GameObject:
   - component: {fileID: 378424972}
   m_Layer: 0
   m_Name: obj_05 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -5668,7 +5676,7 @@ GameObject:
   - component: {fileID: 384738646}
   m_Layer: 0
   m_Name: fencing__corner (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -5877,7 +5885,7 @@ GameObject:
   - component: {fileID: 403067277}
   m_Layer: 0
   m_Name: wall_02 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -5895,7 +5903,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 183
+  m_RootOrder: 182
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &403067277
 MeshRenderer:
@@ -5962,7 +5970,7 @@ GameObject:
   - component: {fileID: 435158898}
   m_Layer: 0
   m_Name: railing (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -6076,7 +6084,7 @@ GameObject:
   - component: {fileID: 445663054}
   m_Layer: 0
   m_Name: wall_03 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -6188,7 +6196,7 @@ GameObject:
   - component: {fileID: 449349027}
   m_Layer: 0
   m_Name: colon (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -6289,7 +6297,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 222
+  m_RootOrder: 218
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &456002817
 Light:
@@ -6485,7 +6493,7 @@ GameObject:
   - component: {fileID: 469089295}
   m_Layer: 0
   m_Name: wall_01 (22)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -6693,6 +6701,10 @@ PrefabInstance:
       value: obj_01_001 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -6791,7 +6803,7 @@ GameObject:
   - component: {fileID: 478906757}
   m_Layer: 0
   m_Name: fencing__large (18)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -7002,7 +7014,7 @@ GameObject:
   - component: {fileID: 528141111}
   m_Layer: 0
   m_Name: colon (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -7020,7 +7032,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 160
+  m_RootOrder: 158
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &528141109
 MeshRenderer:
@@ -7116,7 +7128,7 @@ GameObject:
   - component: {fileID: 529035678}
   m_Layer: 0
   m_Name: fencing__large (8)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -7134,7 +7146,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 161
+  m_RootOrder: 159
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &529035676
 MeshRenderer:
@@ -7314,7 +7326,7 @@ GameObject:
   - component: {fileID: 540862579}
   m_Layer: 0
   m_Name: wall_03 (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -7428,7 +7440,7 @@ GameObject:
   - component: {fileID: 542036850}
   m_Layer: 0
   m_Name: wall_02
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -7540,7 +7552,7 @@ GameObject:
   - component: {fileID: 546533428}
   m_Layer: 0
   m_Name: wall_03_001 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -7626,7 +7638,7 @@ GameObject:
   - component: {fileID: 554802628}
   m_Layer: 0
   m_Name: colon (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -7740,7 +7752,7 @@ GameObject:
   - component: {fileID: 568964719}
   m_Layer: 0
   m_Name: wall_03 (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -7854,7 +7866,7 @@ GameObject:
   - component: {fileID: 573682094}
   m_Layer: 0
   m_Name: wall_01 (29)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -8051,7 +8063,7 @@ GameObject:
   - component: {fileID: 578188718}
   m_Layer: 0
   m_Name: barrel (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -8162,6 +8174,10 @@ PrefabInstance:
       value: obj_01_001 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -8260,7 +8276,7 @@ GameObject:
   - component: {fileID: 599904927}
   m_Layer: 0
   m_Name: wall_03 (13)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -8374,7 +8390,7 @@ GameObject:
   - component: {fileID: 600528843}
   m_Layer: 0
   m_Name: wall_01 (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -8488,7 +8504,7 @@ GameObject:
   - component: {fileID: 616630785}
   m_Layer: 0
   m_Name: colon2 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -8796,7 +8812,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 217
+  m_RootOrder: 216
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &641871961
 Light:
@@ -8978,7 +8994,7 @@ GameObject:
   - component: {fileID: 648772885}
   m_Layer: 0
   m_Name: fencing__large (12)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -8996,7 +9012,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 167
+  m_RootOrder: 165
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!23 &648772883
 MeshRenderer:
@@ -9109,7 +9125,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 194
+  m_RootOrder: 193
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &651527433
 MeshRenderer:
@@ -9189,7 +9205,7 @@ GameObject:
   - component: {fileID: 662557625}
   m_Layer: 0
   m_Name: wall_01 (11)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -9400,7 +9416,7 @@ GameObject:
   - component: {fileID: 679995541}
   m_Layer: 0
   m_Name: wall_01 (36)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -9418,7 +9434,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 189
+  m_RootOrder: 188
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &679995539
 MeshRenderer:
@@ -9514,7 +9530,7 @@ GameObject:
   - component: {fileID: 680250612}
   m_Layer: 0
   m_Name: wall_01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -9725,7 +9741,7 @@ GameObject:
   - component: {fileID: 689183815}
   m_Layer: 0
   m_Name: wall_01 (37)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -9743,7 +9759,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 227
+  m_RootOrder: 223
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!208 &689183815
 NavMeshObstacle:
@@ -9837,7 +9853,7 @@ GameObject:
   - component: {fileID: 693737945}
   m_Layer: 0
   m_Name: railing_corner (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -9922,7 +9938,7 @@ GameObject:
   - component: {fileID: 699225797}
   m_Layer: 0
   m_Name: wall_01 (40)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -10036,7 +10052,7 @@ GameObject:
   - component: {fileID: 701266767}
   m_Layer: 0
   m_Name: wall_01 (38)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -10054,7 +10070,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 190
+  m_RootOrder: 189
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &701266765
 MeshRenderer:
@@ -10228,7 +10244,7 @@ GameObject:
   - component: {fileID: 711607904}
   m_Layer: 0
   m_Name: railing (8)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -10534,7 +10550,7 @@ GameObject:
   - component: {fileID: 719874100}
   m_Layer: 0
   m_Name: railing_corner (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -10716,7 +10732,7 @@ GameObject:
   - component: {fileID: 730338512}
   m_Layer: 0
   m_Name: wall_01 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -10828,7 +10844,7 @@ GameObject:
   - component: {fileID: 731958230}
   m_Layer: 0
   m_Name: stairs
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -10913,7 +10929,7 @@ GameObject:
   - component: {fileID: 735767790}
   m_Layer: 0
   m_Name: wall_03 (8)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11027,7 +11043,7 @@ GameObject:
   - component: {fileID: 735814276}
   m_Layer: 0
   m_Name: fencing__large (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11139,7 +11155,7 @@ GameObject:
   - component: {fileID: 737094245}
   m_Layer: 0
   m_Name: wall_03_001 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11308,7 +11324,7 @@ GameObject:
   - component: {fileID: 763398625}
   m_Layer: 0
   m_Name: railing (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11422,7 +11438,7 @@ GameObject:
   - component: {fileID: 765399516}
   m_Layer: 0
   m_Name: wall_01 (32)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11536,7 +11552,7 @@ GameObject:
   - component: {fileID: 766734998}
   m_Layer: 0
   m_Name: wall_03 (15)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11650,7 +11666,7 @@ GameObject:
   - component: {fileID: 771413767}
   m_Layer: 0
   m_Name: wall_03 (10)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11764,7 +11780,7 @@ GameObject:
   - component: {fileID: 776503322}
   m_Layer: 0
   m_Name: wall_01 (23)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11876,7 +11892,7 @@ GameObject:
   - component: {fileID: 783147575}
   m_Layer: 0
   m_Name: obj_01
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11946,7 +11962,7 @@ GameObject:
   - component: {fileID: 788333529}
   m_Layer: 0
   m_Name: railing (22)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -11964,7 +11980,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 231
+  m_RootOrder: 227
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!208 &788333529
 NavMeshObstacle:
@@ -12157,7 +12173,7 @@ GameObject:
   - component: {fileID: 793168385}
   m_Layer: 0
   m_Name: railing (19)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -12175,7 +12191,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 225
+  m_RootOrder: 220
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!208 &793168385
 NavMeshObstacle:
@@ -12368,7 +12384,7 @@ GameObject:
   - component: {fileID: 800487696}
   m_Layer: 0
   m_Name: railing (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -12482,7 +12498,7 @@ GameObject:
   - component: {fileID: 833620744}
   m_Layer: 0
   m_Name: fencing__corner
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -12693,7 +12709,7 @@ GameObject:
   - component: {fileID: 837930871}
   m_Layer: 0
   m_Name: obj_01 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -12805,7 +12821,7 @@ GameObject:
   - component: {fileID: 849215865}
   m_Layer: 0
   m_Name: railing_corner (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -12890,7 +12906,7 @@ GameObject:
   - component: {fileID: 850967930}
   m_Layer: 0
   m_Name: railing
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -13101,7 +13117,7 @@ GameObject:
   - component: {fileID: 876521984}
   m_Layer: 0
   m_Name: wall_03 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -13299,7 +13315,7 @@ GameObject:
   - component: {fileID: 883318671}
   m_Layer: 0
   m_Name: wall_03 (16)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -13413,7 +13429,7 @@ GameObject:
   - component: {fileID: 888293412}
   m_Layer: 0
   m_Name: colon2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -13544,7 +13560,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 229
+  m_RootOrder: 225
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &889425974
 BoxCollider:
@@ -13624,7 +13640,7 @@ GameObject:
   - component: {fileID: 917800393}
   m_Layer: 0
   m_Name: fencing__large (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -13738,7 +13754,7 @@ GameObject:
   - component: {fileID: 921620236}
   m_Layer: 0
   m_Name: wall_01 (35)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -13756,7 +13772,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 182
+  m_RootOrder: 181
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &921620234
 MeshRenderer:
@@ -13852,7 +13868,7 @@ GameObject:
   - component: {fileID: 925711622}
   m_Layer: 0
   m_Name: cage_02
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -13967,7 +13983,7 @@ GameObject:
   - component: {fileID: 926519193}
   m_Layer: 0
   m_Name: fencing__large (11)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -13985,7 +14001,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 166
+  m_RootOrder: 164
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &926519191
 MeshRenderer:
@@ -14165,6 +14181,10 @@ PrefabInstance:
       value: lantern (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1767885835560412, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767885835560412, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -14251,7 +14271,7 @@ GameObject:
   - component: {fileID: 972997957}
   m_Layer: 0
   m_Name: wall_03
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -14460,7 +14480,7 @@ GameObject:
   - component: {fileID: 984367781}
   m_Layer: 0
   m_Name: railing_corner (8)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -14545,7 +14565,7 @@ GameObject:
   - component: {fileID: 984880955}
   m_Layer: 0
   m_Name: barrel (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -14774,7 +14794,7 @@ GameObject:
   - component: {fileID: 1021357127}
   m_Layer: 0
   m_Name: wall_01 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -14893,7 +14913,7 @@ GameObject:
   - component: {fileID: 1031921857}
   m_Layer: 0
   m_Name: wall_03 (22)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -14911,7 +14931,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 233
+  m_RootOrder: 232
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!208 &1031921857
 NavMeshObstacle:
@@ -15218,7 +15238,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 192
+  m_RootOrder: 191
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1056185599
 MeshRenderer:
@@ -15297,7 +15317,7 @@ GameObject:
   - component: {fileID: 1060676999}
   m_Layer: 0
   m_Name: colon (9)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -15395,7 +15415,7 @@ GameObject:
   - component: {fileID: 1062419626}
   m_Layer: 0
   m_Name: fetter (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -15709,7 +15729,7 @@ GameObject:
   - component: {fileID: 1087328229}
   m_Layer: 0
   m_Name: colon (12)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -15807,7 +15827,7 @@ GameObject:
   - component: {fileID: 1093923716}
   m_Layer: 0
   m_Name: wall_03 (19)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -15921,7 +15941,7 @@ GameObject:
   - component: {fileID: 1102879109}
   m_Layer: 0
   m_Name: wall_03 (9)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -16035,7 +16055,7 @@ GameObject:
   - component: {fileID: 1115271638}
   m_Layer: 0
   m_Name: wall_03 (20)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -16149,7 +16169,7 @@ GameObject:
   - component: {fileID: 1126847784}
   m_Layer: 0
   m_Name: fencing__large (15)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -16167,7 +16187,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 170
+  m_RootOrder: 168
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!23 &1126847782
 MeshRenderer:
@@ -16263,7 +16283,7 @@ GameObject:
   - component: {fileID: 1136479128}
   m_Layer: 0
   m_Name: wall_03 (23)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -16473,7 +16493,7 @@ GameObject:
   - component: {fileID: 1148742355}
   m_Layer: 0
   m_Name: colon (11)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -16737,7 +16757,7 @@ GameObject:
   - component: {fileID: 1162218691}
   m_Layer: 0
   m_Name: colon (10)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -16835,7 +16855,7 @@ GameObject:
   - component: {fileID: 1165555692}
   m_Layer: 0
   m_Name: barrel (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -16853,7 +16873,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 158
+  m_RootOrder: 156
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1165555690
 MeshRenderer:
@@ -16949,7 +16969,7 @@ GameObject:
   - component: {fileID: 1171344029}
   m_Layer: 0
   m_Name: wall_01 (9)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -17063,7 +17083,7 @@ GameObject:
   - component: {fileID: 1180527233}
   m_Layer: 0
   m_Name: wall_01 (10)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -17177,7 +17197,7 @@ GameObject:
   - component: {fileID: 1216294610}
   m_Layer: 0
   m_Name: colon
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -17292,6 +17312,10 @@ PrefabInstance:
       value: lantern (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1767885835560412, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767885835560412, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -17386,7 +17410,7 @@ GameObject:
   - component: {fileID: 1228651191}
   m_Layer: 0
   m_Name: barrel (11)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -17404,7 +17428,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 215
+  m_RootOrder: 214
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1228651189
 MeshRenderer:
@@ -17597,7 +17621,7 @@ GameObject:
   - component: {fileID: 1232355663}
   m_Layer: 0
   m_Name: wall_03 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -17794,7 +17818,7 @@ GameObject:
   - component: {fileID: 1248277086}
   m_Layer: 0
   m_Name: fencing__large (16)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -17812,7 +17836,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 171
+  m_RootOrder: 169
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!23 &1248277084
 MeshRenderer:
@@ -18005,7 +18029,7 @@ GameObject:
   - component: {fileID: 1255932667}
   m_Layer: 0
   m_Name: railing (18)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -18023,7 +18047,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 224
+  m_RootOrder: 219
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!208 &1255932667
 NavMeshObstacle:
@@ -18119,7 +18143,7 @@ GameObject:
   - component: {fileID: 1287779911}
   m_Layer: 0
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -18233,7 +18257,7 @@ GameObject:
   - component: {fileID: 1292646282}
   m_Layer: 0
   m_Name: fencing__large (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -18364,7 +18388,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 186
+  m_RootOrder: 185
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1302497086
 MeshRenderer:
@@ -18527,7 +18551,7 @@ GameObject:
   - component: {fileID: 1325083211}
   m_Layer: 0
   m_Name: wall_01 (25)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -18641,7 +18665,7 @@ GameObject:
   - component: {fileID: 1333806804}
   m_Layer: 0
   m_Name: wall_01 (18)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -18755,7 +18779,7 @@ GameObject:
   - component: {fileID: 1346636691}
   m_Layer: 0
   m_Name: wall_01 (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -19063,7 +19087,7 @@ GameObject:
   - component: {fileID: 1383078085}
   m_Layer: 0
   m_Name: colon2 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -19454,7 +19478,7 @@ GameObject:
   - component: {fileID: 1437429792}
   m_Layer: 0
   m_Name: fencing__large (13)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -19472,7 +19496,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 168
+  m_RootOrder: 166
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!23 &1437429790
 MeshRenderer:
@@ -19568,7 +19592,7 @@ GameObject:
   - component: {fileID: 1449122135}
   m_Layer: 0
   m_Name: wall_01 (24)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -19763,7 +19787,7 @@ GameObject:
   - component: {fileID: 1454482383}
   m_Layer: 0
   m_Name: railing (11)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -19943,7 +19967,7 @@ GameObject:
   - component: {fileID: 1473677620}
   m_Layer: 0
   m_Name: obj_04 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -20047,7 +20071,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 218
+  m_RootOrder: 217
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1481679392
 Light:
@@ -20146,7 +20170,7 @@ GameObject:
   - component: {fileID: 1485608841}
   m_Layer: 0
   m_Name: obj_01 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -20387,7 +20411,7 @@ GameObject:
   - component: {fileID: 1509359835}
   m_Layer: 0
   m_Name: fencing__large (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -20501,7 +20525,7 @@ GameObject:
   - component: {fileID: 1514290599}
   m_Layer: 0
   m_Name: fencing__large (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -20784,22 +20808,22 @@ Transform:
   - {fileID: 1383078082}
   - {fileID: 578188715}
   - {fileID: 17110405}
-  - {fileID: 1222615925}
-  - {fileID: 1730297023}
   - {fileID: 1165555689}
   - {fileID: 1689550408}
   - {fileID: 528141108}
   - {fileID: 529035675}
   - {fileID: 1656146729}
   - {fileID: 1545956641}
-  - {fileID: 1780863889}
-  - {fileID: 2129391810}
+  - {fileID: 1222615925}
+  - {fileID: 1730297023}
   - {fileID: 926519190}
   - {fileID: 648772882}
   - {fileID: 1437429789}
   - {fileID: 53287746}
   - {fileID: 1126847781}
   - {fileID: 1248277083}
+  - {fileID: 1780863889}
+  - {fileID: 2129391810}
   - {fileID: 117048726}
   - {fileID: 478906754}
   - {fileID: 235993737}
@@ -20808,21 +20832,21 @@ Transform:
   - {fileID: 1833504237}
   - {fileID: 765399513}
   - {fileID: 129991342}
-  - {fileID: 1548711589}
   - {fileID: 1664762273}
   - {fileID: 921620233}
   - {fileID: 403067276}
   - {fileID: 2014551637}
   - {fileID: 1989363107}
   - {fileID: 1302497085}
+  - {fileID: 1548711589}
   - {fileID: 125743804}
-  - {fileID: 1632102530}
   - {fileID: 679995538}
   - {fileID: 701266764}
   - {fileID: 2002457012}
   - {fileID: 1056185598}
   - {fileID: 2024066479}
   - {fileID: 651527432}
+  - {fileID: 1632102530}
   - {fileID: 699225794}
   - {fileID: 1997942800}
   - {fileID: 1093923713}
@@ -20840,20 +20864,16 @@ Transform:
   - {fileID: 1087328226}
   - {fileID: 2133777105}
   - {fileID: 984880952}
-  - {fileID: 938061234}
   - {fileID: 126526243}
   - {fileID: 1953899829}
   - {fileID: 1228651188}
   - {fileID: 1634779947}
   - {fileID: 641871960}
   - {fileID: 1481679391}
-  - {fileID: 1085023274}
-  - {fileID: 478613530}
-  - {fileID: 593203010}
   - {fileID: 456002816}
-  - {fileID: 324064113}
   - {fileID: 1255932666}
   - {fileID: 793168384}
+  - {fileID: 938061234}
   - {fileID: 107838263}
   - {fileID: 689183814}
   - {fileID: 1865505232}
@@ -20861,7 +20881,11 @@ Transform:
   - {fileID: 129309798}
   - {fileID: 788333528}
   - {fileID: 1691867117}
+  - {fileID: 1085023274}
+  - {fileID: 478613530}
+  - {fileID: 593203010}
   - {fileID: 1031921856}
+  - {fileID: 324064113}
   - {fileID: 1136479127}
   - {fileID: 1776574602}
   - {fileID: 693737944}
@@ -20883,7 +20907,7 @@ GameObject:
   - component: {fileID: 1530441369}
   m_Layer: 0
   m_Name: wall_03 (12)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -20997,7 +21021,7 @@ GameObject:
   - component: {fileID: 1545956644}
   m_Layer: 0
   m_Name: fencing__large (10)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -21015,7 +21039,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 163
+  m_RootOrder: 161
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1545956642
 MeshRenderer:
@@ -21116,7 +21140,7 @@ GameObject:
   - component: {fileID: 1556911055}
   m_Layer: 0
   m_Name: colon3
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -21328,7 +21352,7 @@ GameObject:
   - component: {fileID: 1571332868}
   m_Layer: 0
   m_Name: wall_03 (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -21539,7 +21563,7 @@ GameObject:
   - component: {fileID: 1587640048}
   m_Layer: 0
   m_Name: railing (9)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -21653,7 +21677,7 @@ GameObject:
   - component: {fileID: 1618295901}
   m_Layer: 0
   m_Name: railing (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -21767,7 +21791,7 @@ GameObject:
   - component: {fileID: 1618730555}
   m_Layer: 0
   m_Name: wall_01 (17)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -21986,7 +22010,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 216
+  m_RootOrder: 215
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1634779948
 MeshRenderer:
@@ -22066,7 +22090,7 @@ GameObject:
   - component: {fileID: 1642621749}
   m_Layer: 0
   m_Name: wall_01 (26)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -22180,7 +22204,7 @@ GameObject:
   - component: {fileID: 1656146732}
   m_Layer: 0
   m_Name: fencing__large (9)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -22198,7 +22222,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 162
+  m_RootOrder: 160
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1656146730
 MeshRenderer:
@@ -22294,7 +22318,7 @@ GameObject:
   - component: {fileID: 1664762276}
   m_Layer: 0
   m_Name: wall_01 (34)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -22312,7 +22336,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 181
+  m_RootOrder: 180
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1664762274
 MeshRenderer:
@@ -22505,7 +22529,7 @@ GameObject:
   - component: {fileID: 1689550411}
   m_Layer: 0
   m_Name: barrel (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -22523,7 +22547,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 159
+  m_RootOrder: 157
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1689550409
 MeshRenderer:
@@ -22617,7 +22641,7 @@ GameObject:
   - component: {fileID: 1690031918}
   m_Layer: 0
   m_Name: railing_corner
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -22702,7 +22726,7 @@ GameObject:
   - component: {fileID: 1691867118}
   m_Layer: 0
   m_Name: wall_03 (21)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -22720,7 +22744,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 232
+  m_RootOrder: 228
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!208 &1691867118
 NavMeshObstacle:
@@ -22816,7 +22840,7 @@ GameObject:
   - component: {fileID: 1694350888}
   m_Layer: 0
   m_Name: railing (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -22928,7 +22952,7 @@ GameObject:
   - component: {fileID: 1706869393}
   m_Layer: 0
   m_Name: wall_03_001
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -23096,7 +23120,7 @@ GameObject:
   - component: {fileID: 1725356800}
   m_Layer: 0
   m_Name: fetter
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -23210,7 +23234,7 @@ GameObject:
   - component: {fileID: 1726610003}
   m_Layer: 0
   m_Name: colon (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -23325,6 +23349,10 @@ PrefabInstance:
       value: lantern (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1767885835560412, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767885835560412, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -23412,6 +23440,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1525184553}
     m_Modifications:
     - target: {fileID: 1120020899853670, guid: ec6c7c65d6b5df2499b72030a039b14a, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120020899853670, guid: ec6c7c65d6b5df2499b72030a039b14a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -23497,7 +23529,7 @@ GameObject:
   - component: {fileID: 1769051834}
   m_Layer: 0
   m_Name: obj_04
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -23614,7 +23646,7 @@ GameObject:
   - component: {fileID: 1776574603}
   m_Layer: 0
   m_Name: colon (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -23823,7 +23855,7 @@ GameObject:
   - component: {fileID: 1784856905}
   m_Layer: 0
   m_Name: wall_01 (8)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -24026,6 +24058,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1525184553}
     m_Modifications:
+    - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -24292,7 +24328,7 @@ GameObject:
   - component: {fileID: 1833504240}
   m_Layer: 0
   m_Name: wall_01 (31)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -24406,7 +24442,7 @@ GameObject:
   - component: {fileID: 1855382512}
   m_Layer: 0
   m_Name: wall_01 (14)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -24537,7 +24573,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 228
+  m_RootOrder: 224
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1865505233
 BoxCollider:
@@ -24612,6 +24648,10 @@ PrefabInstance:
     - target: {fileID: 1230045683618366, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767885835560412, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 1767885835560412, guid: db77ccffaa008f94a92f59e9183b83fe, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -24907,7 +24947,7 @@ GameObject:
   - component: {fileID: 1883763686}
   m_Layer: 0
   m_Name: obj_02
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -25020,7 +25060,7 @@ GameObject:
   - component: {fileID: 1885597715}
   m_Layer: 0
   m_Name: colon3 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -25190,7 +25230,7 @@ GameObject:
   - component: {fileID: 1894679651}
   m_Layer: 0
   m_Name: fencing__large (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -25484,7 +25524,7 @@ GameObject:
   - component: {fileID: 1935038243}
   m_Layer: 0
   m_Name: fencing__large
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -25598,7 +25638,7 @@ GameObject:
   - component: {fileID: 1953899832}
   m_Layer: 0
   m_Name: barrel (10)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -25616,7 +25656,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 214
+  m_RootOrder: 213
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1953899830
 MeshRenderer:
@@ -25729,7 +25769,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 185
+  m_RootOrder: 184
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1989363108
 MeshRenderer:
@@ -25809,7 +25849,7 @@ GameObject:
   - component: {fileID: 1997942803}
   m_Layer: 0
   m_Name: wall_03 (18)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -25940,7 +25980,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 191
+  m_RootOrder: 190
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2002457013
 MeshRenderer:
@@ -26018,7 +26058,7 @@ GameObject:
   - component: {fileID: 2014551638}
   m_Layer: 0
   m_Name: obj_04 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -26039,7 +26079,7 @@ Transform:
   - {fileID: 1243384649}
   - {fileID: 324953465}
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 184
+  m_RootOrder: 183
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2014551638
 MeshRenderer:
@@ -26104,7 +26144,7 @@ GameObject:
   - component: {fileID: 2023331542}
   m_Layer: 0
   m_Name: railing_corner (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -26189,7 +26229,7 @@ GameObject:
   - component: {fileID: 2024066482}
   m_Layer: 0
   m_Name: wall_01 (39)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -26207,7 +26247,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1525184553}
-  m_RootOrder: 193
+  m_RootOrder: 192
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2024066480
 MeshRenderer:
@@ -26303,7 +26343,7 @@ GameObject:
   - component: {fileID: 2032379935}
   m_Layer: 0
   m_Name: wall_01 (19)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -26417,7 +26457,7 @@ GameObject:
   - component: {fileID: 2047142247}
   m_Layer: 0
   m_Name: railing (16)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -26531,7 +26571,7 @@ GameObject:
   - component: {fileID: 2061944554}
   m_Layer: 0
   m_Name: fencing__large (20)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -26645,7 +26685,7 @@ GameObject:
   - component: {fileID: 2066305118}
   m_Layer: 0
   m_Name: wall_03 (11)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -26759,7 +26799,7 @@ GameObject:
   - component: {fileID: 2066799406}
   m_Layer: 0
   m_Name: obj_01 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -26865,6 +26905,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1525184553}
     m_Modifications:
+    - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1232014609889344, guid: d20e1df606c9c3845a3535acb1143c89, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -27048,7 +27092,7 @@ GameObject:
   - component: {fileID: 2102177297}
   m_Layer: 0
   m_Name: wall_01 (28)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -27162,7 +27206,7 @@ GameObject:
   - component: {fileID: 2113557974}
   m_Layer: 0
   m_Name: wall_01 (21)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -27276,7 +27320,7 @@ GameObject:
   - component: {fileID: 2115213700}
   m_Layer: 0
   m_Name: wall_01 (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -27485,7 +27529,7 @@ GameObject:
   - component: {fileID: 2133777108}
   m_Layer: 0
   m_Name: barrel (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -27696,7 +27740,7 @@ GameObject:
   - component: {fileID: 2147014254}
   m_Layer: 0
   m_Name: fetter (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
