@@ -15,7 +15,7 @@ public class AttackJudgementComponent
     /// <summary>
     /// 공격 피드백 
     /// </summary>
-    public void AttackJudge(Transform target)
+    public void AttackJudge(Transform target, Transform colTrm = null)
     {
         if (target.GetComponent<IAgent>().IsDie() == true) return;  // 죽은 상태면 반환
 
@@ -47,7 +47,8 @@ public class AttackJudgementComponent
         if (_attackInfo.attackSO.isKnockbackAttack == true)
         {
             Debug.Log("@@넉백@@@");
-            Vector3 dir = (target.position - _owner.obj.transform.position).normalized;
+            Vector3 colPos = (colTrm != null) ? colTrm.position : _owner.obj.transform.position; // 공격 콜라이더 들어왔으면 그걸로 
+            Vector3 dir = (target.position - colPos).normalized;
             IKnockback knockback = target.GetComponent<IKnockback>();
             knockback.Knockback(dir, _attackInfo.attackSO.knockbackPower, 0.2f);
         }

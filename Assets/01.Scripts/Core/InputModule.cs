@@ -3,10 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum KeyCodeType : int 
+{
+    Alpha1 = 0,
+    Alpha2 = 1,
+    Alpha3 = 2,
+    Alpha4 = 3
+}
+
+
 [System.Serializable]
 public class InputBinding
 {
-    
+    public KeyCode keyCode;
+    public Action callback = null; 
 }
 
 
@@ -32,6 +42,8 @@ public class InputModule : MonoBehaviour, IAgentInput
     private Vector3 _moveDir;
 
     // 트리거 
+    public List<Action> skillInputList = new List<Action>(); // 1 2 3 4 
+
     public Action<Vector3> OnMovementKeyPress { get; set; } // 움직임 
     public Action<Vector3> OnMoveAnimation { get; set; } // 움직임 애니메이션 
     public Action<Vector3> OnPointerRotate { get ; set; } // 마우스 회전 
@@ -48,6 +60,16 @@ public class InputModule : MonoBehaviour, IAgentInput
     public void Init(PlayerController playerController)
     {
         this._playerController = playerController; 
+    }
+
+    /// <summary>
+    /// 스킬 인풋 액션 설정 
+    /// </summary>
+    /// <param name="keyCodeType"></param>
+    /// <param name="callback"></param>
+    public void SetKeyAction(KeyCodeType keyCodeType,Action callback)
+    {
+        skillInputList[(int)keyCodeType] = callback;
     }
 
     private void Update()
@@ -85,7 +107,10 @@ public class InputModule : MonoBehaviour, IAgentInput
         _isPlayerInput = !isBlock; 
     }
 
-
+    public void BlockAttackInput(bool isBlock)
+    {
+        _isAttackInput =!isBlock; 
+    }
 
     /// <summary>
     /// 공격중이면 입력 차단 

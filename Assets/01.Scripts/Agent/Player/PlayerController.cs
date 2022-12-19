@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _inputModule.Init(this);
         _inputModule.OnDefaultAttackPress = DefaultKickAttack;
         _inputModule.OnShift = TackeAttack;
+        _inputModule.SetKeyAction(KeyCodeType.Alpha1, HurricaneKickAttack);
 
         _playerSO.UpdateStat();
         // 모듈 초기화
@@ -222,7 +223,19 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _attackModule.SetCurAttackType(AttackType.Tackle);
         _attackModule.DefaultAttack();
         _playerAnimation.SetBattle(_isBattle);
+    }
 
+    private void HurricaneKickAttack()
+    {
+        EndBattleState();
+        _attackModule.SetCurAttackType(AttackType.HurricaneAttack);
+        _attackModule.DefaultAttack();
+        
+        _playerAnimation.SetBattle(_isBattle);
+        
+        _inputModule.BlockAttackInput(true);
+
+        _moveModule.InitCurRotSpeed();
     }
 
     #endregion

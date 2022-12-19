@@ -23,6 +23,8 @@ public class Item_ExplosionBall : Item_Base
 
         for(int i = 0; i < monsters.Length; i++)
         {
+            _attackJudgementComponent.AttackJudge(monsters[i].transform);
+
             //monsterHP = monsters[i].GetComponent<HP>();
             //monsterHP.Damage(damage);
         }

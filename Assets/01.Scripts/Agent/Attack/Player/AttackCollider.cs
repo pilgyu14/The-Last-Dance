@@ -22,6 +22,7 @@ public class AttackCollider : MonoBehaviour
     private void OnEnable()
     {
     }
+
     public void Init(AttackBase attackBase)
     {
         this._attackBase = attackBase;

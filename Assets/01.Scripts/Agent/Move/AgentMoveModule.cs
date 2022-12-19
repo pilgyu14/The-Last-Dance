@@ -44,7 +44,27 @@ public abstract class AgentMoveModule : MonoBehaviour,IComponent
         //ApplyGravity();
         _agent.Move((_targetDir + Vector3.up * _velocityY) * Time.deltaTime);
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public void InitCurRotSpeed()
+    {
+        _curRotateSpeed = 0f; 
+    }
 
+    private float _curRotateSpeed;
+    private float _maxRotateSpeed; 
+    
+    /// <summary>
+    /// 제자리 회전 
+    /// </summary>
+    public void RotatePlace()
+    {
+        _curRotateSpeed += Time.deltaTime * 5;
+        _curRotateSpeed = Mathf.Clamp(_curRotateSpeed, 1, _maxRotateSpeed); 
+        transform.Rotate(Vector3.up, _curRotateSpeed * Time.deltaTime);
+    }
 
     /// <summary>
     /// 기본 상태일때 회전 (이동 방향으로)
