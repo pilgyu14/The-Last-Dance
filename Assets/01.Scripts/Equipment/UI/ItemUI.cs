@@ -25,7 +25,7 @@ public class ItemUI : MonoSingleton<ItemUI>
 
     private void Start()
     {
-        UpdateItemImage();
+        UpdateItemUI();
     }
 
     void Update()
@@ -35,12 +35,12 @@ public class ItemUI : MonoSingleton<ItemUI>
             if(pageIdx > 0)
             {
                 pageIdx--;
-                UpdateItemImage();
+                UpdateItemUI();
             }
             else
             {
                 pageIdx = inventorySO.itemList.Count - 1;
-                UpdateItemImage();
+                UpdateItemUI();
             }
         }
 
@@ -49,12 +49,12 @@ public class ItemUI : MonoSingleton<ItemUI>
             if(pageIdx < inventorySO.itemList.Count - 1)
             {
                 pageIdx++;
-                UpdateItemImage();
+                UpdateItemUI();
             }
             else
             {
                 pageIdx = 0;
-                UpdateItemImage();
+                UpdateItemUI();
             }
         }
 
@@ -78,11 +78,12 @@ public class ItemUI : MonoSingleton<ItemUI>
                     }
                     pageIdx = 0;
                 }
+                UpdateItemUI();
             }
         }
     }
 
-    public void UpdateItemImage()
+    public void UpdateItemUI()
     {
         itemImage.sprite = inventorySO.itemList[pageIdx].itemImage;
         itemCntText.text = inventorySO.itemList[pageIdx].value.ToString();

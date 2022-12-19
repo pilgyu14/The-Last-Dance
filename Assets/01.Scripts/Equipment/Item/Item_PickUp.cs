@@ -49,6 +49,7 @@ public class Item_PickUp : PoolableMono
                     ItemUI.Instance.pickup.SetActive(false);
                     //Destroy(gameObject);
                     PoolManager.Instance.Push(this);
+                    ItemUI.Instance.UpdateItemUI();
                     return;
                 }
                 return;
@@ -56,15 +57,19 @@ public class Item_PickUp : PoolableMono
         }
         if (ItemUI.Instance.inventorySO.itemList.Count < ItemUI.Instance.inventorySO.maxItemType)
         {
-            ItemUI.Instance.inventorySO.itemList.Add(itemSO.item);
+            Item item = new Item();
+            item.Copy(itemSO.item); 
+            ItemUI.Instance.inventorySO.itemList.Add(item);
+
             ItemUI.Instance.pickup.SetActive(false);
             //Destroy(gameObject);
             PoolManager.Instance.Push(this);
+            ItemUI.Instance.UpdateItemUI();
         }
     }
 
     public override void Reset()
     {
-        
+        itemSO.item.value = 1;
     }
 }

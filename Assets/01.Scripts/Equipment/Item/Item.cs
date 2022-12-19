@@ -11,4 +11,12 @@ public class Item
     public Sprite itemImage;
     public string name;
     public int value = 0;
+
+    public void Copy(Item item)
+    {
+        this.itemPrefab = item.itemPrefab;
+        this.itemImage = item.itemImage;
+        this.name = item.name;
+        this.value = item.value;
+    }
 }
