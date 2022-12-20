@@ -212,6 +212,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 512
+  _isMove: 1
+  _isRotate: 1
 --- !u!114 &9509421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +285,6 @@ MonoBehaviour:
   _canvas: {fileID: 1810151916}
   _hpSliderList:
   - {fileID: 1494048936}
-  - {fileID: 0}
   _prevHpSliderList:
   - {fileID: 854831717}
 --- !u!54 &9509424
@@ -3013,7 +3014,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477911dfb84311140ac0e932b3acba8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isMoveInput: 1
+  _isAttackInput: 1
+  _isInput: 1
   _moveDir: {x: 0, y: 0, z: 0}
+  skillInputList: []
 --- !u!1 &738497885 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3176963294796233472, guid: 668b3ad628d00bd40b7ad00a2a4a951e, type: 3}
@@ -4838,7 +4843,7 @@ GameObject:
   - component: {fileID: 1009200749}
   - component: {fileID: 1009200751}
   - component: {fileID: 1009200750}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: SideKickCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7376,7 +7381,7 @@ GameObject:
   - component: {fileID: 1264390041}
   - component: {fileID: 1264390042}
   - component: {fileID: 1264390043}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: TackleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7813,7 +7818,7 @@ GameObject:
   - component: {fileID: 1334617119}
   - component: {fileID: 1334617121}
   - component: {fileID: 1334617120}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HurricaneKickCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8547,7 +8552,7 @@ GameObject:
   - component: {fileID: 1540207815}
   - component: {fileID: 1540207817}
   - component: {fileID: 1540207816}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: BackKickCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8776,7 +8781,7 @@ GameObject:
   - component: {fileID: 1612115711}
   - component: {fileID: 1612115713}
   - component: {fileID: 1612115712}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: FrontKickCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ public class AttackCollider : MonoBehaviour
 {
     private AttackBase _attackBase;
     private BoxCollider _collider;
-    private List<GameObject> colObjs = new List<GameObject>(); // 충돌한 오브젝트 ( 한 번 충돌했으면 더 못하게 ) 
+    protected List<GameObject> colObjs = new List<GameObject>(); // 충돌한 오브젝트 ( 한 번 충돌했으면 더 못하게 ) 
     private void Awake()
     {
         _collider = GetComponent<BoxCollider>();
@@ -36,7 +36,7 @@ public class AttackCollider : MonoBehaviour
     /// 오브젝트 활성화 비활성화 
     /// </summary>
     /// <param name="isActive"></param>
-    public void ActiveCollider(bool isActive, bool isContinue = false)
+    public virtual void ActiveCollider(bool isActive, bool isContinue = false)
     {
         Debug.Log(isActive + "콜라이더 활성화");
         colObjs.Clear();
@@ -70,7 +70,7 @@ public class AttackCollider : MonoBehaviour
     /// <summary>
     /// 콜라이더 꺼주기 ( continue Attack - tackle, rush ) 
     /// </summary>
-    public void ColliderFalse()
+    public virtual void ColliderFalse()
     {
         //yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
