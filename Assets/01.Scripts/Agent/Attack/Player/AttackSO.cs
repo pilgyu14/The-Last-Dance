@@ -38,6 +38,8 @@ public class AttackSO : ScriptableObject
     public float attackRadius;
     public float attackAngle; 
     public float attackCoolTime;
+    public float attackDuration; // 공격 지속시간 ( 가렌E ) 
+
 
     [Header("애니메이션 변수"), Space(10)]
     public AnimationClip animationClip; 

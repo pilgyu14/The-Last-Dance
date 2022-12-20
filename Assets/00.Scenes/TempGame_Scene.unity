@@ -5497,6 +5497,17 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     attackCollider: {fileID: 1264390043}
+  - attackInfo:
+      attackType: 1001
+      nextAttackType: 0
+      attackSO: {fileID: 11400000, guid: af67d8990133e0348891e22e51da3acd, type: 2}
+      feedbackCallback:
+        m_PersistentCalls:
+          m_Calls: []
+      feedbackCallbackHit:
+        m_PersistentCalls:
+          m_Calls: []
+    attackCollider: {fileID: 1334617120}
   _curAttackBase:
     attackInfo:
       attackType: 0
@@ -10015,11 +10026,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1565314410929005512, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.26737246
+      value: -0.26737243
       objectReference: {fileID: 0}
     - target: {fileID: 1565314410929005512, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.09013722
+      value: 0.090137206
       objectReference: {fileID: 0}
     - target: {fileID: 1565314411247779702, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalPosition.x

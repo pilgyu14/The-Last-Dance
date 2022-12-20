@@ -3,13 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum KeyCodeType : int 
-{
-    Alpha1 = 0,
-    Alpha2 = 1,
-    Alpha3 = 2,
-    Alpha4 = 3
-}
 
 
 [System.Serializable]
@@ -17,6 +10,12 @@ public class InputBinding
 {
     public KeyCode keyCode;
     public Action callback = null; 
+
+    public InputBinding(KeyCode keyCode, Action callback)
+    {
+        this.keyCode = keyCode;
+        this.callback = callback; 
+    }
 }
 
 
@@ -25,11 +24,14 @@ public class InputModule : MonoBehaviour, IAgentInput
     private PlayerController _playerController; 
 
     // 체크 변수 
+    [SerializeField]
     private bool _isMoveInput = true;
-    private bool _isMove = true; 
-
+    private bool _isMove = true;
+    private bool _isRotate = true; 
+    [SerializeField]
     private bool _isAttackInput = true;
-
+    
+    [SerializeField]
     private bool _isInput = true; 
     private bool _isPlayerInput = true;
     private bool _isUIInput = true;
@@ -42,7 +44,7 @@ public class InputModule : MonoBehaviour, IAgentInput
     private Vector3 _moveDir;
 
     // 트리거 
-    public List<Action> skillInputList = new List<Action>(); // 1 2 3 4 
+    public List<InputBinding> skillInputList = new List<InputBinding>(); // 1 2 3 4 
 
     public Action<Vector3> OnMovementKeyPress { get; set; } // 움직임 
     public Action<Vector3> OnMoveAnimation { get; set; } // 움직임 애니메이션 
@@ -59,7 +61,17 @@ public class InputModule : MonoBehaviour, IAgentInput
 
     public void Init(PlayerController playerController)
     {
-        this._playerController = playerController; 
+        this._playerController = playerController;
+
+        InitKeyActions(); 
+    }
+
+    /// <summary>
+    /// 스킬 인풋 액션 초기화 
+    /// </summary>
+    private void InitKeyActions()
+    {
+            skillInputList.Clear(); 
     }
 
     /// <summary>
@@ -67,9 +79,9 @@ public class InputModule : MonoBehaviour, IAgentInput
     /// </summary>
     /// <param name="keyCodeType"></param>
     /// <param name="callback"></param>
-    public void SetKeyAction(KeyCodeType keyCodeType,Action callback)
+    public void SetKeyAction(KeyCode keyCodeType,Action callback)
     {
-        skillInputList[(int)keyCodeType] = callback;
+        skillInputList.Add(new InputBinding(keyCodeType,callback));
     }
 
     private void Update()
@@ -144,14 +156,16 @@ public class InputModule : MonoBehaviour, IAgentInput
             _moveDir = new Vector3(_x, 0, _y).normalized;
             _moveDir = Define.MainCam.transform.TransformDirection(_moveDir);
 
-            OnMoveAnimation?.Invoke(MoveDir);
+            //OnMoveAnimation?.Invoke(MoveDir);
 
             if (_isMove == true)
             {
                 // 이동 
-                OnMovementKeyPress?.Invoke(MoveDir);
+                //OnMovementKeyPress?.Invoke(MoveDir);
+
+                if (_isRotate == true) { }
                 // 회전
-                CheckRotate();
+               // CheckRotate();
             }
         }
 
@@ -159,6 +173,7 @@ public class InputModule : MonoBehaviour, IAgentInput
         {
             if(Input.GetMouseButtonDown(0))
             {
+                Debug.Log("클릭");
                 OnDefaultAttackPress?.Invoke();
             }
 
@@ -166,6 +181,15 @@ public class InputModule : MonoBehaviour, IAgentInput
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
             {
                 OnShift?.Invoke();
+            }
+
+            // 스킬 
+            for(int i =0;i < skillInputList.Count; i++)
+            {
+                if (Input.GetKeyDown(skillInputList[i].keyCode))
+                {
+                    skillInputList[i].callback?.Invoke(); 
+                }
             }
         }
     }   

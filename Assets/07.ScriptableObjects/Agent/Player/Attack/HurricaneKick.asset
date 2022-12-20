@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 0
   isRayAttack: 0
-  isContinueColliderAttack: 0
+  isContinueColliderAttack: 1
   isDefaultAttack: 0
   isMultipleAttack: 0
   isBombAttack: 0
-  isKnockbackAttack: 0
+  isKnockbackAttack: 1
   attackDamage: 0
   knockbackPower: 0
   rushPower: 0
@@ -27,8 +27,8 @@ MonoBehaviour:
   attackCoolTime: 0
   animationClip: {fileID: 0}
   animationName: 
-  animationFuncName: 
-  hitEffect: {fileID: 0}
+  animationFuncName: PlayHurricaneKick
+  hitEffect: {fileID: 6787811906628579171, guid: ed9aa6b77b874b54cad16dbfb123a2dd, type: 3}
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}

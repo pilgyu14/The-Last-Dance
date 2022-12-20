@@ -88,9 +88,9 @@ public class PlayerAnimation : AgentAnimation
         _agentAnimator.SetTrigger(_tackleHash);
     }
 
-    public void PlayHurricaneKick()
+    public void PlayHurricaneKick(bool isActive)
     {
-        _agentAnimator.SetTrigger(_hurricaneKickHash);
+        _agentAnimator.SetBool(_hurricaneKickHash, isActive);
     }
 
     // 이동 설정 

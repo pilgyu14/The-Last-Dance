@@ -8,20 +8,25 @@ public class HurricaneKickBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _owner ??= animator.GetComponent<PlayerController>();
-        _owner.InputModule.BlockAttackInput(true); 
+        _owner ??= animator.GetComponentInParent<PlayerController>();
+       
+        _owner.InputModule.BlockAttackInput(true);        // 공격 차단 
+        _owner.MoveModule.BlockRotate(false); // 회전 안 차단 
+        _owner.AttackModule.AttackJudge(); 
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _owner.MoveModule.RotatePlace(); // 제자리 회전 
+        _owner.CheckEndHurricaneKick(); // 지속 시간 지나면 끝 
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _owner.InputModule.BlockAttackInput(false);
+        _owner.MoveModule.BlockRotate(false); 
         _owner.AttackModule.GetAttackInfo(AttackType.HurricaneAttack).attackCollider.ColliderFalse(); 
     }
 

@@ -13,7 +13,8 @@ public class AttackState : State<PlayerController>
     public override void Enter()
     {
         owner.StartAttack();
-        owner.InputModule.OnMovementKeyPress += owner.MoveModule.InBattleMove;
+        owner.MoveModule.SetMoveMode(MoveType.Battle);
+        //owner.InputModule.OnMovementKeyPress += owner.MoveModule.InBattleMove;
         _nextAttackType = owner.AttackModule.NextAttackType;
         _curAttackType = owner.AttackModule.CurAttackType;
         timer = new TimerModule(1f, () => owner.EndAttackState());
@@ -28,7 +29,7 @@ public class AttackState : State<PlayerController>
 
     public override void Exit()
     {
-        owner.InputModule.OnMovementKeyPress -= owner.MoveModule.InBattleMove;
+        //owner.InputModule.OnMovementKeyPress -= owner.MoveModule.InBattleMove;
         timer = null;
     }
 }
