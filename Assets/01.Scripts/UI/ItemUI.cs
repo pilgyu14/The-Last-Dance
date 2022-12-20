@@ -25,12 +25,15 @@ public class ItemUI : MonoSingleton<ItemUI>
     public SkillInventorySO skillInventorySO;
     [SerializeField]
     public GameObject skillTrade;
+    [SerializeField]
+    public List<Image> skillImageList = new List<Image>();
 
     private int pageIdx = 0;
 
     private void Start()
     {
         UpdateItemUI();
+        UpdateSkillUI();
     }
 
     void Update()
@@ -97,7 +100,10 @@ public class ItemUI : MonoSingleton<ItemUI>
 
     public void UpdateSkillUI()
     {
-
+        for(int i = 0; i < skillInventorySO.skillList.Count; i++)
+        {
+            skillImageList[i].sprite = skillInventorySO.skillList[i].icon;
+        }
     }
 
     public void InventoryClear()

@@ -2526,8 +2526,13 @@ MonoBehaviour:
   itemCntText: {fileID: 6379435200132243516}
   pickup: {fileID: 8556350511362493823}
   pickupNameText: {fileID: 2641528846435261453}
-  skillInventorySO: {fileID: 0}
-  skillTrade: {fileID: 0}
+  skillInventorySO: {fileID: 11400000, guid: 628734ecc91eb794e8165e933ac6f068, type: 2}
+  skillTrade: {fileID: 5702576252449560441}
+  skillImageList:
+  - {fileID: 4736749577264578960}
+  - {fileID: 8617093584088125422}
+  - {fileID: 7023345833671652201}
+  - {fileID: 2805962367668598061}
 --- !u!1 &7137589109795354569
 GameObject:
   m_ObjectHideFlags: 0
