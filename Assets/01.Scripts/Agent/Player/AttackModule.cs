@@ -28,7 +28,15 @@ public class AttackModule : MonoBehaviour, IComponent
         
 
     [SerializeField]
-    private bool isEnemy; 
+    private bool isEnemy;
+
+    [Header("연속 공격(플레이어만)")]
+    [SerializeField]
+    private AttackType _lastAttackType; // 마지막 연계 공격 타입 플레이어만 적용 
+    [SerializeField]
+    private bool _isThreeAttack = false; // 삼타 공격까지 가능한지 
+
+    [Space(10)]
     [SerializeField]
     private List<AttackBase> attackInfoList = new List<AttackBase>();
 
@@ -42,7 +50,17 @@ public class AttackModule : MonoBehaviour, IComponent
     public AttackSO CurAttackSO => _curAttackBase.attackInfo.attackSO;
     public AttackType CurAttackType => _curAttackBase.attackInfo.attackType;
     public AttackType NextAttackType => _curAttackBase.attackInfo.nextAttackType;
-
+    public AttackType LastAttackType
+    {
+        get => _lastAttackType;
+        set => _lastAttackType = value; 
+    }
+        public bool IsThreeAttack
+    {
+        get => _isThreeAttack;
+        set => _isThreeAttack = value; 
+    }
+   
 
     private void Start()
     {
@@ -108,6 +126,15 @@ public class AttackModule : MonoBehaviour, IComponent
         });
     }
     
+    /// <summary>
+    /// 마지막  연계 공격 타입 지정 
+    /// </summary>
+    /// <param name="attackType"></param>
+    public void SetLastAttackType(AttackType attackType)
+    {
+        _lastAttackType = attackType; 
+    }
+
     private void InitAttackinfo()
     {
         foreach (var info in attackInfoList)

@@ -273,6 +273,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
     {
         _enemyAnimation.PlayDeathAnimation();
         StartCoroutine(Destroy()); //  일정 시간 후 죽음  
+        // 아이템 떨구기
     }
 
     private IEnumerator Destroy()

@@ -24,7 +24,8 @@ MonoBehaviour:
   rushPower: 0
   attackRadius: 0
   attackAngle: 0
-  attackCoolTime: 0
+  attackCoolTime: 10
+  attackDuration: 4
   animationClip: {fileID: 0}
   animationName: 
   animationFuncName: PlayHurricaneKick

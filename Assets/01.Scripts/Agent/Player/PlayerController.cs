@@ -128,6 +128,10 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _moveModule.Init(this, _agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
         _attackModule.Init(this, _fov, _moveModule,_playerAnimation);
         _hpModule.Init(_playerSO.maxHp, _playerSO.maxHp);
+
+        _lowHpFeedback.FinishAllFeedbacks();
+
+        SetThreeAttackPossible(false); //삼타 설정 
     }
     #endregion
     private void Update()
@@ -182,7 +186,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
             return;
         }
         ChangeAttackStateType(); 
-        if (_attackModule.NextAttackType == AttackType.Null) // 태클같은 스킬인 경우 
+        if (_attackModule.NextAttackType == AttackType.Null) // 태클같은 스킬인 경우 ??
         {
             _attackModule.SetCurAttackType(AttackType.Default_1);
         }
@@ -198,22 +202,48 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     /// </summary>
     public void ChangeAttackStateType()
     {
-        if (_isAttack == true) // 1초간 기본공격 한 상태면 다음 공격으로 이어서 실행 
+        if (_isAttack == true) // 두번 째 공격부터야 ,  1초간 기본공격 한 상태면 다음 공격으로 이어서 실행 
         {
               //다음 공격 실행
              _attackModule.SetCurAttackType(_attackModule.NextAttackType);
             
-            if (_attackModule.CurAttackType == AttackType.Default_3) // 3번째 공격이면 딜레이주기
+            if (_attackModule.CurAttackType == _attackModule.LastAttackType) // 3번째 공격이면 딜레이주기
             {
                 _curTime = 0;
                 StartCoroutine(Delay(_maxCoolTime));
             }
         }
-        else 
+        else // 첫 타 
         {
             // default_1 실행 
             _attackModule.SetCurAttackType(AttackType.Default_1);
         }
+    }
+
+    /// <summary>
+    /// 삼타 공격 설정
+    /// </summary>
+    /// <param name="isCan"></param>
+    public void SetThreeAttackPossible(bool isCan)
+    {
+        _attackModule.IsThreeAttack = isCan;
+        CheckThreeAttackPossible(); 
+    }
+
+    /// <summary>
+    /// 삼타 공격까지 가능한지 체크 
+    /// </summary>
+    [ContextMenu("삼타 체크")]
+    private void CheckThreeAttackPossible()
+    {
+        if(_attackModule.IsThreeAttack == true)        // 삼타 공격 가능하면 
+        {
+            _attackModule.GetAttackInfo(AttackType.Default_2).attackInfo.nextAttackType = AttackType.Default_3;
+            _attackModule.LastAttackType = AttackType.Default_3;
+            return; 
+        }
+        _attackModule.GetAttackInfo(AttackType.Default_2).attackInfo.nextAttackType = AttackType.Default_1;
+        _attackModule.LastAttackType = AttackType.Default_2;
     }
 
     // 태클 공격 시 실행 (shift 입력시 ) 
