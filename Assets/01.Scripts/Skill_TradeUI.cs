@@ -16,6 +16,7 @@ public class Skill_TradeUI : MonoSingleton<Skill_TradeUI>
 
     private SkillInfo newSkill = new SkillInfo();
 
+    private SkillInfo _curSelcetSkillINfo; 
     public void UpdateUI(SkillInfo skill)
     {
         newSkill.Copy(skill);

@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     [SerializeField]
     private PlayerSO _playerSO;
     [SerializeField]
+    private SkillInventorySO _skillInventorySO; 
+    [SerializeField]
     private UnityEvent feedbackCallbackHit = null; // 스크린 이펙트 
     [SerializeField]
     private FeedbackPlayer _lowHpFeedback; // 체력 낮을 때 피드백 
@@ -24,6 +26,10 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     [SerializeField]
     private EffectFeedback lowHpFeedback; // 체력 낮을 때 피드백 
 
+    [SerializeField]
+    private SkillComponent _skillComponent;
+    private SkillSaveComponent _skillSaveComponent;
+    private PassiveSkillManageComponent _passiveSkillManageComponent; 
     // 캐싱 변수 
     private InputModule _inputModule;
     private PlayerMoveModule _moveModule;
@@ -86,6 +92,14 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     public GameObject obj => gameObject;
     #endregion
 
+
+
+    // 임시 
+
+
+    // 임시 
+
+
     #region 초기화 
     private void Awake()
     {
@@ -98,6 +112,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _playerAnimation = GetComponentInChildren<PlayerAnimation>();
         _hpModule = GetComponent<HPModule>();
         _autioPlayer = GetComponentInChildren<AgentAudioPlayer>();
+        _passiveSkillManageComponent = GetComponentInChildren<PassiveSkillManageComponent>(); 
     }
 
     private void Start()
@@ -121,7 +136,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _inputModule.Init(this);
         _inputModule.OnDefaultAttackPress = DefaultKickAttack;
         _inputModule.OnShift = TackeAttack;
-        _inputModule.SetKeyAction(KeyCode.Alpha1, HurricaneKickAttack);
+
+        _inputModule.RegisterKeyAction(KeyCode.Alpha1, HurricaneKickAttack);
 
         _playerSO.UpdateStat();
         // 모듈 초기화
@@ -129,9 +145,16 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _attackModule.Init(this, _fov, _moveModule,_playerAnimation);
         _hpModule.Init(_playerSO.maxHp, _playerSO.maxHp);
 
+        // 스킬 관려 설정 
+        _skillComponent.AddAttackData(AttackType.HurricaneAttack,() => HurricaneKickAttack());
+
+        _skillSaveComponent = new SkillSaveComponent();
+        _skillSaveComponent.Init(_inputModule, _skillComponent,_skillInventorySO); 
+
         _lowHpFeedback.FinishAllFeedbacks();
 
         SetThreeAttackPossible(false); //삼타 설정 
+    
     }
     #endregion
     private void Update()
@@ -149,6 +172,11 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         //InBattleMove(); 
     }
 
+    [SerializeField] private KeyCode keyCode; 
+    public void CheckActiveSkill()
+    {
+        EventManager.Instance.TriggerEvent(EventsType.SetActiveSkillInput, keyCode); 
+    }
     // 기본 애니메이션 움직임 
     public void MoveDefaultAnimation(Vector3 v)
     {
@@ -242,6 +270,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
             _attackModule.LastAttackType = AttackType.Default_3;
             return; 
         }
+
         _attackModule.GetAttackInfo(AttackType.Default_2).attackInfo.nextAttackType = AttackType.Default_1;
         _attackModule.LastAttackType = AttackType.Default_2;
     }
@@ -262,8 +291,6 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _attackModule.DefaultAttack();
         
         _playerAnimation.SetBattle(_isBattle);
-        
-
       
         _moveModule.InitCurRotSpeed();
     }

@@ -13,6 +13,9 @@ public enum EventsType
     UpdateHpUI = 301,
     UpdateExpUI = 302,
 
+    SetActiveSkillInput = 500,
+    CheckPassiveSkill = 501, 
+    CheckActiveSkill = 502,
     ClearEvents = 10000
 }
 public class EventManager : MonoSingleton<EventManager>

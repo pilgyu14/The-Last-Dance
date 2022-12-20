@@ -6,6 +6,8 @@ using System;
 [Serializable]
 public class SkillInfo
 {
+    public AttackType attackType;
+
     [Header("아이콘")]
     public Sprite icon; // 스킬 아이콘 
     public string skillName; // 스킬 이름
@@ -13,6 +15,8 @@ public class SkillInfo
     public string skillDescription; // 스킬 설명 
     public int skillLevel; // 스킬 레벨
     public int requiredLevel; // 스킬 획득에 필요 레벨 ( 안 쓸 수도? )
+
+    public bool isActiveSkill; // 액티브 스킬이냐 아니면 패시브 스킬이냐 
 
     public void Copy(SkillInfo skill)
     {

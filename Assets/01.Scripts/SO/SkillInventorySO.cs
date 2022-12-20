@@ -6,4 +6,5 @@ using UnityEngine;
 public class SkillInventorySO : ScriptableObject
 {
     public List<SkillInfo> skillList;
+
 }

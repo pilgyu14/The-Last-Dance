@@ -472,7 +472,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.82595557, g: 0.8050374, b: 0.8584906, a: 1}
-  m_Intensity: 153.5
+  m_Intensity: 150.8
   m_Range: 14.3
   m_SpotAngle: 179
   m_InnerSpotAngle: 76.35068
@@ -1098,6 +1098,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 0
+  _lastAttackType: 0
+  _isThreeAttack: 0
   attackInfoList:
   - attackInfo:
       attackType: 100

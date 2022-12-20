@@ -9,11 +9,14 @@ public enum AttackType
     Default_2,
     Default_3,
  
+    // 액티브 
     RushAttack = 300,
-    Tackle = 1000, 
-    HurricaneAttack
-}
+    Tackle = 1000,
+    HurricaneAttack = 1001, 
 
+    // 패시브 
+    CanThreeAttack = 3000, 
+}
 
 public class AttackModule : MonoBehaviour, IComponent
 {
@@ -48,7 +51,7 @@ public class AttackModule : MonoBehaviour, IComponent
     // 프로퍼티
     public AttackBase CurAttackBase => _curAttackBase; 
     public AttackSO CurAttackSO => _curAttackBase.attackInfo.attackSO;
-    public AttackType CurAttackType => _curAttackBase.attackInfo.attackType;
+    public AttackType CurAttackType => _curAttackBase.attackInfo.attackSO.skillInfo.attackType;
     public AttackType NextAttackType => _curAttackBase.attackInfo.nextAttackType;
     public AttackType LastAttackType
     {
@@ -60,7 +63,8 @@ public class AttackModule : MonoBehaviour, IComponent
         get => _isThreeAttack;
         set => _isThreeAttack = value; 
     }
-   
+
+
 
     private void Start()
     {
@@ -108,7 +112,7 @@ public class AttackModule : MonoBehaviour, IComponent
     {
         foreach(var attackInfo in attackInfoList)
         {
-            if (attackInfo.attackInfo.attackType == attackType)
+            if (attackInfo.attackInfo.attackSO.skillInfo.attackType == attackType)
                 return attackInfo; 
         }
         return null; 
@@ -118,7 +122,7 @@ public class AttackModule : MonoBehaviour, IComponent
     {
         attackInfoList.ForEach((x) =>
         {
-            if (x.attackInfo.attackType == attackType)
+            if (x.attackInfo.attackSO.skillInfo.attackType == attackType)
             {
                 _curAttackBase = x;
                 return;

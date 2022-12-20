@@ -20,7 +20,7 @@ public class FeedbackInfo
 [System.Serializable]
 public class AttackInfo
 {
-    public AttackType attackType;
+    //public AttackType attackType;
     public AttackType nextAttackType;
     public AttackSO attackSO;
     public UnityEvent feedbackCallback = null; // 기본적인 피드백 ( 스윙할 때 사운드 ) , 스킬 공격할 때 다른 행동( 태클일 경우 -> 슬라이딩 움직임 ) 

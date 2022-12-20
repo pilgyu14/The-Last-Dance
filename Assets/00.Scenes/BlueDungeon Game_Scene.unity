@@ -19080,6 +19080,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1090494737094875653, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083167599493860663, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -9101909364537742168, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
+    - target: {fileID: 2083167599493860663, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5226251619922735553, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6324320753434400256, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.23
@@ -19204,6 +19220,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -9.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7795722524668680799, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
+      propertyPath: _skillInventorySO
+      value: 
+      objectReference: {fileID: 11400000, guid: 628734ecc91eb794e8165e933ac6f068, type: 2}
     - target: {fileID: 7795722525401515991, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50940,6 +50960,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4790240599203504, guid: bb21e2bab61fc5f4fa6b57ec41ae68a8, type: 3}
   m_PrefabInstance: {fileID: 1165097089}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1170126849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7795722525735124132, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
+  m_PrefabInstance: {fileID: 501345810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1170126852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170126849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c05c6a46b932841a82b90ac0776432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillInventorySO: {fileID: 11400000, guid: 628734ecc91eb794e8165e933ac6f068, type: 2}
 --- !u!1001 &1177224855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79675,7 +79713,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7004835781384787625
 GameObject:

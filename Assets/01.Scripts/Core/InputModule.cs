@@ -79,10 +79,39 @@ public class InputModule : MonoBehaviour, IAgentInput
     /// </summary>
     /// <param name="keyCodeType"></param>
     /// <param name="callback"></param>
-    public void SetKeyAction(KeyCode keyCodeType,Action callback)
+    public void RegisterKeyAction(KeyCode keyCodeType,Action callback)
     {
         skillInputList.Add(new InputBinding(keyCodeType,callback));
     }
+
+    public void RemoveKeyAction(KeyCode keyCodeType)
+    {
+        for(int i = skillInputList.Count -1; i >= 0;i--)
+        {
+            if (skillInputList[i].keyCode == keyCodeType)
+            {
+                skillInputList.Remove(skillInputList[i]);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 키 등록 여부 확인 
+    /// </summary>
+    /// <param name="keyCode"></param>
+    /// <returns></returns>
+    public bool IsKeyRegister(KeyCode keyCode)
+    {
+        foreach (var skillInput in skillInputList)
+        {
+            if (skillInput.keyCode == keyCode)
+            {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
 
     private void Update()
     {
