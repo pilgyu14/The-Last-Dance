@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class Item_Base : PoolableMono
 {
+    protected PlayerController _owner; // 아 바꿔야 해 (일단 임시로 ) 
     [SerializeField]
-    protected EffectComponent _hitEffect; 
+    protected AttackBase _attackBase;
+    protected AttackJudgementComponent _attackJudgementComponent;
 
     public float speed = 5f;
-    public int damage = 0;
+    //public int damage = 0;
 
 
     protected Rigidbody rigid;
 
     private void Awake()
     {
+        _owner = FindObjectOfType<PlayerController>(); 
         rigid = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        _attackJudgementComponent = new AttackJudgementComponent();
+        _attackJudgementComponent.Init(_owner, _attackBase.attackInfo);
     }
 
     public virtual void OnCollisionEnter(Collision col)
@@ -32,7 +41,8 @@ public class Item_Base : PoolableMono
 
     public virtual void Attack(GameObject monster)
     {
-        monster.GetComponent<IDamagable>().GetDamaged(damage,gameObject);
+        _attackJudgementComponent.AttackJudge(monster.transform, _attackBase.attackCollider.transform);
+        //monster.GetComponent<IDamagable>().GetDamaged(damage,gameObject);
         PoolManager.Instance.Push(this);
     }
 

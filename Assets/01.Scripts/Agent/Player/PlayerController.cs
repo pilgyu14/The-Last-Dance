@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _inputModule.Init(this);
         _inputModule.OnDefaultAttackPress = DefaultKickAttack;
         _inputModule.OnShift = TackeAttack;
+        _inputModule.SetKeyAction(KeyCode.Alpha1, HurricaneKickAttack);
 
         _playerSO.UpdateStat();
         // 모듈 초기화
@@ -222,13 +223,37 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _attackModule.SetCurAttackType(AttackType.Tackle);
         _attackModule.DefaultAttack();
         _playerAnimation.SetBattle(_isBattle);
+    }
 
+    private void HurricaneKickAttack()
+    {
+        EndBattleState();
+        _attackModule.SetCurAttackType(AttackType.HurricaneAttack);
+        _attackModule.DefaultAttack();
+        
+        _playerAnimation.SetBattle(_isBattle);
+        
+
+      
+        _moveModule.InitCurRotSpeed();
+    }
+
+    public void CheckEndHurricaneKick()
+    {
+        // 한번 더 클릭 이벤트를 받아야해 
+        bool isEnd = _attackModule.CurAttackBase.lsEndAttackDuration(); 
+        if (isEnd  == true)
+        {
+            _playerAnimation.PlayHurricaneKick(false); // 애니메이션 끄기 
+
+        }
     }
 
     #endregion
     // 피격 관련 
     public void OnDie()
     {
+        _moveModule.StopMove(); 
         _inputModule.BlockAllInput(true); 
         _isDie = true;
         _playerAnimation.PlayDeathAnimation(); 
@@ -266,7 +291,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         bool isDie = _hpModule.ChangeHP(-damage);
         if( isDie == false && _isLowHpEffect == false &&_hpModule.HP/_hpModule.MaxHp < 0.2f) // 이펙트가 꺼져있으면서 체력 20퍼 미만 이면 
         {
-            // 이펙트 시작 
+            // 이펙트 시작 1
             _lowHpFeedback.PlayAllFeedbacks();
             _isLowHpEffect = true; 
         }
@@ -304,7 +329,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     /// </summary>
     public void Attacking()
     {
-        _inputModule.Attacking(true);
+        _moveModule.BlockMove(true); 
+        //_inputModule.Attacking(true);
     }
 
     /// <summary>
@@ -322,7 +348,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     /// </summary>
     public void EndAttacking() 
     {
-        _inputModule.Attacking(false);
+        _moveModule.BlockMove(false); 
+        //_inputModule.Attacking(false);
         //ChangeAttackStateType(); 
     }
 

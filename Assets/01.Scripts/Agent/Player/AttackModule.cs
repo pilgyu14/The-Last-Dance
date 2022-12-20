@@ -11,6 +11,7 @@ public enum AttackType
  
     RushAttack = 300,
     Tackle = 1000, 
+    HurricaneAttack
 }
 
 

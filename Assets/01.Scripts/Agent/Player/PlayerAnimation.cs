@@ -21,6 +21,7 @@ public class PlayerAnimation : AgentAnimation
     private readonly int _backKickHash = Animator.StringToHash("BackKick");
 
     private readonly int _tackleHash = Animator.StringToHash("Tackle");
+    private readonly int _hurricaneKickHash = Animator.StringToHash("HurricaneKick"); 
 
     // Hash 끝
 
@@ -85,6 +86,11 @@ public class PlayerAnimation : AgentAnimation
     public void SetTackle()
     {
         _agentAnimator.SetTrigger(_tackleHash);
+    }
+
+    public void PlayHurricaneKick(bool isActive)
+    {
+        _agentAnimator.SetBool(_hurricaneKickHash, isActive);
     }
 
     // 이동 설정 

@@ -68,6 +68,7 @@ public class ItemUI : MonoSingleton<ItemUI>
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            // 애니메이션 실행후 찰 때 생성 
             if(inventorySO.itemList[pageIdx].value > 0)
             {
                 inventorySO.itemList[pageIdx].value--;

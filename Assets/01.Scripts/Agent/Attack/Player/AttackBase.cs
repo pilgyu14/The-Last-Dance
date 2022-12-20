@@ -54,6 +54,7 @@ public class AttackBase : ICoolTime
 
     // 프로퍼티 
     private bool IsEnemyAtk => attackInfo.attackSO.isEnemy;
+    private float AttackDuration => attackInfo.attackSO.attackDuration;
     public AttackJudgementComponent AtkJudgeComponent => _atkJudgeComponent;
     public bool IsCoolTime => _isCoolTime;
     public float RemainTime => _remainTime;
@@ -122,7 +123,15 @@ public void Init(IAgent owner, AgentAnimation playerAnimation,AgentMoveModule pl
 
             Type type = typeof(PlayerAnimation);
             MethodInfo method = type.GetMethod(attackInfo.attackSO.animationFuncName);
-            method?.Invoke(_playerAnimation, new object[] { });
+            ParameterInfo[] parameterInfo = method.GetParameters();
+            if(parameterInfo.Length > 0 && parameterInfo[0].ParameterType.Name == "Boolean")
+            {
+                method?.Invoke(_playerAnimation, new object[] { true});
+            }
+            else
+            {
+                method?.Invoke(_playerAnimation, new object[] { });
+            }
         }
         else if(attackInfo.attackSO.animationClip != null)
         {
@@ -199,6 +208,16 @@ public void Init(IAgent owner, AgentAnimation playerAnimation,AgentMoveModule pl
 
         GameManager.Instance.CoroutineComponent.SetCoroutine(CheckCoolTime());
         GameManager.Instance.BegineCoroutine(); 
+    }
+
+    /// <summary>
+    /// 지속 공격이 끝났는가 
+    /// </summary>
+    /// <returns></returns>
+    public bool lsEndAttackDuration()
+    {
+        bool isEnd = attackInfo.attackSO.attackCoolTime - _remainTime  >= AttackDuration;
+        return isEnd; 
     }
 
     IEnumerator CheckCoolTime()

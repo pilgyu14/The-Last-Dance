@@ -38,6 +38,7 @@ public class Item_PenetrateBall : Item_Base
             base.Attack(monster);
             return;
         }
+        _attackJudgementComponent.AttackJudge(monster.transform);
         //monster.GetComponent<Hp?>().Damage(damage);
     }
 

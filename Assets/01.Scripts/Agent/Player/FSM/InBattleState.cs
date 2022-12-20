@@ -8,7 +8,8 @@ public class InBattleState : State<PlayerController>
     public override void Enter()
     {
         owner.StartBattle();
-        owner.InputModule.OnMovementKeyPress += owner.MoveModule.InBattleMove;
+        owner.MoveModule.SetMoveMode(MoveType.Battle);
+        //owner.InputModule.OnMovementKeyPress += owner.MoveModule.InBattleMove;
         timer = new TimerModule(4f, () => owner.EndBattleState());
         // InBattlemove ³Ö±â 
         // StartBattle
@@ -22,7 +23,7 @@ public class InBattleState : State<PlayerController>
 
     public override void Exit()
     {
-        owner.InputModule.OnMovementKeyPress -= owner.MoveModule.InBattleMove;
+        //owner.InputModule.OnMovementKeyPress -= owner.MoveModule.InBattleMove;
         timer = null;
     }
 }
