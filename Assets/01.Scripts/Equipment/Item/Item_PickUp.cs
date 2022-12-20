@@ -47,7 +47,6 @@ public class Item_PickUp : PoolableMono
                 {
                     item.value++;
                     ItemUI.Instance.pickup.SetActive(false);
-                    //Destroy(gameObject);
                     PoolManager.Instance.Push(this);
                     ItemUI.Instance.UpdateItemUI();
                     return;
@@ -62,7 +61,6 @@ public class Item_PickUp : PoolableMono
             ItemUI.Instance.inventorySO.itemList.Add(item);
 
             ItemUI.Instance.pickup.SetActive(false);
-            //Destroy(gameObject);
             PoolManager.Instance.Push(this);
             ItemUI.Instance.UpdateItemUI();
         }
