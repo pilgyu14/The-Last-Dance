@@ -7,12 +7,18 @@ using TMPro;
 public class Skill_TradeUI : MonoSingleton<Skill_TradeUI>
 {
     public SkillInventorySO skillInventorySO;
-
-    public Image dropSkillImage;
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI descriptionText;
-
-    public List<Image> haveSkillImage = new List<Image>();
+    
+    [SerializeField]
+    private Image dropSkillImage;
+    [SerializeField]
+    private TextMeshProUGUI nameText;
+    [SerializeField]
+    private TextMeshProUGUI descriptionText;
+    
+    [SerializeField]
+    private List<Image> haveSkillImage = new List<Image>();
+    [SerializeField]
+    private List<bool> isSkillList = new List<bool>();
 
     private SkillInfo newSkill = new SkillInfo();
 
@@ -35,30 +41,27 @@ public class Skill_TradeUI : MonoSingleton<Skill_TradeUI>
         gameObject.SetActive(false);
     }
 
-    public void OnSkill1Button()
+    public void OnSKillToggle(int idx)
     {
-        skillInventorySO.skillList[0].Copy(newSkill);
-        ItemUI.Instance.UpdateSkillUI();
-        gameObject.SetActive(false);
+        for(int i = 0; i < isSkillList.Count; i++)
+        {
+            isSkillList[i] = false;
+        }
+        isSkillList[idx] = true;
     }
 
-    public void OnSkill2Button()
+    public void OnTradeButton()
     {
-        skillInventorySO.skillList[1].Copy(newSkill);
-        ItemUI.Instance.UpdateSkillUI();
-        gameObject.SetActive(false);
-    }
-
-    public void OnSkill3Button()
-    {
-        skillInventorySO.skillList[2].Copy(newSkill);
-        ItemUI.Instance.UpdateSkillUI();
-        gameObject.SetActive(false);
-    }
-
-    public void OnSkill4Button()
-    {
-        skillInventorySO.skillList[3].Copy(newSkill);
+        bool isActive = false;
+        for(int i = 0; i < isSkillList.Count; i++)
+        {
+            if(isSkillList[i] == true)
+            {
+                skillInventorySO.skillList[i].Copy(newSkill);
+                isActive = true;
+            }
+        }
+        if (isActive == false) return;
         ItemUI.Instance.UpdateSkillUI();
         gameObject.SetActive(false);
     }
