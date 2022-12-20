@@ -21,11 +21,19 @@ public class ItemUI : MonoSingleton<ItemUI>
     [SerializeField]
     public TextMeshProUGUI pickupNameText;
 
+    [SerializeField]
+    public SkillInventorySO skillInventorySO;
+    [SerializeField]
+    public GameObject skillTrade;
+    [SerializeField]
+    public List<Image> skillImageList = new List<Image>();
+
     private int pageIdx = 0;
 
     private void Start()
     {
         UpdateItemUI();
+        UpdateSkillUI();
     }
 
     void Update()
@@ -89,6 +97,14 @@ public class ItemUI : MonoSingleton<ItemUI>
         itemImage.sprite = inventorySO.itemList[pageIdx].itemImage;
         itemCntText.text = inventorySO.itemList[pageIdx].value.ToString();
         itemNameText.text = inventorySO.itemList[pageIdx].name;
+    }
+
+    public void UpdateSkillUI()
+    {
+        for(int i = 0; i < skillInventorySO.skillList.Count; i++)
+        {
+            skillImageList[i].sprite = skillInventorySO.skillList[i].icon;
+        }
     }
 
     public void InventoryClear()

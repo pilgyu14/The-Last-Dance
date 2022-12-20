@@ -13,6 +13,15 @@ public class SkillInfo
     public string skillDescription; // 스킬 설명 
     public int skillLevel; // 스킬 레벨
     public int requiredLevel; // 스킬 획득에 필요 레벨 ( 안 쓸 수도? )
+
+    public void Copy(SkillInfo skill)
+    {
+        this.icon = skill.icon;
+        this.skillName = skill.skillName;
+        this.skillDescription = skill.skillDescription;
+        this.skillLevel = skill.skillLevel;
+        this.requiredLevel = skill.requiredLevel;
+    }
 }
 
 
