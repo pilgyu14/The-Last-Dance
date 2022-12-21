@@ -12,7 +12,6 @@ public enum PoolType
 
 public class PoolManager
 {
-
     public static PoolManager Instance = null;
 
     private Dictionary<string, Pool<PoolableMono>> _pools = new Dictionary<string, Pool<PoolableMono>>();

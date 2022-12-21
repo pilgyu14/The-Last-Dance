@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8973381943616909881}
   - component: {fileID: 8177126252229797550}
+  - component: {fileID: 6494341825286445410}
   m_Layer: 0
   m_Name: MonsterSpawner
   m_TagString: Untagged
@@ -44,3 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30c86725c7409345955d0b280f9a275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &6494341825286445410
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350293800928059497}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
