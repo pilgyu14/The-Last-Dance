@@ -25,6 +25,10 @@ public class Item_ReflectBall : Item_Base
             reflectVector.y = 0;
 
             rigid.velocity = reflectVector * speed;
+            if(reflectCnt <= 0)
+            {
+                PoolManager.Instance.Push(this);
+            }
         }
     }
 
