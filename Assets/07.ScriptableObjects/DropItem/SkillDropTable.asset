@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 198db6516dbf47c4e91ae796cd5a80c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 10b6cdee04c9fab469c4cde868ea9477, type: 3}
   m_Name: SkillDropTable
   m_EditorClassIdentifier: 
-  skillTable:
-  - {fileID: 11400000, guid: af67d8990133e0348891e22e51da3acd, type: 2}
-  - {fileID: 11400000, guid: e89ef0782778a874f98c0f2182a20def, type: 2}
-  - {fileID: 11400000, guid: 930cb31e73937ab448ba98ff913b5091, type: 2}
+  itemTable: []

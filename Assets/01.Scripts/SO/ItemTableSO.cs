@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/Item/ItemTable")]
 public class ItemTableSO : ScriptableObject
 {
-    public List<ItemInformationSO> itemTable;
+    public List<GameObject> itemTable;
 }

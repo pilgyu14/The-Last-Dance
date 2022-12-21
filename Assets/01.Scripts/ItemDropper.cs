@@ -10,9 +10,7 @@ public class ItemDropper : MonoBehaviour
 
     [Header("Å×ÀÌºí")]
     [SerializeField]
-    private ItemTableSO itemTableSO;
-    [SerializeField]
-    private SkillTableSO skillTableSO;
+    private ItemTableSO itemTableSO, skillTableSO;
 
     [Header("È®·ü")]
     [SerializeField]
@@ -30,7 +28,7 @@ public class ItemDropper : MonoBehaviour
         if(dropVar < itemDropChance)
         {
             int randomIdx = Random.Range(0, itemTableSO.itemTable.Count);
-            PoolableMono item = PoolManager.Instance.Pop(itemTableSO.itemTable[randomIdx].item.itemPrefab.name);
+            PoolableMono item = PoolManager.Instance.Pop(itemTableSO.itemTable[randomIdx].name);
             item.transform.position = transform.position;
 
             Vector3 offset = Vector3.up * 2f;
@@ -44,8 +42,8 @@ public class ItemDropper : MonoBehaviour
         float dropVar = Random.value;
         if (dropVar < skillDropChance)
         {
-            int randomIdx = Random.Range(0, skillTableSO.skillTable.Count);
-            PoolableMono item = PoolManager.Instance.Pop("Skill_Pickup" + skillTableSO.skillTable[randomIdx].skillInfo.skillName);
+            int randomIdx = Random.Range(0, skillTableSO.itemTable.Count);
+            PoolableMono item = PoolManager.Instance.Pop(skillTableSO.itemTable[randomIdx].name);
             item.transform.position = transform.position;
 
             Vector3 offset = Random.insideUnitCircle;
