@@ -63,8 +63,9 @@ public class InputModule : MonoBehaviour, IAgentInput
     {
         this._playerController = playerController;
 
-        InitKeyActions(); 
+        InitKeyActions();
     }
+
 
     /// <summary>
     /// 스킬 인풋 액션 초기화 
@@ -117,7 +118,7 @@ public class InputModule : MonoBehaviour, IAgentInput
     {
         if (_isInput == false) return; 
 
-        if (_isPlayerInput == true)
+        if (_isPlayerInput == true || Time.timeScale != 0)
         {
             PlayerInput(); 
         }

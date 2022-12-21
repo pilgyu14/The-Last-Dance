@@ -91,7 +91,7 @@ public class MainUIComponent : MonoBehaviour
     /// </summary>
     public void UpdateHpUI()
     {
-        _hpText.text = string.Format("{0} / {1}", _playerHpModule.MaxHp.ToString(), _playerHpModule.HP.ToString());
+        _hpText.text = string.Format("{0} / {1}", _playerHpModule.HP.ToString(), _playerHpModule.MaxHp.ToString());
         StartCoroutine(UpdateHpUI(_playerHpModule.PrevHp)); 
     }
 
