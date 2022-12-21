@@ -16,6 +16,10 @@ public class GameManager : MonoSingleton<GameManager>
     private int _requirementsMonster;
     private int _monsterCnt;
 
+    [SerializeField]
+    private GameObject menuCanvas;
+    private bool isOpenMenu = false;
+
     // 프로퍼티 
     public CoroutineComponent CoroutineComponent => _coroutineComponent; 
     public Transform PlayerTrm
@@ -38,6 +42,21 @@ public class GameManager : MonoSingleton<GameManager>
         CreatePool();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(isOpenMenu == true)
+            {
+                CloseMenu();
+            }
+            else
+            {
+                OpenMenu();
+            }
+        }
+    }
+
     private void CreatePool()
     {
         foreach (PoolingPair pair in _initList.list)
@@ -57,5 +76,19 @@ public class GameManager : MonoSingleton<GameManager>
     public bool CanNextFloor()
     {
         return _requirementsMonster <= _monsterCnt;
+    }
+
+    public void OpenMenu()
+    {
+        menuCanvas.SetActive(true);
+        Time.timeScale = 0f;
+        isOpenMenu = true;
+    }
+
+    public void CloseMenu()
+    {
+        menuCanvas.SetActive(false);
+        Time.timeScale = 1f;
+        isOpenMenu = false;
     }
 }

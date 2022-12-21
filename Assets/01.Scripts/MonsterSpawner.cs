@@ -16,7 +16,7 @@ public class MonsterSpawner : MonoBehaviour
         x = Random.Range(-3f, 3f);
         z = Random.Range(-3f, 3f);
 
-        float monsterSelect = Random.value;
+        float monsterSelect = Random.Range(0f, 1f);
         PoolableMono monster;
         if (monsterSelect <= 0.5f)
             monster = PoolManager.Instance.Pop("GhoulMonster");
