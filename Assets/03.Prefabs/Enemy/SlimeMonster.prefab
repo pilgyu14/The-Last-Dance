@@ -105,8 +105,8 @@ MonoBehaviour:
   dropPower: 2
   itemTableSO: {fileID: 0}
   skillTableSO: {fileID: 0}
-  itemDropChance: 0
-  skillDropChance: 0
+  itemDropChance: 1
+  skillDropChance: 1
 --- !u!1 &548140711512888329
 GameObject:
   m_ObjectHideFlags: 0

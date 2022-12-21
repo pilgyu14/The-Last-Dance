@@ -62,6 +62,8 @@ public class Skill_Pickup : PoolableMono
         }
         else
         {
+            EventManager.Instance.TriggerEvent(EventsType.CheckActiveSkill);
+            EventManager.Instance.TriggerEvent(EventsType.CheckPassiveSkill);
             ItemUI.Instance.skillInventorySO.skillList.Add(skill);
 
             ItemUI.Instance.pickup.SetActive(false);
