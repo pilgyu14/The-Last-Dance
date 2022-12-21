@@ -14,17 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   level: 1
-  hitClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  hitClip: {fileID: 8300000, guid: 67021ad0f7f249a43a01d3331173f47b, type: 3}
+  deathClip: {fileID: 8300000, guid: bd0234ca5657514408f449dc042031c8, type: 3}
   moveInfo:
     maxSpeed: 4
     acceleration: 100
     deacceleration: 100
     rotSpeed: 10
-  walkClip: {fileID: 8300000, guid: 7821ff90629fd804f9151121545b6957, type: 3}
   defaultHP: 100
   baseHp: 0
   defaultMaxSpeed: 4
   baseMaxSpeed: 0
-  exp: 8
+  exp: 20
   maxExp: 100

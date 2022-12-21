@@ -8,7 +8,7 @@ public class MonsterSpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("MonsterSpawn", 2f, 2f);
+        InvokeRepeating("MonsterSpawn", 5f, 20f);
     }
 
     private void MonsterSpawn()

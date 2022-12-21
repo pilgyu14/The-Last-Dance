@@ -19,7 +19,7 @@ MonoBehaviour:
   isMultipleAttack: 0
   isBombAttack: 0
   isKnockbackAttack: 1
-  attackDamage: 0
+  attackDamage: 4
   knockbackPower: 0
   rushPower: 0
   attackRadius: 0
