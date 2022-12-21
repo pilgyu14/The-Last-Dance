@@ -103,10 +103,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropPower: 2
-  itemTableSO: {fileID: 0}
-  skillTableSO: {fileID: 0}
-  itemDropChance: 1
-  skillDropChance: 1
+  itemTableSO: {fileID: 11400000, guid: 0955a15df8b9cad418ba406929591a48, type: 2}
+  skillTableSO: {fileID: 11400000, guid: e1a84d155f80f51448f911a0562aef6c, type: 2}
+  itemDropChance: 0.5
+  skillDropChance: 0.3
 --- !u!1 &548140711512888329
 GameObject:
   m_ObjectHideFlags: 0

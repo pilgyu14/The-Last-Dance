@@ -94,7 +94,7 @@ public class EnemyTree<T> : ICore where T : Enemy
                     // 타겟이 날 때렸냐  
                     // 타겟 바라보기
                     // 타겟이 추적 범위 내에 있는지 체크
-                    Condition(_owner.CheckChase),
+                  //  Condition(_owner.CheckChase),
                     Action(_owner.Chase)
 
                 // 추적 시작 
@@ -102,7 +102,7 @@ public class EnemyTree<T> : ICore where T : Enemy
 
                 Selector // 기본 상태 시퀀스 
                 (
-                    IfNotAction(_owner.IsOriginPos, _owner.MoveOrigin), // 기본 위치에 있으면 움직이잖아 
+                   // IfNotAction(_owner.IsOriginPos, _owner.MoveOrigin), // 기본 위치에 있으면 움직이잖아 
                     Action(_owner.Idle)
                 // 빙빙 돈다. 
                 )

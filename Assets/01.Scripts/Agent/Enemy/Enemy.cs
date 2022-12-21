@@ -408,6 +408,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
 
         _hpModule.Init(_enemySO.maxHp, _enemySO.maxHp);
 
-        _enemyAnimation.AgentAnimator.Rebind(); 
+        _enemyAnimation.AgentAnimator.Rebind();
+        _moveModule.SetOriginPos(); 
     }
 }

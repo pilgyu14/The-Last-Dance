@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     {
         Debug.Log("°È±â »ç¿îµå@@@");
 
-        if (v.sqrMagnitude > 0.01f)
+        if (_autioPlayer.AudioSource.isPlaying == false &&v.sqrMagnitude > 0.01f)
         {
             Debug.Log("@@@@°È±â »ç¿îµå");
             _autioPlayer.PlayStepSound(); 

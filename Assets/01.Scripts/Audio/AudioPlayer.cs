@@ -10,6 +10,8 @@ public class AudioPlayer : MonoBehaviour
     protected float _pitchRandomness = 0.2f;
     protected float _basePitch;
 
+    public AudioSource AudioSource => _audioSource; 
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();

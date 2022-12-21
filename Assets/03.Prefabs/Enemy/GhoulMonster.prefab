@@ -3095,9 +3095,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropPower: 2
   itemTableSO: {fileID: 11400000, guid: 0955a15df8b9cad418ba406929591a48, type: 2}
-  skillTableSO: {fileID: 11400000, guid: 742c10f02ff017b46b3e55a4f4b416b0, type: 2}
-  itemDropChance: 1
-  skillDropChance: 1
+  skillTableSO: {fileID: 11400000, guid: e1a84d155f80f51448f911a0562aef6c, type: 2}
+  itemDropChance: 0.5
+  skillDropChance: 0.4
 --- !u!1001 &860292894561326913
 PrefabInstance:
   m_ObjectHideFlags: 0

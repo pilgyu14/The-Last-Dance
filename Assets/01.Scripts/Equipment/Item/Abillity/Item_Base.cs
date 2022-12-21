@@ -31,6 +31,7 @@ public class Item_Base : PoolableMono
     {
         if (col.gameObject.CompareTag("Monster"))
         {
+            Debug.Log("@@@@@@@@@@@@@@@@@@@@@");
             Attack(col.gameObject);
         }
         else if (col.gameObject.CompareTag("Wall"))

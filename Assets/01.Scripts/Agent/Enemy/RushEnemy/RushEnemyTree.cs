@@ -75,7 +75,7 @@ public class RushEnemyTree : EnemyTree<RushEnemy>
             // 타겟이 날 때렸냐  
             // 타겟 바라보기
             // 타겟이 추적 범위 내에 있는지 체크
-            Condition(_owner.CheckChase),
+           // Condition(_owner.CheckChase),
             Action(_owner.Chase)
 
         // 추적 시작 

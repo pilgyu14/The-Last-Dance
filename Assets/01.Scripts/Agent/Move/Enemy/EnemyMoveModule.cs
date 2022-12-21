@@ -124,7 +124,7 @@ public class EnemyMoveModule : AgentMoveModule
     /// </summary>
     public void MoveOriginPos()
     {
-        _agent.SetDestination(_originVec);
+     //   _agent.SetDestination(_originVec);
     }
 
     /// <summary>
@@ -155,6 +155,10 @@ public class EnemyMoveModule : AgentMoveModule
     }
     #endregion
 
+    public void SetOriginPos()
+    {
+        _originVec = _agent.transform.position;
+    }
     //private 
     // 특정 각도로 회전 
     // 특정 위치로 이동 

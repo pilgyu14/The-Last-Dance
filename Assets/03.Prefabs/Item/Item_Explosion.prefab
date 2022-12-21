@@ -90,7 +90,7 @@ MonoBehaviour:
           m_Calls: []
     attackCollider: {fileID: 5086688891138835374}
   speed: 20
-  _explosionRadius: 1
+  _explosionRadius: 4
 --- !u!1 &1056581894395691638
 GameObject:
   m_ObjectHideFlags: 0

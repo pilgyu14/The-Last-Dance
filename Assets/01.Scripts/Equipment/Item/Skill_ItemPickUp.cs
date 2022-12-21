@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_PickUp : PoolableMono
+public class Skill_ItemPickUp : PoolableMono
 {
     private bool isTouch = false;
     public ItemInformationSO itemSO;
 
     private void Update()
     {
-        if(isTouch == true)
+        if (isTouch == true)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -39,13 +39,13 @@ public class Item_PickUp : PoolableMono
 
     private void ItemAdd()
     {
-        foreach (Item item in ItemUI.Instance.inventorySO.itemList)
+        foreach (SkillInfo item in ItemUI.Instance.skillInventorySO.skillList)
         {
-            if (item.name == itemSO.item.name)
+            if (item.skillName == itemSO.item.name)
             {
-                if (item.value < ItemUI.Instance.inventorySO.maxItemValue)
+                if (item.skillLevel < ItemUI.Instance.inventorySO.maxItemValue)
                 {
-                    item.value++;
+                    item.skillLevel++;
                     ItemUI.Instance.pickup.SetActive(false);
                     PoolManager.Instance.Push(this);
                     ItemUI.Instance.UpdateItemUI();
@@ -54,10 +54,10 @@ public class Item_PickUp : PoolableMono
                 return;
             }
         }
-        if (ItemUI.Instance.inventorySO.itemList.Count < ItemUI.Instance.inventorySO.maxItemType)
+        if (ItemUI.Instance.skillInventorySO.skillList.Count < ItemUI.Instance.inventorySO.maxItemType)
         {
             Item item = new Item();
-            item.Copy(itemSO.item); 
+            item.Copy(itemSO.item);
             ItemUI.Instance.inventorySO.itemList.Add(item);
 
             ItemUI.Instance.pickup.SetActive(false);

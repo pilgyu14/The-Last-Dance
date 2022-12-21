@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b6cdee04c9fab469c4cde868ea9477, type: 3}
   m_Name: SkillDropTable
   m_EditorClassIdentifier: 
-  itemTable: []
+  itemTable:
+  - {fileID: 4317677032331799664, guid: 066ede02923706741a8a678aa1bb0c90, type: 3}
+  - {fileID: 4317677032331799664, guid: 68929129a941d6646b5ed5ee2079217e, type: 3}
+  - {fileID: 4317677032331799664, guid: 51e8e5b34850f76489be26fa9316d51f, type: 3}

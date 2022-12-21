@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66ddfc75da9047949b1cb8da98b76c9c, type: 3}
-  m_Name: ThreeDefaultAttackSO
+  m_Name: CanThreeAttack
   m_EditorClassIdentifier: 
   isEnemy: 0
   isRayAttack: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   skillInfo:
     attackType: 0
     icon: {fileID: 0}
-    skillName: 
+    skillName: "\uC2A4\uD0AC \uC544\uC774\uD15C"
     skillDescription: 
     skillLevel: 0
     requiredLevel: 0

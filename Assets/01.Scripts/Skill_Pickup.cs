@@ -25,6 +25,9 @@ public class Skill_Pickup : PoolableMono
             isTouch = true;
             ItemUI.Instance.pickupNameText.text = attackSO.skillInfo.skillName;
             ItemUI.Instance.pickup.SetActive(true);
+
+            EventManager.Instance.TriggerEvent(EventsType.CheckActiveSkill);
+            EventManager.Instance.TriggerEvent(EventsType.CheckPassiveSkill);
         }
     }
 
@@ -63,13 +66,15 @@ public class Skill_Pickup : PoolableMono
         }
         else
         {
-            EventManager.Instance.TriggerEvent(EventsType.CheckActiveSkill);
-            EventManager.Instance.TriggerEvent(EventsType.CheckPassiveSkill);
+
             ItemUI.Instance.skillInventorySO.skillList.Add(skill);
 
             ItemUI.Instance.pickup.SetActive(false);
             PoolManager.Instance.Push(this);
             ItemUI.Instance.UpdateSkillUI();
+
+            EventManager.Instance.TriggerEvent(EventsType.CheckActiveSkill);
+            EventManager.Instance.TriggerEvent(EventsType.CheckPassiveSkill);
         }
     }
 
