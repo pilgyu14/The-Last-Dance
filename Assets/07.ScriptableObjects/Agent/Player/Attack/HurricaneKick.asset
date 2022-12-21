@@ -34,8 +34,10 @@ MonoBehaviour:
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}
   skillInfo:
+    attackType: 1001
     icon: {fileID: 0}
     skillName: 
     skillDescription: 
     skillLevel: 0
     requiredLevel: 0
+    isActiveSkill: 0

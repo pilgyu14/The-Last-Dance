@@ -32,6 +32,7 @@ public class PassiveSkillManageComponent : MonoBehaviour
     private void Start()
     {
         _passiveSkillInfoList.Add(new CanPassiveSkillInfo(false, AttackType.CanThreeAttack, new ThreeAttackSkill(_owner)));
+        _passiveSkillInfoList.Add(new CanPassiveSkillInfo(false, AttackType.DefaultAttackUpgrade, new DefaultAttackUpgradeSkill(_owner)));
 
         EventManager.Instance.StartListening(EventsType.CheckPassiveSkill, CheckActivePassiveSkill); 
     }

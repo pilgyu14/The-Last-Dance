@@ -21,14 +21,23 @@ MonoBehaviour:
   isKnockbackAttack: 1
   attackDamage: 1
   knockbackPower: 10
+  rushPower: 0
   attackRadius: 0
   attackAngle: 0
   attackCoolTime: 1
+  attackDuration: 0
+  animationClip: {fileID: 0}
   animationName: 
   animationFuncName: 
   hitEffect: {fileID: 1767841913861676, guid: 7e33fe33aff4f49449f51ed88f138e9c, type: 3}
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}
-  icon: {fileID: 0}
-  requiredLevel: 0
+  skillInfo:
+    attackType: 1000
+    icon: {fileID: 0}
+    skillName: 
+    skillDescription: 
+    skillLevel: 0
+    requiredLevel: 0
+    isActiveSkill: 0

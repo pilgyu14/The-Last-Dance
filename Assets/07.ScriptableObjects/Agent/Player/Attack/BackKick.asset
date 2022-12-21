@@ -25,6 +25,7 @@ MonoBehaviour:
   attackRadius: 5
   attackAngle: 120
   attackCoolTime: 0
+  attackDuration: 0
   animationClip: {fileID: 0}
   animationName: 
   animationFuncName: SetBackKick
@@ -33,8 +34,10 @@ MonoBehaviour:
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}
   skillInfo:
+    attackType: 102
     icon: {fileID: 0}
     skillName: 
     skillDescription: 
     skillLevel: 0
     requiredLevel: 0
+    isActiveSkill: 0

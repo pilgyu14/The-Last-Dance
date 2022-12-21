@@ -14,7 +14,7 @@ public class EffectComponent : PoolableMono
     [SerializeField]
     private ParticleSystem _particle;
     [SerializeField]
-    private List<ParticleSystem> particleList = new List<ParticleSystem>(); 
+    private List<ParticleSystem> _particleList = new List<ParticleSystem>(); 
     [SerializeField]
     private Transform parent;
 
@@ -24,11 +24,14 @@ public class EffectComponent : PoolableMono
     [SerializeField]
     private Vector3 _originPos; 
     [SerializeField]
-    private Quaternion _originRot; 
+    private Quaternion _originRot;
+
+    public ParticleSystem Particle => _particle;
+    public List<ParticleSystem> ParticleList => _particleList;
     private void Awake()
     {
         _particle = GetComponent<ParticleSystem>();
-        particleList ??= _particle.GetComponentsInChildren<ParticleSystem>().ToList();
+        _particleList ??= _particle.GetComponentsInChildren<ParticleSystem>().ToList();
         parent = transform.parent;
 
         _originPos = transform.localPosition;
@@ -74,9 +77,9 @@ public class EffectComponent : PoolableMono
 
     private void CheckLifeTime()
     {
-        for (int i = 0; i < particleList.Count; i++)
+        for (int i = 0; i < _particleList.Count; i++)
         {
-            float lifeTime = particleList[i].main.startLifetimeMultiplier;
+            float lifeTime = _particleList[i].main.startLifetimeMultiplier;
             if (_lifeTime < lifeTime)
             {
                 _lifeTime = lifeTime;

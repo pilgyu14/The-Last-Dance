@@ -16,6 +16,7 @@ public enum AttackType
 
     // 패시브 
     CanThreeAttack = 3000, 
+    DefaultAttackUpgrade = 3001, 
 }
 
 public class AttackModule : MonoBehaviour, IComponent
