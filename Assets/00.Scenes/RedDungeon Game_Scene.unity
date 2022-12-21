@@ -833,15 +833,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8761442448586652482, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.30582607
+      value: 0.30582604
       objectReference: {fileID: 0}
     - target: {fileID: 8761442448586652482, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.46716103
+      value: -0.467161
       objectReference: {fileID: 0}
     - target: {fileID: 8761442448586652482, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.17623895
+      value: 0.17623897
       objectReference: {fileID: 0}
     - target: {fileID: 8761442450014756751, guid: cc984f7cbf5ebd442801588d3f11e923, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16687,6 +16687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterSpawner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6350293800928059497, guid: 1e6441ac3288b554ea03a3d81d673219, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8973381943616909881, guid: 1e6441ac3288b554ea03a3d81d673219, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -22779,6 +22783,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterSpawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6350293800928059497, guid: 1e6441ac3288b554ea03a3d81d673219, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8973381943616909881, guid: 1e6441ac3288b554ea03a3d81d673219, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -26809,6 +26817,10 @@ PrefabInstance:
     - target: {fileID: 6350293800928059497, guid: 1e6441ac3288b554ea03a3d81d673219, type: 3}
       propertyPath: m_Name
       value: MonsterSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350293800928059497, guid: 1e6441ac3288b554ea03a3d81d673219, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8973381943616909881, guid: 1e6441ac3288b554ea03a3d81d673219, type: 3}
       propertyPath: m_RootOrder
