@@ -13,6 +13,7 @@ public class UpgradeEffectAndAttack
 
     public void UpgradeColor()
     {
+        Debug.Log("@@@@@Upgrade@@@@@");
         ParticleSystem.MainModule psMain = effectComponent.Particle.main;
         psMain.startColor = upgradeColor[0];
 
@@ -31,15 +32,14 @@ public class UpgradeEffectAndAttack
     }
 }
 
-
 public class DefaultAttackUpgradeSkill : SkillData<PlayerController>
 {
     [SerializeField]
     private List<UpgradeEffectAndAttack> _effectList = new List<UpgradeEffectAndAttack>();
 
-    public DefaultAttackUpgradeSkill(PlayerController playerController)
+    public void Init(PlayerController playerController)
     {
-        this._owner = playerController; 
+        _owner = playerController;
     }
     public override void Enter()
     {

@@ -31,7 +31,7 @@ public class EffectComponent : PoolableMono
     private void Awake()
     {
         _particle = GetComponent<ParticleSystem>();
-        _particleList ??= _particle.GetComponentsInChildren<ParticleSystem>().ToList();
+        _particleList = _particle.GetComponentsInChildren<ParticleSystem>().ToList();
         parent = transform.parent;
 
         _originPos = transform.localPosition;

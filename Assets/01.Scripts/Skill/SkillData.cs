@@ -6,6 +6,7 @@ using UnityEngine;
 /// 패시브 스킬 부모 
 /// </summary>
 /// <typeparam name="T"></typeparam>
+[System.Serializable]
 public abstract class SkillData<T> : MonoBehaviour where T : IAgent
 {
     protected T _owner; 

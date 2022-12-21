@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ThreeAttackSkill : SkillData<PlayerController>
 {
-    public ThreeAttackSkill(PlayerController playerController)
+    public void Init(PlayerController playerController)
     {
-        _owner = playerController;
+        _owner = playerController; 
     }
     public override void Enter()
     {
+        Debug.Log("THREE ATTACK SKILL");
         _owner.SetThreeAttackPossible(true);
     }
 

@@ -13,17 +13,31 @@ MonoBehaviour:
   m_Name: SkillInventorySO
   m_EditorClassIdentifier: 
   skillList:
+  - attackType: 1001
+    icon: {fileID: 0}
+    skillName: 
+    skillDescription: 
+    skillLevel: 0
+    requiredLevel: 0
+    isActiveSkill: 0
   - attackType: 3000
-    icon: {fileID: 21300000, guid: af88e637281e9a548aa31d1cb76a0486, type: 3}
-    skillName: Test
+    icon: {fileID: 21300000, guid: 7d053d3b3746a204bb3be41bbecff78f, type: 3}
+    skillName: Test2
     skillDescription: "\uC2E4\uD5D8\uC6A9 \uC2A4\uD0AC\uC774\uB2E4."
     skillLevel: 1
     requiredLevel: 0
     isActiveSkill: 0
-  - attackType: 3000
+  - attackType: 3001
+    icon: {fileID: 21300000, guid: eed1ebcab0d6c3743950949d537f1f5b, type: 3}
+    skillName: Test3
+    skillDescription: "\uC2E4\uD5D8\uC6A9 \uC2A4\uD0AC\uC774\uB2E4."
+    skillLevel: 2
+    requiredLevel: 0
+    isActiveSkill: 0
+  - attackType: 0
     icon: {fileID: 21300000, guid: af88e637281e9a548aa31d1cb76a0486, type: 3}
     skillName: Test
     skillDescription: "\uC2E4\uD5D8\uC6A9 \uC2A4\uD0AC\uC774\uB2E4."
-    skillLevel: 1
+    skillLevel: 2
     requiredLevel: 0
     isActiveSkill: 0
