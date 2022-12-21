@@ -142,6 +142,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _playerSO.UpdateStat();
         // 모듈 초기화
         _moveModule.Init(this, _agent, _playerSO.moveInfo, _playerAnimation, _inputModule);
+        _moveModule.OnMovementAction += WalkSound;
         _attackModule.Init(this, _fov, _moveModule,_playerAnimation);
         _hpModule.Init(_playerSO.maxHp, _playerSO.maxHp);
 
@@ -170,6 +171,18 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         //    return; 
         //}
         //InBattleMove(); 
+    }
+
+    /// <summary>
+    /// 걷기 사운드
+    /// </summary>
+    public void WalkSound(Vector3 v)
+    {
+        if(v.sqrMagnitude > 0.01f)
+        {
+            Debug.Log("@@@@걷기 사운드@@@");
+            _autioPlayer.PlayStepSound(); 
+        }
     }
 
     [SerializeField] private KeyCode keyCode; 
@@ -310,11 +323,11 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     // 피격 관련 
     public void OnDie()
     {
-        _moveModule.StopMove(); 
         _inputModule.BlockAllInput(true); 
         _isDie = true;
-        _playerAnimation.PlayDeathAnimation(); 
-        
+        _playerAnimation.PlayDeathAnimation();
+        _moveModule.StopMove();
+        _autioPlayer.PlayClip(_playerSO.deathClip);
         // UI 뜨도록 
     }
 
@@ -327,7 +340,8 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     public void GetDamaged(int damage, GameObject damageDealer)
     {
         if (IsDie() == true) return;
-        feedbackCallbackHit?.Invoke(); 
+        feedbackCallbackHit?.Invoke();
+        _autioPlayer.PlayClipWithVariablePitch(_playerSO.hitClip);
         if (CheckHPEffect(damage) == false)
         {
             OnDie(); // 죽음 처리 

@@ -19,6 +19,11 @@ public class ItemDropper : MonoBehaviour
     [Range(0, 1f)]
     private float itemDropChance, skillDropChance;
 
+    public void DropItemAndSkill()
+    {
+        DropItem();
+        DropSkill(); 
+    }
     public void DropItem()
     {
         float dropVar = Random.value;

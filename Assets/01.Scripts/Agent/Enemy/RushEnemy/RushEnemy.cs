@@ -119,6 +119,17 @@ public class RushEnemy : Enemy
         // _moveModule.DashCorutine(dir, knockbackPower, 0.2f);
     }
 
+    public override void GetDamaged(int damage, GameObject damageDealer)
+    {
+        base.GetDamaged(damage, damageDealer);
+        InitColor(); 
+    }
+
+    public override void OnDie()
+    {
+        base.OnDie();
+        InitColor();
+    }
     public override void Reset()
     {
         base.Reset();

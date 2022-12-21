@@ -240,6 +240,7 @@ Transform:
   - {fileID: 1406520815529218599}
   - {fileID: 860292894651763642}
   - {fileID: 860292893523792689}
+  - {fileID: 551525272094984620}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -333,8 +334,10 @@ MonoBehaviour:
   _curHp: 0
   _isPlayer: 0
   _canvas: {fileID: 1406520815529218619}
-  _hpSliderList: []
-  _prevHpSliderList: []
+  _hpSliderList:
+  - {fileID: 1406520814605933825}
+  _prevHpSliderList:
+  - {fileID: 1406520814725601907}
 --- !u!114 &860292894399500401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,9 +419,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
+  _lastAttackType: 0
+  _isThreeAttack: 0
   attackInfoList:
   - attackInfo:
-      attackType: 100
       nextAttackType: 101
       attackSO: {fileID: 11400000, guid: 19ad15cab59bab7498bc6fd93dbfba34, type: 2}
       feedbackCallback:
@@ -430,7 +434,6 @@ MonoBehaviour:
     attackCollider: {fileID: 860292893932525042}
   _curAttackBase:
     attackInfo:
-      attackType: 0
       nextAttackType: 0
       attackSO: {fileID: 0}
       feedbackCallback:
@@ -3046,6 +3049,55 @@ Transform:
   m_Father: {fileID: 5288480209464605457}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6508214117103752895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551525272094984620}
+  - component: {fileID: 8802656531366302069}
+  m_Layer: 0
+  m_Name: ItemDropper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &551525272094984620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508214117103752895}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 860292894399500403}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8802656531366302069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6508214117103752895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27178de83d2f4d741b10b3bd75d9af53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPower: 2
+  itemTableSO: {fileID: 11400000, guid: 0955a15df8b9cad418ba406929591a48, type: 2}
+  skillTableSO: {fileID: 11400000, guid: 742c10f02ff017b46b3e55a4f4b416b0, type: 2}
+  itemDropChance: 1
+  skillDropChance: 1
 --- !u!1001 &860292894561326913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3171,6 +3223,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}
+--- !u!114 &1406520814605933825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1762219097801181760, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}
+  m_PrefabInstance: {fileID: 860292894561326913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1406520814725601907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1762219097685708082, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}
+  m_PrefabInstance: {fileID: 860292894561326913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1406520815529218599 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1762219096877892966, guid: 063b7bb116dd6014a803a6d786c039b3, type: 3}

@@ -142,6 +142,7 @@ public void Init(IAgent owner, AgentAnimation playerAnimation,AgentMoveModule pl
             // 컨트롤러에 넣고 
             // 실행 
         }
+        _owner.AudioPlayer.PlayClip(attackInfo.attackSO.swingClip);
 
         // 피드백 실행 
         //if (_fov.TargetList.Count >= 1)
@@ -149,8 +150,8 @@ public void Init(IAgent owner, AgentAnimation playerAnimation,AgentMoveModule pl
         //    attackInfo.feedbackCallbackHit?.Invoke(); 
         //}
         // 음? 
-        
-        if(_playerAnimation != null)
+
+        if (_playerAnimation != null)
         {
             _playerAnimation.Update_Zero();
         }

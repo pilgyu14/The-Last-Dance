@@ -20,7 +20,9 @@ public class MovementInfo
 public class AgentSO : ScriptableObject
 {
     public int maxHp;
-    public int level; 
+    public int level;
+    public AudioClip hitClip;
+    public AudioClip deathClip; 
 
     public MovementInfo moveInfo; 
 }

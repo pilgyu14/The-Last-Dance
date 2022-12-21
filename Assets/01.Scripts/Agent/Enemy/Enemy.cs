@@ -30,6 +30,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
     protected AgentAudioPlayer _audioPlayer;
     protected CapsuleCollider _collider;
     protected Rigidbody _rigid;
+    private ItemDropper _itemDroper; 
 
     // 상태 변수 
     protected bool _isHit = false; // 피격중인가
@@ -89,6 +90,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         _audioPlayer = GetComponentInChildren<AgentAudioPlayer>();
         _collider = GetComponent<CapsuleCollider>();
         _rigid = GetComponent<Rigidbody>();
+        _itemDroper = GetComponentInChildren<ItemDropper>(); 
 
         SetComponents();
 
@@ -154,7 +156,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
 
 
     // 피격 관련 
-    public void GetDamaged(int damage, GameObject damageDealer)
+    public virtual void GetDamaged(int damage, GameObject damageDealer)
     {
         Debug.LogError($"{transform.name} 피격, 데미지 {damage}");
         if (_hpModule.ChangeHP(-damage) == false)
@@ -164,6 +166,8 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         }
         _enemyAnimation.PlayHitAnimation(); 
         _isHit = true; // 맞았다
+        _audioPlayer.PlayClip(_enemySO.hitClip);
+        // 사운드 
 
         // 타겟 바라보기 
     }
@@ -173,7 +177,7 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         StartCoroutine(_moveModule.DashCorutine(direction, power, duration)); 
      }
 
-    public void Die()
+    public virtual void Die()
     {
 
         _agent.enabled = false; 
@@ -269,10 +273,12 @@ public class Enemy : PoolableMono, IDamagable, IAgent, IAgentInput, IKnockback
         return CheckDistance(_enemySO.eyeAngle, _enemySO.chaseDistance);
     }
 
-    public void OnDie()
+    public virtual void OnDie()
     {
         _enemyAnimation.PlayDeathAnimation();
         StartCoroutine(Destroy()); //  일정 시간 후 죽음  
+        _itemDroper.DropItemAndSkill(); 
+        _audioPlayer.PlayClip(_enemySO.deathClip);
         // 아이템 떨구기
     }
 

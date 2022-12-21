@@ -25,6 +25,7 @@ MonoBehaviour:
   attackRadius: 5
   attackAngle: 30
   attackCoolTime: 1
+  attackDuration: 0
   animationClip: {fileID: 7400000, guid: a7874ea932e63f747a42283b3972341a, type: 2}
   animationName: 
   animationFuncName: 
@@ -32,5 +33,11 @@ MonoBehaviour:
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}
-  icon: {fileID: 0}
-  requiredLevel: 0
+  skillInfo:
+    attackType: 100
+    icon: {fileID: 0}
+    skillName: 
+    skillDescription: 
+    skillLevel: 0
+    requiredLevel: 0
+    isActiveSkill: 0

@@ -32,7 +32,7 @@ MonoBehaviour:
   hitEffect: {fileID: 6787811906628579171, guid: ed9aa6b77b874b54cad16dbfb123a2dd, type: 3}
   swingEffect: {fileID: 0}
   swingClip: {fileID: 0}
-  hitClip: {fileID: 0}
+  hitClip: {fileID: 8300000, guid: 5ca0a090637559842ae351908732b81a, type: 3}
   skillInfo:
     attackType: 1001
     icon: {fileID: 0}

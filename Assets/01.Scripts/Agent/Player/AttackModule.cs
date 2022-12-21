@@ -11,6 +11,14 @@ public enum AttackType
  
     // 액티브 
     RushAttack = 300,
+    
+    StingAttack = 500, 
+    CutAttack, 
+    CurChargeAttack, 
+    Defend, 
+    JumpAttack,
+    SummonAttack,
+
     Tackle = 1000,
     HurricaneAttack = 1001, 
 

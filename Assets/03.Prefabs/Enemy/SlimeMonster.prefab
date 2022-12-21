@@ -58,6 +58,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20f870308e86db4d9ab09a429e16673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &280171226826807165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2721089595547412471}
+  - component: {fileID: 2458321215664743989}
+  m_Layer: 0
+  m_Name: ItemDropper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2721089595547412471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280171226826807165}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 548140712250120010}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2458321215664743989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280171226826807165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27178de83d2f4d741b10b3bd75d9af53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPower: 2
+  itemTableSO: {fileID: 0}
+  skillTableSO: {fileID: 0}
+  itemDropChance: 0
+  skillDropChance: 0
 --- !u!1 &548140711512888329
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +347,7 @@ Transform:
   - {fileID: 2301282218996094238}
   - {fileID: 548140712531741827}
   - {fileID: 548140711512888328}
+  - {fileID: 2721089595547412471}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -391,9 +441,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _curHp: 0
+  _isPlayer: 0
   _canvas: {fileID: 2301282218996094210}
-  _hpSlider: {fileID: 2301282218307689016}
-  _prevHpSlider: {fileID: 2301282218188283210}
+  _hpSliderList:
+  - {fileID: 2301282218307689016}
+  _prevHpSliderList:
+  - {fileID: 2301282218188283210}
 --- !u!114 &548140712250120008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,9 +529,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
+  _lastAttackType: 0
+  _isThreeAttack: 0
   attackInfoList:
   - attackInfo:
-      attackType: 100
       nextAttackType: 0
       attackSO: {fileID: 11400000, guid: 8572bdeeb19edfe43904990df43f8376, type: 2}
       feedbackCallback:
@@ -489,7 +543,6 @@ MonoBehaviour:
           m_Calls: []
     attackCollider: {fileID: 548140711640601291}
   - attackInfo:
-      attackType: 300
       nextAttackType: 0
       attackSO: {fileID: 11400000, guid: b537a156315b5e14fb42e4ffc98bbd8d, type: 2}
       feedbackCallback:
@@ -501,7 +554,6 @@ MonoBehaviour:
     attackCollider: {fileID: 1764315842}
   _curAttackBase:
     attackInfo:
-      attackType: 0
       nextAttackType: 0
       attackSO: {fileID: 0}
       feedbackCallback:

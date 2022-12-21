@@ -12,6 +12,7 @@ namespace Rito.BehaviorTree
         public static SelectorNode Selector(params INode[] nodes) => new SelectorNode(nodes);
         public static SequenceNode Sequence(params INode[] nodes) => new SequenceNode(nodes);
         public static ParallelNode Parallel(params INode[] nodes) => new ParallelNode(nodes);
+        public static RandomNode Random(params INode[] nodes) => new RandomNode(nodes); 
 
         public static ConditionNode Condition(Func<bool> condition) => new ConditionNode(condition);
         public static NotConditionNode NotCondition(Func<bool> condition) => new NotConditionNode(condition);

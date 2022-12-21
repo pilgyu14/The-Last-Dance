@@ -65,6 +65,8 @@ public class Skill_TradeUI : MonoSingleton<Skill_TradeUI>
         if (isActive == false) return;
         ItemUI.Instance.UpdateSkillUI();
         gameObject.SetActive(false);
+        EventManager.Instance.TriggerEvent(EventsType.CheckActiveSkill);
+        EventManager.Instance.TriggerEvent(EventsType.CheckPassiveSkill);
     }
 
 }

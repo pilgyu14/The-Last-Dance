@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 50
   level: 1
+  hitClip: {fileID: 8300000, guid: 67021ad0f7f249a43a01d3331173f47b, type: 3}
+  deathClip: {fileID: 8300000, guid: bd0234ca5657514408f449dc042031c8, type: 3}
   moveInfo:
     maxSpeed: 3
     acceleration: 0

@@ -32,7 +32,7 @@ public class AttackJudgementComponent
 
         // 맞은 위치
         // 히트 오디오 재생 
-        _owner.AudioPlayer.PlayClip(_attackInfo.attackSO.hitClip);
+        _owner.AudioPlayer.PlayClipWithVariablePitch(_attackInfo.attackSO.hitClip);
 
         // 플레이어 공격이라면 
         // 데미지 텍스트 

@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707faf92549326440bcc845e663c769a, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 100
   level: 1
+  hitClip: {fileID: 0}
+  deathClip: {fileID: 0}
   moveInfo:
     maxSpeed: 4
-    acceleration: 5
-    deacceleration: 5
+    acceleration: 100
+    deacceleration: 100
     rotSpeed: 10
-  defaultHP: 10
+  walkClip: {fileID: 8300000, guid: 7821ff90629fd804f9151121545b6957, type: 3}
+  defaultHP: 100
   baseHp: 0
   defaultMaxSpeed: 4
   baseMaxSpeed: 0
-  exp: 0
+  exp: 8
   maxExp: 100

@@ -31,7 +31,7 @@ MonoBehaviour:
   animationFuncName: 
   hitEffect: {fileID: 1767841913861676, guid: 7e33fe33aff4f49449f51ed88f138e9c, type: 3}
   swingEffect: {fileID: 0}
-  swingClip: {fileID: 0}
+  swingClip: {fileID: 8300000, guid: 8ebb196a1319b694d9ee21d309fa8456, type: 3}
   hitClip: {fileID: 0}
   skillInfo:
     attackType: 1000
