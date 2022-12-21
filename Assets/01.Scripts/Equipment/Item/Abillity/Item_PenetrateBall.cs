@@ -22,7 +22,7 @@ public class Item_PenetrateBall : Item_Base
         }
         else if (other.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            PoolManager.Instance.Push(this);
         }
     }
 

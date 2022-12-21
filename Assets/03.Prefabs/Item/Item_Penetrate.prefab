@@ -118,7 +118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackBase:
     attackInfo:
-      attackType: 0
       nextAttackType: 0
       attackSO: {fileID: 11400000, guid: a9f5f8f233c152841b477484bdf1cd66, type: 2}
       feedbackCallback:
@@ -141,7 +140,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3431019224040267252
 PrefabInstance:
