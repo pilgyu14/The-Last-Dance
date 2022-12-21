@@ -25,5 +25,5 @@ MonoBehaviour:
   baseHp: 0
   defaultMaxSpeed: 4
   baseMaxSpeed: 0
-  exp: 20
+  exp: 0
   maxExp: 100
