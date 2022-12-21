@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bf9c98e2052364b9dafe30842b5f3d, type: 3}
   m_Name: SlimeEnemySO
   m_EditorClassIdentifier: 
-  maxHp: 50
+  maxHp: 20
   level: 1
   hitClip: {fileID: 8300000, guid: 67021ad0f7f249a43a01d3331173f47b, type: 3}
   deathClip: {fileID: 8300000, guid: bd0234ca5657514408f449dc042031c8, type: 3}

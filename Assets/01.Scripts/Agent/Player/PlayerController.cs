@@ -178,9 +178,11 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
     /// </summary>
     public void WalkSound(Vector3 v)
     {
-        if(v.sqrMagnitude > 0.01f)
+        Debug.Log("°È±â »ç¿îµå@@@");
+
+        if (v.sqrMagnitude > 0.01f)
         {
-            Debug.Log("@@@@°È±â »ç¿îµå@@@");
+            Debug.Log("@@@@°È±â »ç¿îµå");
             _autioPlayer.PlayStepSound(); 
         }
     }
