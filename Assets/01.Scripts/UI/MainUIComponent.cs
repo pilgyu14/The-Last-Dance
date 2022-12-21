@@ -21,7 +21,7 @@ public class ExpUIComponent
     public void UpdateTextUI()
     {
         int expPercent = (_playerSO.exp / _playerSO.maxExp) * 100; 
-        _expText.text = string.Format("{0} / {1} ( {2:N1}% )", _playerSO.maxExp.ToString(), _playerSO.exp.ToString(), expPercent);
+        _expText.text = string.Format("{0} / {1} ( {2:N1}% )", _playerSO.exp.ToString(), _playerSO.maxExp.ToString() , expPercent);
     }
 
     /// <summary>

@@ -39,6 +39,11 @@ public class Item_Base : PoolableMono
         }
     }
 
+    [ContextMenu("Å×½ºÆ®")]
+    public void Test()
+    {
+        _attackJudgementComponent.AttackJudge(transform, _attackBase.attackCollider.transform);
+    }
     public virtual void Attack(GameObject monster)
     {
         _attackJudgementComponent.AttackJudge(monster.transform, _attackBase.attackCollider.transform);

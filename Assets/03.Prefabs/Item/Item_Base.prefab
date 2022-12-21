@@ -118,9 +118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackBase:
     attackInfo:
-      attackType: 0
       nextAttackType: 0
-      attackSO: {fileID: 0}
+      attackSO: {fileID: 11400000, guid: 59810adfa7b9f954788f14fa3e555080, type: 2}
       feedbackCallback:
         m_PersistentCalls:
           m_Calls: []
