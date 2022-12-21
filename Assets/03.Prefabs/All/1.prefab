@@ -852,21 +852,25 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.2624506
       objectReference: {fileID: 0}
-    - target: {fileID: 7667333730975293440, guid: d563e4a85ffe10e40a64484fe1acec26, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 7667333730455796000, guid: d563e4a85ffe10e40a64484fe1acec26, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7667333730975293440, guid: d563e4a85ffe10e40a64484fe1acec26, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667333730975293440, guid: d563e4a85ffe10e40a64484fe1acec26, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7667333731368811443, guid: d563e4a85ffe10e40a64484fe1acec26, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7667333731368811443, guid: d563e4a85ffe10e40a64484fe1acec26, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8220053971529506280, guid: d563e4a85ffe10e40a64484fe1acec26, type: 3}
       propertyPath: _stepClip
@@ -1878,7 +1882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1565314410524203963, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.21681026
+      value: 0.21681024
       objectReference: {fileID: 0}
     - target: {fileID: 1565314410524203963, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1886,7 +1890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1565314410524203963, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.21843766
+      value: 0.21843767
       objectReference: {fileID: 0}
     - target: {fileID: 1565314410614969328, guid: 2ec932a40e5917349b1ebd9b5643780f, type: 3}
       propertyPath: m_Name
