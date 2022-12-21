@@ -39,6 +39,7 @@ public class Skill_TradeUI : MonoSingleton<Skill_TradeUI>
 
     public void OnDropButton()
     {
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
     }
 
@@ -64,9 +65,10 @@ public class Skill_TradeUI : MonoSingleton<Skill_TradeUI>
         }
         if (isActive == false) return;
         ItemUI.Instance.UpdateSkillUI();
-        gameObject.SetActive(false);
         EventManager.Instance.TriggerEvent(EventsType.CheckActiveSkill);
         EventManager.Instance.TriggerEvent(EventsType.CheckPassiveSkill);
+        Time.timeScale = 1f;
+        gameObject.SetActive(false);
     }
 
 }

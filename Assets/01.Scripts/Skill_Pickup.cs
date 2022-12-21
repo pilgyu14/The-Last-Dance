@@ -54,6 +54,7 @@ public class Skill_Pickup : PoolableMono
         skill.Copy(attackSO.skillInfo);
         if (ItemUI.Instance.skillInventorySO.skillList.Count >= 4)
         {
+            Time.timeScale = 0f;
             ItemUI.Instance.skillTrade.SetActive(true);
             Skill_TradeUI.Instance.UpdateUI(skill);
             ItemUI.Instance.pickup.SetActive(false);
