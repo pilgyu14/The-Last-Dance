@@ -13,6 +13,8 @@ public enum EventsType
     UpdateHpUI = 301,
     UpdateExpUI = 302,
 
+    BlockPlayerInput = 400, 
+    
     SetActiveSkillInput = 500,
     CheckPassiveSkill = 501, 
     CheckActiveSkill = 502,
