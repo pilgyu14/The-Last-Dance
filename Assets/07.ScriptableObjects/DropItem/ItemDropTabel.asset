@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemDropTabel
   m_EditorClassIdentifier: 
   itemTable:
-  - {fileID: 11400000, guid: a5f85ad709340944da15457b4b3e98b4, type: 2}
-  - {fileID: 11400000, guid: 365bfe3e722f5ed4e9e3fd07aa07ab0a, type: 2}
-  - {fileID: 11400000, guid: 28c7b52ed475b174ebcd637d748a81b5, type: 2}
-  - {fileID: 11400000, guid: 661b98c335d2b4540a331239b5f7ea1f, type: 2}
+  - {fileID: 4784903253640564022, guid: 10615b87cc6359f479829f03645bd606, type: 3}
+  - {fileID: 5399984280398112393, guid: e55e72a8b15ebf04b89e1cdf92781172, type: 3}
+  - {fileID: 1750416344570907306, guid: 3feb9b06ad17b3f4184887b61dca6d3a, type: 3}
+  - {fileID: 4317677032331799664, guid: 6cfa1c15f85452340a93d16b73fea15f, type: 3}

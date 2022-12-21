@@ -8,7 +8,7 @@ public class MonsterSpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("MonsterSpawn", 5f, 10f);
+        InvokeRepeating("MonsterSpawn", 5f, 20f);
     }
 
     private void MonsterSpawn()
@@ -16,8 +16,7 @@ public class MonsterSpawner : MonoBehaviour
         x = Random.Range(-3f, 3f);
         z = Random.Range(-3f, 3f);
 
-        float monsterSelect = Random.value;
-        Debug.Log(monsterSelect); 
+        float monsterSelect = Random.Range(0f, 1f);
         PoolableMono monster;
         if (monsterSelect <= 0.5f)
             monster = PoolManager.Instance.Pop("GhoulMonster");
