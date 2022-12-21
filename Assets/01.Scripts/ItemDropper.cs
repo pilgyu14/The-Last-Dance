@@ -33,7 +33,7 @@ public class ItemDropper : MonoBehaviour
             PoolableMono item = PoolManager.Instance.Pop(itemTableSO.itemTable[randomIdx].item.itemPrefab.name);
             item.transform.position = transform.position;
 
-            Vector3 offset = Random.insideUnitCircle;
+            Vector3 offset = Vector3.up * 2f;
 
             item.transform.DOJump(transform.position + offset, dropPower, 1, 0.3f);
         }

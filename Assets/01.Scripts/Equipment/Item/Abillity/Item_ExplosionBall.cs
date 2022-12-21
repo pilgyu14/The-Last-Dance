@@ -12,7 +12,9 @@ public class Item_ExplosionBall : Item_Base
     {
         if (col.gameObject.CompareTag("Monster") || col.gameObject.CompareTag("Wall"))
         {
-            // 터지는 이펙트 
+            PoolableMono explosion = PoolManager.Instance.Pop("Explosion8");
+            explosion.transform.position = transform.position;
+
             Attack(null);
         }
     }
@@ -28,6 +30,6 @@ public class Item_ExplosionBall : Item_Base
             //monsterHP = monsters[i].GetComponent<HP>();
             //monsterHP.Damage(damage);
         }
-        Destroy(gameObject);
+        PoolManager.Instance.Push(this);
     }
 }
