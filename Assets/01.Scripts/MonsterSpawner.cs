@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    float x, z;
+    private float x, z;
 
     void Start()
     {

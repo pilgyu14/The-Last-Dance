@@ -12,6 +12,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     private Transform _playerTrm;
 
+    [SerializeField]
+    private int _requirementsMonster;
+    private int _monsterCnt;
+
     // 프로퍼티 
     public CoroutineComponent CoroutineComponent => _coroutineComponent; 
     public Transform PlayerTrm
@@ -28,10 +32,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
-        //if (Instance != null)
-        //    Debug.LogError("Multiple GameManager is running");
-        //Instance = this;
-
         PoolManager.Instance = new PoolManager(transform); //풀매니저 생성
         _coroutineComponent = new CoroutineComponent(); 
 
@@ -47,5 +47,15 @@ public class GameManager : MonoSingleton<GameManager>
     public void BegineCoroutine()
     {
         StartCoroutine(_coroutineComponent.coroutine); 
+    }
+
+    public void MonsterDie()
+    {
+        _monsterCnt++;
+    }
+
+    public bool CanNextFloor()
+    {
+        return _requirementsMonster <= _monsterCnt;
     }
 }
