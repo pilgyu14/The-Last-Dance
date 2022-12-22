@@ -322,17 +322,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!114 &1268702185 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7350765493988217556, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-  m_PrefabInstance: {fileID: 6960440435864021090}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bd736bfe920c594ea23804cf861747f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1825680567
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,18 +454,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1266893463179795377, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 1266893463179795377, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -9101909364537742168, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 1628777269733649688, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 701421577}
     - target: {fileID: 1873362243367524686, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -561,105 +538,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1965178807912489935, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1965178807912489935, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1965178807912489935, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1268702185}
-    - target: {fileID: 1965178807912489935, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1965178807912489935, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnExitButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 1965178807912489935, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StartSceneUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1965178807912489935, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2031064007947312543, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 2031064007947312543, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -9101909364537742168, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 2618334428650761972, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618334428650761972, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618334428650761972, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1268702185}
-    - target: {fileID: 2618334428650761972, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618334428650761972, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPlayButtion
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618334428650761972, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StartSceneUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618334428650761972, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5394094760647842985, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 5394094760647842985, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -9101909364537742168, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 6014352801319773626, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 6014352801319773626, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -9101909364537742168, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 6279169772519802992, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 6279169772519802992, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -9101909364537742168, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
     - target: {fileID: 8552752716799166400, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
       propertyPath: m_Name
       value: StartCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 9044400275578768848, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
-    - target: {fileID: 9044400275578768848, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -9101909364537742168, guid: 5ef0518768233b3498a6715f915ed5dc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63825c9e8d902b34c80837f733e702ac, type: 3}
