@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneUI : MonoBehaviour
 {
+    private void Start()
+    {
+        EventManager.Instance.StartListening(EventsType.LoadMainScene, () => gameObject.SetActive(true));
+    }
     public void OnPlayButtion()
     {
         SceneManager.LoadScene("BlueDungeon Game_Scene");
