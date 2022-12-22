@@ -8,9 +8,9 @@ public class SceneLoadComponenet : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.Instance.StartListening(EventsType.LoadMainScene, SceneLoadMain);
-        EventManager.Instance.StartListening(EventsType.LoadFloor1Scene, SceneLoadBattle);
-        EventManager.Instance.StartListening(EventsType.LoadFloor2Scene, SceneLoadStageMake);
+        //EventManager.Instance.StartListening(EventsType.LoadMainScene, SceneLoadMain);
+        //EventManager.Instance.StartListening(EventsType.LoadFloor1Scene, SceneLoadBattle);
+        //EventManager.Instance.StartListening(EventsType.LoadFloor2Scene, SceneLoadStageMake);
     }
     /// <summary>
     /// 배틀씬을 로딩씬을 거쳐 이동한다

@@ -34,9 +34,9 @@ MonoBehaviour:
   swingClip: {fileID: 0}
   hitClip: {fileID: 0}
   skillInfo:
-    attackType: 0
+    attackType: 3001
     icon: {fileID: 0}
-    skillName: "\uC2A4\uD0AC \uC544\uC774\uD15C"
+    skillName: "\uAE30\uBCF8 \uACF5\uACA9 \uC5C5\uADF8\uB808\uC774\uB4DC"
     skillDescription: 
     skillLevel: 0
     requiredLevel: 0

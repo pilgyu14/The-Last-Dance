@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxItemType: 4
   maxItemValue: 10
-  itemList: []
+  itemList:
+  - itemPrefab: {fileID: 4918435806118783761, guid: 6fe9357229e84b04ba6def14bf5d84c7, type: 3}
+    itemImage: {fileID: 0}
+    name: "\uBC18\uC0AC \uC544\uC774\uD15C"
+    value: 1

@@ -36,7 +36,7 @@ MonoBehaviour:
   skillInfo:
     attackType: 1001
     icon: {fileID: 0}
-    skillName: "\uC2A4\uD0AC \uC544\uC774\uD15C"
+    skillName: "\uD68C\uC804 \uACF5\uACA9"
     skillDescription: 
     skillLevel: 0
     requiredLevel: 0

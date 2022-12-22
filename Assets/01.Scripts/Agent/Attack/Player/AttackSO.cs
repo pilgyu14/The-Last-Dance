@@ -25,6 +25,7 @@ public class SkillInfo
         this.skillDescription = skill.skillDescription;
         this.skillLevel = skill.skillLevel;
         this.requiredLevel = skill.requiredLevel;
+        this.attackType = skill.attackType; 
     }
 }
 
