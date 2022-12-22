@@ -323,6 +323,7 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
 
     #endregion
     // 피격 관련 
+    [ContextMenu("s")]
     public void OnDie()
     {
         _inputModule.BlockAllInput(true); 
