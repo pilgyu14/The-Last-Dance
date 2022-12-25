@@ -16,6 +16,12 @@ public class PlayerSO : AgentSO
     public int exp; // 경험치 
     public int maxExp; // 
 
+    public void Init()
+    {
+        level = 1;
+        UpdateStat(); 
+    }
+
     /// <summary>
     /// 레벨에 맞게 스탯 업데이트 
     /// </summary>

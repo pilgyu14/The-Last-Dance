@@ -330,6 +330,10 @@ public class PlayerController : MonoBehaviour, IAgent, IDamagable,IKnockback
         _playerAnimation.PlayDeathAnimation();
         _moveModule.StopMove();
         _autioPlayer.PlayClip(_playerSO.deathClip);
+        _playerSO.Init();
+        _skillInventorySO.Init();
+        EventManager.Instance.TriggerEvent(EventsType.CheckActiveSkill);
+        EventManager.Instance.TriggerEvent(EventsType.CheckPassiveSkill);
 
         EventManager.Instance.TriggerEvent(EventsType.LoadMainScene);
         // UI ¶ßµµ·Ï 

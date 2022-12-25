@@ -7,4 +7,8 @@ public class SkillInventorySO : ScriptableObject
 {
     public List<SkillInfo> skillList;
 
+    public void Init()
+    {
+        skillList.Clear(); 
+    }
 }
