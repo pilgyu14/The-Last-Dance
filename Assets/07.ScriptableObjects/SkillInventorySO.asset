@@ -12,11 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc9cfcf6422559b4ba0f2c8ac294201f, type: 3}
   m_Name: SkillInventorySO
   m_EditorClassIdentifier: 
-  skillList:
-  - attackType: 3000
-    icon: {fileID: 0}
-    skillName: "\uC2A4\uD0AC \uC544\uC774\uD15C"
-    skillDescription: 
-    skillLevel: 5
-    requiredLevel: 0
-    isActiveSkill: 0
+  skillList: []

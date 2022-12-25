@@ -94,16 +94,22 @@ public class ItemUI : MonoSingleton<ItemUI>
 
     public void UpdateItemUI()
     {
-        itemImage.sprite = inventorySO.itemList[pageIdx].itemImage;
-        itemCntText.text = inventorySO.itemList[pageIdx].value.ToString();
-        itemNameText.text = inventorySO.itemList[pageIdx].name;
+        if(inventorySO.itemList.Count != 0)
+        {
+            itemImage.sprite = inventorySO.itemList[pageIdx].itemImage;
+            itemCntText.text = inventorySO.itemList[pageIdx].value.ToString();
+            itemNameText.text = inventorySO.itemList[pageIdx].name;
+        }
     }
 
     public void UpdateSkillUI()
     {
-        for(int i = 0; i < skillInventorySO.skillList.Count; i++)
+        if(skillInventorySO.skillList.Count != 0)
         {
-            skillImageList[i].sprite = skillInventorySO.skillList[i].icon;
+            for (int i = 0; i < skillInventorySO.skillList.Count; i++)
+            {
+                skillImageList[i].sprite = skillInventorySO.skillList[i].icon;
+            }
         }
     }
 
